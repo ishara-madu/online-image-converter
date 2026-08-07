@@ -1,1 +1,16 @@
-@import "tailwindcss";
+/* Basic resets - No design styling */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#status {
+  font-weight: bold;
+  color: #333;
+}
+
+#result-area {
+  margin-top: 1rem;
+}

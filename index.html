@@ -1,16 +1,44 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pic-convert-vanilla</title>
+  <title>Image Converter Core</title>
 </head>
-
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <h1>Image Converter Engine</h1>
+    
+    <div>
+      <label for="file-input">Select Image (.jpg, .jpeg, .png, .webp, .bmp, .avif, .heic, .heif, .gif, .svg, .ico):</label><br/>
+      <input type="file" id="file-input" accept=".jpg,.jpeg,.png,.webp,.bmp,.avif,.heic,.heif,.gif,.svg,.ico,image/*" />
+    </div>
+    
+    <br/>
+
+    <div>
+      <label for="format-select">Output Format:</label><br/>
+      <select id="format-select">
+        <option value="jpeg">JPG / JPEG</option>
+        <option value="png">PNG</option>
+        <option value="webp">WebP</option>
+        <option value="avif">AVIF</option>
+        <option value="ico">ICO (Favicon)</option>
+        <option value="gif">GIF (Static Image)</option>
+        <option value="svg">SVG (True Vector)</option>
+      </select>
+    </div>
+
+    <br/>
+
+    <button id="convert-btn">Convert Image</button>
+
+    <br/><br/>
+    <div id="status" style="font-weight: bold; color: #0066cc;"></div>
+    <br/>
+    <div id="result-area"></div>
+  </div>
+
   <script type="module" src="/src/main.js"></script>
 </body>
-
 </html>
