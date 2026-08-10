@@ -15,6 +15,7 @@
   "dependencies": {
     "gif-frames": "^1.0.1",
     "heic2any": "^0.0.4",
-    "imagetracerjs": "^1.2.6"
+    "imagetracerjs": "^1.2.6",
+    "lucide": "^1.31.0"
   }
 }

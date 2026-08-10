@@ -240,26 +240,250 @@ body {
   }
 }
 
-.btn-header-cta {
+/* GitHub Link Button with Stars */
+.btn-github {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  background: #1D1D1F;
+  gap: 0.45rem;
+  background: #FFFFFF;
+  color: #1D1D1F;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.35rem 0.45rem 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-github:hover {
+  background: #F8F9FA;
+  border-color: rgba(0, 0, 0, 0.22);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  color: #000000;
+}
+
+.github-star-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: #F3F4F6;
+  color: #374151;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  margin-left: 0.1rem;
+  transition: all 0.2s ease;
+}
+
+.btn-github:hover .github-star-badge {
+  background: #E5E7EB;
+  color: #111827;
+}
+
+.github-star-badge svg, .github-star-badge [data-lucide] {
+  color: #F59E0B;
+  fill: #F59E0B;
+}
+
+/* Donate Button */
+.btn-donate {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: linear-gradient(135deg, #FF3366 0%, #FF5E3A 100%);
   color: #FFFFFF;
   font-size: 0.85rem;
   font-weight: 600;
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 1rem;
   border-radius: var(--radius-pill);
-  text-decoration: none;
   border: none;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(255, 51, 102, 0.3);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-donate:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 5px 16px rgba(255, 51, 102, 0.45);
+  background: linear-gradient(135deg, #FF1F57 0%, #FF4D26 100%);
+}
+
+.btn-donate:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-donate svg, .btn-donate [data-lucide] {
+  animation: heartBeat 2.5s infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.2); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.2); }
+  70% { transform: scale(1); }
+}
+
+/* General Lucide Icons Helper */
+[data-lucide], svg.lucide {
+  stroke-width: 2.2;
+}
+
+/* Donation Modal */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: modalFadeIn 0.2s ease;
+}
+
+.modal-backdrop.show {
+  display: flex;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-lg);
+  max-width: 480px;
+  width: 100%;
+  padding: 2rem;
+  position: relative;
+  animation: modalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+  from { transform: translateY(20px) scale(0.96); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: #F3F4F6;
+  border: none;
+  color: #6B7280;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.btn-header-cta:hover {
-  background: #333336;
+.modal-close-btn:hover {
+  background: #E5E7EB;
+  color: #1D1D1F;
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-heart-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 0.75rem;
+  background: #FFE4E6;
+  color: #E11D48;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1D1D1F;
+}
+
+.modal-desc {
+  font-size: 0.88rem;
+  color: #6B7280;
+  margin-top: 0.35rem;
+  line-height: 1.5;
+}
+
+.donation-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.donation-option-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.15rem;
+  border-radius: 14px;
+  border: 1px solid #E5E7EB;
+  background: #F9FAFB;
+  text-decoration: none;
+  color: #1D1D1F;
+  transition: all 0.2s ease;
+}
+
+.donation-option-card:hover {
+  border-color: #D1D5DB;
+  background: #F3F4F6;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.donation-option-info {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.donation-opt-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-bmc { background: #FFF4D9; color: #D97706; }
+.icon-paypal { background: #E0F2FE; color: #0284C7; }
+.icon-ghs { background: #FCE7F3; color: #DB2777; }
+.icon-crypto { background: #ECFDF5; color: #059669; }
+
+.donation-opt-name {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.donation-opt-sub {
+  font-size: 0.75rem;
+  color: #6B7280;
 }
 
 /* Mobile Toggle */

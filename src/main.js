@@ -1,9 +1,90 @@
 import './style.css';
 import { convertImage } from './converter.js';
+import { 
+  createIcons, 
+  Sparkles, 
+  ShieldCheck, 
+  Heart, 
+  Star,
+  Menu, 
+  Upload, 
+  X, 
+  ArrowRight, 
+  ChevronDown, 
+  ArrowRightLeft, 
+  Zap, 
+  Layers, 
+  Coffee, 
+  CreditCard, 
+  ExternalLink, 
+  Check, 
+  Download 
+} from 'lucide';
 
-console.log('PicConvert initialized successfully');
+const appIcons = {
+  Sparkles,
+  ShieldCheck,
+  Heart,
+  Star,
+  Menu,
+  Upload,
+  X,
+  ArrowRight,
+  ChevronDown,
+  ArrowRightLeft,
+  Zap,
+  Layers,
+  Coffee,
+  CreditCard,
+  ExternalLink,
+  Check,
+  Download
+};
+
+console.log('PicConvert initialized successfully with Lucide icons');
+
+// Fetch GitHub Stars count
+async function fetchGitHubStars() {
+  const repoName = 'ishara-madu/pic-convert-vanilla';
+  const cacheKey = `gh_stars_${repoName}`;
+  const cacheTimeKey = `gh_stars_time_${repoName}`;
+  const starElements = document.querySelectorAll('.github-star-count');
+
+  if (!starElements || starElements.length === 0) return;
+
+  // Check localStorage cache (15 min cache to prevent rate limit)
+  const cachedStars = localStorage.getItem(cacheKey);
+  const cachedTime = localStorage.getItem(cacheTimeKey);
+  if (cachedStars && cachedTime && (Date.now() - parseInt(cachedTime, 10) < 15 * 60 * 1000)) {
+    starElements.forEach(el => el.textContent = cachedStars);
+    return;
+  }
+
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repoName}`);
+    if (res.ok) {
+      const data = await res.json();
+      const count = typeof data.stargazers_count === 'number' ? data.stargazers_count : 0;
+      const formatted = count >= 1000 ? (count / 1000).toFixed(1) + 'k' : `${count}`;
+      localStorage.setItem(cacheKey, formatted);
+      localStorage.setItem(cacheTimeKey, Date.now().toString());
+      starElements.forEach(el => el.textContent = formatted);
+    } else {
+      // Graceful fallback
+      starElements.forEach(el => el.textContent = 'Star');
+    }
+  } catch (e) {
+    starElements.forEach(el => el.textContent = 'Star');
+  }
+}
 
 function initApp() {
+  // Render Lucide Icons
+  createIcons({ icons: appIcons });
+
+  // Fetch GitHub stars
+  fetchGitHubStars();
+
   // Core Converter elements
   const fileInput = document.getElementById('file-input');
   const formatSelect = document.getElementById('format-select');
@@ -22,6 +103,12 @@ function initApp() {
   const mobileMenuToggle = document.getElementById('mobileMenuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
   const topNavbar = document.getElementById('topNavbar');
+
+  // Donation Modal elements
+  const openDonateModal = document.getElementById('openDonateModal');
+  const openDonateModalMobile = document.getElementById('openDonateModalMobile');
+  const closeDonateModal = document.getElementById('closeDonateModal');
+  const donationModal = document.getElementById('donationModal');
 
   if (!fileInput || !convertBtn) {
     console.error('Core elements not found!');
@@ -45,13 +132,40 @@ function initApp() {
       mobileMenu.classList.toggle('show');
     });
 
-    // Close menu when clicking links
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('show');
       });
     });
   }
+
+  // Donation Modal Logic
+  const showDonationModal = () => {
+    if (donationModal) {
+      donationModal.classList.add('show');
+      createIcons({ icons: appIcons });
+    }
+  };
+
+  const hideDonationModal = () => {
+    if (donationModal) {
+      donationModal.classList.remove('show');
+    }
+  };
+
+  if (openDonateModal) openDonateModal.addEventListener('click', showDonationModal);
+  if (openDonateModalMobile) openDonateModalMobile.addEventListener('click', showDonationModal);
+  if (closeDonateModal) closeDonateModal.addEventListener('click', hideDonationModal);
+
+  if (donationModal) {
+    donationModal.addEventListener('click', (e) => {
+      if (e.target === donationModal) hideDonationModal();
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') hideDonationModal();
+  });
 
   // Format file size helper
   const formatBytes = (bytes) => {
@@ -92,6 +206,7 @@ function initApp() {
       statusDiv.style.color = '#0071E3';
       statusDiv.textContent = `Selected: ${selectedFile.name}`;
       resultArea.innerHTML = '';
+      createIcons({ icons: appIcons });
     } else {
       clearSelection();
     }
@@ -106,6 +221,7 @@ function initApp() {
     if (detectedFormatOpt) detectedFormatOpt.textContent = 'Auto-detected from file';
     statusDiv.textContent = '';
     resultArea.innerHTML = '';
+    createIcons({ icons: appIcons });
   };
 
   if (btnRemoveFile) {
@@ -180,15 +296,13 @@ function initApp() {
       statusDiv.style.color = '#15803D';
       statusDiv.textContent = `Conversion completed in ${duration}s!`;
 
-      // Create rich result card
+      // Create rich result card with Lucide icons
       const resultCard = document.createElement('div');
       resultCard.className = 'result-card';
       resultCard.innerHTML = `
         <div class="result-file-details">
           <div class="result-badge-success">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"/>
-            </svg>
+            <i data-lucide="check" style="width: 20px; height: 20px;"></i>
           </div>
           <div>
             <div style="font-weight: 700; font-size: 0.95rem; color: #1D1D1F;">${downloadFileName}</div>
@@ -204,16 +318,15 @@ function initApp() {
       downloadLink.download = downloadFileName;
       downloadLink.className = 'result-download-btn';
       downloadLink.innerHTML = `
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-          <polyline points="7 10 12 15 17 10"/>
-          <line x1="12" y1="15" x2="12" y2="3"/>
-        </svg>
+        <i data-lucide="download" style="width: 16px; height: 16px;"></i>
         <span>Download File</span>
       `;
 
       resultCard.appendChild(downloadLink);
       resultArea.appendChild(resultCard);
+
+      // Re-initialize Lucide Icons for dynamic content
+      createIcons({ icons: appIcons });
 
       // Auto trigger download
       downloadLink.click();
@@ -224,18 +337,10 @@ function initApp() {
     } finally {
       convertBtn.disabled = false;
       convertBtn.innerHTML = `
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72Z"/>
-          <path d="m14 7 3 3"/>
-          <path d="M5 6v4"/>
-          <path d="M19 14v4"/>
-          <path d="M10 2v2"/>
-          <path d="M7 8H3"/>
-          <path d="M21 16h-4"/>
-          <path d="M11 3H9"/>
-        </svg>
+        <i data-lucide="arrow-right-left" style="width: 20px; height: 20px;"></i>
         <span>Convert Image</span>
       `;
+      createIcons({ icons: appIcons });
     }
   });
 }
