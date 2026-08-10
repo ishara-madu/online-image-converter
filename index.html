@@ -3,41 +3,240 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Image Converter Core</title>
+  <title>PicConvert - Universal In-Browser Image Converter</title>
+  <meta name="description" content="Fast, private, client-side image converter. Convert JPG, PNG, WebP, AVIF, HEIC, SVG, ICO and GIF directly in your browser." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div id="app">
-    <h1>Image Converter Engine</h1>
-    
-    <div>
-      <label for="file-input">Select Image (.jpg, .jpeg, .png, .webp, .bmp, .avif, .heic, .heif, .gif, .svg, .ico):</label><br/>
-      <input type="file" id="file-input" accept=".jpg,.jpeg,.png,.webp,.bmp,.avif,.heic,.heif,.gif,.svg,.ico,image/*" />
+
+  <!-- Top Navigation Bar -->
+  <header class="top-navbar-wrapper" id="topNavbar">
+    <div class="navbar-container">
+      <!-- Brand Logo -->
+      <a href="#" class="nav-brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+            <circle cx="9" cy="9" r="2"/>
+            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+            <path d="M19 8v6M16 11h6" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="brand-title">
+          <span>Pic<span class="highlight">Convert</span></span>
+          <span class="brand-badge">Vanilla</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#converter-section" class="nav-link active">Convert</a></li>
+          <li><a href="#formats-section" class="nav-link">Formats</a></li>
+          <li><a href="#features-section" class="nav-link">Features</a></li>
+          <li><a href="#privacy-section" class="nav-link">Privacy</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="nav-actions">
+        <div class="privacy-badge" title="Files never leave your device">
+          <span class="pulse-dot"></span>
+          <span>100% In-Browser</span>
+        </div>
+        <a href="#converter-section" class="btn-header-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <span>Convert Now</span>
+        </a>
+        <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Navigation Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" x2="20" y1="12" y2="12"/>
+            <line x1="4" x2="20" y1="6" y2="6"/>
+            <line x1="4" x2="20" y1="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
     </div>
-    
-    <br/>
 
-    <div>
-      <label for="format-select">Output Format:</label><br/>
-      <select id="format-select">
-        <option value="jpeg">JPG / JPEG</option>
-        <option value="png">PNG</option>
-        <option value="webp">WebP</option>
-        <option value="avif">AVIF</option>
-        <option value="ico">ICO (Favicon)</option>
-        <option value="gif">GIF (Static Image)</option>
-        <option value="svg">SVG (True Vector)</option>
-      </select>
+    <!-- Mobile Dropdown Menu -->
+    <div class="mobile-menu-dropdown" id="mobileMenu">
+      <a href="#converter-section" class="nav-link">🔄 Convert Image</a>
+      <a href="#formats-section" class="nav-link">📁 Supported Formats</a>
+      <a href="#features-section" class="nav-link">⚡ Key Features</a>
+      <a href="#privacy-section" class="nav-link">🛡️ Privacy & Security</a>
     </div>
+  </header>
 
-    <br/>
+  <!-- Main Content Container -->
+  <main class="main-wrapper" id="app">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+        </svg>
+        <span>Zero Server Uploads • Instant Processing</span>
+      </div>
+      <h1 class="hero-title">Image Converter Engine</h1>
+      <p class="hero-subtitle">Convert pictures between JPG, PNG, WebP, AVIF, HEIC, ICO, and SVG right inside your web browser with zero quality loss.</p>
+    </section>
 
-    <button id="convert-btn">Convert Image</button>
+    <!-- Converter Card -->
+    <section class="converter-card" id="converter-section">
+      <!-- Drag & Drop Zone -->
+      <div class="drop-zone" id="drop-zone">
+        <input type="file" id="file-input" accept=".jpg,.jpeg,.png,.webp,.bmp,.avif,.heic,.heif,.gif,.svg,.ico,image/*" />
+        <div class="drop-icon-wrapper">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+        </div>
+        <div class="drop-title">Drop your image here, or browse</div>
+        <div class="drop-subtitle">Supports JPG, PNG, WebP, BMP, AVIF, HEIC, HEIF, GIF, SVG, ICO</div>
+        <span class="drop-formats-badge">Max size: Unlimited (Runs Locally)</span>
+      </div>
 
-    <br/><br/>
-    <div id="status" style="font-weight: bold; color: #0066cc;"></div>
-    <br/>
-    <div id="result-area"></div>
-  </div>
+      <!-- Selected File Details Card -->
+      <div class="selected-file-card" id="selected-file-card">
+        <div class="file-info-group">
+          <img id="file-preview-thumb" class="file-thumb-preview" src="" alt="Thumbnail Preview" />
+          <div>
+            <div class="file-name-text" id="selected-file-name">filename.jpg</div>
+            <div class="file-size-text" id="selected-file-size">0 KB</div>
+          </div>
+        </div>
+        <button type="button" class="btn-remove-file" id="btn-remove-file" title="Remove selected file">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Converter Settings (Format selection) -->
+      <div class="converter-settings-grid">
+        <div class="setting-box">
+          <label class="setting-label" for="file-input-label-ref">Input Format</label>
+          <div class="custom-select-wrapper">
+            <select id="input-format-display" disabled style="cursor: default; opacity: 0.85; background: #F3F4F6;">
+              <option id="detected-format-opt">Auto-detected from file</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="converter-settings-arrow">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+
+        <div class="setting-box">
+          <label class="setting-label" for="format-select">Output Format</label>
+          <div class="custom-select-wrapper">
+            <select id="format-select">
+              <option value="jpeg">JPG / JPEG (Standard Image)</option>
+              <option value="png">PNG (Lossless Transparency)</option>
+              <option value="webp" selected>WebP (Next-Gen Web Image)</option>
+              <option value="avif">AVIF (Ultra High Compression)</option>
+              <option value="ico">ICO (Website Favicon 32x32)</option>
+              <option value="gif">GIF (Static Image)</option>
+              <option value="svg">SVG (True Vector Contour)</option>
+            </select>
+            <div class="select-arrow-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <button id="convert-btn" class="btn-convert">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72Z"/>
+          <path d="m14 7 3 3"/>
+          <path d="M5 6v4"/>
+          <path d="M19 14v4"/>
+          <path d="M10 2v2"/>
+          <path d="M7 8H3"/>
+          <path d="M21 16h-4"/>
+          <path d="M11 3H9"/>
+        </svg>
+        <span>Convert Image</span>
+      </button>
+
+      <!-- Status div -->
+      <div id="status"></div>
+
+      <!-- Result Area -->
+      <div id="result-area"></div>
+    </section>
+
+    <!-- Supported Formats Grid -->
+    <section class="formats-showcase" id="formats-section">
+      <h3>Supported File Formats</h3>
+      <div class="format-tags">
+        <span class="format-tag">✨ JPG / JPEG</span>
+        <span class="format-tag">✨ PNG</span>
+        <span class="format-tag">✨ WebP</span>
+        <span class="format-tag">✨ AVIF</span>
+        <span class="format-tag">✨ HEIC / HEIF</span>
+        <span class="format-tag">✨ BMP</span>
+        <span class="format-tag">✨ ICO (Favicon)</span>
+        <span class="format-tag">✨ SVG (Vector)</span>
+        <span class="format-tag">✨ GIF</span>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-grid" id="features-section">
+      <div class="feature-card">
+        <div class="feature-icon-box icon-blue">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <h3>Lightning Fast</h3>
+        <p>Uses native HTML5 Canvas and WebAssembly to convert images instantly on your GPU/CPU without network lag.</p>
+      </div>
+
+      <div class="feature-card" id="privacy-section">
+        <div class="feature-icon-box icon-green">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>100% Private & Safe</h3>
+        <p>Your sensitive images are never uploaded to any remote server. Everything happens strictly inside your local browser.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box icon-purple">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+            <circle cx="9" cy="9" r="2"/>
+            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+          </svg>
+        </div>
+        <h3>Multi-Format & Vector</h3>
+        <p>Convert modern Apple HEIC photos, generate ICO favicons, and trace raster images to clean SVG vector graphics.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>PicConvert • High-Performance In-Browser Image Converter • Background: #F5F5F7</p>
+  </footer>
 
   <script type="module" src="/src/main.js"></script>
 </body>
