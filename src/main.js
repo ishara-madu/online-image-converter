@@ -491,7 +491,7 @@ function initApp() {
     fileQueue.push(...newItems);
     renderQueueUI();
 
-    statusDiv.style.color = '#0071E3';
+    statusDiv.style.color = '#1D1D1F';
     statusDiv.textContent = `Added ${newItems.length} image(s) • Total in Queue: ${fileQueue.length}`;
     resultArea.innerHTML = '';
   };
@@ -549,7 +549,7 @@ function initApp() {
         }
       });
       renderQueueUI();
-      statusDiv.style.color = '#0071E3';
+      statusDiv.style.color = '#1D1D1F';
       statusDiv.textContent = `Applied output format "${currentGlobalFormat.toUpperCase()}" to all pending images.`;
     });
   }
@@ -613,7 +613,7 @@ function initApp() {
       progressTimeText.textContent = `0.0s elapsed`;
     }
 
-    statusDiv.style.color = '#0071E3';
+    statusDiv.style.color = '#1D1D1F';
     statusDiv.textContent = `Processing ${totalCount} images across parallel worker threads...`;
     resultArea.innerHTML = '';
 
