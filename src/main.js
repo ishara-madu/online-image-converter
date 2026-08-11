@@ -432,7 +432,7 @@ function initApp() {
         <div class="file-item-thumb-wrapper ${item.selected ? 'is-selected' : ''}" data-id="${item.id}" title="${item.selected ? 'Click to unmark' : 'Click to mark'}">
           <img class="file-item-thumb" src="${item.thumbUrl}" alt="Thumbnail" />
           <div class="thumb-check-overlay">
-            <i data-lucide="check" style="width: 18px; height: 18px; stroke-width: 3;"></i>
+            <i data-lucide="check" style="width: 12px; height: 12px; stroke-width: 3.5;"></i>
           </div>
         </div>
         <div class="file-item-meta">
