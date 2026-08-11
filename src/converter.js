@@ -107,7 +107,7 @@ async function fileToCanvas(file) {
       resolve(canvas);
     };
 
-    img.onerror = (err) => {
+    img.onerror = () => {
       URL.revokeObjectURL(url);
       reject(new Error('Failed to load image file. Please check file format.'));
     };
@@ -117,15 +117,97 @@ async function fileToCanvas(file) {
 }
 
 /**
- * Main conversion function
+ * Resizes and fits source canvas based on options
  */
-export async function convertImage(file, outputFormatId) {
-  const sourceCanvas = await fileToCanvas(file);
+function applyResizeAndFit(sourceCanvas, options = {}) {
+  const srcW = sourceCanvas.width;
+  const srcH = sourceCanvas.height;
+
+  const targetW = options.width ? parseInt(options.width, 10) : null;
+  const targetH = options.height ? parseInt(options.height, 10) : null;
+  const fit = options.fit || 'max';
+
+  // If no dimensions specified, return original canvas
+  if (!targetW && !targetH) {
+    return sourceCanvas;
+  }
+
+  let destW = srcW;
+  let destH = srcH;
+  let sX = 0;
+  let sY = 0;
+  let sW = srcW;
+  let sH = srcH;
+
+  if (targetW && !targetH) {
+    destW = targetW;
+    destH = Math.round(srcH * (targetW / srcW));
+  } else if (!targetW && targetH) {
+    destH = targetH;
+    destW = Math.round(srcW * (targetH / srcH));
+  } else if (targetW && targetH) {
+    if (fit === 'max') {
+      // Max: Fit within width and height, but do not increase if smaller
+      if (srcW <= targetW && srcH <= targetH) {
+        destW = srcW;
+        destH = srcH;
+      } else {
+        const ratio = Math.min(targetW / srcW, targetH / srcH);
+        destW = Math.max(1, Math.round(srcW * ratio));
+        destH = Math.max(1, Math.round(srcH * ratio));
+      }
+    } else if (fit === 'scale') {
+      // Scale: Exact width and height by stretching/scaling
+      destW = targetW;
+      destH = targetH;
+    } else if (fit === 'crop') {
+      // Crop: Fill width and height dimensions and crop any excess image data
+      destW = targetW;
+      destH = targetH;
+      const scale = Math.max(targetW / srcW, targetH / srcH);
+      sW = targetW / scale;
+      sH = targetH / scale;
+      sX = (srcW - sW) / 2;
+      sY = (srcH - sH) / 2;
+    } else if (fit === 'contain') {
+      // Contain: Maintain aspect ratio to fit inside target bounding box
+      const ratio = Math.min(targetW / srcW, targetH / srcH);
+      destW = Math.max(1, Math.round(srcW * ratio));
+      destH = Math.max(1, Math.round(srcH * ratio));
+    }
+  }
+
+  const resizedCanvas = document.createElement('canvas');
+  resizedCanvas.width = Math.max(1, destW);
+  resizedCanvas.height = Math.max(1, destH);
+  const ctx = resizedCanvas.getContext('2d');
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+
+  ctx.drawImage(sourceCanvas, sX, sY, sW, sH, 0, 0, destW, destH);
+
+  return resizedCanvas;
+}
+
+/**
+ * Main conversion function with custom options support
+ * @param {File|Blob} file 
+ * @param {string} outputFormatId 
+ * @param {Object} options - { width, height, fit, quality, strip }
+ */
+export async function convertImage(file, outputFormatId, options = {}) {
+  const rawCanvas = await fileToCanvas(file);
+  const sourceCanvas = applyResizeAndFit(rawCanvas, options);
   const target = SUPPORTED_OUTPUT_FORMATS.find(f => f.id === outputFormatId);
 
   if (!target) {
     throw new Error(`Unsupported output format: ${outputFormatId}`);
   }
+
+  // Quality calculation (1 - 100 => 0.01 - 1.0)
+  const qualityVal = options.quality !== undefined && options.quality !== null && options.quality !== ''
+    ? Math.min(100, Math.max(1, parseInt(options.quality, 10))) / 100
+    : 0.90;
 
   // SVG Output (imagetracerjs)
   if (outputFormatId === 'svg') {
@@ -143,18 +225,21 @@ export async function convertImage(file, outputFormatId) {
     return { blob, extension: 'svg', mime: 'image/svg+xml' };
   }
 
-  // ICO Output (Favicon 32x32)
+  // ICO Output (Favicon)
   if (outputFormatId === 'ico') {
+    const icoSize = options.width ? parseInt(options.width, 10) : 32;
     const icoCanvas = document.createElement('canvas');
-    icoCanvas.width = 32;
-    icoCanvas.height = 32;
+    icoCanvas.width = icoSize;
+    icoCanvas.height = icoSize;
     const icoCtx = icoCanvas.getContext('2d');
-    icoCtx.drawImage(sourceCanvas, 0, 0, 32, 32);
+    icoCtx.imageSmoothingEnabled = true;
+    icoCtx.imageSmoothingQuality = 'high';
+    icoCtx.drawImage(sourceCanvas, 0, 0, icoSize, icoSize);
 
     const pngBlob = await new Promise(resolve => icoCanvas.toBlob(resolve, 'image/png'));
     const arrayBuffer = await pngBlob.arrayBuffer();
     const pngUint8Array = new Uint8Array(arrayBuffer);
-    const icoBlob = pngToIcoBlob(pngUint8Array, 32, 32);
+    const icoBlob = pngToIcoBlob(pngUint8Array, icoSize, icoSize);
 
     return { blob: icoBlob, extension: 'ico', mime: 'image/x-icon' };
   }
@@ -188,7 +273,7 @@ export async function convertImage(file, outputFormatId) {
           reject(new Error(`Conversion to ${target.name} failed.`));
         }
       }
-    }, mimeType, 0.92);
+    }, mimeType, qualityVal);
   });
 
   return { blob, extension: target.ext, mime: mimeType };

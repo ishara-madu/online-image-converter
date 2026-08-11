@@ -4,32 +4,181 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PicConvert - Universal In-Browser Image Converter</title>
+  <title>Online Image Converter - Free, Fast & 100% Private In-Browser Tool</title>
   <meta name="description"
-    content="Fast, private, client-side image converter. Convert JPG, PNG, WebP, AVIF, HEIC, SVG, ICO and GIF directly in your browser." />
+    content="Free Online Image Converter. Convert JPG, PNG, WebP, AVIF, HEIC, SVG, ICO and GIF directly in your browser with zero quality loss and zero server uploads." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Schema.org Structured Data for Rich Search Snippets, HowTo & FAQPage AEO/SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Online Image Converter",
+        "url": "https://picconvert.app",
+        "description": "Free, private, in-browser universal online image converter supporting WebP, JPG, PNG, AVIF, HEIC, SVG, ICO, and GIF.",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "All modern browsers",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Client-side zero server upload processing",
+          "Batch image conversion with multi-threaded parallel workers",
+          "Apple HEIC/HEIF photo conversion",
+          "Raster to SVG vector tracing",
+          "Custom pixel resizing and aspect-ratio fit modes",
+          "Configurable quality and metadata stripping"
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to Convert Images Online in 3 Simple Steps",
+        "description": "Step-by-step guide to convert, resize, and optimize images directly in your browser with zero quality loss and 100% privacy.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload or Drag Images",
+            "text": "Drag and drop any picture file (JPG, PNG, WebP, AVIF, HEIC, SVG, ICO, GIF, BMP) into the converter drop zone, or click to browse files from your device."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Choose Target Format & Customize Options",
+            "text": "Select your target output format (WebP, JPG, PNG, AVIF, etc.) and optionally configure pixel dimensions, fit mode, quality percentage, and metadata stripping."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Convert & Instant Download",
+            "text": "Click 'Convert Selected' to process your images using high-speed multi-threaded browser workers. Download converted files individually or as a single packaged ZIP archive."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is this Online Image Converter safe and private for converting confidential photos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, 100%. Unlike cloud converters, Online Image Converter processes all image files directly inside your browser's local sandbox memory using HTML5 Canvas and WebAssembly. Your photos, personal data, and documents are never transmitted over the internet or saved to any remote server."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I convert Apple iPhone HEIC photos to JPG or PNG on Windows and Mac?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Simply drag and drop your .heic or .heif camera photos into Online Image Converter. The built-in WebAssembly decoder instantly reads the raw Apple image container in browser memory and allows you to export standard, universally compatible JPG, PNG, or WebP files with zero quality loss."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does in-browser client-side image conversion work without uploading files?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Online Image Converter leverages cutting-edge web standards including HTML5 Canvas, WebAssembly (Wasm), and browser-native GPU/CPU pipelines. Image decoding, pixel manipulation, and encoding are performed locally using your computer's or smartphone's processor, eliminating network upload lag and privacy concerns."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why should I convert my images to WebP or AVIF format for web development and SEO?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "WebP and AVIF are next-generation image formats that provide 25% to 50% superior compression compared to traditional JPEGs and PNGs while retaining visual clarity. Switching to WebP or AVIF drastically decreases website page weight, accelerates load times, and improves Google Core Web Vitals (LCP scores)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the raster-to-SVG vector tracing feature work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Online Image Converter features an integrated vectorization engine that analyzes raster pixel clusters (from PNG, JPG, or BMP files) and algorithmically converts color boundaries into crisp, mathematical SVG vector paths. This allows icons and logos to scale infinitely to any display resolution without pixelation."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I batch convert multiple pictures simultaneously and download them in a single ZIP file?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can drag and drop dozens of images at once. Online Image Converter distributes the conversion workload across a parallel multi-worker pool (utilizing your CPU cores) and provides a one-click 'Download Selected (.zip)' feature supporting up to 800 MB safe batch archives."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between Max, Crop, Scale, and Contain fit modes during resizing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Max resizes the image to fit within target width/height boundaries without enlarging smaller images. Crop scales the image to fill the target dimensions completely and trims excess edges. Scale forces exact pixel dimensions by direct stretching. Contain preserves the original aspect ratio inside the bounding box."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I generate a 32x32 website favicon (ICO file) using Online Image Converter?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Upload a square logo (preferably a transparent PNG or SVG), select ICO as your target format, and click convert. Online Image Converter compiles a standardized 32x32 binary PNG-in-ICO file fully compliant with modern web servers, Chrome, Safari, and Firefox."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Online Image Converter remove EXIF metadata (GPS location, camera details) for privacy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. By default, the EXIF metadata stripping option is set to 'Yes'. During canvas pixel re-encoding, sensitive metadata such as geolocation coordinates, device serial numbers, and camera timestamps are cleanly removed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are there any hidden costs, subscriptions, file limits, or watermarks?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "None. Online Image Converter is 100% free and open-source. There are no daily conversion quotas, no forced sign-ups, no email requirements, and zero watermark stamps placed on your output files."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which browsers and operating systems are supported?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Online Image Converter is fully cross-platform and operates seamlessly on Google Chrome, Apple Safari (iOS & macOS), Mozilla Firefox, Microsoft Edge, Brave, Opera, Windows, macOS, Linux, Android, and iOS devices."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 
-<body class="bg-[#F8FAFC] text-[#0F172A] min-h-screen flex flex-col antialiased">
+<body class="bg-[#F5F5F7] text-[#000000] min-h-screen flex flex-col antialiased">
 
   <!-- Top Navigation Bar -->
   <header
-    class="sticky top-0 z-50 w-full bg-[#F8FAFC]/85 backdrop-blur-xl border-b border-slate-200/80 transition-all duration-200"
+    class="sticky bg-[#F5F5F7]/80 top-0 z-50 w-full backdrop-blur-xl border-b border-black/[0.04] transition-colors duration-150"
     id="topNavbar">
     <div class="w-full px-4 sm:px-8 lg:px-12 h-16 flex items-center justify-between">
       <!-- Brand Logo -->
       <a href="#"
         class="flex items-center gap-3 text-slate-900 font-bold text-lg tracking-tight hover:opacity-90 transition-opacity group">
         <div
-          class="w-9 h-9 bg-gradient-to-tr from-blue-500 via-indigo-500 to-purple-500 rounded-xl flex items-center justify-center text-white shadow-md shadow-indigo-200 group-hover:scale-105 transition-transform">
+          class="w-9 h-9 bg-gradient-to-tr from-blue-500 via-indigo-500 to-purple-500 rounded-lg flex items-center justify-center text-white shadow-sm shadow-indigo-200">
           <i data-lucide="sparkles" class="w-5 h-5 fill-white/20"></i>
         </div>
         <div class="flex items-center gap-1.5">
-          <span class="font-extrabold">Pic<span class="text-indigo-600">Convert</span></span>
+          <span class="font-extrabold text-slate-900 tracking-tight">Online<span
+              class="text-indigo-600">ImageConverter</span></span>
           <span
-            class="text-[11px] font-bold px-2 py-0.5 bg-indigo-50 text-indigo-700 border border-indigo-100 rounded-full uppercase tracking-wider">Vanilla</span>
+            class="text-[11px] font-bold px-2 py-0.5 bg-indigo-50 text-indigo-700 border border-indigo-100 rounded-md uppercase tracking-wider">Free</span>
         </div>
       </a>
 
@@ -37,16 +186,24 @@
       <nav>
         <ul class="hidden md:flex items-center gap-1 list-none">
           <li><a href="#converter-section"
-              class="text-indigo-700 font-bold bg-indigo-50/90 text-sm px-3.5 py-1.5 rounded-full transition-all">Convert</a>
+              class="text-indigo-700 font-bold bg-indigo-50/90 text-sm px-3.5 py-1.5 rounded-lg transition-colors">Convert</a>
           </li>
           <li><a href="#formats-section"
-              class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-full transition-all">Formats</a>
+              class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-lg transition-colors">Formats</a>
           </li>
-          <li><a href="#features-section"
-              class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-full transition-all">Features</a>
+          <li><a href="#how-to-section"
+              class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-lg transition-colors">How
+              It Works</a>
+          </li>
+          <li><a href="#why-choose-us-section"
+              class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-lg transition-colors">Why
+              Choose Us</a>
+          </li>
+          <li><a href="#faq-section"
+              class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-lg transition-colors">FAQ</a>
           </li>
           <li><a href="#privacy-section"
-              class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-full transition-all">Privacy</a>
+              class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-lg transition-colors">Privacy</a>
           </li>
         </ul>
       </nav>
@@ -55,7 +212,7 @@
       <div class="flex items-center gap-2.5 sm:gap-3">
         <!-- GitHub Repo Link with Star Count -->
         <a href="https://github.com/ishara-madu/pic-convert-vanilla" target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 bg-[#0F172A] text-white text-xs sm:text-sm font-semibold pl-3 pr-2.5 py-1.5 rounded-full shadow-sm hover:bg-slate-800 hover:-translate-y-0.5 transition-all"
+          class="inline-flex items-center gap-2 bg-[#0F172A] text-white text-xs sm:text-sm font-semibold pl-3 pr-2.5 py-1.5 rounded-lg shadow-sm hover:bg-slate-800 transition-colors"
           title="Star on GitHub">
           <svg class="lucide lucide-github w-4 h-4 text-white" width="16" height="16" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -65,7 +222,7 @@
           </svg>
           <span class="font-medium text-slate-200">Star</span>
           <span
-            class="inline-flex items-center gap-1 bg-slate-800 text-amber-400 text-xs font-bold px-2 py-0.5 rounded-full border border-slate-700">
+            class="inline-flex items-center gap-1 bg-slate-800 text-amber-400 text-xs font-bold px-1.5 py-0.5 rounded border border-slate-700">
             <i data-lucide="star" class="w-3 h-3 fill-amber-400 text-amber-400"></i>
             <span class="github-star-count text-white">★</span>
           </span>
@@ -73,7 +230,7 @@
 
         <!-- Donation Button -->
         <button type="button"
-          class="inline-flex items-center gap-1.5 bg-white text-slate-700 text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-full border border-slate-200 shadow-xs hover:border-slate-300 hover:text-slate-900 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+          class="inline-flex items-center gap-1.5 bg-white text-slate-700 text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-lg border border-slate-200 shadow-xs hover:border-slate-300 hover:text-slate-900 hover:bg-slate-50 transition-colors cursor-pointer"
           id="openDonateModal" title="Support this free project">
           <i data-lucide="heart" class="w-4 h-4 text-rose-500 fill-rose-500"></i>
           <span>Donate</span>
@@ -91,20 +248,26 @@
     <div class="hidden flex-col gap-2 p-4 bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-lg md:hidden"
       id="mobileMenu">
       <a href="#converter-section"
-        class="text-sm font-semibold text-slate-800 hover:text-indigo-600 py-1.5 px-2 rounded-md hover:bg-indigo-50/50">🔄
+        class="text-sm font-semibold text-slate-800 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50">🔄
         Convert Image</a>
       <a href="#formats-section"
-        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-md hover:bg-indigo-50/50">📁
+        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50">📁
         Supported Formats</a>
-      <a href="#features-section"
-        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-md hover:bg-indigo-50/50">⚡
-        Key Features</a>
+      <a href="#how-to-section"
+        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50">📝
+        How It Works</a>
+      <a href="#why-choose-us-section"
+        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50">✨
+        Why Choose Us</a>
+      <a href="#faq-section"
+        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50">❓
+        Frequently Asked Questions</a>
       <a href="#privacy-section"
-        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-md hover:bg-indigo-50/50">🛡️
+        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50">🛡️
         Privacy & Security</a>
       <div class="flex gap-2 pt-2 border-t border-slate-200 mt-1">
         <a href="https://github.com/ishara-madu/pic-convert-vanilla" target="_blank" rel="noopener noreferrer"
-          class="flex-1 justify-center inline-flex items-center gap-2 bg-[#0F172A] text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-xs">
+          class="flex-1 justify-center inline-flex items-center gap-2 bg-[#0F172A] text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-xs hover:bg-slate-800 transition-colors">
           <svg class="lucide lucide-github w-4 h-4" width="16" height="16" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path
@@ -113,12 +276,12 @@
           </svg>
           <span>Star</span>
           <span
-            class="inline-flex items-center gap-1 bg-slate-800 text-amber-400 text-xs font-bold px-1.5 py-0.5 rounded-full border border-slate-700">
+            class="inline-flex items-center gap-1 bg-slate-800 text-amber-400 text-xs font-bold px-1.5 py-0.5 rounded border border-slate-700">
             <span class="github-star-count">★</span>
           </span>
         </a>
         <button type="button"
-          class="flex-1 justify-center inline-flex items-center gap-1.5 bg-white text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-200 shadow-xs cursor-pointer"
+          class="flex-1 justify-center inline-flex items-center gap-1.5 bg-white text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs hover:bg-slate-50 transition-colors cursor-pointer"
           id="openDonateModalMobile">
           <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-500 fill-rose-500"></i>
           <span>Donate</span>
@@ -128,305 +291,1680 @@
   </header>
 
   <!-- Main Content Container -->
-  <main class="flex-1 w-full px-4 sm:px-8 lg:px-12 py-8 sm:py-12 max-w-5xl mx-auto flex flex-col gap-10" id="app">
-    <!-- Hero Section -->
-    <section class="text-center flex flex-col items-center">
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-3">
-        Universal Image Converter Engine
-      </h1>
-      <p class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto leading-relaxed">
-        Convert pictures between <strong class="text-slate-800">JPG, PNG, WebP, AVIF, HEIC, ICO, and SVG</strong> right
-        inside your web browser with <strong class="text-indigo-600 font-semibold">zero quality loss</strong>.
-      </p>
-    </section>
-
-    <!-- Converter Section (No outer white box wrapper) -->
-    <section class="w-full relative" id="converter-section">
-      <!-- Hidden File Input for browsing / adding files -->
-      <input type="file" id="file-input" multiple
-        accept=".jpg,.jpeg,.png,.webp,.bmp,.avif,.heic,.heif,.gif,.svg,.ico,image/*" class="hidden" />
-
-      <!-- Main Drag & Drop Zone (Solid black border, white background, soft blue highlight on hover/dragover) -->
-      <div
-        class="border-none bg-white rounded-3xl p-10 sm:p-14 text-center cursor-pointer transition-all duration-300 shadow-md group flex flex-col items-center justify-center gap-3 hover:bg-blue-50/80"
-        id="drop-zone">
-        <div
-          class="w-14 h-14 text-slate-900 flex items-center justify-center group-hover:scale-110 group-hover:text-blue-600 transition-all">
-          <i data-lucide="upload" class="w-7 h-7"></i>
+  <main class="flex-1 w-full px-4 sm:px-8 lg:px-12 py-8 sm:py-12 mx-auto flex flex-col gap-10 max-w-5xl" id="app">
+    <!-- Hero Section with Right-Side Format Selector & Options Box -->
+    <section class="w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 sm:gap-8">
+      <!-- Left: Title, Subtitle & AEO/SEO Key Signals -->
+      <div class="text-left flex-1 w-full flex flex-col gap-3">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+          Free Online Image Converter <span class="text-indigo-600 font-extrabold">– 100% Private & Fast</span>
+        </h1>
+        <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
+          Convert, resize, and compress pictures online directly in your browser with <strong
+            class="text-slate-900 font-bold">zero server uploads</strong>. Instantly convert between <strong
+            class="text-slate-800 font-bold">JPG, PNG, WebP, AVIF, Apple HEIC, SVG vector, ICO favicon, and GIF</strong>
+          with GPU-accelerated speed and pristine lossless quality.
+        </p>
+        <!-- AEO/SEO Instant Trust & Capability Badges -->
+        <div class="flex items-center gap-2 flex-wrap pt-1 text-[11px] sm:text-xs font-bold text-slate-600">
+          <span
+            class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 px-2.5 py-1 rounded-md shadow-2xs whitespace-nowrap">
+            <span>100% Client-Side (Zero Uploads)</span>
+          </span>
+          <span
+            class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-800 px-2.5 py-1 rounded-md shadow-2xs whitespace-nowrap">
+            <span>Multi-Core Hardware Accelerated</span>
+          </span>
+          <span
+            class="inline-flex items-center gap-1.5 bg-slate-50 text-slate-800 px-2.5 py-1 rounded-md shadow-2xs whitespace-nowrap">
+            <span>Batch ZIP up to 800 MB</span>
+          </span>
+          <span
+            class="inline-flex items-center gap-1.5 bg-purple-50 text-slate-800 px-2.5 py-1 rounded-md shadow-2xs whitespace-nowrap">
+            <span>100% Free & Unlimited</span>
+          </span>
         </div>
-        <div class="text-lg font-bold text-slate-900 group-hover:text-blue-950 transition-colors">Upload or drag your
-          images here</div>
-        <div class="text-sm text-slate-500">Supports PNG, JPG, WebP, AVIF, HEIC, SVG, ICO (Single or batch)</div>
-        <span
-          class="inline-block text-xs text-slate-600 px-3 py-1 mt-2 group-hover:text-blue-700 group-hover:border-blue-200 transition-all">
-          Concurrency Pool Powered • Max 800 MB Safe ZIP Limit</span>
       </div>
 
-      <!-- Queue Manager Container (shown when files are in queue) -->
-      <div class="hidden flex-col gap-4 w-full" id="queue-manager">
-        <!-- Queue Header Toolbar -->
+      <!-- Right: Interactive Dual-Card Converter Selector (Matching Mockup) -->
+      <div
+        class="flex items-center gap-2 sm:gap-3 shrink-0 self-center md:self-center md:ml-auto select-none pt-2 sm:pt-0"
+        id="hero-format-widget">
+        <!-- Left Static Input Card (Visual Design Only) -->
         <div
-          class="flex items-center justify-between flex-wrap gap-3 bg-white border border-slate-200 rounded-2xl p-3 sm:px-4 shadow-sm">
-          <div class="flex items-center gap-3">
-            <div
-              class="inline-flex items-center gap-1.5 bg-indigo-50 text-indigo-700 text-xs sm:text-sm font-bold px-3 py-1 rounded-full border border-indigo-200/80">
-              <i data-lucide="layers" class="w-4 h-4"></i>
-              <span id="queue-count-text">0 Images</span>
+          class="bg-white rounded-2xl p-3 sm:p-3.5 shadow-sm flex flex-col items-center justify-between w-22 h-22 sm:w-26 sm:h-26 text-center relative shrink-0"
+          title="Input format: Any supported image">
+          <div class="w-7 h-7 flex items-center justify-center text-slate-700 mt-0.5">
+            <i data-lucide="file" class="w-6 h-6 text-slate-700"></i>
+          </div>
+          <span class="font-extrabold text-xs sm:text-sm tracking-wider text-slate-800 uppercase">ANY</span>
+          <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400 opacity-60"></i>
+        </div>
+
+        <!-- Center Connection with Horizontal Line and "TO" badge -->
+        <div class="flex flex-col items-center justify-center relative px-0.5 sm:px-1">
+          <!-- Connecting line background -->
+          <div class="w-8 sm:w-10 h-[1px] bg-slate-300 absolute top-[36%] -translate-y-1/2 -z-0"></div>
+          <!-- Circle convert badge -->
+          <div
+            class="w-8 h-8 rounded-full bg-white shadow-2xs flex items-center justify-center text-slate-700 relative z-10">
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-indigo-600"></i>
+          </div>
+          <!-- "TO" text -->
+          <span class="text-[10px] font-extrabold tracking-[0.25em] text-slate-400 uppercase mt-1 z-10">TO</span>
+        </div>
+
+        <!-- Right Interactive Output Card (Dropdown Trigger & Options Icon on top) -->
+        <div class="relative shrink-0" id="global-format-dropdown">
+          <!-- Options Icon Button on Top Right of the Output Card -->
+          <button type="button" id="btnGlobalOptions"
+            class="absolute -top-2.5 -right-2.5 w-7 h-7 rounded-lg bg-white hover:bg-indigo-50 text-slate-600 hover:text-indigo-600 shadow-xs flex items-center justify-center transition-colors cursor-pointer z-30"
+            title="Configure dimensions, fit mode, and quality for all images">
+            <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
+          </button>
+
+          <!-- Main Format Selection Card Button -->
+          <button type="button" id="global-format-btn"
+            class="bg-white hover:bg-indigo-50/40 rounded-2xl p-3 sm:p-3.5 shadow-sm flex flex-col items-center justify-between w-22 h-22 sm:w-26 sm:h-26 text-center transition-colors cursor-pointer group relative"
+            aria-haspopup="listbox" aria-expanded="false" title="Click to change target format for all images">
+            <div class="w-7 h-7 flex items-center justify-center text-indigo-600 mt-0.5">
+              <i data-lucide="file-image" class="w-6 h-6 text-indigo-600"></i>
             </div>
-            <span class="text-xs sm:text-sm font-semibold text-slate-500" id="queue-size-text">Total: 0 KB</span>
+            <span id="global-format-label"
+              class="font-extrabold text-xs sm:text-sm tracking-wider text-indigo-700 uppercase">WEBP</span>
+            <i data-lucide="chevron-down" id="global-format-chevron"
+              class="w-3.5 h-3.5 text-indigo-500 transition-transform"></i>
+          </button>
+
+          <!-- Dropdown Popover Menu (Positioned cleanly below the right card) -->
+          <div id="global-format-menu"
+            class="hidden absolute top-full right-0 mt-2 z-40 bg-white border border-slate-200 rounded-xl shadow-xl py-1.5 flex-col divide-y divide-slate-100/80 min-w-[220px] max-h-64 overflow-y-auto"
+            role="listbox">
+            <!-- Dynamically populated options -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="flex-1 flex flex-col  mx-auto max-w-5xl mt-10">
+
+      <!-- Converter Section (No outer white box wrapper) -->
+      <section class="w-full relative" id="converter-section">
+        <!-- Hidden File Input for browsing / adding files -->
+        <input type="file" id="file-input" multiple
+          accept=".jpg,.jpeg,.png,.webp,.bmp,.avif,.heic,.heif,.gif,.svg,.ico,image/*" class="hidden" />
+
+        <!-- Main Drag & Drop Zone (Clean rectangular box shape with subtle rounded corners) -->
+        <div
+          class="border-2 border-dashed border-slate-300 bg-white rounded-xl p-10 sm:p-14 text-center cursor-pointer transition-colors duration-150 shadow-sm group flex flex-col items-center justify-center gap-3 hover:bg-blue-50/20"
+          id="drop-zone">
+          <i data-lucide="upload" class="w-9 h-9 group-hover:text-blue-700"></i>
+          <div class="text-lg font-bold text-slate-900 group-hover:text-blue-700 transition-colors">Upload or drag
+            your
+            images here</div>
+          <div class="text-sm text-slate-500">Supports PNG, JPG, WebP, AVIF, HEIC, SVG, ICO (Single or batch)</div>
+          <span class="inline-block text-xs text-slate-600 px-3 py-1 mt-2 group-hover:text-blue-700 transition-colors">
+            Concurrency Pool Powered • Max 800 MB Safe ZIP Limit</span>
+        </div>
+
+        <!-- Queue Manager Container (shown when files are in queue) -->
+        <div class="hidden flex-col gap-4 w-full" id="queue-manager">
+          <!-- Queue Header Toolbar -->
+          <div class="flex items-center justify-between flex-wrap gap-3 p-2.5 sm:px-3">
+            <div class="flex items-center gap-3">
+              <div
+                class="inline-flex items-center gap-1.5 text-indigo-700 text-xs sm:text-sm font-bold pr-3 py-1 whitespace-nowrap">
+                <i data-lucide="layers" class="w-4 h-4"></i>
+                <span id="queue-count-text">0 Images</span>
+              </div>
+              <span class="text-xs sm:text-sm font-semibold text-slate-500 whitespace-nowrap"
+                id="queue-size-text">Total:
+                0 KB</span>
+            </div>
           </div>
 
-          <div class="flex items-center gap-2.5 flex-wrap">
-            <!-- Global Format Selector -->
-            <div class="flex items-center gap-2 bg-slate-50 px-2.5 py-1 rounded-xl border border-slate-200 shadow-2xs"
-              title="Set output format for all images">
-              <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">All to:</span>
-              <div class="relative flex items-center">
-                <select id="global-format-select"
-                  class="appearance-none bg-transparent pr-6 pl-1 py-1 text-xs sm:text-sm font-bold text-slate-800 outline-none cursor-pointer">
-                  <option value="webp" selected>WebP (Next-Gen)</option>
-                  <option value="jpeg">JPG / JPEG</option>
-                  <option value="png">PNG (Lossless)</option>
-                  <option value="avif">AVIF (High Comp.)</option>
-                  <option value="ico">ICO (Favicon)</option>
-                  <option value="gif">GIF (Static)</option>
-                  <option value="svg">SVG (Vector)</option>
-                </select>
-                <i data-lucide="chevron-down"
-                  class="w-3.5 h-3.5 text-slate-400 absolute right-0 pointer-events-none"></i>
+          <!-- Individual File Item Bars Wrapper with Fade Overlay -->
+          <div class="relative w-full overflow-visible" id="fileItemsWrapper">
+            <div class="flex flex-col gap-2.5 transition-all duration-200 max-h-[260px] overflow-hidden"
+              id="file-items-list">
+              <!-- Dynamically populated per-image bars -->
+            </div>
+
+            <!-- Bottom Fade Overlay with Show All Button -->
+            <div
+              class="hidden absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/80 to-transparent items-end justify-center pb-1 z-10 pointer-events-none"
+              id="listFadeOverlay">
+              <button type="button"
+                class="pointer-events-auto inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 text-xs sm:text-sm font-bold px-4 py-2 transition-colors cursor-pointer whitespace-nowrap"
+                id="btnShowAll">
+                <span id="showAllBtnText">Show all images</span>
+                <i data-lucide="chevron-down" id="showAllBtnIcon" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Drop More Mini Strip -->
+          <div class="flex items-center justify-center gap-2 p-3 text-xs sm:text-sm text-slate-800 cursor-pointer"
+            id="drop-more-strip">
+            <i data-lucide="upload" class="w-4 h-4 text-slate-900"></i>
+            <span>Drop more images anywhere or <strong class="underline text-indigo-600">click to browse</strong></span>
+          </div>
+        </div>
+
+        <!-- Action Button (Convert All & Download ZIP) Sticky Floating Bar -->
+        <div class="hidden sticky bottom-6 z-30 justify-center w-full mt-4 pointer-events-none"
+          id="stickyActionBarWrapper">
+          <div
+            class="pointer-events-auto w-full max-w-3xl bg-white/95 backdrop-blur-xl border border-slate-200 shadow-xl shadow-slate-300/40 rounded-xl p-2 sm:p-2.5 px-4 sm:px-5 flex items-center justify-between gap-3 flex-wrap sm:flex-nowrap transition-all">
+            <!-- Left: Mark All / Select All Checkbox -->
+            <label
+              class="inline-flex items-center gap-2 cursor-pointer select-none text-xs sm:text-sm font-bold text-slate-900 whitespace-nowrap"
+              title="Toggle Select All">
+              <input type="checkbox" id="selectAllCheckbox" checked class="custom-checkbox-input hidden" />
+              <span
+                class="custom-checkbox-box w-4.5 h-4.5 rounded border border-slate-300 bg-white flex items-center justify-center text-white transition-colors">
+                <i data-lucide="check" class="w-3 h-3 stroke-[3]"></i>
+              </span>
+              <span id="selectAllText">Select All (0)</span>
+            </label>
+
+            <!-- Right Action Buttons -->
+            <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+              <!-- Delete Selected Button -->
+              <button type="button"
+                class="hidden inline-flex items-center gap-1.5 bg-slate-100 text-slate-600 hover:text-rose-600 hover:bg-rose-50 hover:border-rose-200 text-xs sm:text-sm font-bold px-3 py-1.5 rounded-lg border border-slate-200 transition-colors cursor-pointer whitespace-nowrap"
+                id="btnDeleteSelected" title="Remove selected files">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                <span>Delete</span>
+              </button>
+
+              <!-- Download Selected ZIP Button -->
+              <button type="button"
+                class="hidden inline-flex items-center gap-2 bg-white text-indigo-700 border-2 border-indigo-600 hover:bg-indigo-50 text-xs sm:text-sm font-bold px-4 py-2 rounded-lg shadow-xs transition-colors cursor-pointer whitespace-nowrap"
+                id="btnDownloadSelectedZip">
+                <i data-lucide="folder-archive" class="w-4 h-4"></i>
+                <span id="downloadSelectedZipText">Download Selected (.zip)</span>
+              </button>
+
+              <!-- Convert Selected Button -->
+              <button type="button"
+                class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold px-5 py-2 rounded-lg shadow-sm shadow-indigo-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer whitespace-nowrap"
+                id="btnConvertSelected">
+                <i data-lucide="arrow-right-left" class="w-4 h-4"></i>
+                <span id="convertSelectedBtnText">Convert Selected</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Progress Bar & Concurrency Pool Stats -->
+        <div class="hidden bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-sm mt-4" id="progress-box">
+          <div class="flex justify-between items-center mb-2.5">
+            <span class="text-sm font-bold text-slate-900" id="progress-title">Converting images...</span>
+            <span class="text-xs sm:text-sm font-bold text-indigo-600" id="progress-count">0 / 0 (0%)</span>
+          </div>
+          <div class="w-full h-2 bg-slate-100 rounded overflow-hidden">
+            <div id="progress-bar"
+              class="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded transition-all duration-200 w-0">
+            </div>
+          </div>
+          <div class="flex justify-between items-center mt-2.5 text-xs text-slate-500">
+            <span
+              class="inline-flex items-center gap-1.5 bg-indigo-50 text-indigo-700 font-semibold px-2 py-0.5 rounded border border-indigo-100 shadow-2xs whitespace-nowrap">
+              <i data-lucide="zap" class="w-3 h-3 text-indigo-500"></i> Concurrency: <strong id="pool-workers-count">3
+                Workers</strong>
+            </span>
+            <span id="progress-time-text">0.0s elapsed</span>
+          </div>
+        </div>
+
+        <!-- Status div -->
+        <div id="status" class="mt-4 text-center text-sm font-semibold min-h-[24px]"></div>
+
+        <!-- Result Area -->
+        <div id="result-area" class="mt-4 flex flex-col items-center gap-3 w-full"></div>
+      </section>
+
+      <!-- Global Full Screen Drag & Drop Overlay -->
+      <div
+        class="hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md items-center justify-center pointer-events-none"
+        id="globalDropOverlay">
+        <div class="p-10 sm:p-14 text-center flex flex-col items-center">
+          <div class="w-20 h-20 flex items-center justify-center mb-2">
+            <i data-lucide="upload" class="w-10 h-10"></i>
+          </div>
+          <h2 class="text-2xl font-extrabold text-slate-900 mb-1">Drop images anywhere</h2>
+          <p class="text-sm text-slate-800">Release to add files directly to the conversion queue</p>
+        </div>
+      </div>
+
+      <!-- Smart Interactive Focus & SEO Format Encyclopedia Section -->
+      <section class="w-full mt-4 flex flex-col gap-6" id="formats-section" aria-label="Image Format Information Guide">
+        <!-- Section Header with Dynamic Focus Status Badge -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
+              <span>Supported Image Formats & Conversion Guide</span>
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">
+              Explore deep technical specifications, compression ratios, and optimal use cases for every format.
+            </p>
+          </div>
+          <!-- Live Focus Badge Indicator -->
+          <div id="activeFocusBadge"
+            class="inline-flex items-center gap-1.5 bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg shadow-2xs self-start sm:self-auto shrink-0 transition-all duration-300">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-indigo-600"></i>
+            <span id="activeFocusBadgeText">Focus: WebP</span>
+          </div>
+        </div>
+
+        <!-- Interactive Format Selector Tabs Bar -->
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar select-none" id="formatTabsList"
+          role="tablist">
+          <button type="button"
+            class="format-tab-btn active bg-white text-indigo-700 border-slate-300 ring-2 ring-indigo-500/20 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold border transition-colors cursor-pointer whitespace-nowrap"
+            data-format="webp" role="tab" aria-selected="true">
+            WebP
+          </button>
+          <button type="button"
+            class="format-tab-btn bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold border transition-colors cursor-pointer whitespace-nowrap"
+            data-format="jpeg" role="tab" aria-selected="false">
+            JPG / JPEG
+          </button>
+          <button type="button"
+            class="format-tab-btn bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold border transition-colors cursor-pointer whitespace-nowrap"
+            data-format="png" role="tab" aria-selected="false">
+            PNG
+          </button>
+          <button type="button"
+            class="format-tab-btn bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold border transition-colors cursor-pointer whitespace-nowrap"
+            data-format="avif" role="tab" aria-selected="false">
+            AVIF
+          </button>
+          <button type="button"
+            class="format-tab-btn bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold border transition-colors cursor-pointer whitespace-nowrap"
+            data-format="heic" role="tab" aria-selected="false">
+            HEIC / HEIF
+          </button>
+          <button type="button"
+            class="format-tab-btn bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold border transition-colors cursor-pointer whitespace-nowrap"
+            data-format="svg" role="tab" aria-selected="false">
+            SVG (Vector)
+          </button>
+          <button type="button"
+            class="format-tab-btn bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold border transition-colors cursor-pointer whitespace-nowrap"
+            data-format="ico" role="tab" aria-selected="false">
+            ICO (Favicon)
+          </button>
+          <button type="button"
+            class="format-tab-btn bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold border transition-colors cursor-pointer whitespace-nowrap"
+            data-format="gif" role="tab" aria-selected="false">
+            GIF
+          </button>
+          <button type="button"
+            class="format-tab-btn bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold border transition-colors cursor-pointer whitespace-nowrap"
+            data-format="bmp" role="tab" aria-selected="false">
+            BMP
+          </button>
+        </div>
+
+        <!-- Detailed Semantic Format Cards (100% Crawlable by Search Engines & Interactive) -->
+        <div id="formatCardsContainer" class="w-full">
+          <!-- 1. WebP Guide Card -->
+          <article id="format-panel-webp"
+            class="format-panel bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+            <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg sm:text-xl font-bold text-slate-900">WebP Image Format</h3>
+                  <span
+                    class="text-[11px] font-bold px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-md uppercase">Next-Gen
+                    Web Standard</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                  Developed by Google, WebP provides superior lossless and lossy compression for images on the web. WebP
+                  lossless images are <strong>26% smaller</strong> than PNGs, and lossy images are <strong>25-34%
+                    smaller</strong> than comparable JPEGs.
+                </p>
               </div>
             </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Key Advantages</div>
+                <p class="text-slate-600 leading-normal">High compression, supports transparent alpha channel, fast page
+                  loading for modern SEO web performance.</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Best Use Cases</div>
+                <p class="text-slate-600 leading-normal">Websites, blog banners, eCommerce product galleries, modern web
+                  applications, social media assets.</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Browser Support</div>
+                <p class="text-slate-600 leading-normal">Supported by 98%+ of global browsers including Chrome, Safari,
+                  Firefox, Edge, and Opera.</p>
+              </div>
+            </div>
+          </article>
 
-            <!-- Add More Button -->
-            <button type="button"
-              class="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold px-3.5 py-1.5 rounded-xl border border-indigo-600 hover:-translate-y-0.5 transition-all shadow-sm shadow-indigo-200 cursor-pointer"
-              id="btnAddMore" title="Add more images to queue">
-              <i data-lucide="plus" class="w-4 h-4"></i>
-              <span>Add Images</span>
-            </button>
+          <!-- 2. JPEG Guide Card -->
+          <article id="format-panel-jpeg"
+            class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+            <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg sm:text-xl font-bold text-slate-900">JPEG / JPG Format</h3>
+                  <span
+                    class="text-[11px] font-bold px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 rounded-md uppercase">Universal
+                    Photography</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                  Joint Photographic Experts Group (JPEG) is the most widely recognized digital image format in the
+                  world.
+                  It uses lossy DCT compression to significantly reduce file sizes while maintaining photographic
+                  fidelity.
+                </p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Key Advantages</div>
+                <p class="text-slate-600 leading-normal">Universal 100% compatibility across all legacy operating
+                  systems,
+                  cameras, smartphones, and software.</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Best Use Cases</div>
+                <p class="text-slate-600 leading-normal">Digital photography, email attachments, social media photo
+                  posts,
+                  legacy printing and desktop publishing.</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Transparency Support</div>
+                <p class="text-slate-600 leading-normal">Does not support transparency (transparent pixels automatically
+                  convert to clean white background).</p>
+              </div>
+            </div>
+          </article>
 
-            <!-- Clear All Button -->
-            <button type="button"
-              class="inline-flex items-center justify-center w-8 h-8 rounded-xl border border-slate-200 text-slate-400 hover:text-rose-600 hover:bg-rose-50 hover:border-rose-200 transition-colors cursor-pointer"
-              id="btnClearAll" title="Clear all images">
-              <i data-lucide="trash-2" class="w-4 h-4"></i>
-            </button>
+          <!-- 3. PNG Guide Card -->
+          <article id="format-panel-png"
+            class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+            <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg sm:text-xl font-bold text-slate-900">PNG (Portable Network Graphics)</h3>
+                  <span
+                    class="text-[11px] font-bold px-2 py-0.5 bg-purple-50 text-purple-700 border border-purple-200 rounded-md uppercase">Lossless
+                    & Transparent</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                  PNG is a raster-graphics file-format that supports lossless data compression. It was created as an
+                  improved, non-patented replacement for Graphics Interchange Format (GIF) and is the gold standard for
+                  transparent graphics.
+                </p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Key Advantages</div>
+                <p class="text-slate-600 leading-normal">Pixel-perfect lossless fidelity, true 8-bit to 24-bit
+                  transparent
+                  alpha channel, crisp sharp text rendering.</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Best Use Cases</div>
+                <p class="text-slate-600 leading-normal">Company logos, user interface icons, digital graphic design,
+                  screenshots, overlays, watermarks.</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">File Size Note</div>
+                <p class="text-slate-600 leading-normal">Larger file sizes for photographic content compared to WebP or
+                  JPEG due to lossless compression.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. AVIF Guide Card -->
+          <article id="format-panel-avif"
+            class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+            <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg sm:text-xl font-bold text-slate-900">AVIF (AV1 Image File Format)</h3>
+                  <span
+                    class="text-[11px] font-bold px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded-md uppercase">Next-Gen
+                    Ultra Compression</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                  AVIF leverages the open-source AV1 video codec standard developed by Alliance for Open Media
+                  (AOMedia).
+                  It delivers up to <strong>50% smaller file sizes</strong> than JPEG and <strong>20% smaller</strong>
+                  than WebP at identical visual fidelity.
+                </p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Key Advantages</div>
+                <p class="text-slate-600 leading-normal">Industry-leading compression efficiency, HDR 10-bit and 12-bit
+                  wide color gamut support, alpha transparency.</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Best Use Cases</div>
+                <p class="text-slate-600 leading-normal">High-performance web applications, mobile sites, data-saving
+                  photo archives, next-generation CDN assets.</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Browser Support</div>
+                <p class="text-slate-600 leading-normal">Supported in modern Chrome, Firefox, Safari (iOS 16+ / macOS
+                  13+), and Edge.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5. HEIC Guide Card -->
+          <article id="format-panel-heic"
+            class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+            <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg sm:text-xl font-bold text-slate-900">HEIC / HEIF (High Efficiency Image Container)
+                  </h3>
+                  <span
+                    class="text-[11px] font-bold px-2 py-0.5 bg-rose-50 text-rose-700 border border-rose-200 rounded-md uppercase">Apple
+                    iPhone Standard</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                  HEIC is Apple’s default image format based on HEVC (H.265) video compression. It stores high-quality
+                  photos in roughly half the storage space of standard JPEGs. Online Image Converter converts HEIC files
+                  directly in your browser without uploading to any server.
+                </p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">In-Browser Decoding</div>
+                <p class="text-slate-600 leading-normal">Converted on-the-fly via WebAssembly so you can instantly turn
+                  iPhone camera photos into universally viewable JPG/PNG.</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Recommended Output</div>
+                <p class="text-slate-600 leading-normal">Convert HEIC to <strong>JPG</strong> for universal
+                  compatibility
+                  or to <strong>WebP</strong> for optimal web use.</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Privacy Guarantee</div>
+                <p class="text-slate-600 leading-normal">Zero server uploads. Your personal and family iPhone photos
+                  remain 100% private in your browser memory.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6. SVG Guide Card -->
+          <article id="format-panel-svg"
+            class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+            <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg sm:text-xl font-bold text-slate-900">SVG (Scalable Vector Graphics)</h3>
+                  <span
+                    class="text-[11px] font-bold px-2 py-0.5 bg-teal-50 text-teal-700 border border-teal-200 rounded-md uppercase">Infinite
+                    Resolution Vector</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                  SVG is an XML-based vector image format. Unlike raster pixels, SVG uses mathematical paths, polygons,
+                  and curves that can scale to any resolution or screen size with zero blurriness or pixelation.
+                </p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Vector Tracing Engine</div>
+                <p class="text-slate-600 leading-normal">Online Image Converter includes a built-in vectorization engine
+                  that traces raster PNG/JPG pixels into crisp vector paths.</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Best Use Cases</div>
+                <p class="text-slate-600 leading-normal">Brand logos, vector illustrations, UI icons, responsive web
+                  graphics, high-DPI retina display badges.</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Resolution Freedom</div>
+                <p class="text-slate-600 leading-normal">Scales infinitely from a 16px icon to a 4K billboard with zero
+                  quality loss.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- 7. ICO Guide Card -->
+          <article id="format-panel-ico"
+            class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+            <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg sm:text-xl font-bold text-slate-900">ICO (Windows & Browser Favicon)</h3>
+                  <span
+                    class="text-[11px] font-bold px-2 py-0.5 bg-slate-100 text-slate-700 border border-slate-200 rounded-md uppercase">Web
+                    Favicon Standard</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                  ICO is the iconic file format used by Microsoft Windows and web browsers for desktop shortcuts and
+                  website tab favicons (`favicon.ico`).
+                </p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Auto 32x32 Standard</div>
+                <p class="text-slate-600 leading-normal">Generates standardized 32x32 PNG-in-ICO binary compliant with
+                  modern browsers and web server standards.</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Best Use Cases</div>
+                <p class="text-slate-600 leading-normal">Website browser tab icons (`favicon.ico`), Windows desktop app
+                  icons, bookmark bar thumbnails.</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Recommended Input</div>
+                <p class="text-slate-600 leading-normal">Square transparent PNG or SVG files yield the cleanest,
+                  crispest
+                  ICO favicons.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- 8. GIF Guide Card -->
+          <article id="format-panel-gif"
+            class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+            <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg sm:text-xl font-bold text-slate-900">GIF (Graphics Interchange Format)</h3>
+                  <span
+                    class="text-[11px] font-bold px-2 py-0.5 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-md uppercase">Universal
+                    Legacy</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                  GIF is an 8-bit color bitmap format supporting up to 256 colors per frame. Online Image Converter
+                  efficiently decodes input GIFs and exports static raster output across all target formats.
+                </p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Color Palette</div>
+                <p class="text-slate-600 leading-normal">Limited to a 256-color palette (best suited for simple
+                  graphics,
+                  clip art, and basic charts).</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Recommended Output</div>
+                <p class="text-slate-600 leading-normal">Convert static GIFs to <strong>WebP</strong> or
+                  <strong>PNG</strong> to gain better compression and true 24-bit color depth.
+                </p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Compatibility</div>
+                <p class="text-slate-600 leading-normal">Supported universally on literally every digital device and
+                  browser since 1987.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- 9. BMP Guide Card -->
+          <article id="format-panel-bmp"
+            class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+            <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-lg sm:text-xl font-bold text-slate-900">BMP (Windows Bitmap)</h3>
+                  <span
+                    class="text-[11px] font-bold px-2 py-0.5 bg-slate-100 text-slate-700 border border-slate-200 rounded-md uppercase">Uncompressed
+                    Raster</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                  BMP is an uncompressed raster image format developed for Windows OS. Because it contains raw pixel
+                  data
+                  without compression, BMP files are usually extremely large.
+                </p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Huge Space Savings</div>
+                <p class="text-slate-600 leading-normal">Converting BMP to WebP or JPG reduces file size by up to
+                  <strong>90-95%</strong> with zero noticeable visual loss.
+                </p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Recommended Action</div>
+                <p class="text-slate-600 leading-normal">Upload your raw BMP files to Online Image Converter to compress
+                  them into lightweight modern WebP or PNG format.</p>
+              </div>
+              <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+                <div class="font-bold text-slate-800 mb-1">Processing</div>
+                <p class="text-slate-600 leading-normal">Processed natively in browser canvas memory with instant
+                  download.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Step-by-Step How-To Conversion Guide Section (High-Value SEO & User Guide) -->
+      <section class="w-full mt-2 flex flex-col gap-6" id="how-to-section"
+        aria-label="Step-by-Step Image Conversion Guide">
+        <!-- Section Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
+              <span>How to Convert Images Online in 3 Steps</span>
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">
+              Fast, secure, and 100% private in-browser image conversion workflow with zero software installation.
+            </p>
           </div>
-        </div>
-
-        <!-- Individual File Item Bars Wrapper with Fade Overlay -->
-        <div class="relative w-full" id="fileItemsWrapper">
-          <div class="flex flex-col gap-2.5 overflow-hidden transition-all duration-300 max-h-[260px]"
-            id="file-items-list">
-            <!-- Dynamically populated per-image bars -->
-          </div>
-
-          <!-- Bottom Fade Overlay with Show All Button -->
-          <div
-            class="hidden absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/80 to-transparent items-end justify-center pb-1 z-10 pointer-events-none"
-            id="listFadeOverlay">
-            <button type="button"
-              class="pointer-events-auto inline-flex items-center gap-2 bg-white text-indigo-600 text-xs sm:text-sm font-bold px-4 py-2 rounded-full border border-indigo-200 shadow-md hover:bg-indigo-50 hover:border-indigo-300 hover:-translate-y-0.5 transition-all cursor-pointer"
-              id="btnShowAll">
-              <span id="showAllBtnText">Show all images</span>
-              <i data-lucide="chevron-down" id="showAllBtnIcon" class="w-4 h-4"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Drop More Mini Strip (Solid black border, white background, soft blue highlight) -->
-        <div
-          class="flex items-center justify-center gap-2 border border-black bg-white hover:border-blue-500 hover:ring-1 hover:ring-blue-500/20 hover:bg-blue-50/20 p-3.5 rounded-2xl text-xs sm:text-sm text-slate-800 cursor-pointer transition-all shadow-xs"
-          id="drop-more-strip">
-          <i data-lucide="upload" class="w-4 h-4 text-slate-900"></i>
-          <span>Drop more images anywhere or <strong class="underline text-indigo-600">click to browse</strong></span>
-        </div>
-      </div>
-
-      <!-- Action Button (Convert All & Download ZIP) Sticky Floating Bar -->
-      <div class="hidden sticky bottom-6 z-40 justify-center w-full mt-4 pointer-events-none"
-        id="stickyActionBarWrapper">
-        <div
-          class="pointer-events-auto w-full max-w-3xl bg-white/95 backdrop-blur-xl border border-slate-200 shadow-2xl shadow-slate-300/60 rounded-full p-2 sm:p-2.5 px-4 sm:px-5 flex items-center justify-between gap-3 flex-wrap sm:flex-nowrap transition-all">
-          <!-- Left: Mark All / Select All Checkbox -->
-          <label
-            class="inline-flex items-center gap-2 cursor-pointer select-none text-xs sm:text-sm font-bold text-slate-900"
-            title="Toggle Select All">
-            <input type="checkbox" id="selectAllCheckbox" checked class="custom-checkbox-input hidden" />
-            <span
-              class="custom-checkbox-box w-5 h-5 rounded-md border border-slate-300 bg-white flex items-center justify-center text-white transition-colors">
-              <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
-            </span>
-            <span id="selectAllText">Select All (0)</span>
-          </label>
-
-          <!-- Right Action Buttons -->
-          <div class="flex items-center gap-2 flex-wrap">
-            <!-- Delete Selected Button -->
-            <button type="button"
-              class="hidden inline-flex items-center gap-1.5 bg-slate-100 text-slate-600 hover:text-rose-600 hover:bg-rose-50 hover:border-rose-200 text-xs sm:text-sm font-bold px-3 py-1.5 rounded-full border border-slate-200 transition-colors cursor-pointer"
-              id="btnDeleteSelected" title="Remove selected files">
-              <i data-lucide="trash-2" class="w-4 h-4"></i>
-              <span>Delete</span>
-            </button>
-
-            <!-- Download Selected ZIP Button -->
-            <button type="button"
-              class="hidden inline-flex items-center gap-2 bg-white text-indigo-700 border-2 border-indigo-600 hover:bg-indigo-50 text-xs sm:text-sm font-bold px-4 py-2 rounded-full shadow-xs transition-all cursor-pointer"
-              id="btnDownloadSelectedZip">
-              <i data-lucide="folder-archive" class="w-4 h-4"></i>
-              <span id="downloadSelectedZipText">Download Selected (.zip)</span>
-            </button>
-
-            <!-- Convert Selected Button -->
-            <button type="button"
-              class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold px-5 py-2 rounded-full shadow-md shadow-indigo-200 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
-              id="btnConvertSelected">
-              <i data-lucide="arrow-right-left" class="w-4 h-4"></i>
-              <span id="convertSelectedBtnText">Convert Selected</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Live Progress Bar & Concurrency Pool Stats -->
-      <div class="hidden bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm mt-4" id="progress-box">
-        <div class="flex justify-between items-center mb-2.5">
-          <span class="text-sm font-bold text-slate-900" id="progress-title">Converting images...</span>
-          <span class="text-xs sm:text-sm font-bold text-indigo-600" id="progress-count">0 / 0 (0%)</span>
-        </div>
-        <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
-          <div id="progress-bar"
-            class="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full transition-all duration-200 w-0">
-          </div>
-        </div>
-        <div class="flex justify-between items-center mt-2.5 text-xs text-slate-500">
           <span
-            class="inline-flex items-center gap-1.5 bg-indigo-50 text-indigo-700 font-semibold px-2 py-0.5 rounded-md border border-indigo-100 shadow-2xs">
-            <i data-lucide="zap" class="w-3 h-3 text-indigo-500"></i> Concurrency: <strong id="pool-workers-count">3
-              Workers</strong>
+            class="inline-flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-lg shadow-2xs self-start sm:self-auto shrink-0 whitespace-nowrap">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+            <span>Zero Server Uploads</span>
           </span>
-          <span id="progress-time-text">0.0s elapsed</span>
         </div>
-      </div>
 
-      <!-- Status div -->
-      <div id="status" class="mt-4 text-center text-sm font-semibold min-h-[24px]"></div>
+        <!-- 3 Step Cards Grid -->
+        <ol class="grid grid-cols-1 md:grid-cols-3 gap-5 list-none p-0 m-0">
+          <!-- Step 1 Card -->
+          <li
+            class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col justify-between gap-4">
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-black px-2.5 py-1 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-md uppercase tracking-wider">
+                  Step 01
+                </span>
+                <div
+                  class="w-8 h-8 rounded-lg bg-slate-100 text-indigo-600 flex items-center justify-center border border-slate-200/60">
+                  <i data-lucide="upload" class="w-4 h-4"></i>
+                </div>
+              </div>
+              <h3 class="text-base font-bold text-slate-900">Upload or Drag Your Pictures</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Drag and drop any picture file (JPG, PNG, WebP, AVIF, iPhone HEIC, SVG, ICO, GIF, BMP) anywhere into the
+                drop zone, or click to browse files directly from your computer or smartphone.
+              </p>
+            </div>
+            <div
+              class="flex items-center gap-2 pt-2 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              <span
+                class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200 whitespace-nowrap">Single
+                or Batch</span>
+              <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200 whitespace-nowrap">Up
+                to 800 MB ZIP</span>
+            </div>
+          </li>
 
-      <!-- Result Area -->
-      <div id="result-area" class="mt-4 flex flex-col items-center gap-3 w-full"></div>
+          <!-- Step 2 Card -->
+          <li
+            class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col justify-between gap-4">
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-black px-2.5 py-1 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-md uppercase tracking-wider">
+                  Step 02
+                </span>
+                <div
+                  class="w-8 h-8 rounded-lg bg-slate-100 text-indigo-600 flex items-center justify-center border border-slate-200/60">
+                  <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
+                </div>
+              </div>
+              <h3 class="text-base font-bold text-slate-900">Select Format & Customize Options</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Choose your target format globally or per-image. Open Options to fine-tune exact pixel dimensions
+                (Width/Height), fit mode (max, crop, scale, contain), quality level, and EXIF metadata stripping.
+              </p>
+            </div>
+            <div
+              class="flex items-center gap-2 pt-2 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              <span
+                class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200 whitespace-nowrap">Custom
+                Resizing</span>
+              <span
+                class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200 whitespace-nowrap">Quality
+                1-100</span>
+            </div>
+          </li>
+
+          <!-- Step 3 Card -->
+          <li
+            class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col justify-between gap-4">
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-black px-2.5 py-1 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-md uppercase tracking-wider">
+                  Step 03
+                </span>
+                <div
+                  class="w-8 h-8 rounded-lg bg-slate-100 text-indigo-600 flex items-center justify-center border border-slate-200/60">
+                  <i data-lucide="download" class="w-4 h-4"></i>
+                </div>
+              </div>
+              <h3 class="text-base font-bold text-slate-900">Convert & Instant Download</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Click 'Convert Selected' to process conversions using multi-threaded parallel browser workers. Download
+                individual images instantly or download all converted files packaged in a single ZIP archive.
+              </p>
+            </div>
+            <div
+              class="flex items-center gap-2 pt-2 border-t border-slate-100 text-[11px] font-semibold text-slate-500">
+              <span
+                class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200 whitespace-nowrap">Multi-Threaded
+                Pool</span>
+              <span
+                class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200 whitespace-nowrap">Direct
+                ZIP Save</span>
+            </div>
+          </li>
+        </ol>
+
+        <!-- Pro Tip SEO Callout Banner -->
+        <div class="bg-indigo-50/60 border border-indigo-100 rounded-xl p-4 sm:p-5 flex items-start gap-3.5">
+          <div
+            class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+          </div>
+          <div class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            <strong class="font-bold text-indigo-900">Pro SEO & Performance Tip:</strong> Converting heavy JPG or iPhone
+            HEIC photos into next-gen <strong class="text-slate-900">WebP or AVIF</strong> format reduces file sizes by
+            up
+            to <strong>80%</strong> with zero visual loss. This dramatically accelerates website loading times, improves
+            Google Core Web Vitals, and boosts organic search rankings.
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose Us & Key Advantages Section (High-Value SEO Authority Section) -->
+      <section class="w-full mt-2 flex flex-col gap-6" id="why-choose-us-section"
+        aria-label="Why Choose Our Online Image Converter">
+        <!-- Section Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
+              <span>Why Choose Our Online Image Converter?</span>
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">
+              Engineered for uncompromising speed, bank-grade privacy, and unmatched versatility without remote server
+              uploads.
+            </p>
+          </div>
+          <span
+            class="inline-flex items-center gap-1.5 bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg shadow-2xs self-start sm:self-auto shrink-0 whitespace-nowrap">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-indigo-600"></i>
+            <span>Client-Side Architecture</span>
+          </span>
+        </div>
+
+        <!-- 6 Core Feature Advantage Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Card 1: 100% Private -->
+          <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-3"
+            id="privacy-section">
+            <div
+              class="w-10 h-10 rounded-lg flex items-center justify-center bg-emerald-50 text-emerald-600 border border-emerald-100 mb-1">
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-bold text-base text-slate-900">100% Private & Safe</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Your personal photos and sensitive documents are never uploaded to any remote server. All image operations
+              occur strictly inside your local browser sandbox.
+            </p>
+            <div
+              class="mt-auto pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-emerald-700">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              <span>Zero Cloud Storage / Zero Logs</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Hardware Accelerated -->
+          <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-3">
+            <div
+              class="w-10 h-10 rounded-lg flex items-center justify-center bg-blue-50 text-blue-600 border border-blue-100 mb-1">
+              <i data-lucide="zap" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-bold text-base text-slate-900">Multi-Threaded Hardware Engine</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Uses HTML5 Canvas and WebAssembly with automatic CPU core concurrency to process multiple images in
+              parallel
+              with GPU hardware acceleration.
+            </p>
+            <div
+              class="mt-auto pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-blue-700">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              <span>Zero Network Upload Lag</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Next-Gen Formats & Vector -->
+          <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-3">
+            <div
+              class="w-10 h-10 rounded-lg flex items-center justify-center bg-purple-50 text-purple-600 border border-purple-100 mb-1">
+              <i data-lucide="layers" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-bold text-base text-slate-900">Apple HEIC, AVIF & Vector SVG</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Seamlessly convert iPhone HEIC camera photos, export next-gen WebP/AVIF web assets, generate standard ICO
+              favicons, and trace raster images to clean SVG vector curves.
+            </p>
+            <div
+              class="mt-auto pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-purple-700">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              <span>Comprehensive Multi-Format</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Precision Controls -->
+          <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-3">
+            <div
+              class="w-10 h-10 rounded-lg flex items-center justify-center bg-indigo-50 text-indigo-600 border border-indigo-100 mb-1">
+              <i data-lucide="sliders-horizontal" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-bold text-base text-slate-900">Custom Dimensions & Fit Modes</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Configure target pixel width and height, choose smart aspect-ratio fitting (<code
+                class="text-indigo-700 font-bold">max</code>, <code class="text-indigo-700 font-bold">crop</code>, <code
+                class="text-indigo-700 font-bold">scale</code>, <code class="text-indigo-700 font-bold">contain</code>),
+              and adjust lossy quality from 1 to 100%.
+            </p>
+            <div
+              class="mt-auto pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-indigo-700">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              <span>EXIF Metadata Stripping</span>
+            </div>
+          </div>
+
+          <!-- Card 5: Safe Batch ZIP -->
+          <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-3">
+            <div
+              class="w-10 h-10 rounded-lg flex items-center justify-center bg-amber-50 text-amber-600 border border-amber-100 mb-1">
+              <i data-lucide="folder-archive" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-bold text-base text-slate-900">Safe Batch ZIP Downloads</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Convert dozens of images at once and download everything neatly packaged in a high-speed compressed ZIP
+              archive with duplicate-name safeguards (up to 800 MB safe limit).
+            </p>
+            <div
+              class="mt-auto pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-amber-700">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              <span>Selective or Bulk Downloads</span>
+            </div>
+          </div>
+
+          <!-- Card 6: 100% Free & Unlimited -->
+          <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-3">
+            <div
+              class="w-10 h-10 rounded-lg flex items-center justify-center bg-rose-50 text-rose-600 border border-rose-100 mb-1">
+              <i data-lucide="heart" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-bold text-base text-slate-900">100% Free & Unlimited</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              No daily conversion quotas, no forced sign-ups or subscriptions, and absolutely zero watermarks stamped
+              onto
+              your images. Free and open-source forever.
+            </p>
+            <div
+              class="mt-auto pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-rose-700">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              <span>No Watermarks / No Sign-up</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature Comparison Matrix (High-Intent SEO Ranking Asset) -->
+        <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-7 shadow-sm flex flex-col gap-5 mt-2">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
+            <div>
+              <h3 class="text-base sm:text-lg font-bold text-slate-900">Technical Architecture & Feature Comparison</h3>
+              <p class="text-xs sm:text-sm text-slate-500 mt-0.5">A side-by-side benchmark comparing modern in-browser
+                client-side execution with legacy cloud-hosted services.</p>
+            </div>
+            <span
+              class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 bg-slate-50 border border-slate-200 px-2.5 py-1 rounded-md self-start sm:self-auto shrink-0">
+              <span>Verified Benchmark</span>
+            </span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 bg-slate-50 text-slate-800 font-bold">
+                  <th class="py-3 px-4 w-[34%] rounded-l-lg">Capability & Benchmark</th>
+                  <th
+                    class="py-3 px-4 w-[33%] text-indigo-700 bg-indigo-50/40 border-x border-indigo-100/60 font-extrabold">
+                    <div class="flex items-center gap-2">
+                      <span>Online Image Converter</span>
+                      <span
+                        class="bg-indigo-600 text-white text-[10px] font-bold px-1.5 py-0.2 rounded uppercase tracking-wider">Client-Side</span>
+                    </div>
+                  </th>
+                  <th class="py-3 px-4 w-[33%] text-slate-600 rounded-r-lg font-semibold">
+                    <div class="flex items-center gap-2">
+                      <span>Legacy Cloud Services</span>
+                      <span
+                        class="bg-slate-200 text-slate-700 text-[10px] font-semibold px-1.5 py-0.2 rounded uppercase tracking-wider">Server-Based</span>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                <!-- Row 1: Privacy & Data Pipeline -->
+                <tr class="hover:bg-slate-50/50 transition-colors">
+                  <td class="py-3.5 px-4 align-top">
+                    <div class="font-bold text-slate-900">Data Privacy & Security</div>
+                    <div class="text-[11px] text-slate-500 font-medium mt-0.5">Where raw image bytes and pixels are
+                      processed</div>
+                  </td>
+                  <td
+                    class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-bold text-emerald-800">100% In-Browser Memory</span>
+                        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Zero remote uploads. Sensitive photos
+                          remain strictly inside your local device sandbox.</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 align-top text-slate-600">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-medium text-slate-800">Uploaded to Cloud Servers</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Requires uploading images to
+                          third-party
+                          remote servers with potential data retention risks.</p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 2: Processing Architecture -->
+                <tr class="hover:bg-slate-50/50 transition-colors">
+                  <td class="py-3.5 px-4 align-top">
+                    <div class="font-bold text-slate-900">Processing Architecture & Speed</div>
+                    <div class="text-[11px] text-slate-500 font-medium mt-0.5">Hardware acceleration and conversion
+                      latency</div>
+                  </td>
+                  <td
+                    class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-bold text-slate-900">GPU & Multi-Core WebAssembly</span>
+                        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Direct GPU/Canvas hardware execution
+                          with zero internet upload or download latency.</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 align-top text-slate-600">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-medium text-slate-800">Network & Server Bottlenecks</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Slow round-trip network transfers and
+                          shared queuing on remote cloud servers.</p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 3: Conversion Limits -->
+                <tr class="hover:bg-slate-50/50 transition-colors">
+                  <td class="py-3.5 px-4 align-top">
+                    <div class="font-bold text-slate-900">Volume & File Limits</div>
+                    <div class="text-[11px] text-slate-500 font-medium mt-0.5">Daily conversion allowances and batch
+                      limits</div>
+                  </td>
+                  <td
+                    class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-bold text-slate-900">Unlimited Batch Processing</span>
+                        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">No daily quotas or artificial file
+                          restrictions. Supports up to 800 MB safe batch archives.</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 align-top text-slate-600">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-medium text-slate-800">Restricted Free Tiers</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Enforces daily limits (e.g. 5–10
+                          files)
+                          and file size caps to compel paid upgrades.</p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 4: Quality & Watermarks -->
+                <tr class="hover:bg-slate-50/50 transition-colors">
+                  <td class="py-3.5 px-4 align-top">
+                    <div class="font-bold text-slate-900">Output Quality & Watermarking</div>
+                    <div class="text-[11px] text-slate-500 font-medium mt-0.5">Visual integrity and branding
+                      restrictions
+                    </div>
+                  </td>
+                  <td
+                    class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-bold text-slate-900">100% Original Quality & No Watermarks</span>
+                        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Pristine pixel fidelity with zero
+                          stamped branding or downscaling on exported files.</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 align-top text-slate-600">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-medium text-slate-800">Downscaling or Watermarks</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Free tiers often stamp promotional
+                          watermarks or aggressively compress image output.</p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 5: Modern & Vector Support -->
+                <tr class="hover:bg-slate-50/50 transition-colors">
+                  <td class="py-3.5 px-4 align-top">
+                    <div class="font-bold text-slate-900">Vector & Modern Formats</div>
+                    <div class="text-[11px] text-slate-500 font-medium mt-0.5">Apple HEIC decoding and SVG vector
+                      tracing
+                    </div>
+                  </td>
+                  <td
+                    class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-bold text-slate-900">Native HEIC & SVG Tracing</span>
+                        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Built-in Apple iPhone HEIC decoding,
+                          AVIF/WebP, and raster-to-vector SVG tracing.</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 align-top text-slate-600">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-medium text-slate-800">Paid Add-On Features</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">HEIC decoding and vector conversion
+                          are
+                          commonly gated behind premium subscriptions.</p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 6: Custom Controls -->
+                <tr class="hover:bg-slate-50/50 transition-colors">
+                  <td class="py-3.5 px-4 align-top">
+                    <div class="font-bold text-slate-900">Granular Conversion Controls</div>
+                    <div class="text-[11px] text-slate-500 font-medium mt-0.5">Resolution resizing, fit mathematics, and
+                      EXIF</div>
+                  </td>
+                  <td
+                    class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-bold text-slate-900">Full Parameter Control</span>
+                        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Custom width/height, 4 aspect-ratio
+                          fit
+                          modes, quality sliders (1-100), and EXIF stripping.</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 align-top text-slate-600">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-medium text-slate-800">Rigid Preset Options</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Minimal parameter customizability
+                          without complex server-side configuration.</p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 7: Account & Friction -->
+                <tr class="hover:bg-slate-50/50 transition-colors">
+                  <td class="py-3.5 px-4 align-top">
+                    <div class="font-bold text-slate-900">Account & Billing Model</div>
+                    <div class="text-[11px] text-slate-500 font-medium mt-0.5">User friction and payment requirements
+                    </div>
+                  </td>
+                  <td
+                    class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-bold text-slate-900">100% Free & Zero Registration</span>
+                        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">No email collection, no mandatory
+                          accounts, and no recurring credit card billing.</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 align-top text-slate-600">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-medium text-slate-800">Freemium & Account Walls</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Persistent prompts to create accounts,
+                          provide emails, and purchase credits.</p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Professional Architectural Summary Footnote -->
+          <div
+            class="bg-slate-50 border border-slate-200/80 rounded-lg p-3.5 flex items-center justify-between flex-wrap gap-2 text-xs text-slate-600">
+            <div class="flex items-center gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-indigo-600 shrink-0"></i>
+              <span><strong>Technical Summary:</strong> Client-side browser execution eliminates expensive server
+                infrastructure costs, enabling true zero-upload privacy with maximum conversion speed.</span>
+            </div>
+            <span class="font-bold text-slate-800 whitespace-nowrap">Engine v1.0 • Client-Side Native</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Frequently Asked Questions (FAQ) Section - High-Value AEO & SEO -->
+      <section class="w-full mt-2 flex flex-col gap-6" id="faq-section" aria-label="Frequently Asked Questions">
+        <!-- Section Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
+              <span>Frequently Asked Questions</span>
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">
+              Authoritative answers on browser-native image conversion, privacy standards, file compression, and
+              technical
+              capabilities.
+            </p>
+          </div>
+          <span
+            class="inline-flex items-center gap-1.5 bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg shadow-2xs self-start sm:self-auto shrink-0 whitespace-nowrap">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-indigo-600"></i>
+            <span>AEO & Search Optimized</span>
+          </span>
+        </div>
+
+        <!-- FAQ Accordion Grid / List -->
+        <div class="flex flex-col gap-3">
+          <!-- Q1 -->
+          <details
+            class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
+              <span class="flex items-center gap-2.5">
+                <span
+                  class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q1</span>
+                <span>Is this Online Image Converter safe and private for converting confidential or personal
+                  photos?</span>
+              </span>
+              <i data-lucide="chevron-down"
+                class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
+            </summary>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
+              <p><strong>Yes, 100% private and safe.</strong> Unlike traditional online file converters that upload your
+                confidential files to remote cloud servers, Online Image Converter executes all decoding, processing,
+                and
+                encoding exclusively inside your local browser memory using HTML5 Canvas and WebAssembly. Your images
+                never leave your device, never touch any remote database, and leave zero digital footprint on the
+                internet.</p>
+            </div>
+          </details>
+
+          <!-- Q2 -->
+          <details
+            class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
+              <span class="flex items-center gap-2.5">
+                <span
+                  class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q2</span>
+                <span>How do I convert Apple iPhone HEIC/HEIF photos to JPG or PNG on Windows and Mac?</span>
+              </span>
+              <i data-lucide="chevron-down"
+                class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
+            </summary>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
+              <p>Simply drag and drop your Apple <code
+                  class="text-indigo-700 font-semibold bg-indigo-50 px-1 py-0.5 rounded">.heic</code> or <code
+                  class="text-indigo-700 font-semibold bg-indigo-50 px-1 py-0.5 rounded">.heif</code> camera files into
+                the drop zone. Online Image Converter's integrated WebAssembly decoder automatically parses the
+                high-efficiency image container in local memory and enables one-click conversion to standard JPG, PNG,
+                WebP, or AVIF formats for seamless viewing on Windows, Android, and web platforms.</p>
+            </div>
+          </details>
+
+          <!-- Q3 -->
+          <details
+            class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
+              <span class="flex items-center gap-2.5">
+                <span
+                  class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q3</span>
+                <span>How does client-side in-browser image conversion work without server uploads?</span>
+              </span>
+              <i data-lucide="chevron-down"
+                class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
+            </summary>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
+              <p>Online Image Converter leverages modern web standards including <strong>HTML5 Canvas API</strong>,
+                <strong>WebAssembly (Wasm)</strong>, and <strong>Web Workers</strong>. When a file is selected, the
+                browser reads raw binary data into RAM, manipulates pixels directly on your GPU/CPU hardware, and
+                outputs
+                a native Blob URL for instant download. Because zero bytes are transmitted over the internet,
+                conversions
+                happen at near-instant speeds with zero bandwidth lag.
+              </p>
+            </div>
+          </details>
+
+          <!-- Q4 -->
+          <details
+            class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
+              <span class="flex items-center gap-2.5">
+                <span
+                  class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q4</span>
+                <span>Why should I convert images to WebP or AVIF format for web performance and SEO?</span>
+              </span>
+              <i data-lucide="chevron-down"
+                class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
+            </summary>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
+              <p><strong>WebP and AVIF</strong> are next-generation modern image formats designed specifically for the
+                web. WebP delivers <strong>26% to 34% smaller file sizes</strong> compared to PNG/JPEG, while AVIF
+                achieves up to <strong>50% smaller sizes</strong> at identical visual quality. Adopting WebP and AVIF
+                drastically reduces page weight, accelerates load times, and boosts Google <strong>Core Web
+                  Vitals</strong> (Largest Contentful Paint - LCP) scores for higher search rankings.</p>
+            </div>
+          </details>
+
+          <!-- Q5 -->
+          <details
+            class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
+              <span class="flex items-center gap-2.5">
+                <span
+                  class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q5</span>
+                <span>How does the raster-to-SVG vector tracing feature work?</span>
+              </span>
+              <i data-lucide="chevron-down"
+                class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
+            </summary>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
+              <p>Online Image Converter features an embedded client-side vectorization engine that analyzes raster pixel
+                clusters from PNG, JPG, or BMP images. It algorithmically detects color boundaries and transforms bitmap
+                pixels into clean, mathematical <strong>SVG vector paths</strong> and polygon curves. This allows logos,
+                illustrations, and icons to scale infinitely to 4K or 8K resolutions without blurriness.</p>
+            </div>
+          </details>
+
+          <!-- Q6 -->
+          <details
+            class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
+              <span class="flex items-center gap-2.5">
+                <span
+                  class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q6</span>
+                <span>Can I batch convert multiple pictures simultaneously and download them in a single ZIP?</span>
+              </span>
+              <i data-lucide="chevron-down"
+                class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
+            </summary>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
+              <p><strong>Yes.</strong> You can drag and drop dozens of photos at once. Online Image Converter employs a
+                multi-threaded parallel worker concurrency pool (2 to 4 workers tailored to your CPU cores) to process
+                files simultaneously. Once conversion is complete, click <strong class="text-indigo-700">"Download
+                  Selected (.zip)"</strong> to package all files into an organized ZIP archive with automated
+                duplicate-name protection (supporting up to 800 MB safe limit).</p>
+            </div>
+          </details>
+
+          <!-- Q7 -->
+          <details
+            class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
+              <span class="flex items-center gap-2.5">
+                <span
+                  class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q7</span>
+                <span>What is the difference between Max, Crop, Scale, and Contain fit modes?</span>
+              </span>
+              <i data-lucide="chevron-down"
+                class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
+            </summary>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
+              <ul class="list-disc pl-4 space-y-1.5">
+                <li><strong>Max (Fit within bounds):</strong> Resizes the image so it fits within specified width and
+                  height without enlarging images smaller than the target bounds.</li>
+                <li><strong>Crop (Fill & Crop excess):</strong> Scales the image to completely fill the target
+                  dimensions
+                  and crops any overlapping excess image data.</li>
+                <li><strong>Scale (Exact dimension stretch):</strong> Enforces exact pixel width and height by scaling
+                  directly, ignoring original aspect ratio.</li>
+                <li><strong>Contain (Preserve aspect ratio):</strong> Centers the image inside the bounding box and
+                  preserves complete original aspect ratio.</li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- Q8 -->
+          <details
+            class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
+              <span class="flex items-center gap-2.5">
+                <span
+                  class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q8</span>
+                <span>How do I generate a 32x32 website favicon (ICO file) using Online Image Converter?</span>
+              </span>
+              <i data-lucide="chevron-down"
+                class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
+            </summary>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
+              <p>Upload any square image (ideally a transparent PNG or SVG logo), choose <strong
+                  class="text-indigo-700">ICO</strong> from the format dropdown, and click convert. Online Image
+                Converter
+                compiles a standardized 32x32 binary PNG-in-ICO favicon fully compatible with web browsers, bookmark
+                bars,
+                and server root standards (<code
+                  class="text-slate-800 font-semibold bg-slate-100 px-1 py-0.5 rounded">favicon.ico</code>).</p>
+            </div>
+          </details>
+
+          <!-- Q9 -->
+          <details
+            class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
+              <span class="flex items-center gap-2.5">
+                <span
+                  class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q9</span>
+                <span>Does Online Image Converter remove EXIF metadata (GPS coordinates, camera model) from
+                  images?</span>
+              </span>
+              <i data-lucide="chevron-down"
+                class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
+            </summary>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
+              <p><strong>Yes.</strong> By default, Online Image Converter is configured to strip EXIF metadata (Strip:
+                Yes). During the canvas pixel re-rendering process, sensitive personal telemetry including GPS location
+                tags, camera device serials, and exposure timestamps are permanently discarded, protecting your privacy
+                when sharing photos online.</p>
+            </div>
+          </details>
+
+          <!-- Q10 -->
+          <details
+            class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
+              <span class="flex items-center gap-2.5">
+                <span
+                  class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q10</span>
+                <span>Are there any hidden costs, subscriptions, file limits, or watermarks?</span>
+              </span>
+              <i data-lucide="chevron-down"
+                class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
+            </summary>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
+              <p><strong>Zero hidden costs, zero watermarks, and zero limits.</strong> Online Image Converter is 100%
+                free
+                and open-source software. You will never encounter daily file conversion quotas, mandatory email
+                registrations, or paid subscription pop-ups. Your exported pictures are delivered in 100% original
+                pristine quality without any watermarked branding.</p>
+            </div>
+          </details>
+
+          <!-- Q11 -->
+          <details
+            class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
+              <span class="flex items-center gap-2.5">
+                <span
+                  class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q11</span>
+                <span>Which operating systems and web browsers are compatible with Online Image Converter?</span>
+              </span>
+              <i data-lucide="chevron-down"
+                class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
+            </summary>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
+              <p>Online Image Converter is fully cross-platform and requires zero software or plugin installations. It
+                operates natively on <strong>Google Chrome, Apple Safari (iOS & macOS), Mozilla Firefox, Microsoft Edge,
+                  Brave, and Opera</strong> across Windows, macOS, Linux, Android, iPadOS, and iOS devices.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
     </section>
 
-    <!-- Global Full Screen Drag & Drop Overlay -->
-    <div
-      class="hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md items-center justify-center pointer-events-none"
-      id="globalDropOverlay">
-      <div class="p-10 sm:p-14 text-center flex flex-col items-center">
-        <div class="w-20 h-20 flex items-center justify-center mb-2">
-          <i data-lucide="upload" class="w-10 h-10"></i>
-        </div>
-        <h2 class="text-2xl font-extrabold text-slate-900 mb-1">Drop images anywhere</h2>
-        <p class="text-sm text-slate-800">Release to add files directly to the conversion queue</p>
-      </div>
-    </div>
-
-    <!-- Supported Formats Grid -->
-    <section class="w-full text-center mt-2" id="formats-section">
-      <h3 class="text-lg font-bold text-slate-900 mb-4">Supported File Formats</h3>
-      <div class="flex flex-wrap justify-center gap-2">
-        <span
-          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
-          JPG / JPEG</span>
-        <span
-          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
-          PNG</span>
-        <span
-          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
-          WebP</span>
-        <span
-          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
-          AVIF</span>
-        <span
-          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
-          HEIC / HEIF</span>
-        <span
-          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
-          BMP</span>
-        <span
-          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
-          ICO (Favicon)</span>
-        <span
-          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
-          SVG (Vector)</span>
-        <span
-          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
-          GIF</span>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-2" id="features-section">
-      <div
-        class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs hover:-translate-y-0.5 hover:shadow-md hover:border-blue-200 transition-all flex flex-col gap-2">
-        <div
-          class="w-10 h-10 rounded-xl flex items-center justify-center bg-blue-50 text-blue-600 border border-blue-100 mb-1">
-          <i data-lucide="zap" class="w-5 h-5"></i>
-        </div>
-        <h3 class="font-bold text-base text-slate-900">Lightning Fast</h3>
-        <p class="text-sm text-slate-600 leading-relaxed">Uses native HTML5 Canvas and WebAssembly to convert images
-          instantly on your GPU/CPU without network lag.</p>
-      </div>
-
-      <div
-        class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs hover:-translate-y-0.5 hover:shadow-md hover:border-emerald-200 transition-all flex flex-col gap-2"
-        id="privacy-section">
-        <div
-          class="w-10 h-10 rounded-xl flex items-center justify-center bg-emerald-50 text-emerald-600 border border-emerald-100 mb-1">
-          <i data-lucide="shield-check" class="w-5 h-5"></i>
-        </div>
-        <h3 class="font-bold text-base text-slate-900">100% Private & Safe</h3>
-        <p class="text-sm text-slate-600 leading-relaxed">Your sensitive images are never uploaded to any remote server.
-          Everything happens strictly inside your local browser.</p>
-      </div>
-
-      <div
-        class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs hover:-translate-y-0.5 hover:shadow-md hover:border-purple-200 transition-all flex flex-col gap-2">
-        <div
-          class="w-10 h-10 rounded-xl flex items-center justify-center bg-purple-50 text-purple-600 border border-purple-100 mb-1">
-          <i data-lucide="layers" class="w-5 h-5"></i>
-        </div>
-        <h3 class="font-bold text-base text-slate-900">Multi-Format & Vector</h3>
-        <p class="text-sm text-slate-600 leading-relaxed">Convert modern Apple HEIC photos, generate ICO favicons, and
-          trace raster images to clean SVG vector graphics.</p>
-      </div>
-    </section>
   </main>
 
-  <!-- Donation Modal -->
+  <!-- Options Modal (Configuring Resize, Fit, Quality, Strip) -->
+  <div class="hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md items-center justify-center p-4"
+    id="optionsModal">
+    <div
+      class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-xl w-full p-6 sm:p-7 relative flex flex-col gap-5">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div>
+          <h2 class="text-xl font-bold text-slate-900" id="optionsModalTitle">Options</h2>
+          <p class="text-xs text-slate-500 mt-0.5" id="optionsModalSubtitle">Configure dimensions, fit mode, and image
+            quality</p>
+        </div>
+        <button type="button"
+          class="bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 w-8 h-8 rounded-lg flex items-center justify-center transition-colors cursor-pointer"
+          id="closeOptionsModal" aria-label="Close options modal">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body (Two-Column Responsive Grid) -->
+      <form id="optionsForm" class="grid grid-cols-1 sm:grid-cols-2 gap-5 text-left">
+        <!-- Left Column: Width, Fit, Quality -->
+        <div class="flex flex-col gap-4">
+          <!-- Width Input -->
+          <div>
+            <label for="modalOptWidth"
+              class="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1.5">Width</label>
+            <input type="number" id="modalOptWidth" min="1" max="10000" placeholder="Auto"
+              class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:bg-white focus:border-indigo-500 outline-none transition-colors" />
+            <p class="text-[11px] text-slate-500 mt-1 leading-snug">Output width in pixels.</p>
+          </div>
+
+          <!-- Custom Fit Mode Dropdown -->
+          <div>
+            <label class="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1.5">Fit</label>
+            <div class="relative w-full" id="modal-fit-dropdown">
+              <button type="button" id="modal-fit-btn"
+                class="w-full flex items-center justify-between gap-2 bg-slate-50 hover:bg-slate-100 border border-slate-300 rounded-lg px-3 py-2 text-xs sm:text-sm font-semibold text-slate-900 transition-colors cursor-pointer text-left whitespace-nowrap"
+                aria-haspopup="listbox" aria-expanded="false">
+                <span id="modal-fit-label" class="whitespace-nowrap uppercase font-bold text-slate-900">max</span>
+                <i data-lucide="chevron-down" id="modal-fit-chevron"
+                  class="w-4 h-4 text-slate-400 shrink-0 transition-transform"></i>
+              </button>
+              <input type="hidden" id="modalOptFit" value="max" />
+              <div id="modal-fit-menu"
+                class="hidden absolute top-full left-0 right-0 mt-1 z-40 bg-white border border-slate-200 rounded-xl shadow-xl py-1 flex-col divide-y divide-slate-100/80 max-h-52 overflow-y-auto"
+                role="listbox">
+                <button type="button"
+                  class="fit-option-btn w-full flex items-center justify-between px-3 py-2 text-xs font-bold text-slate-800 hover:bg-indigo-50 hover:text-indigo-700 transition-colors text-left cursor-pointer whitespace-nowrap"
+                  data-value="max">
+                  <div class="flex items-center gap-1.5 whitespace-nowrap">
+                    <span class="font-bold text-xs uppercase tracking-wide">max</span>
+                    <span class="text-[11px] text-slate-400 font-normal">(Fit within bounds)</span>
+                  </div>
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-indigo-600 fit-check fit-check-max shrink-0 ml-2"></i>
+                </button>
+                <button type="button"
+                  class="fit-option-btn w-full flex items-center justify-between px-3 py-2 text-xs font-bold text-slate-800 hover:bg-indigo-50 hover:text-indigo-700 transition-colors text-left cursor-pointer whitespace-nowrap"
+                  data-value="crop">
+                  <div class="flex items-center gap-1.5 whitespace-nowrap">
+                    <span class="font-bold text-xs uppercase tracking-wide">crop</span>
+                    <span class="text-[11px] text-slate-400 font-normal">(Fill & crop excess)</span>
+                  </div>
+                  <i data-lucide="check"
+                    class="w-3.5 h-3.5 text-indigo-600 fit-check fit-check-crop hidden shrink-0 ml-2"></i>
+                </button>
+                <button type="button"
+                  class="fit-option-btn w-full flex items-center justify-between px-3 py-2 text-xs font-bold text-slate-800 hover:bg-indigo-50 hover:text-indigo-700 transition-colors text-left cursor-pointer whitespace-nowrap"
+                  data-value="scale">
+                  <div class="flex items-center gap-1.5 whitespace-nowrap">
+                    <span class="font-bold text-xs uppercase tracking-wide">scale</span>
+                    <span class="text-[11px] text-slate-400 font-normal">(Stretch exact size)</span>
+                  </div>
+                  <i data-lucide="check"
+                    class="w-3.5 h-3.5 text-indigo-600 fit-check fit-check-scale hidden shrink-0 ml-2"></i>
+                </button>
+                <button type="button"
+                  class="fit-option-btn w-full flex items-center justify-between px-3 py-2 text-xs font-bold text-slate-800 hover:bg-indigo-50 hover:text-indigo-700 transition-colors text-left cursor-pointer whitespace-nowrap"
+                  data-value="contain">
+                  <div class="flex items-center gap-1.5 whitespace-nowrap">
+                    <span class="font-bold text-xs uppercase tracking-wide">contain</span>
+                    <span class="text-[11px] text-slate-400 font-normal">(Keep aspect ratio)</span>
+                  </div>
+                  <i data-lucide="check"
+                    class="w-3.5 h-3.5 text-indigo-600 fit-check fit-check-contain hidden shrink-0 ml-2"></i>
+                </button>
+              </div>
+            </div>
+            <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
+              Sets the mode of resizing the image. "Max" resizes the image to fit within the width and height, but will
+              not increase the size of the image if it is smaller than width or height. "Crop" resizes the image to fill
+              the width and height dimensions and crops any excess image data. "Scale" enforces the image width and
+              height by scaling.
+            </p>
+          </div>
+
+          <!-- Quality Slider & Number Input -->
+          <div>
+            <label for="modalOptQualityNum"
+              class="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1.5">Quality</label>
+            <div class="flex items-center gap-3">
+              <input type="range" id="modalOptQualityRange" min="1" max="100" value="90"
+                class="flex-1 accent-indigo-600 cursor-pointer h-2 bg-slate-200 rounded-lg" />
+              <input type="number" id="modalOptQualityNum" min="1" max="100" value="90"
+                class="w-16 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-center text-sm font-bold text-slate-900 focus:bg-white focus:border-indigo-500 outline-none" />
+            </div>
+            <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
+              JPEG compression level from 1 (lowest image quality and highest compression) to 100 (best quality but
+              least effective compression). The default is to estimate the quality based on your input image.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Column: Height, Strip Metadata -->
+        <div class="flex flex-col gap-4">
+          <!-- Height Input -->
+          <div>
+            <label for="modalOptHeight"
+              class="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1.5">Height</label>
+            <input type="number" id="modalOptHeight" min="1" max="10000" placeholder="Auto"
+              class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:bg-white focus:border-indigo-500 outline-none transition-colors" />
+            <p class="text-[11px] text-slate-500 mt-1 leading-snug">Output height in pixels.</p>
+          </div>
+
+          <!-- Strip Metadata Radio Group -->
+          <div>
+            <span class="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-1.5">Strip</span>
+            <div class="flex items-center gap-5 pt-1">
+              <label
+                class="inline-flex items-center gap-2 cursor-pointer text-sm font-semibold text-slate-800 select-none">
+                <input type="radio" name="modalOptStrip" value="yes" checked
+                  class="accent-indigo-600 w-4 h-4 cursor-pointer" />
+                <span>Yes</span>
+              </label>
+              <label
+                class="inline-flex items-center gap-2 cursor-pointer text-sm font-semibold text-slate-800 select-none">
+                <input type="radio" name="modalOptStrip" value="no" class="accent-indigo-600 w-4 h-4 cursor-pointer" />
+                <span>No</span>
+              </label>
+            </div>
+            <p class="text-[11px] text-slate-500 mt-2 leading-relaxed">
+              Remove any metadata such as EXIF data.
+            </p>
+          </div>
+        </div>
+      </form>
+
+      <!-- Modal Footer Action Buttons -->
+      <div class="flex items-center justify-between border-t border-slate-100 pt-3 mt-1">
+        <button type="button" id="btnResetOptions"
+          class="text-xs font-bold text-slate-500 hover:text-rose-600 transition-colors px-2 py-1.5 rounded-lg cursor-pointer whitespace-nowrap">
+          Reset to Defaults
+        </button>
+        <div class="flex items-center gap-2">
+          <button type="button" id="btnCancelOptions"
+            class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg border border-slate-200 transition-colors cursor-pointer whitespace-nowrap">
+            Cancel
+          </button>
+          <button type="button" id="btnSaveOptions"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-lg transition-colors shadow-xs cursor-pointer whitespace-nowrap">
+            Save Options
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Donation Modal (Clean Box with Rounded Corners) -->
   <div class="hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md items-center justify-center p-4"
     id="donationModal">
     <div
-      class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-md w-full p-6 sm:p-8 relative flex flex-col gap-5">
+      class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-md w-full p-6 sm:p-8 relative flex flex-col gap-5">
       <button
-        class="absolute top-4 right-4 bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 w-8 h-8 rounded-full flex items-center justify-center transition-colors cursor-pointer"
+        class="absolute top-4 right-4 bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 w-8 h-8 rounded-lg flex items-center justify-center transition-colors cursor-pointer"
         id="closeDonateModal" aria-label="Close modal">
         <i data-lucide="x" class="w-4 h-4"></i>
       </button>
       <div class="text-center flex flex-col items-center">
         <div
-          class="w-12 h-12 rounded-full bg-rose-50 text-rose-500 border border-rose-100 flex items-center justify-center mb-3">
+          class="w-12 h-12 rounded-xl bg-rose-50 text-rose-500 border border-rose-100 flex items-center justify-center mb-3">
           <i data-lucide="heart" class="w-6 h-6 fill-rose-500"></i>
         </div>
-        <h2 class="text-xl font-bold text-slate-900">Support PicConvert</h2>
-        <p class="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">PicConvert is 100% free, open-source, and runs
+        <h2 class="text-xl font-bold text-slate-900">Support Online Image Converter</h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">Online Image Converter is 100% free,
+          open-source, and runs
           directly in your browser. Your support helps keep it maintained!</p>
       </div>
 
       <div class="flex flex-col gap-2.5">
-        <a href="https://buymeacoffee.com" target="_blank" rel="noopener noreferrer"
-          class="flex items-center justify-between p-3.5 rounded-2xl border border-slate-200 bg-white hover:border-amber-400 hover:bg-amber-50/20 transition-all text-slate-800 group">
+        <a href="https://buymeacoffee.com/ishara.madu" target="_blank" rel="noopener noreferrer"
+          class="flex items-center justify-between p-3.5 rounded-xl border border-slate-200 bg-white hover:border-amber-400 hover:bg-amber-50/20 transition-colors text-slate-800 group">
           <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+            <div class="w-9 h-9 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
               <i data-lucide="coffee" class="w-4 h-4"></i>
             </div>
             <div>
@@ -439,9 +1977,9 @@
         </a>
 
         <a href="https://paypal.me" target="_blank" rel="noopener noreferrer"
-          class="flex items-center justify-between p-3.5 rounded-2xl border border-slate-200 bg-white hover:border-sky-400 hover:bg-sky-50/20 transition-all text-slate-800 group">
+          class="flex items-center justify-between p-3.5 rounded-xl border border-slate-200 bg-white hover:border-sky-400 hover:bg-sky-50/20 transition-colors text-slate-800 group">
           <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center">
+            <div class="w-9 h-9 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center">
               <i data-lucide="credit-card" class="w-4 h-4"></i>
             </div>
             <div>
@@ -453,9 +1991,9 @@
         </a>
 
         <a href="https://github.com/sponsors" target="_blank" rel="noopener noreferrer"
-          class="flex items-center justify-between p-3.5 rounded-2xl border border-slate-200 bg-white hover:border-pink-400 hover:bg-pink-50/20 transition-all text-slate-800 group">
+          class="flex items-center justify-between p-3.5 rounded-xl border border-slate-200 bg-white hover:border-pink-400 hover:bg-pink-50/20 transition-colors text-slate-800 group">
           <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center">
+            <div class="w-9 h-9 rounded-lg bg-pink-50 text-pink-600 flex items-center justify-center">
               <svg class="lucide lucide-github w-4 h-4" width="18" height="18" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path
@@ -476,8 +2014,13 @@
 
   <!-- Footer -->
   <footer class="mt-auto border-t border-slate-200 bg-white/60 py-6 px-4 text-center text-xs text-slate-500">
-    <p>PicConvert • High-Performance In-Browser Image Converter</p>
+    <p>Online Image Converter • High-Performance In-Browser Image Engine</p>
   </footer>
+
+  <!-- Buy Me a Coffee Floating Widget -->
+  <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+    data-id="ishara.madu" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF"
+    data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 
   <script type="module" src="/src/main.js"></script>
 </body>

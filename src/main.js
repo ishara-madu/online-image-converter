@@ -1,26 +1,26 @@
 import './style.css';
 import { convertImage } from './converter.js';
 import JSZip from 'jszip';
-import { 
-  createIcons, 
-  Sparkles, 
-  ShieldCheck, 
-  Heart, 
+import {
+  createIcons,
+  Sparkles,
+  ShieldCheck,
+  Heart,
   Star,
-  Menu, 
-  Upload, 
+  Menu,
+  Upload,
   UploadCloud,
-  X, 
-  ArrowRight, 
-  ChevronDown, 
+  X,
+  ArrowRight,
+  ChevronDown,
   ChevronUp,
-  ArrowRightLeft, 
-  Zap, 
-  Layers, 
-  Coffee, 
-  CreditCard, 
-  ExternalLink, 
-  Check, 
+  ArrowRightLeft,
+  Zap,
+  Layers,
+  Coffee,
+  CreditCard,
+  ExternalLink,
+  Check,
   CheckCircle2,
   CheckSquare,
   Download,
@@ -29,7 +29,11 @@ import {
   AlertTriangle,
   Plus,
   Trash2,
-  RefreshCw
+  RefreshCw,
+  SlidersHorizontal,
+  File,
+  FileImage,
+  Image
 } from 'lucide';
 
 const appIcons = {
@@ -59,17 +63,21 @@ const appIcons = {
   AlertTriangle,
   Plus,
   Trash2,
-  RefreshCw
+  RefreshCw,
+  SlidersHorizontal,
+  File,
+  FileImage,
+  Image
 };
 
-console.log('PicConvert initialized with Balanced Color Palette');
+console.log('Online Image Converter initialized with Smart Interactive Focus & SEO Knowledge Engine');
 
 // Safe ZIP Size Limit (800 MB)
 const MAX_SAFE_ZIP_SIZE = 800 * 1024 * 1024;
 
 // Concurrency Pool Size
-const CONCURRENCY_LIMIT = typeof navigator !== 'undefined' && navigator.hardwareConcurrency 
-  ? Math.min(Math.max(navigator.hardwareConcurrency - 1, 2), 4) 
+const CONCURRENCY_LIMIT = typeof navigator !== 'undefined' && navigator.hardwareConcurrency
+  ? Math.min(Math.max(navigator.hardwareConcurrency - 1, 2), 4)
   : 3;
 
 // Format file size helper
@@ -85,6 +93,17 @@ const formatBytes = (bytes) => {
 const getFileExtension = (filename) => {
   return filename.slice(((filename.lastIndexOf('.') - 1) >>> 0) + 2).toUpperCase();
 };
+
+// Clean Formats List Definition
+const FORMAT_LIST = [
+  { id: 'webp', name: 'WebP', desc: 'Next-Gen' },
+  { id: 'jpeg', name: 'JPG / JPEG', desc: 'Standard' },
+  { id: 'png', name: 'PNG', desc: 'Lossless' },
+  { id: 'avif', name: 'AVIF', desc: 'High Comp.' },
+  { id: 'ico', name: 'ICO', desc: 'Favicon' },
+  { id: 'gif', name: 'GIF', desc: 'Static' },
+  { id: 'svg', name: 'SVG', desc: 'Vector' }
+];
 
 // Fetch GitHub Stars count
 async function fetchGitHubStars() {
@@ -138,7 +157,7 @@ async function runConcurrencyQueue(queueToProcess, concurrency, onProgress, onIt
       if (onItemUpdate) onItemUpdate(item);
 
       try {
-        const conversion = await convertImage(item.file, item.outputFormatId);
+        const conversion = await convertImage(item.file, item.outputFormatId, item.options);
         const lastDot = item.name.lastIndexOf('.');
         const baseName = lastDot !== -1 ? item.name.substring(0, lastDot) : item.name;
         const outName = `${baseName}-converted.${conversion.extension}`;
@@ -178,23 +197,19 @@ async function runConcurrencyQueue(queueToProcess, concurrency, onProgress, onIt
     }
   }
 
-  const workers = [];
-  const workerCount = Math.min(concurrency, total);
-  for (let i = 0; i < workerCount; i++) {
-    workers.push(worker());
-  }
+  const workers = Array.from({ length: Math.min(concurrency, total) }, () => worker());
   await Promise.all(workers);
 }
 
-function initApp() {
+// Initialize Application UI Logic
+document.addEventListener('DOMContentLoaded', () => {
   createIcons({ icons: appIcons });
   fetchGitHubStars();
 
-  // Elements
-  const fileInput = document.getElementById('file-input');
+  // DOM Elements Selection
   const dropZone = document.getElementById('drop-zone');
+  const fileInput = document.getElementById('file-input');
   const queueManager = document.getElementById('queue-manager');
-  const fileItemsWrapper = document.getElementById('fileItemsWrapper');
   const fileItemsList = document.getElementById('file-items-list');
   const listFadeOverlay = document.getElementById('listFadeOverlay');
   const btnShowAll = document.getElementById('btnShowAll');
@@ -204,9 +219,20 @@ function initApp() {
 
   const queueCountText = document.getElementById('queue-count-text');
   const queueSizeText = document.getElementById('queue-size-text');
-  const globalFormatSelect = document.getElementById('global-format-select');
-  const btnAddMore = document.getElementById('btnAddMore');
-  const btnClearAll = document.getElementById('btnClearAll');
+
+  // Custom Global Format Dropdown Elements
+  const globalFormatDropdown = document.getElementById('global-format-dropdown');
+  const globalFormatBtn = document.getElementById('global-format-btn');
+  const globalFormatLabel = document.getElementById('global-format-label');
+  const globalFormatChevron = document.getElementById('global-format-chevron');
+  const globalFormatMenu = document.getElementById('global-format-menu');
+  const btnGlobalOptions = document.getElementById('btnGlobalOptions');
+
+  // Format Guide Interactive Elements
+  const formatTabButtons = document.querySelectorAll('.format-tab-btn');
+  const formatPanels = document.querySelectorAll('.format-panel');
+  const activeFocusBadge = document.getElementById('activeFocusBadge');
+  const activeFocusBadgeText = document.getElementById('activeFocusBadgeText');
 
   // Sticky Floating Action Bar Elements
   const stickyActionBarWrapper = document.getElementById('stickyActionBarWrapper');
@@ -231,31 +257,105 @@ function initApp() {
   // Navbar & Modals
   const mobileMenuToggle = document.getElementById('mobileMenuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
-  const topNavbar = document.getElementById('topNavbar');
   const openDonateModal = document.getElementById('openDonateModal');
   const openDonateModalMobile = document.getElementById('openDonateModalMobile');
   const closeDonateModal = document.getElementById('closeDonateModal');
   const donationModal = document.getElementById('donationModal');
 
+  // Options Modal Elements
+  const optionsModal = document.getElementById('optionsModal');
+  const closeOptionsModal = document.getElementById('closeOptionsModal');
+  const optionsModalTitle = document.getElementById('optionsModalTitle');
+  const optionsModalSubtitle = document.getElementById('optionsModalSubtitle');
+  const modalOptWidth = document.getElementById('modalOptWidth');
+  const modalOptHeight = document.getElementById('modalOptHeight');
+  const modalOptFit = document.getElementById('modalOptFit');
+  const modalFitDropdown = document.getElementById('modal-fit-dropdown');
+  const modalFitBtn = document.getElementById('modal-fit-btn');
+  const modalFitLabel = document.getElementById('modal-fit-label');
+  const modalFitMenu = document.getElementById('modal-fit-menu');
+  const modalOptQualityRange = document.getElementById('modalOptQualityRange');
+  const modalOptQualityNum = document.getElementById('modalOptQualityNum');
+  const btnResetOptions = document.getElementById('btnResetOptions');
+  const btnCancelOptions = document.getElementById('btnCancelOptions');
+  const btnSaveOptions = document.getElementById('btnSaveOptions');
+
   if (poolWorkersCount) {
     poolWorkersCount.textContent = `${CONCURRENCY_LIMIT} Parallel Workers`;
   }
 
-  // Active File Queue State
+  // Active File Queue State & Default Options
   let fileQueue = [];
   let currentGlobalFormat = 'webp';
   let isListExpanded = false;
   let isConverting = false;
 
-  // Navbar scroll elevation
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 15) {
-      topNavbar?.classList.add('bg-white/95', 'shadow-xs');
-      topNavbar?.classList.remove('bg-[#F8FAFC]/85');
-    } else {
-      topNavbar?.classList.remove('bg-white/95', 'shadow-xs');
-      topNavbar?.classList.add('bg-[#F8FAFC]/85');
+  // Global Default Conversion Options
+  let globalOptions = {
+    width: '',
+    height: '',
+    fit: 'max',
+    quality: 90,
+    strip: 'yes'
+  };
+
+  // Currently editing target in Options Modal (null = global, or itemId)
+  let currentEditingTargetId = null;
+
+  // ==========================================================================
+  // SMART INTERACTIVE FORMAT FOCUS & GUIDE LOGIC
+  // ==========================================================================
+  const focusFormatGuide = (formatKey, contextLabel = null) => {
+    if (!formatKey) return;
+    let normalizedKey = formatKey.toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (normalizedKey === 'jpg') normalizedKey = 'jpeg';
+    if (normalizedKey === 'heif') normalizedKey = 'heic';
+
+    const targetPanel = document.getElementById(`format-panel-${normalizedKey}`);
+    if (!targetPanel) return;
+
+    // Update Tab Buttons
+    formatTabButtons.forEach(btn => {
+      const btnFormat = btn.getAttribute('data-format');
+      const isActive = btnFormat === normalizedKey;
+      btn.classList.toggle('active', isActive);
+      btn.classList.toggle('bg-white', isActive);
+      btn.classList.toggle('text-indigo-700', isActive);
+      btn.classList.toggle('border-slate-300', isActive);
+      btn.classList.toggle('ring-2', isActive);
+      btn.classList.toggle('ring-indigo-500/20', isActive);
+      btn.classList.toggle('bg-slate-100', !isActive);
+      btn.classList.toggle('text-slate-700', !isActive);
+      btn.classList.toggle('border-slate-200', !isActive);
+      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    // Update Panels
+    formatPanels.forEach(panel => {
+      const isTarget = panel.id === `format-panel-${normalizedKey}`;
+      panel.classList.toggle('hidden', !isTarget);
+      panel.classList.toggle('flex', isTarget);
+    });
+
+    // Update Live Focus Badge
+    const fmtDisplay = normalizedKey === 'jpeg' ? 'JPG / JPEG' : normalizedKey.toUpperCase();
+    if (activeFocusBadgeText) {
+      activeFocusBadgeText.textContent = contextLabel ? `${contextLabel}: ${fmtDisplay}` : `Focus: ${fmtDisplay}`;
     }
+
+    // Subtle highlight ring on target panel
+    targetPanel.classList.add('ring-2', 'ring-indigo-500/30');
+    setTimeout(() => {
+      targetPanel.classList.remove('ring-2', 'ring-indigo-500/30');
+    }, 1200);
+  };
+
+  // Bind Tab Click Handlers
+  formatTabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const fmt = btn.getAttribute('data-format');
+      if (fmt) focusFormatGuide(fmt, 'Browsing Guide');
+    });
   });
 
   // Mobile menu toggle
@@ -279,12 +379,11 @@ function initApp() {
     });
   }
 
-  // Donation Modal Logic
+  // Donation Modal Handlers
   const showDonationModal = () => {
     if (donationModal) {
       donationModal.classList.remove('hidden');
       donationModal.classList.add('flex');
-      createIcons({ icons: appIcons });
     }
   };
 
@@ -305,22 +404,321 @@ function initApp() {
     });
   }
 
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') hideDonationModal();
+  // ==========================================================================
+  // CUSTOM GLOBAL FORMAT DROPDOWN LOGIC
+  // ==========================================================================
+  const renderGlobalFormatMenu = () => {
+    if (!globalFormatMenu) return;
+    globalFormatMenu.innerHTML = FORMAT_LIST.map(f => {
+      const isSelected = f.id === currentGlobalFormat;
+      return `
+        <button type="button" class="global-format-option w-full flex items-center justify-between px-3.5 py-2 text-xs sm:text-sm font-bold text-slate-800 hover:bg-indigo-50 hover:text-indigo-700 transition-colors text-left cursor-pointer whitespace-nowrap ${isSelected ? 'bg-indigo-50/70 text-indigo-700 font-extrabold' : ''}" data-value="${f.id}">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="font-bold whitespace-nowrap">${f.name}</span>
+            <span class="text-[11px] text-slate-400 font-normal whitespace-nowrap">(${f.desc})</span>
+          </div>
+          ${isSelected ? '<i data-lucide="check" class="w-4 h-4 text-indigo-600 shrink-0 ml-2"></i>' : '<span class="w-4 ml-2 shrink-0"></span>'}
+        </button>
+      `;
+    }).join('');
+
+    createIcons({ icons: appIcons });
+
+    globalFormatMenu.querySelectorAll('.global-format-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = btn.getAttribute('data-value');
+        if (val) {
+          currentGlobalFormat = val;
+          const fmtObj = FORMAT_LIST.find(f => f.id === val);
+          if (globalFormatLabel && fmtObj) {
+            globalFormatLabel.textContent = fmtObj.name.toUpperCase();
+          }
+
+          // Apply to all pending queue items
+          fileQueue.forEach(item => {
+            if (item.status !== 'success') {
+              item.outputFormatId = currentGlobalFormat;
+            }
+          });
+
+          renderQueueUI();
+          statusDiv.style.color = '#4F46E5';
+          statusDiv.textContent = `Applied output format "${fmtObj ? fmtObj.name : val}" to all pending images.`;
+
+          // Focus target format guide in the SEO section
+          focusFormatGuide(val, 'Target Output');
+
+          closeAllDropdowns();
+          renderGlobalFormatMenu();
+        }
+      });
+    });
+  };
+
+  const setGlobalChevron = (isOpen) => {
+    const chevron = document.querySelector('#global-format-btn .lucide-chevron-down, #global-format-btn [data-lucide="chevron-down"], #global-format-chevron');
+    if (chevron) {
+      chevron.classList.toggle('rotate-180', isOpen);
+    }
+  };
+
+  const toggleGlobalFormatDropdown = () => {
+    if (!globalFormatMenu) return;
+    const isHidden = globalFormatMenu.classList.contains('hidden');
+    closeAllDropdowns();
+    if (isHidden) {
+      globalFormatMenu.classList.remove('hidden');
+      globalFormatMenu.classList.add('flex');
+      setGlobalChevron(true);
+      globalFormatBtn?.setAttribute('aria-expanded', 'true');
+    }
+  };
+
+  if (globalFormatBtn) {
+    globalFormatBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleGlobalFormatDropdown();
+    });
+  }
+
+  renderGlobalFormatMenu();
+
+  // ==========================================================================
+  // CUSTOM MODAL FIT DROPDOWN LOGIC
+  // ==========================================================================
+  const setModalFitChevron = (isOpen) => {
+    const chevron = document.querySelector('#modal-fit-btn .lucide-chevron-down, #modal-fit-btn [data-lucide="chevron-down"], #modal-fit-chevron');
+    if (chevron) {
+      chevron.classList.toggle('rotate-180', isOpen);
+    }
+  };
+
+  const setModalFitValue = (val) => {
+    if (!modalOptFit || !modalFitLabel) return;
+    modalOptFit.value = val;
+    modalFitLabel.textContent = val.toUpperCase();
+
+    if (modalFitMenu) {
+      modalFitMenu.querySelectorAll('.fit-option-btn').forEach(btn => {
+        const isMatch = btn.getAttribute('data-value') === val;
+        btn.classList.toggle('bg-indigo-50/70', isMatch);
+        btn.classList.toggle('text-indigo-700', isMatch);
+        btn.classList.toggle('font-extrabold', isMatch);
+        const checkIcon = btn.querySelector('.fit-check');
+        if (checkIcon) {
+          checkIcon.classList.toggle('hidden', !isMatch);
+        }
+      });
+    }
+  };
+
+  const toggleModalFitDropdown = () => {
+    if (!modalFitMenu) return;
+    const isHidden = modalFitMenu.classList.contains('hidden');
+    closeAllDropdowns();
+    if (isHidden) {
+      modalFitMenu.classList.remove('hidden');
+      modalFitMenu.classList.add('flex');
+      setModalFitChevron(true);
+    }
+  };
+
+  if (modalFitBtn) {
+    modalFitBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleModalFitDropdown();
+    });
+  }
+
+  if (modalFitMenu) {
+    modalFitMenu.querySelectorAll('.fit-option-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const val = btn.getAttribute('data-value');
+        if (val) {
+          setModalFitValue(val);
+          closeAllDropdowns();
+        }
+      });
+    });
+  }
+
+  // ==========================================================================
+  // CONVERSION OPTIONS MODAL HANDLERS
+  // ==========================================================================
+  const showOptionsModal = (targetId = null) => {
+    if (!optionsModal) return;
+    currentEditingTargetId = targetId;
+
+    let targetOptions = globalOptions;
+    if (targetId !== null) {
+      const item = fileQueue.find(i => i.id === targetId);
+      if (item) {
+        targetOptions = item.options || { ...globalOptions };
+        if (optionsModalTitle) optionsModalTitle.textContent = `Options: ${item.name}`;
+        if (optionsModalSubtitle) optionsModalSubtitle.textContent = 'Custom dimensions, fit mode, and quality for this image';
+      }
+    } else {
+      if (optionsModalTitle) optionsModalTitle.textContent = 'Options (All Images)';
+      if (optionsModalSubtitle) optionsModalSubtitle.textContent = 'Configure default conversion options for all images in queue';
+    }
+
+    // Populate form fields
+    if (modalOptWidth) modalOptWidth.value = targetOptions.width || '';
+    if (modalOptHeight) modalOptHeight.value = targetOptions.height || '';
+    setModalFitValue(targetOptions.fit || 'max');
+
+    const qualityVal = targetOptions.quality !== undefined ? targetOptions.quality : 90;
+    if (modalOptQualityRange) modalOptQualityRange.value = qualityVal;
+    if (modalOptQualityNum) modalOptQualityNum.value = qualityVal;
+
+    const stripRadios = document.querySelectorAll('input[name="modalOptStrip"]');
+    stripRadios.forEach(radio => {
+      radio.checked = radio.value === (targetOptions.strip || 'yes');
+    });
+
+    optionsModal.classList.remove('hidden');
+    optionsModal.classList.add('flex');
+  };
+
+  const hideOptionsModal = () => {
+    if (optionsModal) {
+      optionsModal.classList.add('hidden');
+      optionsModal.classList.remove('flex');
+    }
+    currentEditingTargetId = null;
+    closeAllDropdowns();
+  };
+
+  // Sync Quality Range & Number input
+  if (modalOptQualityRange && modalOptQualityNum) {
+    modalOptQualityRange.addEventListener('input', (e) => {
+      modalOptQualityNum.value = e.target.value;
+    });
+    modalOptQualityNum.addEventListener('input', (e) => {
+      let val = parseInt(e.target.value, 10);
+      if (isNaN(val)) val = 90;
+      val = Math.min(100, Math.max(1, val));
+      modalOptQualityRange.value = val;
+    });
+  }
+
+  if (btnGlobalOptions) {
+    btnGlobalOptions.addEventListener('click', () => showOptionsModal(null));
+  }
+
+  if (closeOptionsModal) closeOptionsModal.addEventListener('click', hideOptionsModal);
+  if (btnCancelOptions) btnCancelOptions.addEventListener('click', hideOptionsModal);
+
+  if (optionsModal) {
+    optionsModal.addEventListener('click', (e) => {
+      if (e.target === optionsModal) hideOptionsModal();
+    });
+  }
+
+  // Reset Options in Modal
+  if (btnResetOptions) {
+    btnResetOptions.addEventListener('click', () => {
+      if (modalOptWidth) modalOptWidth.value = '';
+      if (modalOptHeight) modalOptHeight.value = '';
+      setModalFitValue('max');
+      if (modalOptQualityRange) modalOptQualityRange.value = 90;
+      if (modalOptQualityNum) modalOptQualityNum.value = 90;
+      const stripYes = document.querySelector('input[name="modalOptStrip"][value="yes"]');
+      if (stripYes) stripYes.checked = true;
+    });
+  }
+
+  // Save Options in Modal
+  if (btnSaveOptions) {
+    btnSaveOptions.addEventListener('click', () => {
+      const stripChecked = document.querySelector('input[name="modalOptStrip"]:checked');
+      const savedOpts = {
+        width: modalOptWidth ? modalOptWidth.value.trim() : '',
+        height: modalOptHeight ? modalOptHeight.value.trim() : '',
+        fit: modalOptFit ? modalOptFit.value : 'max',
+        quality: modalOptQualityNum ? parseInt(modalOptQualityNum.value, 10) || 90 : 90,
+        strip: stripChecked ? stripChecked.value : 'yes'
+      };
+
+      if (currentEditingTargetId === null) {
+        // Global Options update -> applies to all queue items
+        globalOptions = { ...savedOpts };
+        fileQueue.forEach(item => {
+          item.options = { ...savedOpts };
+        });
+        statusDiv.style.color = '#4F46E5';
+        statusDiv.textContent = `Applied conversion options to all (${fileQueue.length}) images in queue.`;
+      } else {
+        // Specific item update
+        const item = fileQueue.find(i => i.id === currentEditingTargetId);
+        if (item) {
+          item.options = { ...savedOpts };
+          statusDiv.style.color = '#4F46E5';
+          statusDiv.textContent = `Updated conversion options for "${item.name}".`;
+        }
+      }
+
+      hideOptionsModal();
+    });
+  }
+
+  // Global Close Dropdowns on Click Outside or Escape
+  const closeAllDropdowns = () => {
+    // Global format
+    if (globalFormatMenu) {
+      globalFormatMenu.classList.add('hidden');
+      globalFormatMenu.classList.remove('flex');
+      setGlobalChevron(false);
+      globalFormatBtn?.setAttribute('aria-expanded', 'false');
+    }
+    // Modal fit
+    if (modalFitMenu) {
+      modalFitMenu.classList.add('hidden');
+      modalFitMenu.classList.remove('flex');
+      setModalFitChevron(false);
+    }
+    // Item row menus and active z-index reset
+    document.querySelectorAll('.file-item-row').forEach(r => {
+      r.classList.remove('z-50');
+    });
+    document.querySelectorAll('.item-format-menu').forEach(menu => {
+      menu.classList.add('hidden');
+      menu.classList.remove('flex');
+    });
+    document.querySelectorAll('.btn-item-format-trigger .lucide-chevron-down, .btn-item-format-trigger [data-lucide="chevron-down"], .btn-item-format-trigger svg, .btn-item-format-trigger i').forEach(ch => {
+      ch.classList.remove('rotate-180');
+    });
+  };
+
+  document.addEventListener('click', (e) => {
+    // If click is not inside any dropdown trigger or menu, close all
+    if (!e.target.closest('#global-format-dropdown') &&
+      !e.target.closest('#modal-fit-dropdown') &&
+      !e.target.closest('.item-format-dropdown')) {
+      closeAllDropdowns();
+    }
   });
 
-  // Available format options helper
-  const getFormatOptionsHtml = (selectedFormat) => {
-    const formats = [
-      { id: 'webp', name: 'WebP (Next-Gen)' },
-      { id: 'jpeg', name: 'JPG / JPEG' },
-      { id: 'png', name: 'PNG (Lossless)' },
-      { id: 'avif', name: 'AVIF (High Comp.)' },
-      { id: 'ico', name: 'ICO (Favicon 32x32)' },
-      { id: 'gif', name: 'GIF (Static)' },
-      { id: 'svg', name: 'SVG (Vector)' },
-    ];
-    return formats.map(f => `<option value="${f.id}" ${f.id === selectedFormat ? 'selected' : ''}>${f.name}</option>`).join('');
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      hideDonationModal();
+      hideOptionsModal();
+      closeAllDropdowns();
+    }
+  });
+
+  // Helper to generate per-item custom format menu items HTML (single-line & whitespace-nowrap)
+  const getFormatMenuItemsHtml = (itemId, selectedFormat) => {
+    return FORMAT_LIST.map(f => {
+      const isSelected = f.id === selectedFormat;
+      return `
+        <button type="button" class="item-format-option w-full flex items-center justify-between px-3 py-1.5 text-xs font-bold text-slate-800 hover:bg-indigo-50 hover:text-indigo-700 transition-colors text-left cursor-pointer whitespace-nowrap ${isSelected ? 'bg-indigo-50/70 text-indigo-700 font-extrabold' : ''}" data-id="${itemId}" data-value="${f.id}">
+          <span class="whitespace-nowrap">${f.name}</span>
+          ${isSelected ? '<i data-lucide="check" class="w-3.5 h-3.5 text-indigo-600 shrink-0 ml-2"></i>' : '<span class="w-3.5 ml-2 shrink-0"></span>'}
+        </button>
+      `;
+    }).join('');
   };
 
   // Update Sticky Action Bar State
@@ -368,23 +766,18 @@ function initApp() {
       btnDownloadSelectedZip.classList.toggle('inline-flex', showZip);
 
       if (showZip) {
-        btnDownloadSelectedZip.innerHTML = `
-          <i data-lucide="folder-archive" class="w-4 h-4"></i>
-          <span>Download Selected (${convertedSelected.length}) ZIP</span>
-        `;
+        if (downloadSelectedZipText) {
+          downloadSelectedZipText.textContent = `Download Selected (${convertedSelected.length}) .zip`;
+        }
       }
     }
 
     // Convert Selected Button
     if (btnConvertSelected) {
-      if (isConverting) {
+      if (pendingSelected.length > 0) {
         btnConvertSelected.classList.remove('hidden');
         btnConvertSelected.classList.add('inline-flex');
-        btnConvertSelected.disabled = true;
-      } else if (pendingSelected.length > 0) {
-        btnConvertSelected.classList.remove('hidden');
-        btnConvertSelected.classList.add('inline-flex');
-        btnConvertSelected.disabled = false;
+        btnConvertSelected.disabled = isConverting;
         btnConvertSelected.innerHTML = `
           <i data-lucide="arrow-right-left" class="w-4 h-4"></i>
           <span>Convert ${pendingSelected.length} Selected</span>
@@ -416,14 +809,14 @@ function initApp() {
     else if (item.status === 'success') statusBgBorder = 'bg-emerald-50/40 border-emerald-200';
     else if (item.status === 'error') statusBgBorder = 'bg-rose-50/40 border-rose-200';
 
-    row.className = `flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 border rounded-2xl p-3 px-4 shadow-2xs transition-all ${statusBgBorder}`;
+    row.className = `file-item-row relative flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 border rounded-xl p-3 px-4 shadow-2xs transition-all ${statusBgBorder}`;
 
     let statusContent = '';
     if (item.status === 'pending') {
-      statusContent = `<span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">Ready</span>`;
+      statusContent = `<span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-0.5 rounded-md bg-green-100 text-green-600 border border-green-200 whitespace-nowrap">Ready</span>`;
     } else if (item.status === 'converting') {
       statusContent = `
-        <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+        <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 whitespace-nowrap">
           <svg class="animate-spin w-3.5 h-3.5 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.25" fill="none"/>
             <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor"/>
@@ -432,58 +825,68 @@ function initApp() {
         </span>
       `;
     } else if (item.status === 'success') {
-      const savedPct = item.originalSize && item.originalSize > item.convertedSize 
+      const savedPct = item.originalSize && item.originalSize > item.convertedSize
         ? `(-${Math.round(((item.originalSize - item.convertedSize) / item.originalSize) * 100)}%)`
         : '';
       statusContent = `
-        <span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200" title="Converted to ${item.extension.toUpperCase()}">
+        <span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 whitespace-nowrap" title="Converted to ${item.extension.toUpperCase()}">
           <i data-lucide="check" class="w-3.5 h-3.5"></i>
           <span>${formatBytes(item.convertedSize)} ${savedPct}</span>
         </span>
-        <a href="${item.downloadUrl}" download="${item.outputName}" class="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white w-7 h-7 rounded-lg hover:scale-105 transition-all shadow-xs shadow-indigo-200 cursor-pointer" title="Click to download ${item.outputName}">
+        <a href="${item.downloadUrl}" download="${item.outputName}" class="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white w-7 h-7 rounded-lg transition-colors shadow-xs shadow-indigo-200 cursor-pointer" title="Click to download ${item.outputName}">
           <i data-lucide="download" class="w-3.5 h-3.5"></i>
         </a>
       `;
     } else if (item.status === 'error') {
       statusContent = `
-        <span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200" title="${item.errorMessage}">
+        <span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-0.5 rounded-md bg-rose-50 text-rose-700 border border-rose-200 whitespace-nowrap" title="${item.errorMessage}">
           <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
           <span>Error</span>
         </span>
       `;
     }
 
+    const currentFmtObj = FORMAT_LIST.find(f => f.id === item.outputFormatId) || { name: item.outputFormatId.toUpperCase() };
+
     row.innerHTML = `
       <!-- Left: Thumbnail (acts as clickable select / mark trigger) & File Meta -->
       <div class="flex items-center gap-3 min-w-0 flex-1">
-        <div class="file-item-thumb-wrapper relative w-11 h-11 rounded-xl cursor-pointer shrink-0 select-none border bg-white hover:scale-105 transition-all group ${item.selected ? 'border-indigo-600 ring-2 ring-indigo-500/20' : 'border-slate-200'}" data-id="${item.id}" title="${item.selected ? 'Click to unmark' : 'Click to mark'}">
-          <img class="w-full h-full rounded-lg object-cover block" src="${item.thumbUrl}" alt="Thumbnail" />
-          <div class="thumb-check-overlay absolute -top-1 -right-1 w-4.5 h-4.5 rounded-full text-white border-2 border-white flex items-center justify-center shadow-xs transition-all ${item.selected ? 'bg-indigo-600 scale-100 opacity-100' : 'bg-slate-400 scale-75 opacity-0 group-hover:opacity-75 group-hover:scale-90'}">
+        <div class="file-item-thumb-wrapper relative w-11 h-11 rounded-lg cursor-pointer shrink-0 select-none border bg-white transition-colors group ${item.selected ? 'border-indigo-600 ring-2 ring-indigo-500/20' : 'border-slate-200'}" data-id="${item.id}" title="${item.selected ? 'Click to unmark' : 'Click to mark'}">
+          <img class="w-full h-full rounded-md object-cover block" src="${item.thumbUrl}" alt="Thumbnail" />
+          <div class="thumb-check-overlay absolute -top-1 -right-1 w-4.5 h-4.5 rounded text-white border-2 border-white flex items-center justify-center shadow-xs transition-opacity ${item.selected ? 'bg-indigo-600 opacity-100' : 'bg-slate-400 opacity-0 group-hover:opacity-75'}">
             <i data-lucide="check" class="w-3 h-3 stroke-[3.5]"></i>
           </div>
         </div>
         <div class="min-w-0 flex-1">
           <div class="text-xs sm:text-sm font-bold text-slate-900 truncate max-w-[180px] sm:max-w-[280px]" title="${item.name}">${item.name}</div>
-          <div class="text-[11px] text-slate-500 mt-0.5 font-medium">${formatBytes(item.size)}</div>
+          <div class="text-[11px] text-slate-500 mt-0.5 font-medium whitespace-nowrap">${formatBytes(item.size)}</div>
         </div>
       </div>
 
-      <!-- Center: Input Format -> Arrow -> Individual Output Format Select -->
-      <div class="flex items-center justify-center gap-2 bg-white px-2.5 py-1.5 rounded-xl border border-slate-200 shrink-0">
-        <span class="inline-flex items-center bg-slate-100 text-slate-700 text-xs font-bold px-2 py-0.5 rounded-md border border-slate-200 uppercase">${item.inputExt}</span>
-        <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-indigo-500"></i>
-        <div class="relative min-w-[135px] flex items-center">
-          <select class="item-format-select w-full appearance-none bg-white border border-slate-300 rounded-lg py-1 pr-6 pl-2.5 text-xs font-bold text-slate-800 outline-none focus:border-indigo-500 cursor-pointer" data-id="${item.id}" ${item.status === 'converting' ? 'disabled' : ''}>
-            ${getFormatOptionsHtml(item.outputFormatId)}
-          </select>
-          <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400 absolute right-1.5 pointer-events-none"></i>
+      <!-- Center: Input Format -> Arrow -> Custom Output Format Dropdown -->
+      <div class="flex items-center justify-center gap-2 bg-white px-2.5 py-1.5 rounded-lg border border-slate-200 shrink-0 whitespace-nowrap">
+        <span class="inline-flex items-center bg-slate-100 text-slate-700 text-xs font-bold px-2 py-0.5 rounded-md border border-slate-200 uppercase whitespace-nowrap">${item.inputExt}</span>
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-indigo-500 shrink-0"></i>
+        <div class="relative item-format-dropdown">
+          <button type="button" class="btn-item-format-trigger inline-flex items-center justify-between gap-2 bg-slate-50 hover:bg-slate-100/90 border border-slate-300 rounded-md py-1 pr-2 pl-2.5 text-xs font-bold text-slate-800 transition-colors cursor-pointer min-w-[100px] whitespace-nowrap text-left" data-id="${item.id}" ${item.status === 'converting' ? 'disabled' : ''}>
+            <span class="item-format-label whitespace-nowrap font-bold text-slate-900">${currentFmtObj.name}</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400 shrink-0 transition-transform"></i>
+          </button>
+          
+          <!-- Dropdown Popover Menu with high z-index & auto-flip -->
+          <div class="item-format-menu hidden absolute top-full left-0 mt-1 z-50 bg-white border border-slate-200 rounded-xl shadow-2xl py-1 flex-col divide-y divide-slate-100/80 min-w-[135px] whitespace-nowrap">
+            ${getFormatMenuItemsHtml(item.id, item.outputFormatId)}
+          </div>
         </div>
       </div>
 
-      <!-- Right: Status / Direct Download & Remove Button -->
-      <div class="flex items-center justify-between sm:justify-end gap-2 shrink-0">
+      <!-- Right: Status / Direct Download & Options & Remove Button -->
+      <div class="flex items-center justify-between sm:justify-end gap-2 shrink-0 whitespace-nowrap">
         ${statusContent}
-        <button type="button" class="btn-item-remove inline-flex items-center justify-center bg-slate-100 hover:bg-rose-50 text-slate-400 hover:text-rose-600 w-7 h-7 rounded-full transition-colors cursor-pointer border border-transparent hover:border-rose-200" data-id="${item.id}" title="Remove file">
+        <button type="button" class="btn-item-options inline-flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-600 w-7 h-7 rounded-md transition-colors cursor-pointer border border-transparent" data-id="${item.id}" title="Conversion options for this image">
+          <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
+        </button>
+        <button type="button" class="btn-item-remove inline-flex items-center justify-center bg-slate-100 hover:bg-rose-50 text-slate-400 hover:text-rose-600 w-7 h-7 rounded-md transition-colors cursor-pointer border border-transparent " data-id="${item.id}" title="Remove file">
           <i data-lucide="x" class="w-3.5 h-3.5"></i>
         </button>
       </div>
@@ -498,11 +901,60 @@ function initApp() {
       });
     }
 
-    // Bind change on individual format select
-    const selectEl = row.querySelector('.item-format-select');
-    if (selectEl) {
-      selectEl.addEventListener('change', (e) => {
-        item.outputFormatId = e.target.value;
+    // Bind item format custom dropdown toggle with z-index elevation and smart flip
+    const formatTrigger = row.querySelector('.btn-item-format-trigger');
+    const formatMenu = row.querySelector('.item-format-menu');
+    if (formatTrigger && formatMenu) {
+      formatTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isHidden = formatMenu.classList.contains('hidden');
+        closeAllDropdowns();
+        if (isHidden) {
+          // Smart Auto-Flip Positioning (open upward if near bottom of viewport)
+          const triggerRect = formatTrigger.getBoundingClientRect();
+          const spaceBelow = window.innerHeight - triggerRect.bottom;
+          if (spaceBelow < 220) {
+            formatMenu.classList.remove('top-full', 'mt-1');
+            formatMenu.classList.add('bottom-full', 'mb-1');
+          } else {
+            formatMenu.classList.remove('bottom-full', 'mb-1');
+            formatMenu.classList.add('top-full', 'mt-1');
+          }
+
+          formatMenu.classList.remove('hidden');
+          formatMenu.classList.add('flex');
+          const chevron = formatTrigger.querySelector('.lucide-chevron-down, [data-lucide="chevron-down"], svg, i');
+          if (chevron) {
+            chevron.classList.add('rotate-180');
+          }
+          row.classList.add('z-50');
+        }
+      });
+
+      formatMenu.querySelectorAll('.item-format-option').forEach(optBtn => {
+        optBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const targetFormat = optBtn.getAttribute('data-value');
+          if (targetFormat) {
+            item.outputFormatId = targetFormat;
+            const newFmt = FORMAT_LIST.find(f => f.id === targetFormat);
+            const labelEl = row.querySelector('.item-format-label');
+            if (labelEl && newFmt) labelEl.textContent = newFmt.name;
+            closeAllDropdowns();
+            updateItemRowInDOM(item);
+
+            // Focus target format guide in the SEO section
+            focusFormatGuide(targetFormat, 'Selected Output');
+          }
+        });
+      });
+    }
+
+    // Bind item options button
+    const optionsBtn = row.querySelector('.btn-item-options');
+    if (optionsBtn) {
+      optionsBtn.addEventListener('click', () => {
+        showOptionsModal(item.id);
       });
     }
 
@@ -582,25 +1034,27 @@ function initApp() {
       listFadeOverlay?.classList.remove('hidden');
       listFadeOverlay?.classList.add('flex');
       if (isListExpanded) {
-        fileItemsList.classList.remove('max-h-[260px]');
-        fileItemsList.classList.add('max-h-none');
+        fileItemsList.classList.remove('max-h-[260px]', 'overflow-hidden');
+        fileItemsList.classList.add('max-h-none', 'overflow-visible');
         listFadeOverlay?.classList.remove('absolute', 'bottom-0', 'h-24', 'bg-gradient-to-t');
         listFadeOverlay?.classList.add('static', 'h-auto', 'bg-none', 'pt-2');
         if (showAllBtnText) showAllBtnText.textContent = 'Show Less';
-        if (showAllBtnIcon) showAllBtnIcon.setAttribute('data-lucide', 'chevron-up');
+        const chevron = document.querySelector('#btnShowAll .lucide-chevron-down, #btnShowAll [data-lucide], #btnShowAll svg, #showAllBtnIcon');
+        if (chevron) chevron.classList.add('rotate-180');
       } else {
-        fileItemsList.classList.add('max-h-[260px]');
-        fileItemsList.classList.remove('max-h-none');
+        fileItemsList.classList.add('max-h-[260px]', 'overflow-hidden');
+        fileItemsList.classList.remove('max-h-none', 'overflow-visible');
         listFadeOverlay?.classList.add('absolute', 'bottom-0', 'h-24', 'bg-gradient-to-t');
         listFadeOverlay?.classList.remove('static', 'h-auto', 'bg-none', 'pt-2');
         if (showAllBtnText) showAllBtnText.textContent = `Show all ${fileQueue.length} images`;
-        if (showAllBtnIcon) showAllBtnIcon.setAttribute('data-lucide', 'chevron-down');
+        const chevron = document.querySelector('#btnShowAll .lucide-chevron-down, #btnShowAll [data-lucide], #btnShowAll svg, #showAllBtnIcon');
+        if (chevron) chevron.classList.remove('rotate-180');
       }
     } else {
       listFadeOverlay?.classList.add('hidden');
       listFadeOverlay?.classList.remove('flex');
-      fileItemsList.classList.remove('max-h-[260px]');
-      fileItemsList.classList.add('max-h-none');
+      fileItemsList.classList.remove('max-h-[260px]', 'overflow-hidden');
+      fileItemsList.classList.add('max-h-none', 'overflow-visible');
     }
 
     updateStickyActionBar();
@@ -655,6 +1109,7 @@ function initApp() {
         size: file.size,
         inputExt: getFileExtension(file.name) || 'IMG',
         outputFormatId: currentGlobalFormat || 'webp',
+        options: { ...globalOptions },
         status: 'pending',
         selected: true, // Marked by default
         thumbUrl,
@@ -668,43 +1123,27 @@ function initApp() {
 
     fileQueue.push(...newItems);
     isConverting = false;
-    renderQueueUI();
 
-    statusDiv.style.color = '#4F46E5';
-    statusDiv.textContent = `Added ${newItems.length} image(s) • Total in Queue: ${fileQueue.length}`;
-    resultArea.innerHTML = '';
+    renderQueueUI();
+    statusDiv.style.color = '#15803D';
+    statusDiv.textContent = `Added ${newItems.length} image(s) to the conversion queue.`;
+
+    // Smart Auto-Focus detected input format in Format Guide
+    const firstInputExt = newItems[0].inputExt;
+    focusFormatGuide(firstInputExt, 'Detected Input');
   };
 
-  // Remove single file from queue
+  // Remove individual file from queue
   const removeFileFromQueue = (id) => {
     fileQueue = fileQueue.filter(item => item.id !== id);
     renderQueueUI();
   };
 
-  // Clear all files
-  const clearAllQueue = () => {
-    fileQueue = [];
-    isListExpanded = false;
-    isConverting = false;
-    if (fileInput) fileInput.value = '';
-    renderQueueUI();
-  };
-
-  if (btnClearAll) {
-    btnClearAll.addEventListener('click', clearAllQueue);
-  }
-
-  // Trigger Add More
-  if (btnAddMore) {
-    btnAddMore.addEventListener('click', () => {
-      fileInput.click();
-    });
-  }
-
+  // Drag & drop highlight state handlers using pure Tailwind classes
   const setDragHighlight = (el, isDragging) => {
     if (!el) return;
-    const highlightClasses = ['border-blue-500', 'bg-blue-50/70', 'ring-4', 'ring-blue-500/20', 'shadow-xl', 'shadow-blue-500/10', 'scale-[1.008]'];
-    const defaultClasses = ['border-black', 'bg-white'];
+    const highlightClasses = ['border-blue-500', 'bg-blue-50/70', 'ring-2', 'ring-blue-500/20'];
+    const defaultClasses = ['border-slate-300', 'bg-white'];
     if (isDragging) {
       el.classList.remove(...defaultClasses);
       el.classList.add(...highlightClasses);
@@ -751,21 +1190,6 @@ function initApp() {
     appendFilesToQueue(e.target.files);
     fileInput.value = '';
   });
-
-  // Global Output Format change -> updates all rows
-  if (globalFormatSelect) {
-    globalFormatSelect.addEventListener('change', (e) => {
-      currentGlobalFormat = e.target.value;
-      fileQueue.forEach(item => {
-        if (item.status !== 'success') {
-          item.outputFormatId = currentGlobalFormat;
-        }
-      });
-      renderQueueUI();
-      statusDiv.style.color = '#4F46E5';
-      statusDiv.textContent = `Applied output format "${currentGlobalFormat.toUpperCase()}" to all pending images.`;
-    });
-  }
 
   // ==========================================================================
   // GLOBAL FULL-SCREEN DRAG & DROP
@@ -921,37 +1345,29 @@ function initApp() {
         const zipBlob = await zip.generateAsync({
           type: 'blob',
           compression: 'DEFLATE',
-          compressionOptions: { level: 3 }
+          compressionOptions: { level: 6 }
         });
 
         const zipUrl = URL.createObjectURL(zipBlob);
-        const zipLink = document.createElement('a');
-        zipLink.href = zipUrl;
-        zipLink.download = `pic-convert-selected-${convertedSelected.length}-images.zip`;
-        zipLink.click();
+        const link = document.createElement('a');
+        link.href = zipUrl;
+        link.download = `ImageConverter_Batch_${Date.now()}.zip`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(zipUrl);
 
-        btnDownloadSelectedZip.innerHTML = `
-          <i data-lucide="check" class="w-4 h-4"></i>
-          <span>ZIP Downloaded!</span>
-        `;
-      } catch (zErr) {
-        console.error('ZIP packaging error:', zErr);
-        alert('Error creating ZIP file: ' + zErr.message);
-        btnDownloadSelectedZip.innerHTML = `
-          <i data-lucide="folder-archive" class="w-4 h-4"></i>
-          <span>Retry Download ZIP</span>
-        `;
+        statusDiv.style.color = '#15803D';
+        statusDiv.textContent = `Successfully downloaded ZIP package (${formatBytes(zipBlob.size)})!`;
+      } catch (err) {
+        console.error('ZIP generation failed:', err);
+        statusDiv.style.color = '#E11D48';
+        statusDiv.textContent = `ZIP generation failed: ${err.message || err}`;
       } finally {
         btnDownloadSelectedZip.disabled = false;
+        updateStickyActionBar();
         createIcons({ icons: appIcons });
       }
     });
   }
-}
-
-// Execute safely
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initApp);
-} else {
-  initApp();
-}
+});

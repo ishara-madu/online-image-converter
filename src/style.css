@@ -36,7 +36,7 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: #F8FAFC;
+  background-color: #F5F5F7;
   color: #0F172A;
   min-height: 100vh;
   display: flex;
@@ -46,12 +46,12 @@ body {
 }
 
 /* Custom checkbox state styling with Indigo Accent */
-.custom-checkbox-input:not(:checked) + .custom-checkbox-box svg,
-.custom-checkbox-input:not(:checked) + .custom-checkbox-box [data-lucide] {
+.custom-checkbox-input:not(:checked)+.custom-checkbox-box svg,
+.custom-checkbox-input:not(:checked)+.custom-checkbox-box [data-lucide] {
   display: none;
 }
 
-.custom-checkbox-input:checked + .custom-checkbox-box {
+.custom-checkbox-input:checked+.custom-checkbox-box {
   background-color: #4F46E5;
   border-color: #4F46E5;
 }
@@ -62,6 +62,18 @@ body.global-dragging #globalDropOverlay {
 }
 
 /* Lucide stroke icon width default */
-[data-lucide], svg.lucide {
+[data-lucide],
+svg.lucide {
   stroke-width: 2.2;
+}
+
+/* Smooth rotation for all dropdown & accordion chevrons */
+.lucide-chevron-down,
+[data-lucide="chevron-down"] {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+details[open] summary .lucide-chevron-down,
+details[open] summary [data-lucide="chevron-down"] {
+  transform: rotate(180deg);
 }
