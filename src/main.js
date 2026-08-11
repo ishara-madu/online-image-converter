@@ -62,7 +62,7 @@ const appIcons = {
   RefreshCw
 };
 
-console.log('PicConvert initialized with Thumbnail-based Marking and Explicit-only Downloads');
+console.log('PicConvert initialized with Balanced Color Palette');
 
 // Safe ZIP Size Limit (800 MB)
 const MAX_SAFE_ZIP_SIZE = 800 * 1024 * 1024;
@@ -144,7 +144,7 @@ async function runConcurrencyQueue(queueToProcess, concurrency, onProgress, onIt
         const outName = `${baseName}-converted.${conversion.extension}`;
 
         item.status = 'success';
-        item.selected = true; // Auto-mark converted items!
+        item.selected = true; // Auto-mark converted items
         item.resultBlob = conversion.blob;
         item.convertedSize = conversion.blob.size;
         item.originalSize = item.size;
@@ -250,21 +250,31 @@ function initApp() {
   // Navbar scroll elevation
   window.addEventListener('scroll', () => {
     if (window.scrollY > 15) {
-      topNavbar?.classList.add('scrolled');
+      topNavbar?.classList.add('bg-white/95', 'shadow-xs');
+      topNavbar?.classList.remove('bg-[#F8FAFC]/85');
     } else {
-      topNavbar?.classList.remove('scrolled');
+      topNavbar?.classList.remove('bg-white/95', 'shadow-xs');
+      topNavbar?.classList.add('bg-[#F8FAFC]/85');
     }
   });
 
   // Mobile menu toggle
   if (mobileMenuToggle && mobileMenu) {
     mobileMenuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('show');
+      const isHidden = mobileMenu.classList.contains('hidden');
+      if (isHidden) {
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('flex');
+      } else {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+      }
     });
 
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        mobileMenu.classList.remove('show');
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
       });
     });
   }
@@ -272,14 +282,16 @@ function initApp() {
   // Donation Modal Logic
   const showDonationModal = () => {
     if (donationModal) {
-      donationModal.classList.add('show');
+      donationModal.classList.remove('hidden');
+      donationModal.classList.add('flex');
       createIcons({ icons: appIcons });
     }
   };
 
   const hideDonationModal = () => {
     if (donationModal) {
-      donationModal.classList.remove('show');
+      donationModal.classList.add('hidden');
+      donationModal.classList.remove('flex');
     }
   };
 
@@ -316,11 +328,13 @@ function initApp() {
     if (!stickyActionBarWrapper) return;
 
     if (fileQueue.length === 0) {
-      stickyActionBarWrapper.style.display = 'none';
+      stickyActionBarWrapper.classList.add('hidden');
+      stickyActionBarWrapper.classList.remove('flex');
       return;
     }
 
-    stickyActionBarWrapper.style.display = 'flex';
+    stickyActionBarWrapper.classList.remove('hidden');
+    stickyActionBarWrapper.classList.add('flex');
 
     const selectedItems = fileQueue.filter(i => i.selected);
     const selectedCount = selectedItems.length;
@@ -338,7 +352,9 @@ function initApp() {
 
     // Delete selected button
     if (btnDeleteSelected) {
-      btnDeleteSelected.style.display = selectedCount > 0 && !isConverting ? 'inline-flex' : 'none';
+      const showDelete = selectedCount > 0 && !isConverting;
+      btnDeleteSelected.classList.toggle('hidden', !showDelete);
+      btnDeleteSelected.classList.toggle('inline-flex', showDelete);
     }
 
     // Check how many selected items are pending vs converted
@@ -347,36 +363,41 @@ function initApp() {
 
     // Download Selected ZIP Button
     if (btnDownloadSelectedZip) {
-      if (convertedSelected.length > 0 && !isConverting) {
-        btnDownloadSelectedZip.style.display = 'inline-flex';
+      const showZip = convertedSelected.length > 0 && !isConverting;
+      btnDownloadSelectedZip.classList.toggle('hidden', !showZip);
+      btnDownloadSelectedZip.classList.toggle('inline-flex', showZip);
+
+      if (showZip) {
         btnDownloadSelectedZip.innerHTML = `
-          <i data-lucide="folder-archive" style="width: 16px; height: 16px;"></i>
+          <i data-lucide="folder-archive" class="w-4 h-4"></i>
           <span>Download Selected (${convertedSelected.length}) ZIP</span>
         `;
-      } else {
-        btnDownloadSelectedZip.style.display = 'none';
       }
     }
 
     // Convert Selected Button
     if (btnConvertSelected) {
       if (isConverting) {
-        btnConvertSelected.style.display = 'inline-flex';
+        btnConvertSelected.classList.remove('hidden');
+        btnConvertSelected.classList.add('inline-flex');
         btnConvertSelected.disabled = true;
       } else if (pendingSelected.length > 0) {
-        btnConvertSelected.style.display = 'inline-flex';
+        btnConvertSelected.classList.remove('hidden');
+        btnConvertSelected.classList.add('inline-flex');
         btnConvertSelected.disabled = false;
         btnConvertSelected.innerHTML = `
-          <i data-lucide="arrow-right-left" style="width: 17px; height: 17px;"></i>
+          <i data-lucide="arrow-right-left" class="w-4 h-4"></i>
           <span>Convert ${pendingSelected.length} Selected</span>
         `;
       } else if (convertedSelected.length > 0 && pendingSelected.length === 0) {
-        btnConvertSelected.style.display = 'none';
+        btnConvertSelected.classList.add('hidden');
+        btnConvertSelected.classList.remove('inline-flex');
       } else {
-        btnConvertSelected.style.display = 'inline-flex';
+        btnConvertSelected.classList.remove('hidden');
+        btnConvertSelected.classList.add('inline-flex');
         btnConvertSelected.disabled = true;
         btnConvertSelected.innerHTML = `
-          <i data-lucide="arrow-right-left" style="width: 17px; height: 17px;"></i>
+          <i data-lucide="arrow-right-left" class="w-4 h-4"></i>
           <span>Convert Selected</span>
         `;
       }
@@ -388,16 +409,22 @@ function initApp() {
   // Render individual file item bar with thumbnail-integrated marking
   const renderItemRow = (item) => {
     const row = document.createElement('div');
-    row.className = `file-item-bar ${item.status}`;
     row.id = `item-row-${item.id}`;
+
+    let statusBgBorder = 'bg-slate-50/70 border-slate-200 hover:border-slate-300 hover:bg-white';
+    if (item.status === 'converting') statusBgBorder = 'bg-indigo-50/40 border-indigo-200';
+    else if (item.status === 'success') statusBgBorder = 'bg-emerald-50/40 border-emerald-200';
+    else if (item.status === 'error') statusBgBorder = 'bg-rose-50/40 border-rose-200';
+
+    row.className = `flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 border rounded-2xl p-3 px-4 shadow-2xs transition-all ${statusBgBorder}`;
 
     let statusContent = '';
     if (item.status === 'pending') {
-      statusContent = `<span class="file-item-status-badge pending">Ready</span>`;
+      statusContent = `<span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">Ready</span>`;
     } else if (item.status === 'converting') {
       statusContent = `
-        <span class="file-item-status-badge converting">
-          <svg class="animate-spin" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation: spin 1s linear infinite;">
+        <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+          <svg class="animate-spin w-3.5 h-3.5 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.25" fill="none"/>
             <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor"/>
           </svg>
@@ -409,18 +436,18 @@ function initApp() {
         ? `(-${Math.round(((item.originalSize - item.convertedSize) / item.originalSize) * 100)}%)`
         : '';
       statusContent = `
-        <span class="file-item-status-badge success" title="Converted to ${item.extension.toUpperCase()}">
-          <i data-lucide="check" style="width: 13px; height: 13px;"></i>
+        <span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200" title="Converted to ${item.extension.toUpperCase()}">
+          <i data-lucide="check" class="w-3.5 h-3.5"></i>
           <span>${formatBytes(item.convertedSize)} ${savedPct}</span>
         </span>
-        <a href="${item.downloadUrl}" download="${item.outputName}" class="btn-item-download" title="Click to download ${item.outputName}">
-          <i data-lucide="download" style="width: 15px; height: 15px;"></i>
+        <a href="${item.downloadUrl}" download="${item.outputName}" class="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white w-7 h-7 rounded-lg hover:scale-105 transition-all shadow-xs shadow-indigo-200 cursor-pointer" title="Click to download ${item.outputName}">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i>
         </a>
       `;
     } else if (item.status === 'error') {
       statusContent = `
-        <span class="file-item-status-badge error" title="${item.errorMessage}">
-          <i data-lucide="alert-triangle" style="width: 13px; height: 13px;"></i>
+        <span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200" title="${item.errorMessage}">
+          <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
           <span>Error</span>
         </span>
       `;
@@ -428,40 +455,36 @@ function initApp() {
 
     row.innerHTML = `
       <!-- Left: Thumbnail (acts as clickable select / mark trigger) & File Meta -->
-      <div class="file-item-info">
-        <div class="file-item-thumb-wrapper ${item.selected ? 'is-selected' : ''}" data-id="${item.id}" title="${item.selected ? 'Click to unmark' : 'Click to mark'}">
-          <img class="file-item-thumb" src="${item.thumbUrl}" alt="Thumbnail" />
-          <div class="thumb-check-overlay">
-            <i data-lucide="check" style="width: 12px; height: 12px; stroke-width: 3.5;"></i>
+      <div class="flex items-center gap-3 min-w-0 flex-1">
+        <div class="file-item-thumb-wrapper relative w-11 h-11 rounded-xl cursor-pointer shrink-0 select-none border bg-white hover:scale-105 transition-all group ${item.selected ? 'border-indigo-600 ring-2 ring-indigo-500/20' : 'border-slate-200'}" data-id="${item.id}" title="${item.selected ? 'Click to unmark' : 'Click to mark'}">
+          <img class="w-full h-full rounded-lg object-cover block" src="${item.thumbUrl}" alt="Thumbnail" />
+          <div class="thumb-check-overlay absolute -top-1 -right-1 w-4.5 h-4.5 rounded-full text-white border-2 border-white flex items-center justify-center shadow-xs transition-all ${item.selected ? 'bg-indigo-600 scale-100 opacity-100' : 'bg-slate-400 scale-75 opacity-0 group-hover:opacity-75 group-hover:scale-90'}">
+            <i data-lucide="check" class="w-3 h-3 stroke-[3.5]"></i>
           </div>
         </div>
-        <div class="file-item-meta">
-          <div class="file-item-name" title="${item.name}">${item.name}</div>
-          <div class="file-item-size">${formatBytes(item.size)}</div>
+        <div class="min-w-0 flex-1">
+          <div class="text-xs sm:text-sm font-bold text-slate-900 truncate max-w-[180px] sm:max-w-[280px]" title="${item.name}">${item.name}</div>
+          <div class="text-[11px] text-slate-500 mt-0.5 font-medium">${formatBytes(item.size)}</div>
         </div>
       </div>
 
       <!-- Center: Input Format -> Arrow -> Individual Output Format Select -->
-      <div class="file-item-format-controls">
-        <span class="file-item-format-badge">${item.inputExt}</span>
-        <div class="file-item-format-arrow">
-          <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i>
-        </div>
-        <div class="file-item-select-wrapper">
-          <select class="item-format-select" data-id="${item.id}" ${item.status === 'converting' ? 'disabled' : ''}>
+      <div class="flex items-center justify-center gap-2 bg-white px-2.5 py-1.5 rounded-xl border border-slate-200 shrink-0">
+        <span class="inline-flex items-center bg-slate-100 text-slate-700 text-xs font-bold px-2 py-0.5 rounded-md border border-slate-200 uppercase">${item.inputExt}</span>
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-indigo-500"></i>
+        <div class="relative min-w-[135px] flex items-center">
+          <select class="item-format-select w-full appearance-none bg-white border border-slate-300 rounded-lg py-1 pr-6 pl-2.5 text-xs font-bold text-slate-800 outline-none focus:border-indigo-500 cursor-pointer" data-id="${item.id}" ${item.status === 'converting' ? 'disabled' : ''}>
             ${getFormatOptionsHtml(item.outputFormatId)}
           </select>
-          <div class="select-arrow-icon">
-            <i data-lucide="chevron-down" style="width: 13px; height: 13px;"></i>
-          </div>
+          <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400 absolute right-1.5 pointer-events-none"></i>
         </div>
       </div>
 
       <!-- Right: Status / Direct Download & Remove Button -->
-      <div class="file-item-actions">
+      <div class="flex items-center justify-between sm:justify-end gap-2 shrink-0">
         ${statusContent}
-        <button type="button" class="btn-item-remove" data-id="${item.id}" title="Remove file">
-          <i data-lucide="x" style="width: 15px; height: 15px;"></i>
+        <button type="button" class="btn-item-remove inline-flex items-center justify-center bg-slate-100 hover:bg-rose-50 text-slate-400 hover:text-rose-600 w-7 h-7 rounded-full transition-colors cursor-pointer border border-transparent hover:border-rose-200" data-id="${item.id}" title="Remove file">
+          <i data-lucide="x" class="w-3.5 h-3.5"></i>
         </button>
       </div>
     `;
@@ -471,14 +494,7 @@ function initApp() {
     if (thumbWrapper) {
       thumbWrapper.addEventListener('click', () => {
         item.selected = !item.selected;
-        if (item.selected) {
-          thumbWrapper.classList.add('is-selected');
-          thumbWrapper.setAttribute('title', 'Click to unmark');
-        } else {
-          thumbWrapper.classList.remove('is-selected');
-          thumbWrapper.setAttribute('title', 'Click to mark');
-        }
-        updateStickyActionBar();
+        renderQueueUI();
       });
     }
 
@@ -517,19 +533,40 @@ function initApp() {
     fileItemsList.innerHTML = '';
 
     if (fileQueue.length === 0) {
-      if (dropZone) dropZone.style.display = 'block';
-      if (queueManager) queueManager.style.display = 'none';
-      if (stickyActionBarWrapper) stickyActionBarWrapper.style.display = 'none';
-      if (progressBox) progressBox.style.display = 'none';
-      if (listFadeOverlay) listFadeOverlay.style.display = 'none';
+      if (dropZone) {
+        dropZone.classList.remove('hidden');
+        dropZone.classList.add('flex');
+      }
+      if (queueManager) {
+        queueManager.classList.add('hidden');
+        queueManager.classList.remove('flex');
+      }
+      if (stickyActionBarWrapper) {
+        stickyActionBarWrapper.classList.add('hidden');
+        stickyActionBarWrapper.classList.remove('flex');
+      }
+      if (progressBox) {
+        progressBox.classList.add('hidden');
+        progressBox.classList.remove('block');
+      }
+      if (listFadeOverlay) {
+        listFadeOverlay.classList.add('hidden');
+        listFadeOverlay.classList.remove('flex');
+      }
       statusDiv.textContent = '';
       resultArea.innerHTML = '';
       return;
     }
 
     // Queue has files
-    if (dropZone) dropZone.style.display = 'none';
-    if (queueManager) queueManager.style.display = 'flex';
+    if (dropZone) {
+      dropZone.classList.add('hidden');
+      dropZone.classList.remove('flex');
+    }
+    if (queueManager) {
+      queueManager.classList.remove('hidden');
+      queueManager.classList.add('flex');
+    }
 
     const totalBytes = fileQueue.reduce((sum, item) => sum + item.size, 0);
     if (queueCountText) queueCountText.textContent = `${fileQueue.length} ${fileQueue.length === 1 ? 'Image' : 'Images'} in Queue`;
@@ -542,19 +579,28 @@ function initApp() {
 
     // Handle Progressive Disclosure & Fade Overlay (When more than 3 images)
     if (fileQueue.length > 3) {
-      if (listFadeOverlay) listFadeOverlay.style.display = 'flex';
+      listFadeOverlay?.classList.remove('hidden');
+      listFadeOverlay?.classList.add('flex');
       if (isListExpanded) {
-        fileItemsWrapper?.classList.add('expanded');
+        fileItemsList.classList.remove('max-h-[260px]');
+        fileItemsList.classList.add('max-h-none');
+        listFadeOverlay?.classList.remove('absolute', 'bottom-0', 'h-24', 'bg-gradient-to-t');
+        listFadeOverlay?.classList.add('static', 'h-auto', 'bg-none', 'pt-2');
         if (showAllBtnText) showAllBtnText.textContent = 'Show Less';
         if (showAllBtnIcon) showAllBtnIcon.setAttribute('data-lucide', 'chevron-up');
       } else {
-        fileItemsWrapper?.classList.remove('expanded');
+        fileItemsList.classList.add('max-h-[260px]');
+        fileItemsList.classList.remove('max-h-none');
+        listFadeOverlay?.classList.add('absolute', 'bottom-0', 'h-24', 'bg-gradient-to-t');
+        listFadeOverlay?.classList.remove('static', 'h-auto', 'bg-none', 'pt-2');
         if (showAllBtnText) showAllBtnText.textContent = `Show all ${fileQueue.length} images`;
         if (showAllBtnIcon) showAllBtnIcon.setAttribute('data-lucide', 'chevron-down');
       }
     } else {
-      if (listFadeOverlay) listFadeOverlay.style.display = 'none';
-      fileItemsWrapper?.classList.add('expanded');
+      listFadeOverlay?.classList.add('hidden');
+      listFadeOverlay?.classList.remove('flex');
+      fileItemsList.classList.remove('max-h-[260px]');
+      fileItemsList.classList.add('max-h-none');
     }
 
     updateStickyActionBar();
@@ -587,7 +633,7 @@ function initApp() {
       fileQueue = fileQueue.filter(item => !item.selected);
       const deletedCount = initialCount - fileQueue.length;
       renderQueueUI();
-      statusDiv.style.color = '#1D1D1F';
+      statusDiv.style.color = '#0F172A';
       statusDiv.textContent = `Removed ${deletedCount} selected image(s).`;
     });
   }
@@ -597,7 +643,7 @@ function initApp() {
     if (!files || files.length === 0) return;
 
     const newItems = Array.from(files).map(file => {
-      let thumbUrl = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="%2386868B" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>';
+      let thumbUrl = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="%236366F1" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>';
       if (file.type.startsWith('image/') && !file.name.toLowerCase().endsWith('.heic')) {
         thumbUrl = URL.createObjectURL(file);
       }
@@ -621,10 +667,10 @@ function initApp() {
     });
 
     fileQueue.push(...newItems);
-    isConverting = false; // ensure not stuck in converting state
+    isConverting = false;
     renderQueueUI();
 
-    statusDiv.style.color = '#1D1D1F';
+    statusDiv.style.color = '#4F46E5';
     statusDiv.textContent = `Added ${newItems.length} image(s) • Total in Queue: ${fileQueue.length}`;
     resultArea.innerHTML = '';
   };
@@ -655,15 +701,48 @@ function initApp() {
     });
   }
 
+  const setDragHighlight = (el, isDragging) => {
+    if (!el) return;
+    const highlightClasses = ['border-blue-500', 'bg-blue-50/70', 'ring-4', 'ring-blue-500/20', 'shadow-xl', 'shadow-blue-500/10', 'scale-[1.008]'];
+    const defaultClasses = ['border-black', 'bg-white'];
+    if (isDragging) {
+      el.classList.remove(...defaultClasses);
+      el.classList.add(...highlightClasses);
+    } else {
+      el.classList.remove(...highlightClasses);
+      el.classList.add(...defaultClasses);
+    }
+  };
+
   if (dropMoreStrip) {
     dropMoreStrip.addEventListener('click', () => {
       fileInput.click();
+    });
+    dropMoreStrip.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      setDragHighlight(dropMoreStrip, true);
+    });
+    dropMoreStrip.addEventListener('dragleave', () => {
+      setDragHighlight(dropMoreStrip, false);
+    });
+    dropMoreStrip.addEventListener('drop', () => {
+      setDragHighlight(dropMoreStrip, false);
     });
   }
 
   if (dropZone) {
     dropZone.addEventListener('click', () => {
       fileInput.click();
+    });
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      setDragHighlight(dropZone, true);
+    });
+    dropZone.addEventListener('dragleave', () => {
+      setDragHighlight(dropZone, false);
+    });
+    dropZone.addEventListener('drop', () => {
+      setDragHighlight(dropZone, false);
     });
   }
 
@@ -683,7 +762,7 @@ function initApp() {
         }
       });
       renderQueueUI();
-      statusDiv.style.color = '#1D1D1F';
+      statusDiv.style.color = '#4F46E5';
       statusDiv.textContent = `Applied output format "${currentGlobalFormat.toUpperCase()}" to all pending images.`;
     });
   }
@@ -740,7 +819,7 @@ function initApp() {
       isConverting = true;
       btnConvertSelected.disabled = true;
       btnConvertSelected.innerHTML = `
-        <svg class="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation: spin 1s linear infinite;">
+        <svg class="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.25" fill="none"/>
           <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor"/>
         </svg>
@@ -749,14 +828,15 @@ function initApp() {
 
       // Show Progress Bar
       if (progressBox) {
-        progressBox.style.display = 'block';
+        progressBox.classList.remove('hidden');
+        progressBox.classList.add('block');
         progressBar.style.width = '0%';
         progressTitle.textContent = `Processing with ${CONCURRENCY_LIMIT} Parallel Workers...`;
         progressCount.textContent = `0 / ${totalCount} (0%)`;
         progressTimeText.textContent = `0.0s elapsed`;
       }
 
-      statusDiv.style.color = '#1D1D1F';
+      statusDiv.style.color = '#4F46E5';
       statusDiv.textContent = `Processing ${totalCount} selected images across parallel worker threads...`;
       resultArea.innerHTML = '';
 
@@ -783,8 +863,6 @@ function initApp() {
 
         statusDiv.style.color = '#15803D';
         statusDiv.textContent = `Finished ${successful.length} of ${totalCount} image(s) in ${totalDuration}s! Click download button to save.`;
-
-        // Note: NO automatic download is performed. Explicit click only.
       } catch (error) {
         console.error('Batch Conversion Error:', error);
         statusDiv.style.color = '#E11D48';
@@ -815,7 +893,7 @@ function initApp() {
 
       btnDownloadSelectedZip.disabled = true;
       btnDownloadSelectedZip.innerHTML = `
-        <svg class="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation: spin 1s linear infinite;">
+        <svg class="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.25" fill="none"/>
           <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor"/>
         </svg>
@@ -853,14 +931,14 @@ function initApp() {
         zipLink.click();
 
         btnDownloadSelectedZip.innerHTML = `
-          <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+          <i data-lucide="check" class="w-4 h-4"></i>
           <span>ZIP Downloaded!</span>
         `;
       } catch (zErr) {
         console.error('ZIP packaging error:', zErr);
         alert('Error creating ZIP file: ' + zErr.message);
         btnDownloadSelectedZip.innerHTML = `
-          <i data-lucide="folder-archive" style="width: 16px; height: 16px;"></i>
+          <i data-lucide="folder-archive" class="w-4 h-4"></i>
           <span>Retry Download ZIP</span>
         `;
       } finally {

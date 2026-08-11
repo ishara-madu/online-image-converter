@@ -1,88 +1,126 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PicConvert - Universal In-Browser Image Converter</title>
-  <meta name="description" content="Fast, private, client-side image converter. Convert JPG, PNG, WebP, AVIF, HEIC, SVG, ICO and GIF directly in your browser." />
+  <meta name="description"
+    content="Fast, private, client-side image converter. Convert JPG, PNG, WebP, AVIF, HEIC, SVG, ICO and GIF directly in your browser." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
 </head>
-<body>
+
+<body class="bg-[#F8FAFC] text-[#0F172A] min-h-screen flex flex-col antialiased">
 
   <!-- Top Navigation Bar -->
-  <header class="top-navbar-wrapper" id="topNavbar">
-    <div class="navbar-container">
+  <header
+    class="sticky top-0 z-50 w-full bg-[#F8FAFC]/85 backdrop-blur-xl border-b border-slate-200/80 transition-all duration-200"
+    id="topNavbar">
+    <div class="w-full px-4 sm:px-8 lg:px-12 h-16 flex items-center justify-between">
       <!-- Brand Logo -->
-      <a href="#" class="nav-brand">
-        <div class="brand-icon">
-          <i data-lucide="sparkles"></i>
+      <a href="#"
+        class="flex items-center gap-3 text-slate-900 font-bold text-lg tracking-tight hover:opacity-90 transition-opacity group">
+        <div
+          class="w-9 h-9 bg-gradient-to-tr from-blue-500 via-indigo-500 to-purple-500 rounded-xl flex items-center justify-center text-white shadow-md shadow-indigo-200 group-hover:scale-105 transition-transform">
+          <i data-lucide="sparkles" class="w-5 h-5 fill-white/20"></i>
         </div>
-        <div class="brand-title">
-          <span>Pic<span class="highlight">Convert</span></span>
-          <span class="brand-badge">Vanilla</span>
+        <div class="flex items-center gap-1.5">
+          <span class="font-extrabold">Pic<span class="text-indigo-600">Convert</span></span>
+          <span
+            class="text-[11px] font-bold px-2 py-0.5 bg-indigo-50 text-indigo-700 border border-indigo-100 rounded-full uppercase tracking-wider">Vanilla</span>
         </div>
       </a>
 
       <!-- Desktop Nav Links -->
       <nav>
-        <ul class="nav-links">
-          <li><a href="#converter-section" class="nav-link active">Convert</a></li>
-          <li><a href="#formats-section" class="nav-link">Formats</a></li>
-          <li><a href="#features-section" class="nav-link">Features</a></li>
-          <li><a href="#privacy-section" class="nav-link">Privacy</a></li>
+        <ul class="hidden md:flex items-center gap-1 list-none">
+          <li><a href="#converter-section"
+              class="text-indigo-700 font-bold bg-indigo-50/90 text-sm px-3.5 py-1.5 rounded-full transition-all">Convert</a>
+          </li>
+          <li><a href="#formats-section"
+              class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-full transition-all">Formats</a>
+          </li>
+          <li><a href="#features-section"
+              class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-full transition-all">Features</a>
+          </li>
+          <li><a href="#privacy-section"
+              class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-full transition-all">Privacy</a>
+          </li>
         </ul>
       </nav>
 
       <!-- Right Actions: GitHub Star Count & Donation Buttons -->
-      <div class="nav-actions">
+      <div class="flex items-center gap-2.5 sm:gap-3">
         <!-- GitHub Repo Link with Star Count -->
-        <a href="https://github.com/ishara-madu/pic-convert-vanilla" target="_blank" rel="noopener noreferrer" class="btn-github" title="Star on GitHub">
-          <svg class="lucide lucide-github" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-            <path d="M9 18c-4.51 2-5-2-7-2"/>
+        <a href="https://github.com/ishara-madu/pic-convert-vanilla" target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-[#0F172A] text-white text-xs sm:text-sm font-semibold pl-3 pr-2.5 py-1.5 rounded-full shadow-sm hover:bg-slate-800 hover:-translate-y-0.5 transition-all"
+          title="Star on GitHub">
+          <svg class="lucide lucide-github w-4 h-4 text-white" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+            <path d="M9 18c-4.51 2-5-2-7-2" />
           </svg>
-          <span>Star</span>
-          <span class="github-star-badge">
-            <i data-lucide="star" style="width: 12px; height: 12px;"></i>
-            <span class="github-star-count">★</span>
+          <span class="font-medium text-slate-200">Star</span>
+          <span
+            class="inline-flex items-center gap-1 bg-slate-800 text-amber-400 text-xs font-bold px-2 py-0.5 rounded-full border border-slate-700">
+            <i data-lucide="star" class="w-3 h-3 fill-amber-400 text-amber-400"></i>
+            <span class="github-star-count text-white">★</span>
           </span>
         </a>
 
         <!-- Donation Button -->
-        <button type="button" class="btn-donate" id="openDonateModal" title="Support this free project">
-          <i data-lucide="heart"></i>
+        <button type="button"
+          class="inline-flex items-center gap-1.5 bg-white text-slate-700 text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-full border border-slate-200 shadow-xs hover:border-slate-300 hover:text-slate-900 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+          id="openDonateModal" title="Support this free project">
+          <i data-lucide="heart" class="w-4 h-4 text-rose-500 fill-rose-500"></i>
           <span>Donate</span>
         </button>
 
         <!-- Mobile Menu Toggle Button -->
-        <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Navigation Menu">
-          <i data-lucide="menu"></i>
+        <button class="md:hidden p-1.5 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+          id="mobileMenuToggle" aria-label="Toggle Navigation Menu">
+          <i data-lucide="menu" class="w-5 h-5"></i>
         </button>
       </div>
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <div class="mobile-menu-dropdown" id="mobileMenu">
-      <a href="#converter-section" class="nav-link">🔄 Convert Image</a>
-      <a href="#formats-section" class="nav-link">📁 Supported Formats</a>
-      <a href="#features-section" class="nav-link">⚡ Key Features</a>
-      <a href="#privacy-section" class="nav-link">🛡️ Privacy & Security</a>
-      <div style="display: flex; gap: 0.75rem; padding-top: 0.5rem; border-top: 1px solid #E5E7EB; margin-top: 0.25rem;">
-        <a href="https://github.com/ishara-madu/pic-convert-vanilla" target="_blank" rel="noopener noreferrer" class="btn-github" style="flex: 1; justify-content: center;">
-          <svg class="lucide lucide-github" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-            <path d="M9 18c-4.51 2-5-2-7-2"/>
+    <div class="hidden flex-col gap-2 p-4 bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-lg md:hidden"
+      id="mobileMenu">
+      <a href="#converter-section"
+        class="text-sm font-semibold text-slate-800 hover:text-indigo-600 py-1.5 px-2 rounded-md hover:bg-indigo-50/50">🔄
+        Convert Image</a>
+      <a href="#formats-section"
+        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-md hover:bg-indigo-50/50">📁
+        Supported Formats</a>
+      <a href="#features-section"
+        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-md hover:bg-indigo-50/50">⚡
+        Key Features</a>
+      <a href="#privacy-section"
+        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-md hover:bg-indigo-50/50">🛡️
+        Privacy & Security</a>
+      <div class="flex gap-2 pt-2 border-t border-slate-200 mt-1">
+        <a href="https://github.com/ishara-madu/pic-convert-vanilla" target="_blank" rel="noopener noreferrer"
+          class="flex-1 justify-center inline-flex items-center gap-2 bg-[#0F172A] text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-xs">
+          <svg class="lucide lucide-github w-4 h-4" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+            <path d="M9 18c-4.51 2-5-2-7-2" />
           </svg>
           <span>Star</span>
-          <span class="github-star-badge">
-            <i data-lucide="star" style="width: 12px; height: 12px;"></i>
+          <span
+            class="inline-flex items-center gap-1 bg-slate-800 text-amber-400 text-xs font-bold px-1.5 py-0.5 rounded-full border border-slate-700">
             <span class="github-star-count">★</span>
           </span>
         </a>
-        <button type="button" class="btn-donate" id="openDonateModalMobile" style="flex: 1; justify-content: center;">
-          <i data-lucide="heart"></i>
+        <button type="button"
+          class="flex-1 justify-center inline-flex items-center gap-1.5 bg-white text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-200 shadow-xs cursor-pointer"
+          id="openDonateModalMobile">
+          <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-500 fill-rose-500"></i>
           <span>Donate</span>
         </button>
       </div>
@@ -90,50 +128,62 @@
   </header>
 
   <!-- Main Content Container -->
-  <main class="main-wrapper" id="app">
+  <main class="flex-1 w-full px-4 sm:px-8 lg:px-12 py-8 sm:py-12 max-w-5xl mx-auto flex flex-col gap-10" id="app">
     <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="hero-pill">
-        <i data-lucide="sparkles" style="width: 14px; height: 14px;"></i>
-        <span>Zero Server Uploads • Instant Processing</span>
-      </div>
-      <h1 class="hero-title">Image Converter Engine</h1>
-      <p class="hero-subtitle">Convert pictures between JPG, PNG, WebP, AVIF, HEIC, ICO, and SVG right inside your web browser with zero quality loss.</p>
+    <section class="text-center flex flex-col items-center">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-3">
+        Universal Image Converter Engine
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto leading-relaxed">
+        Convert pictures between <strong class="text-slate-800">JPG, PNG, WebP, AVIF, HEIC, ICO, and SVG</strong> right
+        inside your web browser with <strong class="text-indigo-600 font-semibold">zero quality loss</strong>.
+      </p>
     </section>
 
-    <!-- Converter Card -->
-    <section class="converter-card" id="converter-section">
+    <!-- Converter Section (No outer white box wrapper) -->
+    <section class="w-full relative" id="converter-section">
       <!-- Hidden File Input for browsing / adding files -->
-      <input type="file" id="file-input" multiple accept=".jpg,.jpeg,.png,.webp,.bmp,.avif,.heic,.heif,.gif,.svg,.ico,image/*" style="display: none;" />
+      <input type="file" id="file-input" multiple
+        accept=".jpg,.jpeg,.png,.webp,.bmp,.avif,.heic,.heif,.gif,.svg,.ico,image/*" class="hidden" />
 
-      <!-- Main Drag & Drop Zone (shown when list is empty) -->
-      <div class="drop-zone" id="drop-zone">
-        <div class="drop-icon-wrapper">
-          <i data-lucide="upload" style="width: 28px; height: 28px;"></i>
+      <!-- Main Drag & Drop Zone (Solid black border, white background, soft blue highlight on hover/dragover) -->
+      <div
+        class="border-none bg-white rounded-3xl p-10 sm:p-14 text-center cursor-pointer transition-all duration-300 shadow-md group flex flex-col items-center justify-center gap-3 hover:bg-blue-50/80"
+        id="drop-zone">
+        <div
+          class="w-14 h-14 text-slate-900 flex items-center justify-center group-hover:scale-110 group-hover:text-blue-600 transition-all">
+          <i data-lucide="upload" class="w-7 h-7"></i>
         </div>
-        <div class="drop-title">Drop images here, or browse</div>
-        <div class="drop-subtitle">Select single or multiple pictures (Add more anytime)</div>
-        <span class="drop-formats-badge">⚡ Concurrency Pool Powered • Max 800 MB Safe ZIP Limit</span>
+        <div class="text-lg font-bold text-slate-900 group-hover:text-blue-950 transition-colors">Upload or drag your
+          images here</div>
+        <div class="text-sm text-slate-500">Supports PNG, JPG, WebP, AVIF, HEIC, SVG, ICO (Single or batch)</div>
+        <span
+          class="inline-block text-xs text-slate-600 px-3 py-1 mt-2 group-hover:text-blue-700 group-hover:border-blue-200 transition-all">
+          Concurrency Pool Powered • Max 800 MB Safe ZIP Limit</span>
       </div>
 
       <!-- Queue Manager Container (shown when files are in queue) -->
-      <div class="queue-manager" id="queue-manager" style="display: none;">
+      <div class="hidden flex-col gap-4 w-full" id="queue-manager">
         <!-- Queue Header Toolbar -->
-        <div class="queue-toolbar">
-          <div class="queue-stats">
-            <div class="queue-badge-count">
-              <i data-lucide="layers" style="width: 15px; height: 15px;"></i>
+        <div
+          class="flex items-center justify-between flex-wrap gap-3 bg-white border border-slate-200 rounded-2xl p-3 sm:px-4 shadow-sm">
+          <div class="flex items-center gap-3">
+            <div
+              class="inline-flex items-center gap-1.5 bg-indigo-50 text-indigo-700 text-xs sm:text-sm font-bold px-3 py-1 rounded-full border border-indigo-200/80">
+              <i data-lucide="layers" class="w-4 h-4"></i>
               <span id="queue-count-text">0 Images</span>
             </div>
-            <span class="queue-size-text" id="queue-size-text">Total: 0 KB</span>
+            <span class="text-xs sm:text-sm font-semibold text-slate-500" id="queue-size-text">Total: 0 KB</span>
           </div>
 
-          <div class="queue-actions">
+          <div class="flex items-center gap-2.5 flex-wrap">
             <!-- Global Format Selector -->
-            <div class="global-format-wrapper" title="Set output format for all images">
-              <span class="global-format-label">All to:</span>
-              <div class="custom-select-wrapper compact-select global-select">
-                <select id="global-format-select">
+            <div class="flex items-center gap-2 bg-slate-50 px-2.5 py-1 rounded-xl border border-slate-200 shadow-2xs"
+              title="Set output format for all images">
+              <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">All to:</span>
+              <div class="relative flex items-center">
+                <select id="global-format-select"
+                  class="appearance-none bg-transparent pr-6 pl-1 py-1 text-xs sm:text-sm font-bold text-slate-800 outline-none cursor-pointer">
                   <option value="webp" selected>WebP (Next-Gen)</option>
                   <option value="jpeg">JPG / JPEG</option>
                   <option value="png">PNG (Lossless)</option>
@@ -142,76 +192,97 @@
                   <option value="gif">GIF (Static)</option>
                   <option value="svg">SVG (Vector)</option>
                 </select>
-                <div class="select-arrow-icon">
-                  <i data-lucide="chevron-down" style="width: 13px; height: 13px;"></i>
-                </div>
+                <i data-lucide="chevron-down"
+                  class="w-3.5 h-3.5 text-slate-400 absolute right-0 pointer-events-none"></i>
               </div>
             </div>
 
             <!-- Add More Button -->
-            <button type="button" class="btn-toolbar-add" id="btnAddMore" title="Add more images to queue">
-              <i data-lucide="plus" style="width: 15px; height: 15px;"></i>
+            <button type="button"
+              class="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold px-3.5 py-1.5 rounded-xl border border-indigo-600 hover:-translate-y-0.5 transition-all shadow-sm shadow-indigo-200 cursor-pointer"
+              id="btnAddMore" title="Add more images to queue">
+              <i data-lucide="plus" class="w-4 h-4"></i>
               <span>Add Images</span>
             </button>
 
             <!-- Clear All Button -->
-            <button type="button" class="btn-toolbar-clear" id="btnClearAll" title="Clear all images">
-              <i data-lucide="trash-2" style="width: 15px; height: 15px;"></i>
+            <button type="button"
+              class="inline-flex items-center justify-center w-8 h-8 rounded-xl border border-slate-200 text-slate-400 hover:text-rose-600 hover:bg-rose-50 hover:border-rose-200 transition-colors cursor-pointer"
+              id="btnClearAll" title="Clear all images">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
             </button>
           </div>
         </div>
 
         <!-- Individual File Item Bars Wrapper with Fade Overlay -->
-        <div class="file-items-wrapper" id="fileItemsWrapper">
-          <div class="file-items-list" id="file-items-list">
+        <div class="relative w-full" id="fileItemsWrapper">
+          <div class="flex flex-col gap-2.5 overflow-hidden transition-all duration-300 max-h-[260px]"
+            id="file-items-list">
             <!-- Dynamically populated per-image bars -->
           </div>
 
           <!-- Bottom Fade Overlay with Show All Button -->
-          <div class="list-fade-overlay" id="listFadeOverlay" style="display: none;">
-            <button type="button" class="btn-show-all" id="btnShowAll">
+          <div
+            class="hidden absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/80 to-transparent items-end justify-center pb-1 z-10 pointer-events-none"
+            id="listFadeOverlay">
+            <button type="button"
+              class="pointer-events-auto inline-flex items-center gap-2 bg-white text-indigo-600 text-xs sm:text-sm font-bold px-4 py-2 rounded-full border border-indigo-200 shadow-md hover:bg-indigo-50 hover:border-indigo-300 hover:-translate-y-0.5 transition-all cursor-pointer"
+              id="btnShowAll">
               <span id="showAllBtnText">Show all images</span>
-              <i data-lucide="chevron-down" id="showAllBtnIcon" style="width: 15px; height: 15px;"></i>
+              <i data-lucide="chevron-down" id="showAllBtnIcon" class="w-4 h-4"></i>
             </button>
           </div>
         </div>
 
-        <!-- Drop More Mini Strip -->
-        <div class="drop-more-strip" id="drop-more-strip">
-          <i data-lucide="upload" style="width: 16px; height: 16px; color: #1D1D1F;"></i>
-          <span>Drop more images anywhere or <strong>click to browse</strong></span>
+        <!-- Drop More Mini Strip (Solid black border, white background, soft blue highlight) -->
+        <div
+          class="flex items-center justify-center gap-2 border border-black bg-white hover:border-blue-500 hover:ring-1 hover:ring-blue-500/20 hover:bg-blue-50/20 p-3.5 rounded-2xl text-xs sm:text-sm text-slate-800 cursor-pointer transition-all shadow-xs"
+          id="drop-more-strip">
+          <i data-lucide="upload" class="w-4 h-4 text-slate-900"></i>
+          <span>Drop more images anywhere or <strong class="underline text-indigo-600">click to browse</strong></span>
         </div>
       </div>
 
       <!-- Action Button (Convert All & Download ZIP) Sticky Floating Bar -->
-      <div class="sticky-action-bar-wrapper" id="stickyActionBarWrapper" style="display: none;">
-        <div class="sticky-action-bar">
+      <div class="hidden sticky bottom-6 z-40 justify-center w-full mt-4 pointer-events-none"
+        id="stickyActionBarWrapper">
+        <div
+          class="pointer-events-auto w-full max-w-3xl bg-white/95 backdrop-blur-xl border border-slate-200 shadow-2xl shadow-slate-300/60 rounded-full p-2 sm:p-2.5 px-4 sm:px-5 flex items-center justify-between gap-3 flex-wrap sm:flex-nowrap transition-all">
           <!-- Left: Mark All / Select All Checkbox -->
-          <label class="select-all-control" title="Toggle Select All">
-            <input type="checkbox" id="selectAllCheckbox" checked />
-            <span class="custom-check-box">
-              <i data-lucide="check" style="width: 13px; height: 13px;"></i>
+          <label
+            class="inline-flex items-center gap-2 cursor-pointer select-none text-xs sm:text-sm font-bold text-slate-900"
+            title="Toggle Select All">
+            <input type="checkbox" id="selectAllCheckbox" checked class="custom-checkbox-input hidden" />
+            <span
+              class="custom-checkbox-box w-5 h-5 rounded-md border border-slate-300 bg-white flex items-center justify-center text-white transition-colors">
+              <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
             </span>
-            <span class="select-all-text" id="selectAllText">Select All (0)</span>
+            <span id="selectAllText">Select All (0)</span>
           </label>
 
           <!-- Right Action Buttons -->
-          <div class="sticky-actions-group">
+          <div class="flex items-center gap-2 flex-wrap">
             <!-- Delete Selected Button -->
-            <button type="button" class="btn-action-delete" id="btnDeleteSelected" title="Remove selected files" style="display: none;">
-              <i data-lucide="trash-2" style="width: 15px; height: 15px;"></i>
+            <button type="button"
+              class="hidden inline-flex items-center gap-1.5 bg-slate-100 text-slate-600 hover:text-rose-600 hover:bg-rose-50 hover:border-rose-200 text-xs sm:text-sm font-bold px-3 py-1.5 rounded-full border border-slate-200 transition-colors cursor-pointer"
+              id="btnDeleteSelected" title="Remove selected files">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
               <span>Delete</span>
             </button>
 
             <!-- Download Selected ZIP Button -->
-            <button type="button" class="btn-action-download-zip" id="btnDownloadSelectedZip" style="display: none;">
-              <i data-lucide="folder-archive" style="width: 16px; height: 16px;"></i>
+            <button type="button"
+              class="hidden inline-flex items-center gap-2 bg-white text-indigo-700 border-2 border-indigo-600 hover:bg-indigo-50 text-xs sm:text-sm font-bold px-4 py-2 rounded-full shadow-xs transition-all cursor-pointer"
+              id="btnDownloadSelectedZip">
+              <i data-lucide="folder-archive" class="w-4 h-4"></i>
               <span id="downloadSelectedZipText">Download Selected (.zip)</span>
             </button>
 
             <!-- Convert Selected Button -->
-            <button type="button" class="btn-action-convert" id="btnConvertSelected">
-              <i data-lucide="arrow-right-left" style="width: 17px; height: 17px;"></i>
+            <button type="button"
+              class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold px-5 py-2 rounded-full shadow-md shadow-indigo-200 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
+              id="btnConvertSelected">
+              <i data-lucide="arrow-right-left" class="w-4 h-4"></i>
               <span id="convertSelectedBtnText">Convert Selected</span>
             </button>
           </div>
@@ -219,147 +290,196 @@
       </div>
 
       <!-- Live Progress Bar & Concurrency Pool Stats -->
-      <div class="progress-box" id="progress-box" style="display: none;">
-        <div class="progress-header">
-          <span class="progress-title" id="progress-title">Converting images...</span>
-          <span class="progress-count" id="progress-count">0 / 0 (0%)</span>
+      <div class="hidden bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm mt-4" id="progress-box">
+        <div class="flex justify-between items-center mb-2.5">
+          <span class="text-sm font-bold text-slate-900" id="progress-title">Converting images...</span>
+          <span class="text-xs sm:text-sm font-bold text-indigo-600" id="progress-count">0 / 0 (0%)</span>
         </div>
-        <div class="progress-track">
-          <div class="progress-bar" id="progress-bar"></div>
+        <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+          <div id="progress-bar"
+            class="h-full bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full transition-all duration-200 w-0">
+          </div>
         </div>
-        <div class="progress-meta">
-          <span class="pool-badge"><i data-lucide="zap" style="width: 12px; height: 12px;"></i> Concurrency: <strong id="pool-workers-count">3 Workers</strong></span>
+        <div class="flex justify-between items-center mt-2.5 text-xs text-slate-500">
+          <span
+            class="inline-flex items-center gap-1.5 bg-indigo-50 text-indigo-700 font-semibold px-2 py-0.5 rounded-md border border-indigo-100 shadow-2xs">
+            <i data-lucide="zap" class="w-3 h-3 text-indigo-500"></i> Concurrency: <strong id="pool-workers-count">3
+              Workers</strong>
+          </span>
           <span id="progress-time-text">0.0s elapsed</span>
         </div>
       </div>
 
       <!-- Status div -->
-      <div id="status"></div>
+      <div id="status" class="mt-4 text-center text-sm font-semibold min-h-[24px]"></div>
 
       <!-- Result Area -->
-      <div id="result-area"></div>
+      <div id="result-area" class="mt-4 flex flex-col items-center gap-3 w-full"></div>
     </section>
 
     <!-- Global Full Screen Drag & Drop Overlay -->
-    <div class="global-drop-overlay" id="globalDropOverlay">
-      <div class="global-drop-card">
-        <div class="global-drop-icon">
-          <i data-lucide="upload-cloud" style="width: 48px; height: 48px;"></i>
+    <div
+      class="hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md items-center justify-center pointer-events-none"
+      id="globalDropOverlay">
+      <div class="p-10 sm:p-14 text-center flex flex-col items-center">
+        <div class="w-20 h-20 flex items-center justify-center mb-2">
+          <i data-lucide="upload" class="w-10 h-10"></i>
         </div>
-        <h2>Drop images anywhere</h2>
-        <p>Release to add files directly to the conversion queue</p>
+        <h2 class="text-2xl font-extrabold text-slate-900 mb-1">Drop images anywhere</h2>
+        <p class="text-sm text-slate-800">Release to add files directly to the conversion queue</p>
       </div>
     </div>
 
     <!-- Supported Formats Grid -->
-    <section class="formats-showcase" id="formats-section">
-      <h3>Supported File Formats</h3>
-      <div class="format-tags">
-        <span class="format-tag">✨ JPG / JPEG</span>
-        <span class="format-tag">✨ PNG</span>
-        <span class="format-tag">✨ WebP</span>
-        <span class="format-tag">✨ AVIF</span>
-        <span class="format-tag">✨ HEIC / HEIF</span>
-        <span class="format-tag">✨ BMP</span>
-        <span class="format-tag">✨ ICO (Favicon)</span>
-        <span class="format-tag">✨ SVG (Vector)</span>
-        <span class="format-tag">✨ GIF</span>
+    <section class="w-full text-center mt-2" id="formats-section">
+      <h3 class="text-lg font-bold text-slate-900 mb-4">Supported File Formats</h3>
+      <div class="flex flex-wrap justify-center gap-2">
+        <span
+          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
+          JPG / JPEG</span>
+        <span
+          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
+          PNG</span>
+        <span
+          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
+          WebP</span>
+        <span
+          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
+          AVIF</span>
+        <span
+          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
+          HEIC / HEIF</span>
+        <span
+          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
+          BMP</span>
+        <span
+          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
+          ICO (Favicon)</span>
+        <span
+          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
+          SVG (Vector)</span>
+        <span
+          class="text-xs sm:text-sm font-semibold bg-white text-slate-700 px-3.5 py-1.5 rounded-full border border-slate-200 hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/30 transition-all shadow-2xs">✨
+          GIF</span>
       </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features-grid" id="features-section">
-      <div class="feature-card">
-        <div class="feature-icon-box icon-blue">
-          <i data-lucide="zap" style="width: 22px; height: 22px;"></i>
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-2" id="features-section">
+      <div
+        class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs hover:-translate-y-0.5 hover:shadow-md hover:border-blue-200 transition-all flex flex-col gap-2">
+        <div
+          class="w-10 h-10 rounded-xl flex items-center justify-center bg-blue-50 text-blue-600 border border-blue-100 mb-1">
+          <i data-lucide="zap" class="w-5 h-5"></i>
         </div>
-        <h3>Lightning Fast</h3>
-        <p>Uses native HTML5 Canvas and WebAssembly to convert images instantly on your GPU/CPU without network lag.</p>
+        <h3 class="font-bold text-base text-slate-900">Lightning Fast</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Uses native HTML5 Canvas and WebAssembly to convert images
+          instantly on your GPU/CPU without network lag.</p>
       </div>
 
-      <div class="feature-card" id="privacy-section">
-        <div class="feature-icon-box icon-green">
-          <i data-lucide="shield-check" style="width: 22px; height: 22px;"></i>
+      <div
+        class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs hover:-translate-y-0.5 hover:shadow-md hover:border-emerald-200 transition-all flex flex-col gap-2"
+        id="privacy-section">
+        <div
+          class="w-10 h-10 rounded-xl flex items-center justify-center bg-emerald-50 text-emerald-600 border border-emerald-100 mb-1">
+          <i data-lucide="shield-check" class="w-5 h-5"></i>
         </div>
-        <h3>100% Private & Safe</h3>
-        <p>Your sensitive images are never uploaded to any remote server. Everything happens strictly inside your local browser.</p>
+        <h3 class="font-bold text-base text-slate-900">100% Private & Safe</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Your sensitive images are never uploaded to any remote server.
+          Everything happens strictly inside your local browser.</p>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon-box icon-purple">
-          <i data-lucide="layers" style="width: 22px; height: 22px;"></i>
+      <div
+        class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs hover:-translate-y-0.5 hover:shadow-md hover:border-purple-200 transition-all flex flex-col gap-2">
+        <div
+          class="w-10 h-10 rounded-xl flex items-center justify-center bg-purple-50 text-purple-600 border border-purple-100 mb-1">
+          <i data-lucide="layers" class="w-5 h-5"></i>
         </div>
-        <h3>Multi-Format & Vector</h3>
-        <p>Convert modern Apple HEIC photos, generate ICO favicons, and trace raster images to clean SVG vector graphics.</p>
+        <h3 class="font-bold text-base text-slate-900">Multi-Format & Vector</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Convert modern Apple HEIC photos, generate ICO favicons, and
+          trace raster images to clean SVG vector graphics.</p>
       </div>
     </section>
   </main>
 
   <!-- Donation Modal -->
-  <div class="modal-backdrop" id="donationModal">
-    <div class="modal-card">
-      <button class="modal-close-btn" id="closeDonateModal" aria-label="Close modal">
-        <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+  <div class="hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md items-center justify-center p-4"
+    id="donationModal">
+    <div
+      class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-md w-full p-6 sm:p-8 relative flex flex-col gap-5">
+      <button
+        class="absolute top-4 right-4 bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 w-8 h-8 rounded-full flex items-center justify-center transition-colors cursor-pointer"
+        id="closeDonateModal" aria-label="Close modal">
+        <i data-lucide="x" class="w-4 h-4"></i>
       </button>
-      <div class="modal-header">
-        <div class="modal-heart-icon">
-          <i data-lucide="heart" style="width: 26px; height: 26px;"></i>
+      <div class="text-center flex flex-col items-center">
+        <div
+          class="w-12 h-12 rounded-full bg-rose-50 text-rose-500 border border-rose-100 flex items-center justify-center mb-3">
+          <i data-lucide="heart" class="w-6 h-6 fill-rose-500"></i>
         </div>
-        <h2 class="modal-title">Support PicConvert</h2>
-        <p class="modal-desc">PicConvert is 100% free, open-source, and runs directly in your browser. Your support helps keep it maintained!</p>
+        <h2 class="text-xl font-bold text-slate-900">Support PicConvert</h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">PicConvert is 100% free, open-source, and runs
+          directly in your browser. Your support helps keep it maintained!</p>
       </div>
 
-      <div class="donation-options">
-        <a href="https://buymeacoffee.com" target="_blank" rel="noopener noreferrer" class="donation-option-card">
-          <div class="donation-option-info">
-            <div class="donation-opt-icon icon-bmc">
-              <i data-lucide="coffee"></i>
+      <div class="flex flex-col gap-2.5">
+        <a href="https://buymeacoffee.com" target="_blank" rel="noopener noreferrer"
+          class="flex items-center justify-between p-3.5 rounded-2xl border border-slate-200 bg-white hover:border-amber-400 hover:bg-amber-50/20 transition-all text-slate-800 group">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+              <i data-lucide="coffee" class="w-4 h-4"></i>
             </div>
             <div>
-              <div class="donation-opt-name">Buy Me a Coffee</div>
-              <div class="donation-opt-sub">Support with a quick coffee</div>
+              <div class="font-bold text-sm">Buy Me a Coffee</div>
+              <div class="text-xs text-slate-500">Support with a quick coffee</div>
             </div>
           </div>
-          <i data-lucide="external-link" style="width: 16px; height: 16px; color: #9CA3AF;"></i>
+          <i data-lucide="external-link"
+            class="w-4 h-4 text-slate-400 group-hover:text-amber-600 transition-colors"></i>
         </a>
 
-        <a href="https://paypal.me" target="_blank" rel="noopener noreferrer" class="donation-option-card">
-          <div class="donation-option-info">
-            <div class="donation-opt-icon icon-paypal">
-              <i data-lucide="credit-card"></i>
+        <a href="https://paypal.me" target="_blank" rel="noopener noreferrer"
+          class="flex items-center justify-between p-3.5 rounded-2xl border border-slate-200 bg-white hover:border-sky-400 hover:bg-sky-50/20 transition-all text-slate-800 group">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center">
+              <i data-lucide="credit-card" class="w-4 h-4"></i>
             </div>
             <div>
-              <div class="donation-opt-name">PayPal</div>
-              <div class="donation-opt-sub">One-time direct donation</div>
+              <div class="font-bold text-sm">PayPal</div>
+              <div class="text-xs text-slate-500">One-time direct donation</div>
             </div>
           </div>
-          <i data-lucide="external-link" style="width: 16px; height: 16px; color: #9CA3AF;"></i>
+          <i data-lucide="external-link" class="w-4 h-4 text-slate-400 group-hover:text-sky-600 transition-colors"></i>
         </a>
 
-        <a href="https://github.com/sponsors" target="_blank" rel="noopener noreferrer" class="donation-option-card">
-          <div class="donation-option-info">
-            <div class="donation-opt-icon icon-ghs">
-              <svg class="lucide lucide-github" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-                <path d="M9 18c-4.51 2-5-2-7-2"/>
+        <a href="https://github.com/sponsors" target="_blank" rel="noopener noreferrer"
+          class="flex items-center justify-between p-3.5 rounded-2xl border border-slate-200 bg-white hover:border-pink-400 hover:bg-pink-50/20 transition-all text-slate-800 group">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center">
+              <svg class="lucide lucide-github w-4 h-4" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                <path d="M9 18c-4.51 2-5-2-7-2" />
               </svg>
             </div>
             <div>
-              <div class="donation-opt-name">GitHub Sponsors</div>
-              <div class="donation-opt-sub">Sponsor open-source development</div>
+              <div class="font-bold text-sm">GitHub Sponsors</div>
+              <div class="text-xs text-slate-500">Sponsor open-source development</div>
             </div>
           </div>
-          <i data-lucide="external-link" style="width: 16px; height: 16px; color: #9CA3AF;"></i>
+          <i data-lucide="external-link" class="w-4 h-4 text-slate-400 group-hover:text-pink-600 transition-colors"></i>
         </a>
       </div>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class="site-footer">
-    <p>PicConvert • High-Performance In-Browser Image Converter • Background: #F5F5F7</p>
+  <footer class="mt-auto border-t border-slate-200 bg-white/60 py-6 px-4 text-center text-xs text-slate-500">
+    <p>PicConvert • High-Performance In-Browser Image Converter</p>
   </footer>
 
   <script type="module" src="/src/main.js"></script>
 </body>
+
 </html>
