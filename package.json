@@ -16,6 +16,7 @@
     "gif-frames": "^1.0.1",
     "heic2any": "^0.0.4",
     "imagetracerjs": "^1.2.6",
+    "jszip": "^3.10.1",
     "lucide": "^1.31.0"
   }
 }

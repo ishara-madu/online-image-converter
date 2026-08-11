@@ -103,70 +103,106 @@
 
     <!-- Converter Card -->
     <section class="converter-card" id="converter-section">
-      <!-- Drag & Drop Zone -->
+      <!-- Hidden File Input for browsing / adding files -->
+      <input type="file" id="file-input" multiple accept=".jpg,.jpeg,.png,.webp,.bmp,.avif,.heic,.heif,.gif,.svg,.ico,image/*" style="display: none;" />
+
+      <!-- Main Drag & Drop Zone (shown when list is empty) -->
       <div class="drop-zone" id="drop-zone">
-        <input type="file" id="file-input" accept=".jpg,.jpeg,.png,.webp,.bmp,.avif,.heic,.heif,.gif,.svg,.ico,image/*" />
         <div class="drop-icon-wrapper">
           <i data-lucide="upload" style="width: 28px; height: 28px;"></i>
         </div>
-        <div class="drop-title">Drop your image here, or browse</div>
-        <div class="drop-subtitle">Supports JPG, PNG, WebP, BMP, AVIF, HEIC, HEIF, GIF, SVG, ICO</div>
-        <span class="drop-formats-badge">Max size: Unlimited (Runs Locally)</span>
+        <div class="drop-title">Drop images here, or browse</div>
+        <div class="drop-subtitle">Select single or multiple pictures (Add more anytime)</div>
+        <span class="drop-formats-badge">⚡ Concurrency Pool Powered • Max 800 MB Safe ZIP Limit</span>
       </div>
 
-      <!-- Selected File Details Card -->
-      <div class="selected-file-card" id="selected-file-card">
-        <div class="file-info-group">
-          <img id="file-preview-thumb" class="file-thumb-preview" src="" alt="Thumbnail Preview" />
-          <div>
-            <div class="file-name-text" id="selected-file-name">filename.jpg</div>
-            <div class="file-size-text" id="selected-file-size">0 KB</div>
-          </div>
-        </div>
-        <button type="button" class="btn-remove-file" id="btn-remove-file" title="Remove selected file">
-          <i data-lucide="x" style="width: 18px; height: 18px;"></i>
-        </button>
-      </div>
-
-      <!-- Converter Settings (Format selection) -->
-      <div class="converter-settings-grid">
-        <div class="setting-box">
-          <label class="setting-label" for="file-input-label-ref">Input Format</label>
-          <div class="custom-select-wrapper">
-            <select id="input-format-display" disabled style="cursor: default; opacity: 0.85; background: #F3F4F6;">
-              <option id="detected-format-opt">Auto-detected from file</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="converter-settings-arrow">
-          <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
-        </div>
-
-        <div class="setting-box">
-          <label class="setting-label" for="format-select">Output Format</label>
-          <div class="custom-select-wrapper">
-            <select id="format-select">
-              <option value="jpeg">JPG / JPEG (Standard Image)</option>
-              <option value="png">PNG (Lossless Transparency)</option>
-              <option value="webp" selected>WebP (Next-Gen Web Image)</option>
-              <option value="avif">AVIF (Ultra High Compression)</option>
-              <option value="ico">ICO (Website Favicon 32x32)</option>
-              <option value="gif">GIF (Static Image)</option>
-              <option value="svg">SVG (True Vector Contour)</option>
-            </select>
-            <div class="select-arrow-icon">
-              <i data-lucide="chevron-down" style="width: 16px; height: 16px;"></i>
+      <!-- Queue Manager Container (shown when files are in queue) -->
+      <div class="queue-manager" id="queue-manager" style="display: none;">
+        <!-- Queue Header Toolbar -->
+        <div class="queue-toolbar">
+          <div class="queue-stats">
+            <div class="queue-badge-count">
+              <i data-lucide="layers" style="width: 15px; height: 15px;"></i>
+              <span id="queue-count-text">0 Images</span>
             </div>
+            <span class="queue-size-text" id="queue-size-text">Total: 0 KB</span>
           </div>
+
+          <div class="queue-actions">
+            <!-- Global Format Selector -->
+            <div class="global-format-wrapper" title="Set output format for all images">
+              <span class="global-format-label">All to:</span>
+              <div class="custom-select-wrapper compact-select global-select">
+                <select id="global-format-select">
+                  <option value="webp" selected>WebP (Next-Gen)</option>
+                  <option value="jpeg">JPG / JPEG</option>
+                  <option value="png">PNG (Lossless)</option>
+                  <option value="avif">AVIF (High Comp.)</option>
+                  <option value="ico">ICO (Favicon)</option>
+                  <option value="gif">GIF (Static)</option>
+                  <option value="svg">SVG (Vector)</option>
+                </select>
+                <div class="select-arrow-icon">
+                  <i data-lucide="chevron-down" style="width: 13px; height: 13px;"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add More Button -->
+            <button type="button" class="btn-toolbar-add" id="btnAddMore" title="Add more images to queue">
+              <i data-lucide="plus" style="width: 15px; height: 15px;"></i>
+              <span>Add Images</span>
+            </button>
+
+            <!-- Clear All Button -->
+            <button type="button" class="btn-toolbar-clear" id="btnClearAll" title="Clear all images">
+              <i data-lucide="trash-2" style="width: 15px; height: 15px;"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Individual File Item Bars Wrapper with Fade Overlay -->
+        <div class="file-items-wrapper" id="fileItemsWrapper">
+          <div class="file-items-list" id="file-items-list">
+            <!-- Dynamically populated per-image bars -->
+          </div>
+
+          <!-- Bottom Fade Overlay with Show All Button -->
+          <div class="list-fade-overlay" id="listFadeOverlay" style="display: none;">
+            <button type="button" class="btn-show-all" id="btnShowAll">
+              <span id="showAllBtnText">Show all images</span>
+              <i data-lucide="chevron-down" id="showAllBtnIcon" style="width: 15px; height: 15px;"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Drop More Mini Strip -->
+        <div class="drop-more-strip" id="drop-more-strip">
+          <i data-lucide="upload" style="width: 16px; height: 16px; color: #0071E3;"></i>
+          <span>Drop more images here or <strong>browse to add</strong></span>
         </div>
       </div>
 
-      <!-- Action Button -->
-      <button id="convert-btn" class="btn-convert">
+      <!-- Action Button (Convert All) -->
+      <button id="convert-btn" class="btn-convert" style="display: none;">
         <i data-lucide="arrow-right-left" style="width: 20px; height: 20px;"></i>
-        <span>Convert Image</span>
+        <span id="convert-btn-text">Convert Images</span>
       </button>
+
+      <!-- Live Progress Bar & Concurrency Pool Stats -->
+      <div class="progress-box" id="progress-box" style="display: none;">
+        <div class="progress-header">
+          <span class="progress-title" id="progress-title">Converting images...</span>
+          <span class="progress-count" id="progress-count">0 / 0 (0%)</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="progress-meta">
+          <span class="pool-badge"><i data-lucide="zap" style="width: 12px; height: 12px;"></i> Concurrency: <strong id="pool-workers-count">3 Workers</strong></span>
+          <span id="progress-time-text">0.0s elapsed</span>
+        </div>
+      </div>
 
       <!-- Status div -->
       <div id="status"></div>

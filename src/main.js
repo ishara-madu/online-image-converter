@@ -1,5 +1,6 @@
 import './style.css';
 import { convertImage } from './converter.js';
+import JSZip from 'jszip';
 import { 
   createIcons, 
   Sparkles, 
@@ -11,6 +12,7 @@ import {
   X, 
   ArrowRight, 
   ChevronDown, 
+  ChevronUp,
   ArrowRightLeft, 
   Zap, 
   Layers, 
@@ -18,7 +20,14 @@ import {
   CreditCard, 
   ExternalLink, 
   Check, 
-  Download 
+  CheckCircle2,
+  Download,
+  FolderArchive,
+  Archive,
+  AlertTriangle,
+  Plus,
+  Trash2,
+  RefreshCw
 } from 'lucide';
 
 const appIcons = {
@@ -31,6 +40,7 @@ const appIcons = {
   X,
   ArrowRight,
   ChevronDown,
+  ChevronUp,
   ArrowRightLeft,
   Zap,
   Layers,
@@ -38,10 +48,39 @@ const appIcons = {
   CreditCard,
   ExternalLink,
   Check,
-  Download
+  CheckCircle2,
+  Download,
+  FolderArchive,
+  Archive,
+  AlertTriangle,
+  Plus,
+  Trash2,
+  RefreshCw
 };
 
-console.log('PicConvert initialized successfully with Lucide icons');
+console.log('PicConvert initialized with Fade Overlay & Show All');
+
+// Safe ZIP Size Limit (800 MB)
+const MAX_SAFE_ZIP_SIZE = 800 * 1024 * 1024;
+
+// Concurrency Pool Size (3-4 workers optimal for canvas decoding without memory pressure)
+const CONCURRENCY_LIMIT = typeof navigator !== 'undefined' && navigator.hardwareConcurrency 
+  ? Math.min(Math.max(navigator.hardwareConcurrency - 1, 2), 4) 
+  : 3;
+
+// Format file size helper
+const formatBytes = (bytes) => {
+  if (!bytes || bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+};
+
+// Helper to extract extension
+const getFileExtension = (filename) => {
+  return filename.slice(((filename.lastIndexOf('.') - 1) >>> 0) + 2).toUpperCase();
+};
 
 // Fetch GitHub Stars count
 async function fetchGitHubStars() {
@@ -52,7 +91,6 @@ async function fetchGitHubStars() {
 
   if (!starElements || starElements.length === 0) return;
 
-  // Check localStorage cache (15 min cache to prevent rate limit)
   const cachedStars = localStorage.getItem(cacheKey);
   const cachedTime = localStorage.getItem(cacheTimeKey);
   if (cachedStars && cachedTime && (Date.now() - parseInt(cachedTime, 10) < 15 * 60 * 1000)) {
@@ -70,7 +108,6 @@ async function fetchGitHubStars() {
       localStorage.setItem(cacheTimeKey, Date.now().toString());
       starElements.forEach(el => el.textContent = formatted);
     } else {
-      // Graceful fallback
       starElements.forEach(el => el.textContent = 'Star');
     }
   } catch (e) {
@@ -78,44 +115,123 @@ async function fetchGitHubStars() {
   }
 }
 
-function initApp() {
-  // Render Lucide Icons
-  createIcons({ icons: appIcons });
+/**
+ * Concurrency Pool Queue Runner
+ */
+async function runConcurrencyQueue(queue, concurrency, onProgress, onItemUpdate) {
+  let currentIndex = 0;
+  let completedCount = 0;
+  const total = queue.length;
+  const startTime = performance.now();
 
-  // Fetch GitHub stars
+  async function worker() {
+    while (currentIndex < total) {
+      const index = currentIndex++;
+      const item = queue[index];
+
+      // Mark converting
+      item.status = 'converting';
+      if (onItemUpdate) onItemUpdate(item);
+
+      try {
+        const conversion = await convertImage(item.file, item.outputFormatId);
+        const lastDot = item.name.lastIndexOf('.');
+        const baseName = lastDot !== -1 ? item.name.substring(0, lastDot) : item.name;
+        const outName = `${baseName}-converted.${conversion.extension}`;
+
+        item.status = 'success';
+        item.resultBlob = conversion.blob;
+        item.convertedSize = conversion.blob.size;
+        item.extension = conversion.extension;
+        item.outputName = outName;
+        item.downloadUrl = URL.createObjectURL(conversion.blob);
+      } catch (err) {
+        console.error(`Error converting ${item.name}:`, err);
+        item.status = 'error';
+        item.errorMessage = err.message || 'Conversion failed';
+      }
+
+      completedCount++;
+      const percent = Math.round((completedCount / total) * 100);
+      const elapsed = ((performance.now() - startTime) / 1000).toFixed(1);
+
+      if (onItemUpdate) onItemUpdate(item);
+
+      if (onProgress) {
+        onProgress({
+          completed: completedCount,
+          total,
+          percent,
+          currentFile: item.name,
+          elapsed
+        });
+      }
+
+      // Micro-delay so UI remains 60fps responsive
+      await new Promise(r => setTimeout(r, 0));
+    }
+  }
+
+  const workers = [];
+  const workerCount = Math.min(concurrency, total);
+  for (let i = 0; i < workerCount; i++) {
+    workers.push(worker());
+  }
+  await Promise.all(workers);
+}
+
+function initApp() {
+  createIcons({ icons: appIcons });
   fetchGitHubStars();
 
-  // Core Converter elements
+  // Elements
   const fileInput = document.getElementById('file-input');
-  const formatSelect = document.getElementById('format-select');
+  const dropZone = document.getElementById('drop-zone');
+  const queueManager = document.getElementById('queue-manager');
+  const fileItemsWrapper = document.getElementById('fileItemsWrapper');
+  const fileItemsList = document.getElementById('file-items-list');
+  const listFadeOverlay = document.getElementById('listFadeOverlay');
+  const btnShowAll = document.getElementById('btnShowAll');
+  const showAllBtnText = document.getElementById('showAllBtnText');
+  const showAllBtnIcon = document.getElementById('showAllBtnIcon');
+  const dropMoreStrip = document.getElementById('drop-more-strip');
+
+  const queueCountText = document.getElementById('queue-count-text');
+  const queueSizeText = document.getElementById('queue-size-text');
+  const globalFormatSelect = document.getElementById('global-format-select');
+  const btnAddMore = document.getElementById('btnAddMore');
+  const btnClearAll = document.getElementById('btnClearAll');
+
   const convertBtn = document.getElementById('convert-btn');
+  const convertBtnText = document.getElementById('convert-btn-text');
   const statusDiv = document.getElementById('status');
   const resultArea = document.getElementById('result-area');
 
-  // UI elements
-  const dropZone = document.getElementById('drop-zone');
-  const selectedFileCard = document.getElementById('selected-file-card');
-  const selectedFileName = document.getElementById('selected-file-name');
-  const selectedFileSize = document.getElementById('selected-file-size');
-  const filePreviewThumb = document.getElementById('file-preview-thumb');
-  const btnRemoveFile = document.getElementById('btn-remove-file');
-  const detectedFormatOpt = document.getElementById('detected-format-opt');
+  // Progress Box elements
+  const progressBox = document.getElementById('progress-box');
+  const progressTitle = document.getElementById('progress-title');
+  const progressCount = document.getElementById('progress-count');
+  const progressBar = document.getElementById('progress-bar');
+  const poolWorkersCount = document.getElementById('pool-workers-count');
+  const progressTimeText = document.getElementById('progress-time-text');
+
+  // Navbar & Modals
   const mobileMenuToggle = document.getElementById('mobileMenuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
   const topNavbar = document.getElementById('topNavbar');
-
-  // Donation Modal elements
   const openDonateModal = document.getElementById('openDonateModal');
   const openDonateModalMobile = document.getElementById('openDonateModalMobile');
   const closeDonateModal = document.getElementById('closeDonateModal');
   const donationModal = document.getElementById('donationModal');
 
-  if (!fileInput || !convertBtn) {
-    console.error('Core elements not found!');
-    return;
+  if (poolWorkersCount) {
+    poolWorkersCount.textContent = `${CONCURRENCY_LIMIT} Parallel Workers`;
   }
 
-  let selectedFile = null;
+  // Active File Queue State
+  let fileQueue = [];
+  let currentGlobalFormat = 'webp';
+  let isListExpanded = false;
 
   // Navbar scroll elevation
   window.addEventListener('scroll', () => {
@@ -167,178 +283,499 @@ function initApp() {
     if (e.key === 'Escape') hideDonationModal();
   });
 
-  // Format file size helper
-  const formatBytes = (bytes) => {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  // Available format options helper
+  const getFormatOptionsHtml = (selectedFormat) => {
+    const formats = [
+      { id: 'webp', name: 'WebP (Next-Gen)' },
+      { id: 'jpeg', name: 'JPG / JPEG' },
+      { id: 'png', name: 'PNG (Lossless)' },
+      { id: 'avif', name: 'AVIF (High Comp.)' },
+      { id: 'ico', name: 'ICO (Favicon 32x32)' },
+      { id: 'gif', name: 'GIF (Static)' },
+      { id: 'svg', name: 'SVG (Vector)' },
+    ];
+    return formats.map(f => `<option value="${f.id}" ${f.id === selectedFormat ? 'selected' : ''}>${f.name}</option>`).join('');
   };
 
-  // Helper to extract extension
-  const getFileExtension = (filename) => {
-    return filename.slice(((filename.lastIndexOf('.') - 1) >>> 0) + 2).toUpperCase();
+  // Render individual file item bar
+  const renderItemRow = (item) => {
+    const row = document.createElement('div');
+    row.className = `file-item-bar ${item.status}`;
+    row.id = `item-row-${item.id}`;
+
+    let statusContent = '';
+    if (item.status === 'pending') {
+      statusContent = `<span class="file-item-status-badge pending">Ready</span>`;
+    } else if (item.status === 'converting') {
+      statusContent = `
+        <span class="file-item-status-badge converting">
+          <svg class="animate-spin" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation: spin 1s linear infinite;">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.25" fill="none"/>
+            <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor"/>
+          </svg>
+          <span>Converting...</span>
+        </span>
+      `;
+    } else if (item.status === 'success') {
+      const savedPct = item.originalSize > item.convertedSize 
+        ? `(-${Math.round(((item.originalSize - item.convertedSize) / item.originalSize) * 100)}%)`
+        : '';
+      statusContent = `
+        <span class="file-item-status-badge success" title="Converted to ${item.extension.toUpperCase()}">
+          <i data-lucide="check" style="width: 13px; height: 13px;"></i>
+          <span>${formatBytes(item.convertedSize)} ${savedPct}</span>
+        </span>
+        <a href="${item.downloadUrl}" download="${item.outputName}" class="btn-item-download" title="Download ${item.outputName}">
+          <i data-lucide="download" style="width: 15px; height: 15px;"></i>
+        </a>
+      `;
+    } else if (item.status === 'error') {
+      statusContent = `
+        <span class="file-item-status-badge error" title="${item.errorMessage}">
+          <i data-lucide="alert-triangle" style="width: 13px; height: 13px;"></i>
+          <span>Error</span>
+        </span>
+      `;
+    }
+
+    row.innerHTML = `
+      <!-- Left: Thumbnail & File Meta -->
+      <div class="file-item-info">
+        <img class="file-item-thumb" src="${item.thumbUrl}" alt="Thumbnail" />
+        <div class="file-item-meta">
+          <div class="file-item-name" title="${item.name}">${item.name}</div>
+          <div class="file-item-size">${formatBytes(item.size)}</div>
+        </div>
+      </div>
+
+      <!-- Center: Input Format -> Arrow -> Individual Output Format Select -->
+      <div class="file-item-format-controls">
+        <span class="file-item-format-badge">${item.inputExt}</span>
+        <div class="file-item-format-arrow">
+          <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i>
+        </div>
+        <div class="file-item-select-wrapper">
+          <select class="item-format-select" data-id="${item.id}" ${item.status === 'converting' ? 'disabled' : ''}>
+            ${getFormatOptionsHtml(item.outputFormatId)}
+          </select>
+          <div class="select-arrow-icon">
+            <i data-lucide="chevron-down" style="width: 13px; height: 13px;"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Status / Direct Download & Remove Button -->
+      <div class="file-item-actions">
+        ${statusContent}
+        <button type="button" class="btn-item-remove" data-id="${item.id}" title="Remove file">
+          <i data-lucide="x" style="width: 15px; height: 15px;"></i>
+        </button>
+      </div>
+    `;
+
+    // Bind change on individual format select
+    const selectEl = row.querySelector('.item-format-select');
+    if (selectEl) {
+      selectEl.addEventListener('change', (e) => {
+        item.outputFormatId = e.target.value;
+        console.log(`Updated format for ${item.name} to ${item.outputFormatId}`);
+      });
+    }
+
+    // Bind remove button
+    const removeBtn = row.querySelector('.btn-item-remove');
+    if (removeBtn) {
+      removeBtn.addEventListener('click', () => {
+        removeFileFromQueue(item.id);
+      });
+    }
+
+    return row;
   };
 
-  // Update file selection UI
-  const updateFileSelection = (files) => {
-    if (files && files.length > 0) {
-      selectedFile = files[0];
-      const ext = getFileExtension(selectedFile.name) || 'IMAGE';
-
-      if (selectedFileName) selectedFileName.textContent = selectedFile.name;
-      if (selectedFileSize) selectedFileSize.textContent = formatBytes(selectedFile.size);
-      if (detectedFormatOpt) detectedFormatOpt.textContent = `Input: ${ext} (${formatBytes(selectedFile.size)})`;
-
-      // Set thumbnail if image
-      if (filePreviewThumb) {
-        if (selectedFile.type.startsWith('image/') && !selectedFile.name.toLowerCase().endsWith('.heic')) {
-          filePreviewThumb.src = URL.createObjectURL(selectedFile);
-        } else {
-          filePreviewThumb.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="%2386868B" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>';
-        }
-      }
-
-      if (selectedFileCard) selectedFileCard.style.display = 'flex';
-      if (dropZone) dropZone.style.display = 'none';
-
-      statusDiv.style.color = '#0071E3';
-      statusDiv.textContent = `Selected: ${selectedFile.name}`;
-      resultArea.innerHTML = '';
+  // Update specific row in DOM
+  const updateItemRowInDOM = (item) => {
+    const existingRow = document.getElementById(`item-row-${item.id}`);
+    if (existingRow) {
+      const newRow = renderItemRow(item);
+      existingRow.replaceWith(newRow);
       createIcons({ icons: appIcons });
-    } else {
-      clearSelection();
     }
   };
 
-  // Clear selected file
-  const clearSelection = () => {
-    selectedFile = null;
-    if (fileInput) fileInput.value = '';
-    if (selectedFileCard) selectedFileCard.style.display = 'none';
-    if (dropZone) dropZone.style.display = 'block';
-    if (detectedFormatOpt) detectedFormatOpt.textContent = 'Auto-detected from file';
-    statusDiv.textContent = '';
-    resultArea.innerHTML = '';
+  // Render the entire queue list
+  const renderQueueUI = () => {
+    if (!fileItemsList) return;
+    fileItemsList.innerHTML = '';
+
+    if (fileQueue.length === 0) {
+      if (dropZone) dropZone.style.display = 'block';
+      if (queueManager) queueManager.style.display = 'none';
+      if (convertBtn) convertBtn.style.display = 'none';
+      if (progressBox) progressBox.style.display = 'none';
+      if (listFadeOverlay) listFadeOverlay.style.display = 'none';
+      statusDiv.textContent = '';
+      resultArea.innerHTML = '';
+      return;
+    }
+
+    // Queue has files
+    if (dropZone) dropZone.style.display = 'none';
+    if (queueManager) queueManager.style.display = 'flex';
+    if (convertBtn) convertBtn.style.display = 'flex';
+
+    const totalBytes = fileQueue.reduce((sum, item) => sum + item.size, 0);
+    if (queueCountText) queueCountText.textContent = `${fileQueue.length} ${fileQueue.length === 1 ? 'Image' : 'Images'} Selected`;
+    if (queueSizeText) queueSizeText.textContent = `Total: ${formatBytes(totalBytes)}`;
+    if (convertBtnText) convertBtnText.textContent = `Convert ${fileQueue.length} ${fileQueue.length === 1 ? 'Image' : 'Images'}`;
+
+    fileQueue.forEach(item => {
+      const rowEl = renderItemRow(item);
+      fileItemsList.appendChild(rowEl);
+    });
+
+    // Handle Progressive Disclosure & Fade Overlay (When more than 3 images)
+    if (fileQueue.length > 3) {
+      if (listFadeOverlay) listFadeOverlay.style.display = 'flex';
+      if (isListExpanded) {
+        fileItemsWrapper?.classList.add('expanded');
+        if (showAllBtnText) showAllBtnText.textContent = 'Show Less';
+        if (showAllBtnIcon) showAllBtnIcon.setAttribute('data-lucide', 'chevron-up');
+      } else {
+        fileItemsWrapper?.classList.remove('expanded');
+        if (showAllBtnText) showAllBtnText.textContent = `Show all ${fileQueue.length} images`;
+        if (showAllBtnIcon) showAllBtnIcon.setAttribute('data-lucide', 'chevron-down');
+      }
+    } else {
+      if (listFadeOverlay) listFadeOverlay.style.display = 'none';
+      fileItemsWrapper?.classList.add('expanded');
+    }
+
     createIcons({ icons: appIcons });
   };
 
-  if (btnRemoveFile) {
-    btnRemoveFile.addEventListener('click', clearSelection);
+  // Toggle Show All / Show Less button
+  if (btnShowAll) {
+    btnShowAll.addEventListener('click', () => {
+      isListExpanded = !isListExpanded;
+      renderQueueUI();
+    });
   }
 
-  // File input change
+  // Append new files to queue
+  const appendFilesToQueue = (files) => {
+    if (!files || files.length === 0) return;
+
+    const newItems = Array.from(files).map(file => {
+      let thumbUrl = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="%2386868B" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>';
+      if (file.type.startsWith('image/') && !file.name.toLowerCase().endsWith('.heic')) {
+        thumbUrl = URL.createObjectURL(file);
+      }
+
+      return {
+        id: 'file_' + Math.random().toString(36).substr(2, 9) + Date.now(),
+        file,
+        name: file.name,
+        size: file.size,
+        inputExt: getFileExtension(file.name) || 'IMG',
+        outputFormatId: currentGlobalFormat || 'webp',
+        status: 'pending',
+        thumbUrl,
+        resultBlob: null,
+        convertedSize: null,
+        downloadUrl: null,
+        errorMessage: null
+      };
+    });
+
+    fileQueue.push(...newItems);
+    renderQueueUI();
+
+    statusDiv.style.color = '#0071E3';
+    statusDiv.textContent = `Added ${newItems.length} image(s) • Total in Queue: ${fileQueue.length}`;
+    resultArea.innerHTML = '';
+  };
+
+  // Remove single file from queue
+  const removeFileFromQueue = (id) => {
+    fileQueue = fileQueue.filter(item => item.id !== id);
+    renderQueueUI();
+  };
+
+  // Clear all files
+  const clearAllQueue = () => {
+    fileQueue = [];
+    isListExpanded = false;
+    if (fileInput) fileInput.value = '';
+    renderQueueUI();
+  };
+
+  if (btnClearAll) {
+    btnClearAll.addEventListener('click', clearAllQueue);
+  }
+
+  // Trigger Add More
+  if (btnAddMore) {
+    btnAddMore.addEventListener('click', () => {
+      fileInput.click();
+    });
+  }
+
+  if (dropMoreStrip) {
+    dropMoreStrip.addEventListener('click', () => {
+      fileInput.click();
+    });
+  }
+
+  if (dropZone) {
+    dropZone.addEventListener('click', () => {
+      fileInput.click();
+    });
+  }
+
+  // File Input Changed
   fileInput.addEventListener('change', (e) => {
-    updateFileSelection(e.target.files);
+    appendFilesToQueue(e.target.files);
+    fileInput.value = ''; // Reset so the same file can be re-selected if needed
   });
 
-  // Drag & drop handlers
-  if (dropZone) {
+  // Global Output Format change -> updates all rows
+  if (globalFormatSelect) {
+    globalFormatSelect.addEventListener('change', (e) => {
+      currentGlobalFormat = e.target.value;
+      fileQueue.forEach(item => {
+        if (item.status !== 'success') {
+          item.outputFormatId = currentGlobalFormat;
+        }
+      });
+      renderQueueUI();
+      statusDiv.style.color = '#0071E3';
+      statusDiv.textContent = `Applied output format "${currentGlobalFormat.toUpperCase()}" to all pending images.`;
+    });
+  }
+
+  // Drag & drop handlers on main Dropzone & Drop More strip & whole converter card
+  const setupDragDrop = (element) => {
+    if (!element) return;
+
     ['dragenter', 'dragover'].forEach(eventName => {
-      dropZone.addEventListener(eventName, (e) => {
+      element.addEventListener(eventName, (e) => {
         e.preventDefault();
         e.stopPropagation();
-        dropZone.classList.add('dragover');
+        element.classList.add('dragover');
       });
     });
 
     ['dragleave', 'drop'].forEach(eventName => {
-      dropZone.addEventListener(eventName, (e) => {
+      element.addEventListener(eventName, (e) => {
         e.preventDefault();
         e.stopPropagation();
-        dropZone.classList.remove('dragover');
+        element.classList.remove('dragover');
       });
     });
 
-    dropZone.addEventListener('drop', (e) => {
+    element.addEventListener('drop', (e) => {
       const dt = e.dataTransfer;
       const files = dt.files;
       if (files && files.length > 0) {
-        fileInput.files = files;
-        updateFileSelection(files);
+        appendFilesToQueue(files);
       }
     });
-  }
+  };
 
-  // Convert button click handler
+  setupDragDrop(dropZone);
+  setupDragDrop(dropMoreStrip);
+
+  // Convert Click Handler
   convertBtn.addEventListener('click', async () => {
-    if (!selectedFile) {
+    if (!fileQueue || fileQueue.length === 0) {
       statusDiv.style.color = '#E11D48';
-      statusDiv.textContent = 'කරුණාකර පළමුව පින්තූරයක් තෝරන්න (Please select an image file first).';
+      statusDiv.textContent = 'කරුණාකර පළමුව පින්තූර එකතු කරන්න (Please add images first).';
       return;
     }
 
-    const outputFormatId = formatSelect.value;
+    const totalCount = fileQueue.length;
     convertBtn.disabled = true;
     convertBtn.innerHTML = `
       <svg class="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation: spin 1s linear infinite;">
         <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.25" fill="none"/>
         <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor"/>
       </svg>
-      <span>Converting to ${outputFormatId.toUpperCase()}...</span>
+      <span>Converting ${totalCount} Images...</span>
     `;
 
+    // Show Progress Bar
+    if (progressBox) {
+      progressBox.style.display = 'block';
+      progressBar.style.width = '0%';
+      progressTitle.textContent = `Processing with ${CONCURRENCY_LIMIT} Parallel Workers...`;
+      progressCount.textContent = `0 / ${totalCount} (0%)`;
+      progressTimeText.textContent = `0.0s elapsed`;
+    }
+
     statusDiv.style.color = '#0071E3';
-    statusDiv.textContent = `Processing image conversion to ${outputFormatId.toUpperCase()}...`;
+    statusDiv.textContent = `Processing ${totalCount} images across parallel worker threads...`;
     resultArea.innerHTML = '';
 
     try {
       const startTime = performance.now();
-      const { blob, extension } = await convertImage(selectedFile, outputFormatId);
-      const duration = ((performance.now() - startTime) / 1000).toFixed(2);
 
-      const downloadUrl = URL.createObjectURL(blob);
-      const lastDotIndex = selectedFile.name.lastIndexOf('.');
-      const originalName = lastDotIndex !== -1 ? selectedFile.name.substring(0, lastDotIndex) : selectedFile.name;
-      const downloadFileName = `${originalName}-converted.${extension}`;
+      // Run Concurrency Queue
+      await runConcurrencyQueue(
+        fileQueue,
+        CONCURRENCY_LIMIT,
+        ({ completed, total, percent, currentFile, elapsed }) => {
+          if (progressBar) progressBar.style.width = `${percent}%`;
+          if (progressCount) progressCount.textContent = `${completed} / ${total} (${percent}%)`;
+          if (progressTitle) progressTitle.textContent = `Converting: ${currentFile}`;
+          if (progressTimeText) progressTimeText.textContent = `${elapsed}s elapsed`;
+        },
+        (updatedItem) => {
+          updateItemRowInDOM(updatedItem);
+        }
+      );
+
+      const totalDuration = ((performance.now() - startTime) / 1000).toFixed(2);
+      const successful = fileQueue.filter(r => r.status === 'success');
+      const failed = fileQueue.filter(r => r.status === 'error');
+      const totalConvertedBytes = successful.reduce((sum, r) => sum + r.convertedSize, 0);
 
       statusDiv.style.color = '#15803D';
-      statusDiv.textContent = `Conversion completed in ${duration}s!`;
+      statusDiv.textContent = `Finished ${successful.length} of ${totalCount} image(s) in ${totalDuration}s!`;
 
-      // Create rich result card with Lucide icons
-      const resultCard = document.createElement('div');
-      resultCard.className = 'result-card';
-      resultCard.innerHTML = `
-        <div class="result-file-details">
-          <div class="result-badge-success">
-            <i data-lucide="check" style="width: 20px; height: 20px;"></i>
-          </div>
-          <div>
-            <div style="font-weight: 700; font-size: 0.95rem; color: #1D1D1F;">${downloadFileName}</div>
-            <div style="font-size: 0.8rem; color: #4B5563; margin-top: 2px;">
-              Size: <strong>${formatBytes(blob.size)}</strong> • Format: <strong>${extension.toUpperCase()}</strong>
+      // If only 1 file and successful -> auto download single file
+      if (totalCount === 1 && successful.length === 1) {
+        const item = successful[0];
+        const link = document.createElement('a');
+        link.href = item.downloadUrl;
+        link.download = item.outputName;
+        link.click();
+      } 
+      // If multiple files -> Build ZIP with Safe Limit check
+      else if (successful.length > 1) {
+        const batchCard = document.createElement('div');
+        batchCard.className = 'batch-result-card';
+
+        const isSafeForZip = totalConvertedBytes <= MAX_SAFE_ZIP_SIZE;
+
+        let zipDownloadBtnHtml = '';
+        if (isSafeForZip) {
+          zipDownloadBtnHtml = `
+            <button type="button" class="zip-download-btn" id="btnDownloadZip">
+              <i data-lucide="folder-archive" style="width: 18px; height: 18px;"></i>
+              <span>Download All as ZIP (${formatBytes(totalConvertedBytes)})</span>
+            </button>
+          `;
+        }
+
+        let limitWarningHtml = '';
+        if (!isSafeForZip) {
+          limitWarningHtml = `
+            <div class="safe-limit-banner">
+              <i data-lucide="alert-triangle" style="width: 18px; height: 18px; flex-shrink: 0;"></i>
+              <span>Total size (${formatBytes(totalConvertedBytes)}) exceeds safe ZIP limit (800 MB). Please download files individually using the download buttons on each bar.</span>
             </div>
+          `;
+        }
+
+        batchCard.innerHTML = `
+          <div class="batch-result-header">
+            <div class="batch-result-info">
+              <div class="result-badge-success">
+                <i data-lucide="check" style="width: 22px; height: 22px;"></i>
+              </div>
+              <div>
+                <div style="font-weight: 800; font-size: 1.05rem; color: #1D1D1F;">
+                  All ${successful.length} Images Converted Successfully!
+                </div>
+                <div style="font-size: 0.82rem; color: #4B5563; margin-top: 2px;">
+                  Total Output: <strong>${formatBytes(totalConvertedBytes)}</strong> • Processed in <strong>${totalDuration}s</strong>
+                </div>
+              </div>
+            </div>
+            ${zipDownloadBtnHtml}
           </div>
-        </div>
-      `;
+          ${limitWarningHtml}
+        `;
 
-      const downloadLink = document.createElement('a');
-      downloadLink.href = downloadUrl;
-      downloadLink.download = downloadFileName;
-      downloadLink.className = 'result-download-btn';
-      downloadLink.innerHTML = `
-        <i data-lucide="download" style="width: 16px; height: 16px;"></i>
-        <span>Download File</span>
-      `;
+        resultArea.appendChild(batchCard);
 
-      resultCard.appendChild(downloadLink);
-      resultArea.appendChild(resultCard);
+        // ZIP Packaging Trigger
+        const btnDownloadZip = batchCard.querySelector('#btnDownloadZip');
+        if (btnDownloadZip && isSafeForZip) {
+          const triggerZip = async () => {
+            btnDownloadZip.disabled = true;
+            btnDownloadZip.innerHTML = `
+              <svg class="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation: spin 1s linear infinite;">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.25" fill="none"/>
+                <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor"/>
+              </svg>
+              <span>Creating ZIP Archive...</span>
+            `;
 
-      // Re-initialize Lucide Icons for dynamic content
+            try {
+              const zip = new JSZip();
+              const usedNames = new Set();
+
+              for (const item of successful) {
+                let finalName = item.outputName;
+                let counter = 1;
+                while (usedNames.has(finalName)) {
+                  const dotIdx = item.outputName.lastIndexOf('.');
+                  const base = dotIdx !== -1 ? item.outputName.substring(0, dotIdx) : item.outputName;
+                  const ext = dotIdx !== -1 ? item.outputName.substring(dotIdx) : '';
+                  finalName = `${base} (${counter})${ext}`;
+                  counter++;
+                }
+                usedNames.add(finalName);
+                zip.file(finalName, item.resultBlob);
+              }
+
+              const zipBlob = await zip.generateAsync({
+                type: 'blob',
+                compression: 'DEFLATE',
+                compressionOptions: { level: 3 }
+              });
+
+              const zipUrl = URL.createObjectURL(zipBlob);
+              const zipLink = document.createElement('a');
+              zipLink.href = zipUrl;
+              zipLink.download = `pic-convert-batch.zip`;
+              zipLink.click();
+
+              btnDownloadZip.innerHTML = `
+                <i data-lucide="check" style="width: 18px; height: 18px;"></i>
+                <span>ZIP Downloaded!</span>
+              `;
+            } catch (zErr) {
+              console.error('ZIP packaging error:', zErr);
+              alert('Error creating ZIP file: ' + zErr.message);
+              btnDownloadZip.innerHTML = `
+                <i data-lucide="folder-archive" style="width: 18px; height: 18px;"></i>
+                <span>Retry Download ZIP</span>
+              `;
+            } finally {
+              btnDownloadZip.disabled = false;
+              createIcons({ icons: appIcons });
+            }
+          };
+
+          btnDownloadZip.addEventListener('click', triggerZip);
+          // Auto trigger ZIP download
+          triggerZip();
+        }
+      }
+
       createIcons({ icons: appIcons });
-
-      // Auto trigger download
-      downloadLink.click();
     } catch (error) {
-      console.error('Conversion Error:', error);
+      console.error('Batch Conversion Error:', error);
       statusDiv.style.color = '#E11D48';
       statusDiv.textContent = `Error: ${error.message || error}`;
     } finally {
       convertBtn.disabled = false;
       convertBtn.innerHTML = `
         <i data-lucide="arrow-right-left" style="width: 20px; height: 20px;"></i>
-        <span>Convert Image</span>
+        <span>Convert ${fileQueue.length} ${fileQueue.length === 1 ? 'Image' : 'Images'}</span>
       `;
       createIcons({ icons: appIcons });
     }
