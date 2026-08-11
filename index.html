@@ -179,15 +179,44 @@
         <!-- Drop More Mini Strip -->
         <div class="drop-more-strip" id="drop-more-strip">
           <i data-lucide="upload" style="width: 16px; height: 16px; color: #1D1D1F;"></i>
-          <span>Drop more images here or <strong>browse to add</strong></span>
+          <span>Drop more images anywhere or <strong>click to browse</strong></span>
         </div>
       </div>
 
-      <!-- Action Button (Convert All) -->
-      <button id="convert-btn" class="btn-convert" style="display: none;">
-        <i data-lucide="arrow-right-left" style="width: 20px; height: 20px;"></i>
-        <span id="convert-btn-text">Convert Images</span>
-      </button>
+      <!-- Action Button (Convert All & Download ZIP) Sticky Floating Bar -->
+      <div class="sticky-action-bar-wrapper" id="stickyActionBarWrapper" style="display: none;">
+        <div class="sticky-action-bar">
+          <!-- Left: Mark All / Select All Checkbox -->
+          <label class="select-all-control" title="Toggle Select All">
+            <input type="checkbox" id="selectAllCheckbox" checked />
+            <span class="custom-check-box">
+              <i data-lucide="check" style="width: 13px; height: 13px;"></i>
+            </span>
+            <span class="select-all-text" id="selectAllText">Select All (0)</span>
+          </label>
+
+          <!-- Right Action Buttons -->
+          <div class="sticky-actions-group">
+            <!-- Delete Selected Button -->
+            <button type="button" class="btn-action-delete" id="btnDeleteSelected" title="Remove selected files" style="display: none;">
+              <i data-lucide="trash-2" style="width: 15px; height: 15px;"></i>
+              <span>Delete</span>
+            </button>
+
+            <!-- Download Selected ZIP Button -->
+            <button type="button" class="btn-action-download-zip" id="btnDownloadSelectedZip" style="display: none;">
+              <i data-lucide="folder-archive" style="width: 16px; height: 16px;"></i>
+              <span id="downloadSelectedZipText">Download Selected (.zip)</span>
+            </button>
+
+            <!-- Convert Selected Button -->
+            <button type="button" class="btn-action-convert" id="btnConvertSelected">
+              <i data-lucide="arrow-right-left" style="width: 17px; height: 17px;"></i>
+              <span id="convertSelectedBtnText">Convert Selected</span>
+            </button>
+          </div>
+        </div>
+      </div>
 
       <!-- Live Progress Bar & Concurrency Pool Stats -->
       <div class="progress-box" id="progress-box" style="display: none;">
@@ -210,6 +239,17 @@
       <!-- Result Area -->
       <div id="result-area"></div>
     </section>
+
+    <!-- Global Full Screen Drag & Drop Overlay -->
+    <div class="global-drop-overlay" id="globalDropOverlay">
+      <div class="global-drop-card">
+        <div class="global-drop-icon">
+          <i data-lucide="upload-cloud" style="width: 48px; height: 48px;"></i>
+        </div>
+        <h2>Drop images anywhere</h2>
+        <p>Release to add files directly to the conversion queue</p>
+      </div>
+    </div>
 
     <!-- Supported Formats Grid -->
     <section class="formats-showcase" id="formats-section">
