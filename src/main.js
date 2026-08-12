@@ -440,24 +440,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Mobile menu toggle
+  // Mobile menu toggle & Icon animation
+  const updateMobileMenuState = (isOpen) => {
+    if (!mobileMenu || !mobileMenuToggle) return;
+    const iconMenu = document.getElementById('mobileMenuIconMenu');
+    const iconClose = document.getElementById('mobileMenuIconClose');
+
+    if (isOpen) {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('flex');
+      if (iconMenu) iconMenu.classList.add('hidden');
+      if (iconClose) iconClose.classList.remove('hidden');
+      mobileMenuToggle.setAttribute('aria-expanded', 'true');
+    } else {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+      if (iconMenu) iconMenu.classList.remove('hidden');
+      if (iconClose) iconClose.classList.add('hidden');
+      mobileMenuToggle.setAttribute('aria-expanded', 'false');
+    }
+  };
+
   if (mobileMenuToggle && mobileMenu) {
-    mobileMenuToggle.addEventListener('click', () => {
+    mobileMenuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       const isHidden = mobileMenu.classList.contains('hidden');
-      if (isHidden) {
-        mobileMenu.classList.remove('hidden');
-        mobileMenu.classList.add('flex');
-      } else {
-        mobileMenu.classList.add('hidden');
-        mobileMenu.classList.remove('flex');
+      updateMobileMenuState(isHidden);
+    });
+
+    mobileMenu.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('click', () => {
+        updateMobileMenuState(false);
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+        updateMobileMenuState(false);
       }
     });
 
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        mobileMenu.classList.remove('flex');
-      });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        updateMobileMenuState(false);
+      }
     });
   }
 
