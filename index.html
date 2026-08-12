@@ -38,6 +38,76 @@
         ]
       },
       {
+        "@type": "DefinedTermSet",
+        "name": "Universal Image Format Encyclopedia & Conversion Specifications",
+        "description": "Comprehensive technical specifications, MIME types, compression algorithms, and conversion benchmarks for all major web and graphic formats.",
+        "hasDefinedTerm": [
+          {
+            "@type": "DefinedTerm",
+            "name": "WebP",
+            "termCode": "image/webp",
+            "description": "Next-generation web image format developed by Google offering lossy and lossless compression, 8-bit alpha transparency, and 26-34% smaller file sizes than PNG/JPEG.",
+            "sameAs": "https://en.wikipedia.org/wiki/WebP"
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "JPEG / JPG",
+            "termCode": "image/jpeg",
+            "description": "Universal lossy photographic format standardized by ISO/IEC using DCT compression, compatible across 100% of global devices.",
+            "sameAs": "https://en.wikipedia.org/wiki/JPEG"
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "PNG",
+            "termCode": "image/png",
+            "description": "Lossless raster graphics format standardized by W3C offering 24-bit true color and multi-level 8-bit alpha channel transparency.",
+            "sameAs": "https://en.wikipedia.org/wiki/PNG"
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "AVIF",
+            "termCode": "image/avif",
+            "description": "Ultra-efficient royalty-free image format derived from AV1 codec by AOMedia delivering 50% smaller files than JPEG with 10/12-bit HDR color.",
+            "sameAs": "https://en.wikipedia.org/wiki/AVIF"
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "HEIC / HEIF",
+            "termCode": "image/heic",
+            "description": "High Efficiency Image Container developed by MPEG and adopted by Apple iOS, offering 50% storage reduction compared to standard JPEG.",
+            "sameAs": "https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format"
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "SVG",
+            "termCode": "image/svg+xml",
+            "description": "W3C XML-based 2D vector graphic format supporting infinite mathematical resolution scaling, CSS styling, and JavaScript interactivity.",
+            "sameAs": "https://en.wikipedia.org/wiki/SVG"
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "ICO",
+            "termCode": "image/x-icon",
+            "description": "Multi-resolution icon format used by Microsoft Windows and web browsers for root site favicons (/favicon.ico).",
+            "sameAs": "https://en.wikipedia.org/wiki/ICO_(file_format)"
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "GIF",
+            "termCode": "image/gif",
+            "description": "8-bit palette-based bitmap format using LZW compression supporting 256 colors per frame and ubiquitous multi-frame animations.",
+            "sameAs": "https://en.wikipedia.org/wiki/GIF"
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "BMP",
+            "termCode": "image/bmp",
+            "description": "Uncompressed raw raster bitmap graphics format developed by Microsoft and IBM for Windows OS.",
+            "sameAs": "https://en.wikipedia.org/wiki/BMP_file_format"
+          }
+        ]
+      },
+      {
         "@type": "HowTo",
         "name": "How to Convert Images Online in 3 Simple Steps",
         "description": "Step-by-step guide to convert, resize, and optimize images directly in your browser with zero quality loss and 100% privacy.",
@@ -95,6 +165,14 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "WebP and AVIF are next-generation image formats that provide 25% to 50% superior compression compared to traditional JPEGs and PNGs while retaining visual clarity. Switching to WebP or AVIF drastically decreases website page weight, accelerates load times, and improves Google Core Web Vitals (LCP scores)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between WebP and PNG for transparent graphics?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Both WebP and PNG support 8-bit alpha channel transparency. However, WebP lossless compression is on average 26% smaller than standard PNG, allowing websites to load transparent logos and icons much faster without any degradation in edge crispness."
             }
           },
           {
@@ -175,10 +253,9 @@
           <i data-lucide="sparkles" class="w-5 h-5 fill-white/20"></i>
         </div>
         <div class="flex items-center gap-1.5">
-          <span class="font-extrabold text-slate-900 tracking-tight">Online<span
-              class="text-indigo-600">ImageConverter</span></span>
-          <span
-            class="text-[11px] font-bold px-2 py-0.5 bg-indigo-50 text-indigo-700 border border-indigo-100 rounded-md uppercase tracking-wider">Free</span>
+          <span class="font-extrabold text-slate-900 tracking-tight">Online <span class="text-indigo-600">Image
+              Converter</span></span>
+          <span class="text-[11px] font-bold px-2 py-0.5  text-indigo-700 uppercase tracking-wider">Free</span>
         </div>
       </a>
 
@@ -591,342 +668,529 @@
       <!-- Detailed Semantic Format Cards (100% Crawlable by Search Engines & Interactive) -->
       <div id="formatCardsContainer" class="w-full">
         <!-- 1. WebP Guide Card -->
-        <article id="format-panel-webp"
-          class="format-panel bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+        <article id="format-panel-webp" class="format-panel flex flex-col gap-4" itemscope
+          itemtype="https://schema.org/TechArticle" role="tabpanel" aria-labelledby="format-tab-webp">
+          <meta itemprop="headline" content="WebP Image Format Technical Specifications and Conversion Guide" />
+          <meta itemprop="encodingFormat" content="image/webp" />
           <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
             <div>
               <div class="flex items-center gap-2">
-                <h3 class="text-lg sm:text-xl font-bold text-slate-900">WebP Image Format</h3>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900" itemprop="name">WebP Image Format</h3>
                 <span
                   class="text-[11px] font-bold px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-md uppercase">Next-Gen
                   Web Standard</span>
               </div>
-              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed" itemprop="description">
                 Developed by Google, WebP provides superior lossless and lossy compression for images on the web. WebP
                 lossless images are <strong>26% smaller</strong> than PNGs, and lossy images are <strong>25-34%
-                  smaller</strong> than comparable JPEGs.
+                  smaller</strong> than comparable JPEGs at equivalent SSIM quality index.
               </p>
             </div>
           </div>
+          <!-- Quick Technical Specifications (AEO Snippet Extractable) -->
+          <dl class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs py-1 border-b border-slate-100 text-slate-700">
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">MIME Type</dt>
+              <dd class="font-bold text-slate-800 font-mono text-[11px]">image/webp</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Compression</dt>
+              <dd class="font-bold text-slate-800">Lossy &amp; Lossless (VP8/VP8L)</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Transparency</dt>
+              <dd class="font-bold text-slate-800">8-bit Alpha Channel</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Standard By</dt>
+              <dd class="font-bold text-slate-800">Google (Web Standard)</dd>
+            </div>
+          </dl>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+            <div class="p-3 shadow-md bg-white rounded-md">
               <div class="font-bold text-slate-800 mb-1">Key Advantages</div>
-              <p class="text-slate-600 leading-normal">High compression, supports transparent alpha channel, fast page
-                loading for modern SEO web performance.</p>
+              <p class="text-slate-600 leading-normal">High compression ratio, supports transparent alpha channel,
+                animated frames, and faster page load speeds boosting Google Core Web Vitals (LCP).</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+            <div class="p-3 shadow-md bg-white rounded-md">
               <div class="font-bold text-slate-800 mb-1">Best Use Cases</div>
-              <p class="text-slate-600 leading-normal">Websites, blog banners, eCommerce product galleries, modern web
-                applications, social media assets.</p>
+              <p class="text-slate-600 leading-normal">Responsive websites, blog banners, eCommerce storefronts,
+                high-traffic web applications, and social media feeds.</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
-              <div class="font-bold text-slate-800 mb-1">Browser Support</div>
-              <p class="text-slate-600 leading-normal">Supported by 98%+ of global browsers including Chrome, Safari,
-                Firefox, Edge, and Opera.</p>
+            <div class="p-3 shadow-md bg-white rounded-md">
+              <div class="font-bold text-slate-800 mb-1">Browser Support &amp; Conversion</div>
+              <p class="text-slate-600 leading-normal">Supported by <strong>98%+</strong> of global browsers (Chrome,
+                Safari 14+, Firefox, Edge). Convert JPG/PNG to WebP for instant bandwidth savings.</p>
             </div>
           </div>
         </article>
 
         <!-- 2. JPEG Guide Card -->
-        <article id="format-panel-jpeg"
-          class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+        <article id="format-panel-jpeg" class="format-panel hidden flex flex-col gap-4" itemscope
+          itemtype="https://schema.org/TechArticle" role="tabpanel" aria-labelledby="format-tab-jpeg">
+          <meta itemprop="headline" content="JPEG / JPG Image Format Technical Specifications and Conversion Guide" />
+          <meta itemprop="encodingFormat" content="image/jpeg" />
           <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
             <div>
               <div class="flex items-center gap-2">
-                <h3 class="text-lg sm:text-xl font-bold text-slate-900">JPEG / JPG Format</h3>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900" itemprop="name">JPEG / JPG Format</h3>
                 <span
                   class="text-[11px] font-bold px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 rounded-md uppercase">Universal
                   Photography</span>
               </div>
-              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-                Joint Photographic Experts Group (JPEG) is the most widely recognized digital image format in the
-                world.
-                It uses lossy DCT compression to significantly reduce file sizes while maintaining photographic
-                fidelity.
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed" itemprop="description">
+                Joint Photographic Experts Group (JPEG/JPG) is the world's most widely recognized raster photographic
+                format. It utilizes lossy Discrete Cosine Transform (DCT) compression to reduce large photographic files
+                to manageable download sizes.
               </p>
             </div>
           </div>
+          <!-- Quick Technical Specifications (AEO Snippet Extractable) -->
+          <dl class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs py-1 border-b border-slate-100 text-slate-700">
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">MIME Type</dt>
+              <dd class="font-bold text-slate-800 font-mono text-[11px]">image/jpeg</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Compression</dt>
+              <dd class="font-bold text-slate-800">Lossy DCT (Quantized)</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Transparency</dt>
+              <dd class="font-bold text-slate-800">No (Solid Background)</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Standard By</dt>
+              <dd class="font-bold text-slate-800">ISO / IEC (1992)</dd>
+            </div>
+          </dl>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+            <div class="p-3 shadow-md bg-white rounded-md">
               <div class="font-bold text-slate-800 mb-1">Key Advantages</div>
-              <p class="text-slate-600 leading-normal">Universal 100% compatibility across all legacy operating
-                systems,
-                cameras, smartphones, and software.</p>
+              <p class="text-slate-600 leading-normal">Universal 100% compatibility across all legacy operating systems,
+                digital cameras, smartphones, email clients, and desktop printers.</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+            <div class="p-3 shadow-md bg-white rounded-md">
               <div class="font-bold text-slate-800 mb-1">Best Use Cases</div>
-              <p class="text-slate-600 leading-normal">Digital photography, email attachments, social media photo
-                posts,
-                legacy printing and desktop publishing.</p>
+              <p class="text-slate-600 leading-normal">Digital photography, email attachments, photo gallery prints,
+                photo sharing, and systems requiring legacy backwards compatibility.</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
-              <div class="font-bold text-slate-800 mb-1">Transparency Support</div>
-              <p class="text-slate-600 leading-normal">Does not support transparency (transparent pixels automatically
-                convert to clean white background).</p>
+            <div class="p-3 shadow-md bg-white rounded-md">
+              <div class="font-bold text-slate-800 mb-1">Transparency &amp; Conversion</div>
+              <p class="text-slate-600 leading-normal">Does not support transparency (transparent pixels render white).
+                Convert HEIC/AVIF to JPG for universal sharing, or JPG to WebP for web optimization.</p>
             </div>
           </div>
         </article>
 
         <!-- 3. PNG Guide Card -->
-        <article id="format-panel-png"
-          class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+        <article id="format-panel-png" class="format-panel hidden flex flex-col gap-4" itemscope
+          itemtype="https://schema.org/TechArticle" role="tabpanel" aria-labelledby="format-tab-png">
+          <meta itemprop="headline" content="PNG Image Format Technical Specifications and Conversion Guide" />
+          <meta itemprop="encodingFormat" content="image/png" />
           <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
             <div>
               <div class="flex items-center gap-2">
-                <h3 class="text-lg sm:text-xl font-bold text-slate-900">PNG (Portable Network Graphics)</h3>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900" itemprop="name">PNG (Portable Network Graphics)
+                </h3>
                 <span
                   class="text-[11px] font-bold px-2 py-0.5 bg-purple-50 text-purple-700 border border-purple-200 rounded-md uppercase">Lossless
-                  & Transparent</span>
+                  &amp; Transparent</span>
               </div>
-              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-                PNG is a raster-graphics file-format that supports lossless data compression. It was created as an
-                improved, non-patented replacement for Graphics Interchange Format (GIF) and is the gold standard for
-                transparent graphics.
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed" itemprop="description">
+                PNG is an open raster format using lossless DEFLATE compression. Standardized by W3C as an unencumbered
+                replacement for GIF, PNG is the gold standard for crisp graphics with true 8-bit to 24-bit alpha
+                transparency.
               </p>
             </div>
           </div>
+          <!-- Quick Technical Specifications (AEO Snippet Extractable) -->
+          <dl class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs py-1 border-b border-slate-100 text-slate-700">
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">MIME Type</dt>
+              <dd class="font-bold text-slate-800 font-mono text-[11px]">image/png</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Compression</dt>
+              <dd class="font-bold text-slate-800">Lossless (DEFLATE / LZ77)</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Transparency</dt>
+              <dd class="font-bold text-slate-800">Full 8-bit Alpha Channel</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Standard By</dt>
+              <dd class="font-bold text-slate-800">W3C / ISO Standard</dd>
+            </div>
+          </dl>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+            <div class="p-3 shadow-md bg-white rounded-md">
               <div class="font-bold text-slate-800 mb-1">Key Advantages</div>
-              <p class="text-slate-600 leading-normal">Pixel-perfect lossless fidelity, true 8-bit to 24-bit
-                transparent
-                alpha channel, crisp sharp text rendering.</p>
+              <p class="text-slate-600 leading-normal">Pixel-perfect lossless fidelity with zero compression blur, crisp
+                sharp text rendering, and true multi-level alpha channel transparency.</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+            <div class="p-3 shadow-md bg-white rounded-md">
               <div class="font-bold text-slate-800 mb-1">Best Use Cases</div>
-              <p class="text-slate-600 leading-normal">Company logos, user interface icons, digital graphic design,
-                screenshots, overlays, watermarks.</p>
+              <p class="text-slate-600 leading-normal">Company logos, UI icons, infographics, digital mockups,
+                screenshots, overlays, transparent watermarks, and design assets.</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
-              <div class="font-bold text-slate-800 mb-1">File Size Note</div>
-              <p class="text-slate-600 leading-normal">Larger file sizes for photographic content compared to WebP or
-                JPEG due to lossless compression.</p>
+            <div class="p-3 shadow-md bg-white rounded-md">
+              <div class="font-bold text-slate-800 mb-1">Optimization Note</div>
+              <p class="text-slate-600 leading-normal">Lossless compression causes larger files for photos. Convert
+                transparent PNG to WebP to preserve alpha while cutting 26%+ file weight.</p>
             </div>
           </div>
         </article>
 
         <!-- 4. AVIF Guide Card -->
-        <article id="format-panel-avif"
-          class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+        <article id="format-panel-avif" class="format-panel hidden flex flex-col gap-4" itemscope
+          itemtype="https://schema.org/TechArticle" role="tabpanel" aria-labelledby="format-tab-avif">
+          <meta itemprop="headline" content="AVIF Image Format Technical Specifications and Conversion Guide" />
+          <meta itemprop="encodingFormat" content="image/avif" />
           <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
             <div>
               <div class="flex items-center gap-2">
-                <h3 class="text-lg sm:text-xl font-bold text-slate-900">AVIF (AV1 Image File Format)</h3>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900" itemprop="name">AVIF (AV1 Image File Format)
+                </h3>
                 <span
                   class="text-[11px] font-bold px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded-md uppercase">Next-Gen
                   Ultra Compression</span>
               </div>
-              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-                AVIF leverages the open-source AV1 video codec standard developed by Alliance for Open Media
-                (AOMedia).
-                It delivers up to <strong>50% smaller file sizes</strong> than JPEG and <strong>20% smaller</strong>
-                than WebP at identical visual fidelity.
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed" itemprop="description">
+                AVIF is a royalty-free image format derived from the AV1 video codec standard by Alliance for Open Media
+                (AOMedia). It delivers up to <strong>50% smaller files</strong> than JPEG and <strong>20%
+                  smaller</strong> than WebP at identical visual fidelity.
               </p>
             </div>
           </div>
+          <!-- Quick Technical Specifications (AEO Snippet Extractable) -->
+          <dl class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs py-1 border-b border-slate-100 text-slate-700">
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">MIME Type</dt>
+              <dd class="font-bold text-slate-800 font-mono text-[11px]">image/avif</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Compression</dt>
+              <dd class="font-bold text-slate-800">AV1 Codec (Lossy/Lossless)</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Color Depth</dt>
+              <dd class="font-bold text-slate-800">10-bit &amp; 12-bit HDR / Alpha</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Standard By</dt>
+              <dd class="font-bold text-slate-800">AOMedia (Open Source)</dd>
+            </div>
+          </dl>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+            <div class="p-3 shadow-md bg-white rounded-md">
               <div class="font-bold text-slate-800 mb-1">Key Advantages</div>
-              <p class="text-slate-600 leading-normal">Industry-leading compression efficiency, HDR 10-bit and 12-bit
-                wide color gamut support, alpha transparency.</p>
+              <p class="text-slate-600 leading-normal">Industry-leading compression efficiency, High Dynamic Range (HDR)
+                wide color gamut, full alpha transparency, and animated sequence support.</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+            <div class="p-3 shadow-md bg-white rounded-md">
               <div class="font-bold text-slate-800 mb-1">Best Use Cases</div>
-              <p class="text-slate-600 leading-normal">High-performance web applications, mobile sites, data-saving
-                photo archives, next-generation CDN assets.</p>
+              <p class="text-slate-600 leading-normal">High-performance web applications, mobile-first websites,
+                data-saving photo archives, and next-generation CDN media assets.</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
-              <div class="font-bold text-slate-800 mb-1">Browser Support</div>
+            <div class="p-3 shadow-md bg-white rounded-md">
+              <div class="font-bold text-slate-800 mb-1">Browser Support &amp; Speed</div>
               <p class="text-slate-600 leading-normal">Supported in modern Chrome, Firefox, Safari (iOS 16+ / macOS
-                13+), and Edge.</p>
+                13+), and Edge. Convert JPG/PNG to AVIF for the lightest web footprints.</p>
             </div>
           </div>
         </article>
 
         <!-- 5. HEIC Guide Card -->
-        <article id="format-panel-heic"
-          class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+        <article id="format-panel-heic" class="format-panel hidden flex flex-col gap-4" itemscope
+          itemtype="https://schema.org/TechArticle" role="tabpanel" aria-labelledby="format-tab-heic">
+          <meta itemprop="headline" content="HEIC / HEIF Image Format Technical Specifications and Conversion Guide" />
+          <meta itemprop="encodingFormat" content="image/heic" />
           <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
             <div>
               <div class="flex items-center gap-2">
-                <h3 class="text-lg sm:text-xl font-bold text-slate-900">HEIC / HEIF (High Efficiency Image Container)
-                </h3>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900" itemprop="name">HEIC / HEIF (High Efficiency
+                  Image Container)</h3>
                 <span
                   class="text-[11px] font-bold px-2 py-0.5 bg-rose-50 text-rose-700 border border-rose-200 rounded-md uppercase">Apple
                   iPhone Standard</span>
               </div>
-              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-                HEIC is Apple’s default image format based on HEVC (H.265) video compression. It stores high-quality
-                photos in roughly half the storage space of standard JPEGs. Online Image Converter converts HEIC files
-                directly in your browser without uploading to any server.
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed" itemprop="description">
+                HEIC is Apple's default image format based on High Efficiency Video Coding (HEVC / H.265). It stores
+                high-quality photos in roughly half the storage space of standard JPEGs with support for 16-bit color
+                depth.
               </p>
             </div>
           </div>
+          <!-- Quick Technical Specifications (AEO Snippet Extractable) -->
+          <dl class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs py-1 border-b border-slate-100 text-slate-700">
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">MIME Type</dt>
+              <dd class="font-bold text-slate-800 font-mono text-[11px]">image/heic, image/heif</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Compression</dt>
+              <dd class="font-bold text-slate-800">HEVC (H.265) Codec</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Features</dt>
+              <dd class="font-bold text-slate-800">Alpha &amp; Depth Maps / Bursts</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Standard By</dt>
+              <dd class="font-bold text-slate-800">MPEG / Apple iOS Default</dd>
+            </div>
+          </dl>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
-              <div class="font-bold text-slate-800 mb-1">In-Browser Decoding</div>
-              <p class="text-slate-600 leading-normal">Converted on-the-fly via WebAssembly so you can instantly turn
-                iPhone camera photos into universally viewable JPG/PNG.</p>
+            <div class="p-3 shadow-md bg-white rounded-md">
+              <div class="font-bold text-slate-800 mb-1">In-Browser Wasm Decoding</div>
+              <p class="text-slate-600 leading-normal">Decoded natively in your browser memory via WebAssembly without
+                uploading to any server, keeping personal photos 100% private.</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
-              <div class="font-bold text-slate-800 mb-1">Recommended Output</div>
+            <div class="p-3 shadow-md bg-white rounded-md">
+              <div class="font-bold text-slate-800 mb-1">Best Use Cases</div>
+              <p class="text-slate-600 leading-normal">Apple iPhone and iPad camera photos, multi-shot photo bursts,
+                Live Photos, and storage-efficient mobile photo libraries.</p>
+            </div>
+            <div class="p-3 shadow-md bg-white rounded-md">
+              <div class="font-bold text-slate-800 mb-1">Conversion Recommendation</div>
               <p class="text-slate-600 leading-normal">Convert HEIC to <strong>JPG</strong> for universal
-                compatibility
-                or to <strong>WebP</strong> for optimal web use.</p>
-            </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
-              <div class="font-bold text-slate-800 mb-1">Privacy Guarantee</div>
-              <p class="text-slate-600 leading-normal">Zero server uploads. Your personal and family iPhone photos
-                remain 100% private in your browser memory.</p>
+                Windows/Android compatibility, or to <strong>WebP</strong> for fast responsive websites.</p>
             </div>
           </div>
         </article>
 
         <!-- 6. SVG Guide Card -->
-        <article id="format-panel-svg"
-          class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+        <article id="format-panel-svg" class="format-panel hidden flex flex-col gap-4" itemscope
+          itemtype="https://schema.org/TechArticle" role="tabpanel" aria-labelledby="format-tab-svg">
+          <meta itemprop="headline" content="SVG Vector Image Format Technical Specifications and Conversion Guide" />
+          <meta itemprop="encodingFormat" content="image/svg+xml" />
           <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
             <div>
               <div class="flex items-center gap-2">
-                <h3 class="text-lg sm:text-xl font-bold text-slate-900">SVG (Scalable Vector Graphics)</h3>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900" itemprop="name">SVG (Scalable Vector Graphics)
+                </h3>
                 <span
                   class="text-[11px] font-bold px-2 py-0.5 bg-teal-50 text-teal-700 border border-teal-200 rounded-md uppercase">Infinite
                   Resolution Vector</span>
               </div>
-              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-                SVG is an XML-based vector image format. Unlike raster pixels, SVG uses mathematical paths, polygons,
-                and curves that can scale to any resolution or screen size with zero blurriness or pixelation.
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed" itemprop="description">
+                SVG is an XML-based 2D vector graphic format standardized by W3C. Instead of fixed pixel grids, it
+                defines geometry with mathematical points, lines, and curves that <strong>scale infinitely to any
+                  resolution</strong> with zero blurriness.
               </p>
             </div>
           </div>
+          <!-- Quick Technical Specifications (AEO Snippet Extractable) -->
+          <dl class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs py-1 border-b border-slate-100 text-slate-700">
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">MIME Type</dt>
+              <dd class="font-bold text-slate-800 font-mono text-[11px]">image/svg+xml</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Structure</dt>
+              <dd class="font-bold text-slate-800">XML Vector Geometry</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Scaling</dt>
+              <dd class="font-bold text-slate-800">Infinite Lossless Vector</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Standard By</dt>
+              <dd class="font-bold text-slate-800">W3C Open Standard</dd>
+            </div>
+          </dl>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+            <div class="p-3 shadow-md bg-white rounded-md">
               <div class="font-bold text-slate-800 mb-1">Vector Tracing Engine</div>
-              <p class="text-slate-600 leading-normal">Online Image Converter includes a built-in vectorization engine
-                that traces raster PNG/JPG pixels into crisp vector paths.</p>
+              <p class="text-slate-600 leading-normal">Includes a client-side vectorizer that auto-traces pixel clusters
+                from PNG/JPG into editable mathematical SVG paths directly in the browser.</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+            <div class="p-3 shadow-md bg-white rounded-md">
               <div class="font-bold text-slate-800 mb-1">Best Use Cases</div>
-              <p class="text-slate-600 leading-normal">Brand logos, vector illustrations, UI icons, responsive web
-                graphics, high-DPI retina display badges.</p>
+              <p class="text-slate-600 leading-normal">Company logos, UI icons, responsive diagrams, scalable
+                typography, high-DPI retina display assets, and web animations.</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
-              <div class="font-bold text-slate-800 mb-1">Resolution Freedom</div>
-              <p class="text-slate-600 leading-normal">Scales infinitely from a 16px icon to a 4K billboard with zero
-                quality loss.</p>
+            <div class="p-3 shadow-md bg-white rounded-md">
+              <div class="font-bold text-slate-800 mb-1">Resolution &amp; Styling</div>
+              <p class="text-slate-600 leading-normal">Scales seamlessly from 16px icons to 8K billboards. Fully
+                stylable via CSS and animatable via JavaScript.</p>
             </div>
           </div>
         </article>
 
         <!-- 7. ICO Guide Card -->
-        <article id="format-panel-ico"
-          class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+        <article id="format-panel-ico" class="format-panel hidden flex flex-col gap-4" itemscope
+          itemtype="https://schema.org/TechArticle" role="tabpanel" aria-labelledby="format-tab-ico">
+          <meta itemprop="headline" content="ICO Favicon Format Technical Specifications and Conversion Guide" />
+          <meta itemprop="encodingFormat" content="image/x-icon" />
           <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
             <div>
               <div class="flex items-center gap-2">
-                <h3 class="text-lg sm:text-xl font-bold text-slate-900">ICO (Windows & Browser Favicon)</h3>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900" itemprop="name">ICO (Windows &amp; Browser
+                  Favicon)</h3>
                 <span
                   class="text-[11px] font-bold px-2 py-0.5 bg-slate-100 text-slate-700 border border-slate-200 rounded-md uppercase">Web
                   Favicon Standard</span>
               </div>
-              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed" itemprop="description">
                 ICO is the iconic file format used by Microsoft Windows and web browsers for desktop shortcuts and
-                website tab favicons (`favicon.ico`).
+                website root favicons (<code>/favicon.ico</code>).
               </p>
             </div>
           </div>
+          <!-- Quick Technical Specifications (AEO Snippet Extractable) -->
+          <dl class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs py-1 border-b border-slate-100 text-slate-700">
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">MIME Type</dt>
+              <dd class="font-bold text-slate-800 font-mono text-[11px]">image/x-icon</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Standard Size</dt>
+              <dd class="font-bold text-slate-800">32x32 / 16x16 / 48x48</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Transparency</dt>
+              <dd class="font-bold text-slate-800">Alpha &amp; Binary Mask</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Standard By</dt>
+              <dd class="font-bold text-slate-800">Microsoft / Web Standard</dd>
+            </div>
+          </dl>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
-              <div class="font-bold text-slate-800 mb-1">Auto 32x32 Standard</div>
-              <p class="text-slate-600 leading-normal">Generates standardized 32x32 PNG-in-ICO binary compliant with
-                modern browsers and web server standards.</p>
+            <div class="p-3 shadow-md bg-white rounded-md">
+              <div class="font-bold text-slate-800 mb-1">Standardized Binary Output</div>
+              <p class="text-slate-600 leading-normal">Compiles modern 32x32 PNG-in-ICO binary structures that guarantee
+                crisp rendering across Chrome, Safari, Firefox, and web servers.</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+            <div class="p-3 shadow-md bg-white rounded-md">
               <div class="font-bold text-slate-800 mb-1">Best Use Cases</div>
-              <p class="text-slate-600 leading-normal">Website browser tab icons (`favicon.ico`), Windows desktop app
-                icons, bookmark bar thumbnails.</p>
+              <p class="text-slate-600 leading-normal">Website browser tab icons (`favicon.ico`), bookmark bar
+                shortcuts, desktop application icons, and PWA manifest assets.</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
+            <div class="p-3 shadow-md bg-white rounded-md">
               <div class="font-bold text-slate-800 mb-1">Recommended Input</div>
-              <p class="text-slate-600 leading-normal">Square transparent PNG or SVG files yield the cleanest,
-                crispest
-                ICO favicons.</p>
+              <p class="text-slate-600 leading-normal">Upload 1:1 square transparent PNG or SVG source files for the
+                cleanest pixel-aligned favicon generation.</p>
             </div>
           </div>
         </article>
 
         <!-- 8. GIF Guide Card -->
-        <article id="format-panel-gif"
-          class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+        <article id="format-panel-gif" class="format-panel hidden flex flex-col gap-4" itemscope
+          itemtype="https://schema.org/TechArticle" role="tabpanel" aria-labelledby="format-tab-gif">
+          <meta itemprop="headline" content="GIF Image Format Technical Specifications and Conversion Guide" />
+          <meta itemprop="encodingFormat" content="image/gif" />
           <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
             <div>
               <div class="flex items-center gap-2">
-                <h3 class="text-lg sm:text-xl font-bold text-slate-900">GIF (Graphics Interchange Format)</h3>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900" itemprop="name">GIF (Graphics Interchange
+                  Format)</h3>
                 <span
                   class="text-[11px] font-bold px-2 py-0.5 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-md uppercase">Universal
                   Legacy</span>
               </div>
-              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-                GIF is an 8-bit color bitmap format supporting up to 256 colors per frame. Online Image Converter
-                efficiently decodes input GIFs and exports static raster output across all target formats.
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed" itemprop="description">
+                GIF is an 8-bit color bitmap format supporting up to 256 indexed colors per frame using LZW lossless
+                compression. It is universally recognized across all web browsers and messaging platforms for animated
+                loops and retro graphics.
               </p>
             </div>
           </div>
+          <!-- Quick Technical Specifications (AEO Snippet Extractable) -->
+          <dl class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs py-1 border-b border-slate-100 text-slate-700">
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">MIME Type</dt>
+              <dd class="font-bold text-slate-800 font-mono text-[11px]">image/gif</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Color Palette</dt>
+              <dd class="font-bold text-slate-800">8-bit (Max 256 Colors)</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Transparency</dt>
+              <dd class="font-bold text-slate-800">1-bit Binary Transparency</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Standard By</dt>
+              <dd class="font-bold text-slate-800">CompuServe (1987)</dd>
+            </div>
+          </dl>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
-              <div class="font-bold text-slate-800 mb-1">Color Palette</div>
-              <p class="text-slate-600 leading-normal">Limited to a 256-color palette (best suited for simple
-                graphics,
-                clip art, and basic charts).</p>
+            <div class="p-3 shadow-md bg-white rounded-md">
+              <div class="font-bold text-slate-800 mb-1">Universal Compatibility</div>
+              <p class="text-slate-600 leading-normal">Native plug-and-play support on 100% of web browsers, email
+                clients, and operating systems with zero external codecs required.</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
-              <div class="font-bold text-slate-800 mb-1">Recommended Output</div>
+            <div class="p-3 shadow-md bg-white rounded-md">
+              <div class="font-bold text-slate-800 mb-1">Best Use Cases</div>
+              <p class="text-slate-600 leading-normal">Simple animated loops, short reaction clips, retro graphics,
+                low-color clip art, and email marketing banners.</p>
+            </div>
+            <div class="p-3 shadow-md bg-white rounded-md">
+              <div class="font-bold text-slate-800 mb-1">Modern Optimization</div>
               <p class="text-slate-600 leading-normal">Convert static GIFs to <strong>WebP</strong> or
-                <strong>PNG</strong> to gain better compression and true 24-bit color depth.
+                <strong>PNG</strong> for true 24-bit color depth, smaller files, and superior compression.
               </p>
-            </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
-              <div class="font-bold text-slate-800 mb-1">Compatibility</div>
-              <p class="text-slate-600 leading-normal">Supported universally on literally every digital device and
-                browser since 1987.</p>
             </div>
           </div>
         </article>
 
         <!-- 9. BMP Guide Card -->
-        <article id="format-panel-bmp"
-          class="format-panel hidden bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+        <article id="format-panel-bmp" class="format-panel hidden flex flex-col gap-4" itemscope
+          itemtype="https://schema.org/TechArticle" role="tabpanel" aria-labelledby="format-tab-bmp">
+          <meta itemprop="headline" content="BMP Bitmap Format Technical Specifications and Conversion Guide" />
+          <meta itemprop="encodingFormat" content="image/bmp" />
           <div class="flex items-start justify-between flex-wrap gap-2 border-b border-slate-100 pb-3">
             <div>
               <div class="flex items-center gap-2">
-                <h3 class="text-lg sm:text-xl font-bold text-slate-900">BMP (Windows Bitmap)</h3>
+                <h3 class="text-lg sm:text-xl font-bold text-slate-900" itemprop="name">BMP (Windows Bitmap)</h3>
                 <span
                   class="text-[11px] font-bold px-2 py-0.5 bg-slate-100 text-slate-700 border border-slate-200 rounded-md uppercase">Uncompressed
                   Raster</span>
               </div>
-              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed" itemprop="description">
                 BMP is an uncompressed raster image format developed for Windows OS. Because it contains raw pixel
-                data
-                without compression, BMP files are usually extremely large.
+                data without compression, BMP files are usually extremely large and benefit significantly from modern
+                conversion.
               </p>
             </div>
           </div>
+          <!-- Quick Technical Specifications (AEO Snippet Extractable) -->
+          <dl class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs py-1 border-b border-slate-100 text-slate-700">
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">MIME Type</dt>
+              <dd class="font-bold text-slate-800 font-mono text-[11px]">image/bmp</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Compression</dt>
+              <dd class="font-bold text-slate-800">Uncompressed Raw RGB</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Color Depth</dt>
+              <dd class="font-bold text-slate-800">1 to 24/32-bit Bitmaps</dd>
+            </div>
+            <div>
+              <dt class="text-[11px] text-slate-500 font-medium">Standard By</dt>
+              <dd class="font-bold text-slate-800">Microsoft &amp; IBM (1986)</dd>
+            </div>
+          </dl>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
-              <div class="font-bold text-slate-800 mb-1">Huge Space Savings</div>
-              <p class="text-slate-600 leading-normal">Converting BMP to WebP or JPG reduces file size by up to
-                <strong>90-95%</strong> with zero noticeable visual loss.
-              </p>
+            <div class="p-3 shadow-md bg-white rounded-md">
+              <div class="font-bold text-slate-800 mb-1">90%+ Size Reduction</div>
+              <p class="text-slate-600 leading-normal">Converting raw uncompressed BMP to modern WebP, JPG, or PNG
+                yields <strong>up to 95% storage reduction</strong> with zero visible loss.</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
-              <div class="font-bold text-slate-800 mb-1">Recommended Action</div>
-              <p class="text-slate-600 leading-normal">Upload your raw BMP files to Online Image Converter to compress
-                them into lightweight modern WebP or PNG format.</p>
+            <div class="p-3 shadow-md bg-white rounded-md">
+              <div class="font-bold text-slate-800 mb-1">Best Use Cases</div>
+              <p class="text-slate-600 leading-normal">Legacy Windows desktop utilities, industrial machine imaging,
+                uncompressed graphics memory buffers, and legacy wallpapers.</p>
             </div>
-            <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3">
-              <div class="font-bold text-slate-800 mb-1">Processing</div>
-              <p class="text-slate-600 leading-normal">Processed natively in browser canvas memory with instant
-                download.</p>
+            <div class="p-3 shadow-md bg-white rounded-md">
+              <div class="font-bold text-slate-800 mb-1">In-Browser Memory Processing</div>
+              <p class="text-slate-600 leading-normal">Fast client-side decoding in HTML5 canvas memory ensures massive
+                BMPs convert in seconds with zero data usage.</p>
             </div>
           </div>
         </article>
@@ -947,8 +1211,7 @@
           </p>
         </div>
         <span
-          class="inline-flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-lg shadow-2xs self-start sm:self-auto shrink-0 whitespace-nowrap">
-          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+          class="inline-flex items-center gap-1.5 text-emerald-700 text-xs font-bold px-3 py-1.5 self-start sm:self-auto shrink-0 whitespace-nowrap">
           <span>Zero Server Uploads</span>
         </span>
       </div>
@@ -1045,20 +1308,6 @@
         </li>
       </ol>
 
-      <!-- Pro Tip SEO Callout Banner -->
-      <div class="bg-indigo-50/60 border border-indigo-100 rounded-xl p-4 sm:p-5 flex items-start gap-3.5">
-        <div
-          class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-          <i data-lucide="sparkles" class="w-4 h-4"></i>
-        </div>
-        <div class="text-xs sm:text-sm text-slate-700 leading-relaxed">
-          <strong class="font-bold text-indigo-900">Pro SEO & Performance Tip:</strong> Converting heavy JPG or iPhone
-          HEIC photos into next-gen <strong class="text-slate-900">WebP or AVIF</strong> format reduces file sizes by
-          up
-          to <strong>80%</strong> with zero visual loss. This dramatically accelerates website loading times, improves
-          Google Core Web Vitals, and boosts organic search rankings.
-        </div>
-      </div>
     </section>
 
     <!-- Why Choose Us & Key Advantages Section (High-Value SEO Authority Section) -->
@@ -1076,394 +1325,392 @@
           </p>
         </div>
         <span
-          class="inline-flex items-center gap-1.5 bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg shadow-2xs self-start sm:self-auto shrink-0 whitespace-nowrap">
-          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-indigo-600"></i>
+          class="inline-flex items-center gap-1.5 text-indigo-700 text-xs font-bold px-3 py-1.5 self-start sm:self-auto shrink-0 whitespace-nowrap">
           <span>Client-Side Architecture</span>
         </span>
       </div>
 
       <!-- 6 Core Feature Advantage Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <!-- Card 1: 100% Private -->
-        <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-3"
-          id="privacy-section">
-          <div
-            class="w-10 h-10 rounded-lg flex items-center justify-center bg-emerald-50 text-emerald-600 border border-emerald-100 mb-1">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10 lg:gap-x-12 lg:gap-y-12 py-3">
+        <!-- Item 1: 100% Private -->
+        <div class="flex items-start gap-4" id="privacy-section">
+          <div class="text-slate-900 shrink-0 mt-0.5">
             <i data-lucide="shield-check" class="w-5 h-5"></i>
           </div>
-          <h3 class="font-bold text-base text-slate-900">100% Private & Safe</h3>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Your personal photos and sensitive documents are never uploaded to any remote server. All image operations
-            occur strictly inside your local browser sandbox.
-          </p>
-          <div
-            class="mt-auto pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-emerald-700">
-            <i data-lucide="check" class="w-3.5 h-3.5"></i>
-            <span>Zero Cloud Storage / Zero Logs</span>
+          <div class="flex flex-col gap-2">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">100% Private &amp; Safe</h3>
+              <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                <span>Zero Cloud Storage / Zero Logs</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Your personal photos and sensitive documents are never uploaded to any remote server. All image operations
+              occur strictly inside your local browser sandbox.
+            </p>
           </div>
         </div>
 
-        <!-- Card 2: Hardware Accelerated -->
-        <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-3">
-          <div
-            class="w-10 h-10 rounded-lg flex items-center justify-center bg-blue-50 text-blue-600 border border-blue-100 mb-1">
-            <i data-lucide="zap" class="w-5 h-5"></i>
+        <!-- Item 2: Hardware Accelerated -->
+        <div class="flex items-start gap-4">
+          <div class="text-slate-900 shrink-0 mt-0.5">
+            <i data-lucide="brain-cog" class="w-5 h-5"></i>
           </div>
-          <h3 class="font-bold text-base text-slate-900">Multi-Threaded Hardware Engine</h3>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Uses HTML5 Canvas and WebAssembly with automatic CPU core concurrency to process multiple images in
-            parallel
-            with GPU hardware acceleration.
-          </p>
-          <div
-            class="mt-auto pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-blue-700">
-            <i data-lucide="check" class="w-3.5 h-3.5"></i>
-            <span>Zero Network Upload Lag</span>
+          <div class="flex flex-col gap-2">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">Multi-Threaded Hardware Engine</h3>
+              <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                <span>Zero Network Upload Lag</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Uses HTML5 Canvas and WebAssembly with automatic CPU core concurrency to process multiple images in
+              parallel with GPU hardware acceleration.
+            </p>
           </div>
         </div>
 
-        <!-- Card 3: Next-Gen Formats & Vector -->
-        <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-3">
-          <div
-            class="w-10 h-10 rounded-lg flex items-center justify-center bg-purple-50 text-purple-600 border border-purple-100 mb-1">
+        <!-- Item 3: Next-Gen Formats & Vector -->
+        <div class="flex items-start gap-4">
+          <div class="text-slate-900 shrink-0 mt-0.5">
             <i data-lucide="layers" class="w-5 h-5"></i>
           </div>
-          <h3 class="font-bold text-base text-slate-900">Apple HEIC, AVIF & Vector SVG</h3>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Seamlessly convert iPhone HEIC camera photos, export next-gen WebP/AVIF web assets, generate standard ICO
-            favicons, and trace raster images to clean SVG vector curves.
-          </p>
-          <div
-            class="mt-auto pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-purple-700">
-            <i data-lucide="check" class="w-3.5 h-3.5"></i>
-            <span>Comprehensive Multi-Format</span>
+          <div class="flex flex-col gap-2">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">Apple HEIC, AVIF &amp; Vector SVG
+              </h3>
+              <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                <span>Comprehensive Multi-Format</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+              Seamlessly convert iPhone HEIC camera photos, export next-gen WebP/AVIF web assets, generate standard ICO
+              favicons, and trace raster images to clean SVG vector curves.
+            </p>
           </div>
         </div>
 
-        <!-- Card 4: Precision Controls -->
-        <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-3">
-          <div
-            class="w-10 h-10 rounded-lg flex items-center justify-center bg-indigo-50 text-indigo-600 border border-indigo-100 mb-1">
+        <!-- Item 4: Precision Controls -->
+        <div class="flex items-start gap-4">
+          <div class="text-slate-900 shrink-0 mt-0.5">
             <i data-lucide="sliders-horizontal" class="w-5 h-5"></i>
           </div>
-          <h3 class="font-bold text-base text-slate-900">Custom Dimensions & Fit Modes</h3>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Configure target pixel width and height, choose smart aspect-ratio fitting (<code
-              class="text-indigo-700 font-bold">max</code>, <code class="text-indigo-700 font-bold">crop</code>, <code
-              class="text-indigo-700 font-bold">scale</code>, <code class="text-indigo-700 font-bold">contain</code>),
-            and adjust lossy quality from 1 to 100%.
-          </p>
-          <div
-            class="mt-auto pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-indigo-700">
-            <i data-lucide="check" class="w-3.5 h-3.5"></i>
-            <span>EXIF Metadata Stripping</span>
+          <div class="flex flex-col gap-2">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">Custom Dimensions &amp; Fit Modes
+              </h3>
+              <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                <span>EXIF Metadata Stripping</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Configure target pixel width and height, choose smart aspect-ratio fitting (<code
+                class="text-indigo-700 font-bold">max</code>, <code class="text-indigo-700 font-bold">crop</code>, <code
+                class="text-indigo-700 font-bold">scale</code>, <code class="text-indigo-700 font-bold">contain</code>),
+              and adjust lossy quality from 1 to 100%.
+            </p>
           </div>
         </div>
 
-        <!-- Card 5: Safe Batch ZIP -->
-        <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-3">
-          <div
-            class="w-10 h-10 rounded-lg flex items-center justify-center bg-amber-50 text-amber-600 border border-amber-100 mb-1">
+        <!-- Item 5: Safe Batch ZIP -->
+        <div class="flex items-start gap-4">
+          <div class="text-slate-900 shrink-0 mt-0.5">
             <i data-lucide="folder-archive" class="w-5 h-5"></i>
           </div>
-          <h3 class="font-bold text-base text-slate-900">Safe Batch ZIP Downloads</h3>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Convert dozens of images at once and download everything neatly packaged in a high-speed compressed ZIP
-            archive with duplicate-name safeguards (up to 800 MB safe limit).
-          </p>
-          <div
-            class="mt-auto pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-amber-700">
-            <i data-lucide="check" class="w-3.5 h-3.5"></i>
-            <span>Selective or Bulk Downloads</span>
+          <div class="flex flex-col gap-2">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">Safe Batch ZIP Downloads</h3>
+              <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                <span>Selective or Bulk Downloads</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Convert dozens of images at once and download everything neatly packaged in a high-speed compressed ZIP
+              archive with duplicate-name safeguards (up to 800 MB safe limit).
+            </p>
           </div>
         </div>
 
-        <!-- Card 6: 100% Free & Unlimited -->
-        <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 shadow-sm flex flex-col gap-3">
-          <div
-            class="w-10 h-10 rounded-lg flex items-center justify-center bg-rose-50 text-rose-600 border border-rose-100 mb-1">
-            <i data-lucide="heart" class="w-5 h-5"></i>
+        <!-- Item 6: 100% Free & Unlimited -->
+        <div class="flex items-start gap-4">
+          <div class="text-slate-900 shrink-0 mt-0.5">
+            <i data-lucide="zap" class="w-5 h-5"></i>
           </div>
-          <h3 class="font-bold text-base text-slate-900">100% Free & Unlimited</h3>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            No daily conversion quotas, no forced sign-ups or subscriptions, and absolutely zero watermarks stamped
-            onto
-            your images. Free and open-source forever.
-          </p>
-          <div
-            class="mt-auto pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-rose-700">
-            <i data-lucide="check" class="w-3.5 h-3.5"></i>
-            <span>No Watermarks / No Sign-up</span>
+          <div class="flex flex-col gap-2">
+            <div>
+              <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">100% Free &amp; Unlimited</h3>
+              <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                <span>No Watermarks / No Sign-up</span>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              No daily conversion quotas, no forced sign-ups or subscriptions, and absolutely zero watermarks stamped
+              onto your images. Free and open-source forever.
+            </p>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Feature Comparison Matrix (High-Intent SEO Ranking Asset) -->
-      <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-7 shadow-sm flex flex-col gap-5 mt-2">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
-          <div>
-            <h3 class="text-base sm:text-lg font-bold text-slate-900">Technical Architecture & Feature Comparison</h3>
-            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">A side-by-side benchmark comparing modern in-browser
-              client-side execution with legacy cloud-hosted services.</p>
-          </div>
-          <span
-            class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 bg-slate-50 border border-slate-200 px-2.5 py-1 rounded-md self-start sm:self-auto shrink-0">
-            <span>Verified Benchmark</span>
-          </span>
+    <!-- Technical Architecture & Feature Comparison Section (High-Intent SEO Ranking Asset) -->
+    <section class="w-full mt-2 flex flex-col gap-6" id="architecture-comparison-section"
+      aria-label="Technical Architecture &amp; Feature Comparison">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
+            <span>Technical Architecture &amp; Feature Comparison</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">
+            A side-by-side benchmark comparing modern in-browser client-side execution with legacy cloud-hosted
+            services.
+          </p>
         </div>
+        <span
+          class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 px-2.5 py-1 self-start sm:self-auto shrink-0">
+          <span>Verified Benchmark</span>
+        </span>
+      </div>
 
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs sm:text-sm border-collapse">
-            <thead>
-              <tr class="border-b border-slate-200 bg-slate-50 text-slate-800 font-bold">
-                <th class="py-3 px-4 w-[34%] rounded-l-lg">Capability & Benchmark</th>
-                <th
-                  class="py-3 px-4 w-[33%] text-indigo-700 bg-indigo-50/40 border-x border-indigo-100/60 font-extrabold">
-                  <div class="flex items-center gap-2">
-                    <span>Online Image Converter</span>
-                    <span
-                      class="bg-indigo-600 text-white text-[10px] font-bold px-1.5 py-0.2 rounded uppercase tracking-wider">Client-Side</span>
+      <div class="overflow-x-auto border border-slate-200 rounded-md">
+        <table class="w-full text-left text-xs sm:text-sm border-collapse">
+          <thead>
+            <tr class="border-b border-slate-200 bg-slate-50 text-slate-800 font-bold">
+              <th class="py-3 px-4 w-[34%]">Capability &amp; Benchmark</th>
+              <th
+                class="py-3 px-4 w-[33%] text-indigo-700 bg-indigo-50/40 border-x border-indigo-100/60 font-extrabold">
+                <div class="flex items-center gap-2">
+                  <span>Online Image Converter</span>
+                  <span
+                    class="bg-indigo-600 text-white text-[10px] font-bold px-1.5 py-0.2 rounded uppercase tracking-wider">Client-Side</span>
+                </div>
+              </th>
+              <th class="py-3 px-4 w-[33%] text-slate-600 font-semibold">
+                <div class="flex items-center gap-2">
+                  <span>Legacy Cloud Services</span>
+                  <span
+                    class="bg-slate-200 text-slate-700 text-[10px] font-semibold px-1.5 py-0.2 rounded uppercase tracking-wider">Server-Based</span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-700">
+            <!-- Row 1: Privacy & Data Pipeline -->
+            <tr class="hover:bg-slate-50/50 transition-colors">
+              <td class="py-3.5 px-4 align-top">
+                <div class="font-bold text-slate-900">Data Privacy &amp; Security</div>
+                <div class="text-[11px] text-slate-500 font-medium mt-0.5">Where raw image bytes and pixels are
+                  processed</div>
+              </td>
+              <td
+                class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-bold text-emerald-800">100% In-Browser Memory</span>
+                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Zero remote uploads. Sensitive photos
+                      remain strictly inside your local device sandbox.</p>
                   </div>
-                </th>
-                <th class="py-3 px-4 w-[33%] text-slate-600 rounded-r-lg font-semibold">
-                  <div class="flex items-center gap-2">
-                    <span>Legacy Cloud Services</span>
-                    <span
-                      class="bg-slate-200 text-slate-700 text-[10px] font-semibold px-1.5 py-0.2 rounded uppercase tracking-wider">Server-Based</span>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 align-top text-slate-600">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-medium text-slate-800">Uploaded to Cloud Servers</span>
+                    <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Requires uploading images to
+                      third-party
+                      remote servers with potential data retention risks.</p>
                   </div>
-                </th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-100 text-slate-700">
-              <!-- Row 1: Privacy & Data Pipeline -->
-              <tr class="hover:bg-slate-50/50 transition-colors">
-                <td class="py-3.5 px-4 align-top">
-                  <div class="font-bold text-slate-900">Data Privacy & Security</div>
-                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Where raw image bytes and pixels are
-                    processed</div>
-                </td>
-                <td
-                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-bold text-emerald-800">100% In-Browser Memory</span>
-                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Zero remote uploads. Sensitive photos
-                        remain strictly inside your local device sandbox.</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="py-3.5 px-4 align-top text-slate-600">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-medium text-slate-800">Uploaded to Cloud Servers</span>
-                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Requires uploading images to
-                        third-party
-                        remote servers with potential data retention risks.</p>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+                </div>
+              </td>
+            </tr>
 
-              <!-- Row 2: Processing Architecture -->
-              <tr class="hover:bg-slate-50/50 transition-colors">
-                <td class="py-3.5 px-4 align-top">
-                  <div class="font-bold text-slate-900">Processing Architecture & Speed</div>
-                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Hardware acceleration and conversion
-                    latency</div>
-                </td>
-                <td
-                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-bold text-slate-900">GPU & Multi-Core WebAssembly</span>
-                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Direct GPU/Canvas hardware execution
-                        with zero internet upload or download latency.</p>
-                    </div>
+            <!-- Row 2: Processing Architecture -->
+            <tr class="hover:bg-slate-50/50 transition-colors">
+              <td class="py-3.5 px-4 align-top">
+                <div class="font-bold text-slate-900">Processing Architecture &amp; Speed</div>
+                <div class="text-[11px] text-slate-500 font-medium mt-0.5">Hardware acceleration and conversion
+                  latency</div>
+              </td>
+              <td
+                class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-bold text-slate-900">GPU &amp; Multi-Core WebAssembly</span>
+                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Direct GPU/Canvas hardware execution
+                      with zero internet upload or download latency.</p>
                   </div>
-                </td>
-                <td class="py-3.5 px-4 align-top text-slate-600">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-medium text-slate-800">Network & Server Bottlenecks</span>
-                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Slow round-trip network transfers and
-                        shared queuing on remote cloud servers.</p>
-                    </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 align-top text-slate-600">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-medium text-slate-800">Network &amp; Server Bottlenecks</span>
+                    <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Slow round-trip network transfers and
+                      shared queuing on remote cloud servers.</p>
                   </div>
-                </td>
-              </tr>
+                </div>
+              </td>
+            </tr>
 
-              <!-- Row 3: Conversion Limits -->
-              <tr class="hover:bg-slate-50/50 transition-colors">
-                <td class="py-3.5 px-4 align-top">
-                  <div class="font-bold text-slate-900">Volume & File Limits</div>
-                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Daily conversion allowances and batch
-                    limits</div>
-                </td>
-                <td
-                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-bold text-slate-900">Unlimited Batch Processing</span>
-                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">No daily quotas or artificial file
-                        restrictions. Supports up to 800 MB safe batch archives.</p>
-                    </div>
+            <!-- Row 3: Conversion Limits -->
+            <tr class="hover:bg-slate-50/50 transition-colors">
+              <td class="py-3.5 px-4 align-top">
+                <div class="font-bold text-slate-900">Volume &amp; File Limits</div>
+                <div class="text-[11px] text-slate-500 font-medium mt-0.5">Daily conversion allowances and batch
+                  limits</div>
+              </td>
+              <td
+                class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-bold text-slate-900">Unlimited Batch Processing</span>
+                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">No daily quotas or artificial file
+                      restrictions. Supports up to 800 MB safe batch archives.</p>
                   </div>
-                </td>
-                <td class="py-3.5 px-4 align-top text-slate-600">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-medium text-slate-800">Restricted Free Tiers</span>
-                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Enforces daily limits (e.g. 5–10
-                        files)
-                        and file size caps to compel paid upgrades.</p>
-                    </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 align-top text-slate-600">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-medium text-slate-800">Restricted Free Tiers</span>
+                    <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Enforces daily limits (e.g. 5–10
+                      files)
+                      and file size caps to compel paid upgrades.</p>
                   </div>
-                </td>
-              </tr>
+                </div>
+              </td>
+            </tr>
 
-              <!-- Row 4: Quality & Watermarks -->
-              <tr class="hover:bg-slate-50/50 transition-colors">
-                <td class="py-3.5 px-4 align-top">
-                  <div class="font-bold text-slate-900">Output Quality & Watermarking</div>
-                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Visual integrity and branding
-                    restrictions
+            <!-- Row 4: Quality & Watermarks -->
+            <tr class="hover:bg-slate-50/50 transition-colors">
+              <td class="py-3.5 px-4 align-top">
+                <div class="font-bold text-slate-900">Output Quality &amp; Watermarking</div>
+                <div class="text-[11px] text-slate-500 font-medium mt-0.5">Visual integrity and branding
+                  restrictions
+                </div>
+              </td>
+              <td
+                class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-bold text-slate-900">100% Original Quality &amp; No Watermarks</span>
+                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Pristine pixel fidelity with zero
+                      stamped branding or downscaling on exported files.</p>
                   </div>
-                </td>
-                <td
-                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-bold text-slate-900">100% Original Quality & No Watermarks</span>
-                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Pristine pixel fidelity with zero
-                        stamped branding or downscaling on exported files.</p>
-                    </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 align-top text-slate-600">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-medium text-slate-800">Downscaling or Watermarks</span>
+                    <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Free tiers often stamp promotional
+                      watermarks or aggressively compress image output.</p>
                   </div>
-                </td>
-                <td class="py-3.5 px-4 align-top text-slate-600">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-medium text-slate-800">Downscaling or Watermarks</span>
-                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Free tiers often stamp promotional
-                        watermarks or aggressively compress image output.</p>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+                </div>
+              </td>
+            </tr>
 
-              <!-- Row 5: Modern & Vector Support -->
-              <tr class="hover:bg-slate-50/50 transition-colors">
-                <td class="py-3.5 px-4 align-top">
-                  <div class="font-bold text-slate-900">Vector & Modern Formats</div>
-                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Apple HEIC decoding and SVG vector
-                    tracing
+            <!-- Row 5: Modern & Vector Support -->
+            <tr class="hover:bg-slate-50/50 transition-colors">
+              <td class="py-3.5 px-4 align-top">
+                <div class="font-bold text-slate-900">Vector &amp; Modern Formats</div>
+                <div class="text-[11px] text-slate-500 font-medium mt-0.5">Apple HEIC decoding and SVG vector
+                  tracing
+                </div>
+              </td>
+              <td
+                class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-bold text-slate-900">Native HEIC &amp; SVG Tracing</span>
+                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Built-in Apple iPhone HEIC decoding,
+                      AVIF/WebP, and raster-to-vector SVG tracing.</p>
                   </div>
-                </td>
-                <td
-                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-bold text-slate-900">Native HEIC & SVG Tracing</span>
-                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Built-in Apple iPhone HEIC decoding,
-                        AVIF/WebP, and raster-to-vector SVG tracing.</p>
-                    </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 align-top text-slate-600">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-medium text-slate-800">Paid Add-On Features</span>
+                    <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">HEIC decoding and vector conversion
+                      are
+                      commonly gated behind premium subscriptions.</p>
                   </div>
-                </td>
-                <td class="py-3.5 px-4 align-top text-slate-600">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-medium text-slate-800">Paid Add-On Features</span>
-                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">HEIC decoding and vector conversion
-                        are
-                        commonly gated behind premium subscriptions.</p>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+                </div>
+              </td>
+            </tr>
 
-              <!-- Row 6: Custom Controls -->
-              <tr class="hover:bg-slate-50/50 transition-colors">
-                <td class="py-3.5 px-4 align-top">
-                  <div class="font-bold text-slate-900">Granular Conversion Controls</div>
-                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Resolution resizing, fit mathematics, and
-                    EXIF</div>
-                </td>
-                <td
-                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-bold text-slate-900">Full Parameter Control</span>
-                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Custom width/height, 4 aspect-ratio
-                        fit
-                        modes, quality sliders (1-100), and EXIF stripping.</p>
-                    </div>
+            <!-- Row 6: Custom Controls -->
+            <tr class="hover:bg-slate-50/50 transition-colors">
+              <td class="py-3.5 px-4 align-top">
+                <div class="font-bold text-slate-900">Granular Conversion Controls</div>
+                <div class="text-[11px] text-slate-500 font-medium mt-0.5">Resolution resizing, fit mathematics, and
+                  EXIF</div>
+              </td>
+              <td
+                class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-bold text-slate-900">Full Parameter Control</span>
+                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Custom width/height, 4 aspect-ratio
+                      fit
+                      modes, quality sliders (1-100), and EXIF stripping.</p>
                   </div>
-                </td>
-                <td class="py-3.5 px-4 align-top text-slate-600">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-medium text-slate-800">Rigid Preset Options</span>
-                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Minimal parameter customizability
-                        without complex server-side configuration.</p>
-                    </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 align-top text-slate-600">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-medium text-slate-800">Rigid Preset Options</span>
+                    <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Minimal parameter customizability
+                      without complex server-side configuration.</p>
                   </div>
-                </td>
-              </tr>
+                </div>
+              </td>
+            </tr>
 
-              <!-- Row 7: Account & Friction -->
-              <tr class="hover:bg-slate-50/50 transition-colors">
-                <td class="py-3.5 px-4 align-top">
-                  <div class="font-bold text-slate-900">Account & Billing Model</div>
-                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">User friction and payment requirements
+            <!-- Row 7: Account & Friction -->
+            <tr class="hover:bg-slate-50/50 transition-colors">
+              <td class="py-3.5 px-4 align-top">
+                <div class="font-bold text-slate-900">Account &amp; Billing Model</div>
+                <div class="text-[11px] text-slate-500 font-medium mt-0.5">User friction and payment requirements
+                </div>
+              </td>
+              <td
+                class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-bold text-slate-900">100% Free &amp; Zero Registration</span>
+                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">No email collection, no mandatory
+                      accounts, and no recurring credit card billing.</p>
                   </div>
-                </td>
-                <td
-                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-bold text-slate-900">100% Free & Zero Registration</span>
-                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">No email collection, no mandatory
-                        accounts, and no recurring credit card billing.</p>
-                    </div>
+                </div>
+              </td>
+              <td class="py-3.5 px-4 align-top text-slate-600">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                  <div>
+                    <span class="font-medium text-slate-800">Freemium &amp; Account Walls</span>
+                    <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Persistent prompts to create accounts,
+                      provide emails, and purchase credits.</p>
                   </div>
-                </td>
-                <td class="py-3.5 px-4 align-top text-slate-600">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-medium text-slate-800">Freemium & Account Walls</span>
-                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Persistent prompts to create accounts,
-                        provide emails, and purchase credits.</p>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Professional Architectural Summary Footnote -->
-        <div
-          class="bg-slate-50 border border-slate-200/80 rounded-lg p-3.5 flex items-center justify-between flex-wrap gap-2 text-xs text-slate-600">
-          <div class="flex items-center gap-2">
-            <i data-lucide="sparkles" class="w-4 h-4 text-indigo-600 shrink-0"></i>
-            <span><strong>Technical Summary:</strong> Client-side browser execution eliminates expensive server
-              infrastructure costs, enabling true zero-upload privacy with maximum conversion speed.</span>
-          </div>
-          <span class="font-bold text-slate-800 whitespace-nowrap">Engine v1.0 • Client-Side Native</span>
-        </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
@@ -1481,23 +1728,19 @@
             capabilities.
           </p>
         </div>
-        <span
-          class="inline-flex items-center gap-1.5 bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg shadow-2xs self-start sm:self-auto shrink-0 whitespace-nowrap">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-indigo-600"></i>
-          <span>AEO & Search Optimized</span>
-        </span>
+
       </div>
 
       <!-- FAQ Accordion Grid / List -->
       <div class="flex flex-col gap-3">
         <!-- Q1 -->
         <details
-          class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
               <span
-                class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q1</span>
+                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q1</span>
               <span>Is this Online Image Converter safe and private for converting confidential or personal
                 photos?</span>
             </span>
@@ -1516,12 +1759,12 @@
 
         <!-- Q2 -->
         <details
-          class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
               <span
-                class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q2</span>
+                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q2</span>
               <span>How do I convert Apple iPhone HEIC/HEIF photos to JPG or PNG on Windows and Mac?</span>
             </span>
             <i data-lucide="chevron-down"
@@ -1539,12 +1782,12 @@
 
         <!-- Q3 -->
         <details
-          class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
               <span
-                class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q3</span>
+                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q3</span>
               <span>How does client-side in-browser image conversion work without server uploads?</span>
             </span>
             <i data-lucide="chevron-down"
@@ -1564,12 +1807,12 @@
 
         <!-- Q4 -->
         <details
-          class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
               <span
-                class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q4</span>
+                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q4</span>
               <span>Why should I convert images to WebP or AVIF format for web performance and SEO?</span>
             </span>
             <i data-lucide="chevron-down"
@@ -1586,12 +1829,12 @@
 
         <!-- Q5 -->
         <details
-          class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
               <span
-                class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q5</span>
+                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q5</span>
               <span>How does the raster-to-SVG vector tracing feature work?</span>
             </span>
             <i data-lucide="chevron-down"
@@ -1607,12 +1850,12 @@
 
         <!-- Q6 -->
         <details
-          class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
               <span
-                class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q6</span>
+                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q6</span>
               <span>Can I batch convert multiple pictures simultaneously and download them in a single ZIP?</span>
             </span>
             <i data-lucide="chevron-down"
@@ -1629,12 +1872,12 @@
 
         <!-- Q7 -->
         <details
-          class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
               <span
-                class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q7</span>
+                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q7</span>
               <span>What is the difference between Max, Crop, Scale, and Contain fit modes?</span>
             </span>
             <i data-lucide="chevron-down"
@@ -1657,12 +1900,12 @@
 
         <!-- Q8 -->
         <details
-          class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
               <span
-                class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q8</span>
+                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q8</span>
               <span>How do I generate a 32x32 website favicon (ICO file) using Online Image Converter?</span>
             </span>
             <i data-lucide="chevron-down"
@@ -1681,12 +1924,12 @@
 
         <!-- Q9 -->
         <details
-          class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
               <span
-                class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q9</span>
+                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q9</span>
               <span>Does Online Image Converter remove EXIF metadata (GPS coordinates, camera model) from
                 images?</span>
             </span>
@@ -1703,12 +1946,12 @@
 
         <!-- Q10 -->
         <details
-          class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
               <span
-                class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q10</span>
+                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q10</span>
               <span>Are there any hidden costs, subscriptions, file limits, or watermarks?</span>
             </span>
             <i data-lucide="chevron-down"
@@ -1725,12 +1968,12 @@
 
         <!-- Q11 -->
         <details
-          class="group bg-white border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200 open:ring-1 open:ring-indigo-500/10">
+          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
               <span
-                class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q11</span>
+                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q11</span>
               <span>Which operating systems and web browsers are compatible with Online Image Converter?</span>
             </span>
             <i data-lucide="chevron-down"
@@ -1989,8 +2232,37 @@
   </div>
 
   <!-- Footer -->
-  <footer class="mt-auto border-t border-slate-200 bg-white/60 py-6 px-4 text-center text-xs text-slate-500">
-    <p>Online Image Converter • High-Performance In-Browser Image Engine</p>
+  <footer class="mt-auto border-t border-slate-200/80 bg-white/40 py-8 px-4 text-center">
+    <div class="max-w-4xl mx-auto flex flex-col items-center justify-center gap-2">
+      <div class="text-xs sm:text-sm font-bold text-slate-800">
+        Designed &amp; Developed by Ishara M.
+      </div>
+      <div class="flex items-center justify-center flex-wrap gap-x-3 gap-y-1 text-xs text-slate-600 font-medium">
+        <a href="/privacy.html" class="hover:text-indigo-600 transition-colors">Privacy Policy</a>
+        <span class="text-slate-300 select-none">·</span>
+        <a href="/terms.html" class="hover:text-indigo-600 transition-colors">Terms of Service</a>
+        <span class="text-slate-300 select-none">·</span>
+        <a href="https://github.com/ishara-madu" target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 hover:text-indigo-600 transition-colors">
+          <svg class="w-3.5 h-3.5 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+            <path d="M9 18c-4.51 2-5-2-7-2" />
+          </svg>
+          <span>GitHub</span>
+        </a>
+        <span class="text-slate-300 select-none">·</span>
+        <button type="button" id="footerSupportBtn"
+          class="inline-flex items-center gap-1 hover:text-indigo-600 transition-colors cursor-pointer">
+          <span class="text-rose-500">❤️</span>
+          <span>Support</span>
+        </button>
+      </div>
+      <p class="text-[11px] sm:text-xs text-slate-500">
+        100% Free &amp; Private • All media processed locally in your browser
+      </p>
+    </div>
   </footer>
 
   <!-- Buy Me a Coffee Floating Widget -->

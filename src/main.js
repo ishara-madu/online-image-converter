@@ -400,6 +400,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (openDonateModal) openDonateModal.addEventListener('click', showDonationModal);
   if (openDonateModalMobile) openDonateModalMobile.addEventListener('click', showDonationModal);
+  const footerSupportBtn = document.getElementById('footerSupportBtn');
+  if (footerSupportBtn) footerSupportBtn.addEventListener('click', showDonationModal);
   if (closeDonateModal) closeDonateModal.addEventListener('click', hideDonationModal);
 
   if (donationModal) {
