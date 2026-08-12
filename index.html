@@ -8,7 +8,7 @@
   <meta name="description"
     content="Free Online Image Converter. Convert JPG, PNG, WebP, AVIF, HEIC, SVG, ICO and GIF directly in your browser with zero quality loss and zero server uploads." />
   <link rel="icon" type="image/webp" href="./logo.webp" />
-  <link rel="canonical" href="https://ishara-madu.github.io/online-image-convertor/" />
+  <link rel="canonical" href="https://ishara-madu.github.io/online-image-converter/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -21,7 +21,7 @@
       {
         "@type": "WebApplication",
         "name": "Online Image Converter",
-        "url": "https://ishara-madu.github.io/online-image-convertor/",
+        "url": "https://ishara-madu.github.io/online-image-converter/",
         "description": "Free, private, in-browser universal online image converter supporting WebP, JPG, PNG, AVIF, HEIC, SVG, ICO, and GIF.",
         "applicationCategory": "MultimediaApplication",
         "operatingSystem": "All modern browsers",
@@ -240,7 +240,28 @@
   </script>
 </head>
 
-<body class="bg-[#F5F5F7] text-[#000000] min-h-screen flex flex-col antialiased">
+<body class="bg-[#F5F5F7] text-[#000000] min-h-screen flex flex-col antialiased relative overflow-x-hidden">
+
+  <!-- Decorative Background Image Boxes (Behind Content) -->
+  <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none flex justify-center items-start">
+    <div class="relative w-full max-w-7xl mx-auto h-full min-h-[800px]">
+
+
+
+      <!-- Right Box (Bottom) -->
+      <div
+        class="absolute top-96 right-10 sm:right-16 w-36 h-48 sm:w-48 sm:h-72 rounded-2xl overflow-hidden shadow-lg shadow-blue-500/10 transform -rotate-6 ring-1 ring-slate-900/5 bg-white opacity-20 sm:opacity-30 blur-[3px] transition-all duration-700">
+        <img src="./src/assets/bg-1.webp" alt="" class="w-full h-full object-cover" />
+      </div>
+
+      <!-- Left Box (Bottom) -->
+      <div
+        class="absolute top-[32rem] left-8 sm:left-24 w-32 h-32 sm:w-48 sm:h-48 rounded-full sm:rounded-[3rem] overflow-hidden shadow-lg shadow-emerald-500/10 transform rotate-[15deg] ring-1 ring-slate-900/5 bg-white opacity-20 sm:opacity-30 blur-[3px] transition-all duration-700">
+        <img src="./src/assets/bg-2.webp" alt="" class="w-full h-full object-cover" />
+      </div>
+
+    </div>
+  </div>
 
   <!-- Top Navigation Bar -->
   <header
@@ -288,8 +309,10 @@
                 rel="noopener noreferrer"
                 class="flex items-start gap-2.5 p-2 rounded-lg hover:bg-indigo-50/70 transition-colors group">
                 <div
-                  class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 border border-indigo-100 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                  <i data-lucide="sparkles" class="w-4 h-4"></i>
+                  class="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200/80 flex items-center justify-center shrink-0 mt-0.5 overflow-hidden p-1 group-hover:border-indigo-200 transition-colors">
+                  <img src="https://ishara-madu.github.io/gemini-watermark-remover/assets/logo.webp"
+                    alt="Gemini Watermark Remover" class="w-full h-full object-contain rounded" loading="lazy"
+                    onerror="this.onerror=null; this.src='https://www.google.com/s2/favicons?domain=https://ishara-madu.github.io/gemini-watermark-remover/&sz=64';" />
                 </div>
                 <div class="flex flex-col">
                   <div class="flex items-center gap-1.5 font-bold text-xs text-slate-900 group-hover:text-indigo-600">
@@ -308,7 +331,7 @@
       <!-- Right Actions: GitHub Star Count & Donation Buttons -->
       <div class="flex items-center gap-2.5 sm:gap-3">
         <!-- GitHub Repo Link with Star Count -->
-        <a href="https://github.com/ishara-madu/online-image-convertor" target="_blank" rel="noopener noreferrer"
+        <a href="https://github.com/ishara-madu/online-image-converter" target="_blank" rel="noopener noreferrer"
           class="inline-flex items-center gap-1.5 bg-[#0F172A] hover:bg-slate-800 text-white text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-lg shadow-xs transition-colors"
           title="Star on GitHub">
           <svg class="lucide lucide-github w-4 h-4 text-white shrink-0" width="16" height="16" viewBox="0 0 24 24"
@@ -318,8 +341,8 @@
             <path d="M9 18c-4.51 2-5-2-7-2" />
           </svg>
           <i data-lucide="star" class="w-3.5 h-3.5 text-amber-400 fill-amber-400 shrink-0"></i>
-          <span class="github-star-count font-bold text-amber-400 text-xs sm:text-sm">--</span>
-          <span class="text-slate-300 font-medium text-xs sm:text-sm">Stars</span>
+          <span class="github-star-count text-slate-300 text-xs sm:text-sm">--</span>
+          <span class="text-slate-300 text-xs sm:text-sm">Stars</span>
         </a>
 
         <!-- Donation Button -->
@@ -368,7 +391,9 @@
         <a href="https://ishara-madu.github.io/gemini-watermark-remover/" target="_blank" rel="noopener noreferrer"
           class="flex items-center justify-between text-sm font-medium text-slate-700 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50">
           <div class="flex items-center gap-2.5">
-            <i data-lucide="sparkles" class="w-4 h-4 text-indigo-600"></i>
+            <img
+              src="https://www.google.com/s2/favicons?domain=https://ishara-madu.github.io/gemini-watermark-remover/&sz=64"
+              alt="Gemini Watermark Remover" class="w-5 h-5 object-contain rounded shrink-0" loading="lazy" />
             <span>Gemini Watermark Remover</span>
           </div>
           <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-400"></i>
@@ -376,7 +401,7 @@
       </div>
 
       <div class="flex gap-2 pt-2 border-t border-slate-200 mt-1">
-        <a href="https://github.com/ishara-madu/online-image-convertor" target="_blank" rel="noopener noreferrer"
+        <a href="https://github.com/ishara-madu/online-image-converter" target="_blank" rel="noopener noreferrer"
           class="flex-1 justify-center inline-flex items-center gap-1.5 bg-[#0F172A] hover:bg-slate-800 text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-xs transition-colors"
           title="Star on GitHub">
           <svg class="lucide lucide-github w-4 h-4 text-white shrink-0" width="16" height="16" viewBox="0 0 24 24"
@@ -400,236 +425,247 @@
   </header>
 
   <!-- Main Content Container -->
-  <main class="flex-1 w-full px-4 sm:px-8 lg:px-12 py-8 sm:py-12 mx-auto flex flex-col gap-10 max-w-5xl" id="app">
-    <!-- Hero Section with Right-Side Format Selector & Options Box -->
-    <section class="w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 sm:gap-8">
-      <!-- Left: Title, Subtitle & AEO/SEO Key Signals -->
-      <div class="text-left flex-1 w-full flex flex-col gap-3">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
-          Free Online Image Converter <span class="text-indigo-600 font-extrabold">– 100% Private & Fast</span>
-        </h1>
-        <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
-          Convert, resize, and compress pictures online directly in your browser with <strong
-            class="text-slate-900 font-bold">zero server uploads</strong>. Instantly convert between <strong
-            class="text-slate-800 font-bold">JPG, PNG, WebP, AVIF, Apple HEIC, SVG vector, ICO favicon, and GIF</strong>
-          with GPU-accelerated speed and pristine lossless quality.
-        </p>
-        <!-- AEO/SEO Instant Trust & Capability Badges -->
-        <div class="flex items-center gap-2 flex-wrap pt-1 text-[11px] sm:text-xs font-bold text-slate-600">
-          <span
-            class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 px-2.5 py-1 rounded-md shadow-2xs whitespace-nowrap">
-            <span>100% Client-Side (Zero Uploads)</span>
-          </span>
-          <span
-            class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-800 px-2.5 py-1 rounded-md shadow-2xs whitespace-nowrap">
-            <span>Multi-Core Hardware Accelerated</span>
-          </span>
-          <span
-            class="inline-flex items-center gap-1.5 bg-slate-50 text-slate-800 px-2.5 py-1 rounded-md shadow-2xs whitespace-nowrap">
-            <span>Batch ZIP up to 800 MB</span>
-          </span>
-          <span
-            class="inline-flex items-center gap-1.5 bg-purple-50 text-slate-800 px-2.5 py-1 rounded-md shadow-2xs whitespace-nowrap">
-            <span>100% Free & Unlimited</span>
-          </span>
-        </div>
-      </div>
-
-      <!-- Right: Interactive Dual-Card Converter Selector (Matching Mockup) -->
-      <div
-        class="flex items-center gap-2 sm:gap-3 shrink-0 self-center md:self-center md:ml-auto select-none pt-2 sm:pt-0"
-        id="hero-format-widget">
-        <!-- Left Static Input Card (Visual Design Only) -->
-        <div
-          class="bg-white rounded-2xl p-3 sm:p-3.5 shadow-sm flex flex-col items-center justify-between w-22 h-22 sm:w-26 sm:h-26 text-center relative shrink-0"
-          title="Input format: Any supported image">
-          <div class="w-7 h-7 flex items-center justify-center text-slate-700 mt-0.5">
-            <i data-lucide="file" class="w-6 h-6 text-slate-700"></i>
-          </div>
-          <span class="font-extrabold text-xs sm:text-sm tracking-wider text-slate-800 uppercase">ANY</span>
-          <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400 opacity-60"></i>
-        </div>
-
-        <!-- Center Connection with Horizontal Line and "TO" badge -->
-        <div class="flex flex-col items-center justify-center relative px-0.5 sm:px-1">
-          <!-- Connecting line background -->
-          <div class="w-8 sm:w-10 h-[1px] bg-slate-300 absolute top-[36%] -translate-y-1/2 -z-0"></div>
-          <!-- Circle convert badge -->
-          <div
-            class="w-8 h-8 rounded-full bg-white shadow-2xs flex items-center justify-center text-slate-700 relative z-10">
-            <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-indigo-600"></i>
-          </div>
-          <!-- "TO" text -->
-          <span class="text-[10px] font-extrabold tracking-[0.25em] text-slate-400 uppercase mt-1 z-10">TO</span>
-        </div>
-
-        <!-- Right Interactive Output Card (Dropdown Trigger & Options Icon on top) -->
-        <div class="relative shrink-0" id="global-format-dropdown">
-          <!-- Options Icon Button on Top Right of the Output Card -->
-          <button type="button" id="btnGlobalOptions"
-            class="absolute -top-2.5 -right-2.5 w-7 h-7 rounded-lg bg-white hover:bg-indigo-50 text-slate-600 hover:text-indigo-600 shadow-xs flex items-center justify-center transition-colors cursor-pointer z-30"
-            title="Configure dimensions, fit mode, and quality for all images">
-            <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
-          </button>
-
-          <!-- Main Format Selection Card Button -->
-          <button type="button" id="global-format-btn"
-            class="bg-white hover:bg-indigo-50/40 rounded-2xl p-3 sm:p-3.5 shadow-sm flex flex-col items-center justify-between w-22 h-22 sm:w-26 sm:h-26 text-center transition-colors cursor-pointer group relative"
-            aria-haspopup="listbox" aria-expanded="false" title="Click to change target format for all images">
-            <div class="w-7 h-7 flex items-center justify-center text-indigo-600 mt-0.5">
-              <i data-lucide="file-image" class="w-6 h-6 text-indigo-600"></i>
-            </div>
-            <span id="global-format-label"
-              class="font-extrabold text-xs sm:text-sm tracking-wider text-indigo-700 uppercase">WEBP</span>
-            <i data-lucide="chevron-down" id="global-format-chevron"
-              class="w-3.5 h-3.5 text-indigo-500 transition-transform"></i>
-          </button>
-
-          <!-- Dropdown Popover Menu (Positioned cleanly below the right card) -->
-          <div id="global-format-menu"
-            class="hidden absolute top-full right-0 mt-2 z-40 bg-white border border-slate-200 rounded-xl shadow-xl py-1.5 flex-col divide-y divide-slate-100/80 min-w-[220px] max-h-64 overflow-y-auto"
-            role="listbox">
-            <!-- Dynamically populated options -->
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-
-    <!-- Converter Section (No outer white box wrapper) -->
-    <section class="w-full relative" id="converter-section">
-      <!-- Hidden File Input for browsing / adding files -->
-      <input type="file" id="file-input" multiple
-        accept=".jpg,.jpeg,.png,.webp,.bmp,.avif,.heic,.heif,.gif,.svg,.ico,image/*" class="hidden" />
-
-      <!-- Main Drag & Drop Zone (Clean rectangular box shape with subtle rounded corners) -->
-      <div
-        class="border-2 border-dashed border-slate-300 bg-white rounded-xl p-10 sm:p-14 text-center cursor-pointer transition-colors duration-150 shadow-sm group flex flex-col items-center justify-center gap-3 hover:bg-blue-50/20"
-        id="drop-zone">
-        <i data-lucide="upload" class="w-9 h-9 group-hover:text-blue-700"></i>
-        <div class="text-lg font-bold text-slate-900 group-hover:text-blue-700 transition-colors">Upload or drag
-          your
-          images here</div>
-        <div class="text-sm text-slate-500">Supports PNG, JPG, WebP, AVIF, HEIC, SVG, ICO (Single or batch)</div>
-        <span class="inline-block text-xs text-slate-600 px-3 py-1 mt-2 group-hover:text-blue-700 transition-colors">
-          Concurrency Pool Powered • Max 800 MB Safe ZIP Limit</span>
-      </div>
-
-      <!-- Queue Manager Container (shown when files are in queue) -->
-      <div class="hidden flex-col gap-4 w-full" id="queue-manager">
-        <!-- Queue Header Toolbar -->
-        <div class="flex items-center justify-between flex-wrap gap-3 p-2.5 sm:px-3">
-          <div class="flex items-center gap-3">
-            <div
-              class="inline-flex items-center gap-1.5 text-indigo-700 text-xs sm:text-sm font-bold pr-3 py-1 whitespace-nowrap">
-              <i data-lucide="layers" class="w-4 h-4"></i>
-              <span id="queue-count-text">0 Images</span>
-            </div>
-            <span class="text-xs sm:text-sm font-semibold text-slate-500 whitespace-nowrap" id="queue-size-text">Total:
-              0 KB</span>
-          </div>
-        </div>
-
-        <!-- Individual File Item Bars Wrapper with Fade Overlay -->
-        <div class="relative w-full overflow-visible" id="fileItemsWrapper">
-          <div class="flex flex-col gap-2.5 transition-all duration-200 max-h-[260px] overflow-hidden"
-            id="file-items-list">
-            <!-- Dynamically populated per-image bars -->
-          </div>
-
-          <!-- Bottom Fade Overlay with Show All Button -->
-          <div
-            class="hidden absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/80 to-transparent items-end justify-center pb-1 z-10 pointer-events-none"
-            id="listFadeOverlay">
-            <button type="button"
-              class="pointer-events-auto inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 text-xs sm:text-sm font-bold px-4 py-2 transition-colors cursor-pointer whitespace-nowrap"
-              id="btnShowAll">
-              <span id="showAllBtnText">Show all images</span>
-              <i data-lucide="chevron-down" id="showAllBtnIcon" class="w-4 h-4"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Drop More Mini Strip -->
-        <div class="flex items-center justify-center gap-2 p-3 text-xs sm:text-sm text-slate-800 cursor-pointer"
-          id="drop-more-strip">
-          <i data-lucide="upload" class="w-4 h-4 text-slate-900"></i>
-          <span>Drop more images anywhere or <strong class="underline text-indigo-600">click to browse</strong></span>
-        </div>
-      </div>
-
-      <!-- Action Button (Convert All & Download ZIP) Sticky Floating Bar -->
-      <div class="hidden sticky bottom-6 z-30 justify-center w-full mt-4 pointer-events-none"
-        id="stickyActionBarWrapper">
-        <div
-          class="pointer-events-auto w-full max-w-3xl bg-white/95 backdrop-blur-xl border border-slate-200 shadow-xl shadow-slate-300/40 rounded-xl p-2 sm:p-2.5 px-4 sm:px-5 flex items-center justify-between gap-3 flex-wrap sm:flex-nowrap transition-all">
-          <!-- Left: Mark All / Select All Checkbox -->
-          <label
-            class="inline-flex items-center gap-2 cursor-pointer select-none text-xs sm:text-sm font-bold text-slate-900 whitespace-nowrap"
-            title="Toggle Select All">
-            <input type="checkbox" id="selectAllCheckbox" checked class="custom-checkbox-input hidden" />
+  <main
+    class="flex-1 w-full px-4 sm:px-8 lg:px-12 py-8 sm:py-12 mx-auto flex flex-col gap-12 sm:gap-14 max-w-5xl relative z-10"
+    id="app">
+    <!-- Top Interactive Converter Workspace (Hero + Drop Zone) -->
+    <div class="w-full flex flex-col gap-6 sm:gap-8">
+      <!-- Hero Section with Right-Side Format Selector & Options Box -->
+      <section class="w-full flex flex-col md:flex-row items-start md:items-end justify-between gap-6 sm:gap-8">
+        <!-- Left: Title, Subtitle & AEO/SEO Key Signals -->
+        <div class="text-left flex-1 w-full flex flex-col gap-3">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+            Free Online Image Converter <span class="text-indigo-600 font-extrabold">– 100% Private & Fast</span>
+          </h1>
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl">
+            Convert, resize, and compress pictures online directly in your browser with <strong
+              class="text-slate-900 font-bold">zero server uploads</strong>. Instantly convert between <strong
+              class="text-slate-800 font-bold">JPG, PNG, WebP, AVIF, Apple HEIC, SVG vector, ICO favicon, and
+              GIF</strong>
+            with GPU-accelerated speed and pristine lossless quality.
+          </p>
+          <!-- AEO/SEO Instant Trust & Capability Badges -->
+          <div class="flex items-center gap-2 flex-wrap pt-1 text-[11px] sm:text-xs font-bold text-slate-600">
             <span
-              class="custom-checkbox-box w-4.5 h-4.5 rounded border border-slate-300 bg-white flex items-center justify-center text-white transition-colors">
-              <i data-lucide="check" class="w-3 h-3 stroke-[3]"></i>
+              class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 px-2.5 py-1 rounded-md shadow-2xs whitespace-nowrap">
+              <span>100% Client-Side (Zero Uploads)</span>
             </span>
-            <span id="selectAllText">Select All (0)</span>
-          </label>
-
-          <!-- Right Action Buttons -->
-          <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
-            <!-- Delete Selected Button -->
-            <button type="button"
-              class="hidden inline-flex items-center gap-1.5 bg-slate-100 text-slate-600 hover:text-rose-600 hover:bg-rose-50 hover:border-rose-200 text-xs sm:text-sm font-bold px-3 py-1.5 rounded-lg border border-slate-200 transition-colors cursor-pointer whitespace-nowrap"
-              id="btnDeleteSelected" title="Remove selected files">
-              <i data-lucide="trash-2" class="w-4 h-4"></i>
-              <span>Delete</span>
-            </button>
-
-            <!-- Download Selected ZIP Button -->
-            <button type="button"
-              class="hidden inline-flex items-center gap-2 bg-white text-indigo-700 border-2 border-indigo-600 hover:bg-indigo-50 text-xs sm:text-sm font-bold px-4 py-2 rounded-lg shadow-xs transition-colors cursor-pointer whitespace-nowrap"
-              id="btnDownloadSelectedZip">
-              <i data-lucide="folder-archive" class="w-4 h-4"></i>
-              <span id="downloadSelectedZipText">Download</span>
-            </button>
-
-            <!-- Convert Selected Button -->
-            <button type="button"
-              class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold px-5 py-2 rounded-lg shadow-sm shadow-indigo-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer whitespace-nowrap"
-              id="btnConvertSelected">
-              <i data-lucide="arrow-right-left" class="w-4 h-4"></i>
-              <span id="convertSelectedBtnText">Convert</span>
-            </button>
+            <span
+              class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-800 px-2.5 py-1 rounded-md shadow-2xs whitespace-nowrap">
+              <span>Multi-Core Hardware Accelerated</span>
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 bg-slate-50 text-slate-800 px-2.5 py-1 rounded-md shadow-2xs whitespace-nowrap">
+              <span>Batch ZIP up to 800 MB</span>
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 bg-purple-50 text-slate-800 px-2.5 py-1 rounded-md shadow-2xs whitespace-nowrap">
+              <span>100% Free & Unlimited</span>
+            </span>
           </div>
         </div>
-      </div>
 
-      <!-- Live Progress Bar & Concurrency Pool Stats -->
+        <!-- Right: Interactive Dual-Card Converter Selector (Matching Mockup) -->
+        <div
+          class="flex items-center gap-2 sm:gap-3 shrink-0 self-center md:self-center md:ml-auto select-none pt-2 sm:pt-0 relative"
+          id="hero-format-widget">
 
+          <!-- Ambient Glow Background to make it pop -->
+          <div class="absolute inset-0 bg-indigo-500/10 blur-3xl rounded-full scale-125 z-0 pointer-events-none"></div>
 
-      <!-- Status div -->
-      <div id="status" class="mt-4 text-center text-sm font-semibold min-h-[24px]"></div>
+          <!-- Left Static Input Card (Visual Design Only) -->
+          <div
+            class="bg-white rounded-2xl p-3 sm:p-3.5 shadow-xl shadow-indigo-200/50 ring-1 ring-indigo-50 flex flex-col items-center justify-between w-22 h-22 sm:w-26 sm:h-26 text-center relative shrink-0 z-10"
+            title="Input format: Any supported image">
+            <div class="w-7 h-7 flex items-center justify-center text-slate-700 mt-0.5">
+              <i data-lucide="file" class="w-6 h-6 text-slate-700"></i>
+            </div>
+            <span class="font-extrabold text-xs sm:text-sm tracking-wider text-slate-800 uppercase">ANY</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400 opacity-60"></i>
+          </div>
 
-      <!-- Result Area -->
-      <div id="result-area" class="mt-4 flex flex-col items-center gap-3 w-full"></div>
-    </section>
+          <!-- Center Connection with Horizontal Line and "TO" badge -->
+          <div class="flex flex-col items-center justify-center relative px-0.5 sm:px-1 z-10">
+            <!-- Circle convert badge -->
+            <div class="relative flex items-center justify-center">
+              <!-- Pulse animation -->
+              <div class="absolute inline-flex h-6 w-6 rounded-full bg-indigo-500 opacity-40 animate-ping"></div>
+              <div
+                class="w-8 h-8 rounded-full bg-white shadow-md ring-1 ring-indigo-100 flex items-center justify-center text-slate-700 relative z-10 transition-colors">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-indigo-600"></i>
+              </div>
+            </div>
+          </div>
 
-    <!-- Global Full Screen Drag & Drop Overlay -->
-    <div
-      class="hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md items-center justify-center pointer-events-none"
-      id="globalDropOverlay">
-      <div class="p-10 sm:p-14 text-center flex flex-col items-center">
-        <div class="w-20 h-20 flex items-center justify-center mb-2">
-          <i data-lucide="upload" class="w-10 h-10"></i>
+          <!-- Right Interactive Output Card (Dropdown Trigger & Options Icon on top) -->
+          <div class="relative shrink-0 z-10" id="global-format-dropdown">
+            <!-- Options Icon Button on Top Right of the Output Card -->
+            <button type="button" id="btnGlobalOptions"
+              class="absolute -top-2.5 -right-2.5 w-7 h-7 rounded-lg bg-white hover:bg-indigo-50 text-slate-600 hover:text-indigo-600 shadow-md ring-1 ring-slate-100 flex items-center justify-center transition-colors cursor-pointer z-30"
+              title="Configure dimensions, fit mode, and quality for all images">
+              <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
+            </button>
+
+            <!-- Main Format Selection Card Button -->
+            <button type="button" id="global-format-btn"
+              class="bg-white hover:bg-indigo-50/40 rounded-2xl p-3 sm:p-3.5 shadow-xl shadow-indigo-200/50 hover:shadow-indigo-300/50 ring-1 ring-indigo-50 hover:ring-indigo-100 flex flex-col items-center justify-between w-22 h-22 sm:w-26 sm:h-26 text-center transition-all duration-300 cursor-pointer group relative"
+              aria-haspopup="listbox" aria-expanded="false" title="Click to change target format for all images">
+              <div class="w-7 h-7 flex items-center justify-center text-indigo-600 mt-0.5">
+                <i data-lucide="file-image" class="w-6 h-6 text-indigo-600"></i>
+              </div>
+              <span id="global-format-label"
+                class="font-extrabold text-xs sm:text-sm tracking-wider text-indigo-700 uppercase">WEBP</span>
+              <i data-lucide="chevron-down" id="global-format-chevron"
+                class="w-3.5 h-3.5 text-indigo-500 transition-transform"></i>
+            </button>
+
+            <!-- Dropdown Popover Menu (Positioned cleanly below the right card) -->
+            <div id="global-format-menu"
+              class="hidden absolute top-full right-0 mt-2 z-40 bg-white border border-slate-200 rounded-xl shadow-xl py-1.5 flex-col divide-y divide-slate-100/80 min-w-[220px] max-h-64 overflow-y-auto"
+              role="listbox">
+              <!-- Dynamically populated options -->
+            </div>
+          </div>
         </div>
-        <h2 class="text-2xl font-extrabold text-slate-900 mb-1">Drop images anywhere</h2>
-        <p class="text-sm text-slate-800">Release to add files directly to the conversion queue</p>
+      </section>
+
+
+
+      <!-- Converter Section (No outer white box wrapper) -->
+      <section class="w-full relative" id="converter-section">
+        <!-- Hidden File Input for browsing / adding files -->
+        <input type="file" id="file-input" multiple
+          accept=".jpg,.jpeg,.png,.webp,.bmp,.avif,.heic,.heif,.gif,.svg,.ico,image/*" class="hidden" />
+
+        <!-- Main Drag & Drop Zone (Clean rectangular box shape with subtle rounded corners) -->
+        <div
+          class="border-2 border-dashed border-slate-300 bg-white rounded-xl p-10 sm:p-14 text-center cursor-pointer transition-colors duration-150 shadow-sm group flex flex-col items-center justify-center gap-3 hover:bg-blue-50/20"
+          id="drop-zone">
+          <i data-lucide="upload" class="w-9 h-9 group-hover:text-blue-700"></i>
+          <div class="text-lg font-bold text-slate-900 group-hover:text-blue-700 transition-colors">Upload or drag
+            your
+            images here</div>
+          <div class="text-sm text-slate-500">Supports PNG, JPG, WebP, AVIF, HEIC, SVG, ICO (Single or batch)</div>
+          <span class="inline-block text-xs text-slate-600 px-3 py-1 mt-2 group-hover:text-blue-700 transition-colors">
+            Concurrency Pool Powered • Max 800 MB Safe ZIP Limit</span>
+        </div>
+
+        <!-- Queue Manager Container (shown when files are in queue) -->
+        <div class="hidden flex-col gap-4 w-full" id="queue-manager">
+          <!-- Queue Header Toolbar -->
+          <div class="flex items-center justify-between flex-wrap gap-3 p-2.5 sm:px-3">
+            <div class="flex items-center gap-3">
+              <div
+                class="inline-flex items-center gap-1.5 text-indigo-700 text-xs sm:text-sm font-bold pr-3 py-1 whitespace-nowrap">
+                <i data-lucide="layers" class="w-4 h-4"></i>
+                <span id="queue-count-text">0 Images</span>
+              </div>
+              <span class="text-xs sm:text-sm font-semibold text-slate-500 whitespace-nowrap"
+                id="queue-size-text">Total:
+                0 KB</span>
+            </div>
+          </div>
+
+          <!-- Individual File Item Bars Wrapper with Fade Overlay -->
+          <div class="relative w-full overflow-visible" id="fileItemsWrapper">
+            <div class="flex flex-col gap-2.5 transition-all duration-200 max-h-[260px] overflow-hidden"
+              id="file-items-list">
+              <!-- Dynamically populated per-image bars -->
+            </div>
+
+            <!-- Bottom Fade Overlay with Show All Button -->
+            <div
+              class="hidden absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/80 to-transparent items-end justify-center pb-1 z-10 pointer-events-none"
+              id="listFadeOverlay">
+              <button type="button"
+                class="pointer-events-auto inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 text-xs sm:text-sm font-bold px-4 py-2 transition-colors cursor-pointer whitespace-nowrap"
+                id="btnShowAll">
+                <span id="showAllBtnText">Show all images</span>
+                <i data-lucide="chevron-down" id="showAllBtnIcon" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Drop More Mini Strip -->
+          <div class="flex items-center justify-center gap-2 p-3 text-xs sm:text-sm text-slate-800 cursor-pointer"
+            id="drop-more-strip">
+            <i data-lucide="upload" class="w-4 h-4 text-slate-900"></i>
+            <span>Drop more images anywhere or <strong class="underline text-indigo-600">click to browse</strong></span>
+          </div>
+        </div>
+
+        <!-- Action Button (Convert All & Download ZIP) Sticky Floating Bar -->
+        <div class="hidden sticky bottom-6 z-30 justify-center w-full mt-4 pointer-events-none"
+          id="stickyActionBarWrapper">
+          <div
+            class="pointer-events-auto w-full max-w-3xl bg-white/95 backdrop-blur-xl border border-slate-200 shadow-xl shadow-slate-300/40 rounded-xl p-2 sm:p-2.5 px-4 sm:px-5 flex items-center justify-between gap-3 flex-wrap sm:flex-nowrap transition-all">
+            <!-- Left: Mark All / Select All Checkbox -->
+            <label
+              class="inline-flex items-center gap-2 cursor-pointer select-none text-xs sm:text-sm font-bold text-slate-900 whitespace-nowrap"
+              title="Toggle Select All">
+              <input type="checkbox" id="selectAllCheckbox" checked class="custom-checkbox-input hidden" />
+              <span
+                class="custom-checkbox-box w-4.5 h-4.5 rounded border border-slate-300 bg-white flex items-center justify-center text-white transition-colors">
+                <i data-lucide="check" class="w-3 h-3 stroke-[3]"></i>
+              </span>
+              <span id="selectAllText">Select All (0)</span>
+            </label>
+
+            <!-- Right Action Buttons -->
+            <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+              <!-- Delete Selected Button -->
+              <button type="button"
+                class="hidden inline-flex items-center gap-1.5 bg-slate-100 text-slate-600 hover:text-rose-600 hover:bg-rose-50 hover:border-rose-200 text-xs sm:text-sm font-bold px-3 py-1.5 rounded-lg border border-slate-200 transition-colors cursor-pointer whitespace-nowrap"
+                id="btnDeleteSelected" title="Remove selected files">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                <span>Delete</span>
+              </button>
+
+              <!-- Download Selected ZIP Button -->
+              <button type="button"
+                class="hidden inline-flex items-center gap-2 bg-white text-indigo-700 border-2 border-indigo-600 hover:bg-indigo-50 text-xs sm:text-sm font-bold px-4 py-2 rounded-lg shadow-xs transition-colors cursor-pointer whitespace-nowrap"
+                id="btnDownloadSelectedZip">
+                <i data-lucide="folder-archive" class="w-4 h-4"></i>
+                <span id="downloadSelectedZipText">Download</span>
+              </button>
+
+              <!-- Convert Selected Button -->
+              <button type="button"
+                class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold px-5 py-2 rounded-lg shadow-sm shadow-indigo-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer whitespace-nowrap"
+                id="btnConvertSelected">
+                <i data-lucide="arrow-right-left" class="w-4 h-4"></i>
+                <span id="convertSelectedBtnText">Convert</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Progress Bar & Concurrency Pool Stats -->
+
+
+        <!-- Status div -->
+        <div id="status" class="mt-4 text-center text-sm font-semibold min-h-[24px]"></div>
+
+        <!-- Result Area -->
+        <div id="result-area" class="mt-4 flex flex-col items-center gap-3 w-full"></div>
+      </section>
+
+      <!-- Global Full Screen Drag & Drop Overlay -->
+      <div
+        class="hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md items-center justify-center pointer-events-none"
+        id="globalDropOverlay">
+        <div class="p-10 sm:p-14 text-center flex flex-col items-center">
+          <div class="w-20 h-20 flex items-center justify-center mb-2">
+            <i data-lucide="upload" class="w-10 h-10"></i>
+          </div>
+          <h2 class="text-2xl font-extrabold text-slate-900 mb-1">Drop images anywhere</h2>
+          <p class="text-sm text-slate-800">Release to add files directly to the conversion queue</p>
+        </div>
       </div>
     </div>
 
     <!-- Smart Interactive Focus & SEO Format Encyclopedia Section -->
-    <section class="w-full mt-4 flex flex-col gap-6" id="formats-section" aria-label="Image Format Information Guide">
+    <section class="w-full flex flex-col gap-6 pb-10" id="formats-section" aria-label="Image Format Information Guide">
       <!-- Section Header with Dynamic Focus Status Badge -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
         <div>
@@ -1230,7 +1266,7 @@
     </section>
 
     <!-- Step-by-Step How-To Conversion Guide Section (High-Value SEO & User Guide) -->
-    <section class="w-full mt-2 flex flex-col gap-6" id="how-to-section"
+    <section class="w-full flex flex-col gap-6 pb-10" id="how-to-section"
       aria-label="Step-by-Step Image Conversion Guide">
       <!-- Section Header -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
@@ -1342,412 +1378,419 @@
 
     </section>
 
-    <!-- Why Choose Us & Key Advantages Section (High-Value SEO Authority Section) -->
-    <section class="w-full mt-2 flex flex-col gap-6" id="why-choose-us-section"
-      aria-label="Why Choose Our Online Image Converter">
-      <!-- Section Header -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
-            <span>Why Choose Our Online Image Converter?</span>
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1">
-            Engineered for uncompromising speed, bank-grade privacy, and unmatched versatility without remote server
-            uploads.
-          </p>
-        </div>
-        <span
-          class="inline-flex items-center gap-1.5 text-indigo-700 text-xs font-bold px-3 py-1.5 self-start sm:self-auto shrink-0 whitespace-nowrap">
-          <span>Client-Side Architecture</span>
-        </span>
-      </div>
-
-      <!-- 6 Core Feature Advantage Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10 lg:gap-x-12 lg:gap-y-12 py-3">
-        <!-- Item 1: 100% Private -->
-        <div class="flex items-start gap-4" id="privacy-section">
-          <div class="text-slate-900 shrink-0 mt-0.5">
-            <i data-lucide="shield-check" class="w-5 h-5"></i>
-          </div>
-          <div class="flex flex-col gap-2">
-            <div>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">100% Private &amp; Safe</h3>
-              <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
-                <span>Zero Cloud Storage / Zero Logs</span>
-              </div>
-            </div>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Your personal photos and sensitive documents are never uploaded to any remote server. All image operations
-              occur strictly inside your local browser sandbox.
+    <!-- Value Proposition Suite (Why Choose Us + Technical Architecture Comparison) -->
+    <div class="w-full flex flex-col gap-8 sm:gap-10">
+      <!-- Why Choose Us & Key Advantages Section (High-Value SEO Authority Section) -->
+      <section class="w-full flex flex-col gap-6 pb-10" id="why-choose-us-section"
+        aria-label="Why Choose Our Online Image Converter">
+        <!-- Section Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
+              <span>Why Choose Our Online Image Converter?</span>
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">
+              Engineered for uncompromising speed, bank-grade privacy, and unmatched versatility without remote server
+              uploads.
             </p>
           </div>
+          <span
+            class="inline-flex items-center gap-1.5 text-indigo-700 text-xs font-bold px-3 py-1.5 self-start sm:self-auto shrink-0 whitespace-nowrap">
+            <span>Client-Side Architecture</span>
+          </span>
         </div>
 
-        <!-- Item 2: Hardware Accelerated -->
-        <div class="flex items-start gap-4">
-          <div class="text-slate-900 shrink-0 mt-0.5">
-            <i data-lucide="brain-cog" class="w-5 h-5"></i>
-          </div>
-          <div class="flex flex-col gap-2">
-            <div>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">Multi-Threaded Hardware Engine</h3>
-              <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
-                <span>Zero Network Upload Lag</span>
-              </div>
+        <!-- 6 Core Feature Advantage Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10 lg:gap-x-12 lg:gap-y-12 py-3">
+          <!-- Item 1: 100% Private -->
+          <div class="flex items-start gap-4" id="privacy-section">
+            <div class="text-slate-900 shrink-0 mt-0.5">
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
             </div>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Uses HTML5 Canvas and WebAssembly with automatic CPU core concurrency to process multiple images in
-              parallel with GPU hardware acceleration.
+            <div class="flex flex-col gap-2">
+              <div>
+                <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">100% Private &amp; Safe</h3>
+                <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                  <span>Zero Cloud Storage / Zero Logs</span>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Your personal photos and sensitive documents are never uploaded to any remote server. All image
+                operations
+                occur strictly inside your local browser sandbox.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 2: Hardware Accelerated -->
+          <div class="flex items-start gap-4">
+            <div class="text-slate-900 shrink-0 mt-0.5">
+              <i data-lucide="cpu" class="w-5 h-5"></i>
+            </div>
+            <div class="flex flex-col gap-2">
+              <div>
+                <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">Multi-Threaded Hardware Engine
+                </h3>
+                <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                  <span>Zero Network Upload Lag</span>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Uses HTML5 Canvas and WebAssembly with automatic CPU core concurrency to process multiple images in
+                parallel with GPU hardware acceleration.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 3: Next-Gen Formats & Vector -->
+          <div class="flex items-start gap-4">
+            <div class="text-slate-900 shrink-0 mt-0.5">
+              <i data-lucide="layers" class="w-5 h-5"></i>
+            </div>
+            <div class="flex flex-col gap-2">
+              <div>
+                <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">Apple HEIC, AVIF &amp; Vector SVG
+                </h3>
+                <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                  <span>Comprehensive Multi-Format</span>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                Seamlessly convert iPhone HEIC camera photos, export next-gen WebP/AVIF web assets, generate standard
+                ICO
+                favicons, and trace raster images to clean SVG vector curves.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 4: Precision Controls -->
+          <div class="flex items-start gap-4">
+            <div class="text-slate-900 shrink-0 mt-0.5">
+              <i data-lucide="sliders-horizontal" class="w-5 h-5"></i>
+            </div>
+            <div class="flex flex-col gap-2">
+              <div>
+                <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">Custom Dimensions &amp; Fit Modes
+                </h3>
+                <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                  <span>EXIF Metadata Stripping</span>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Configure target pixel width and height, choose smart aspect-ratio fitting (<code
+                  class="text-indigo-700 font-bold">max</code>, <code class="text-indigo-700 font-bold">crop</code>,
+                <code class="text-indigo-700 font-bold">scale</code>, <code
+                  class="text-indigo-700 font-bold">contain</code>),
+                and adjust lossy quality from 1 to 100%.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 5: Safe Batch ZIP -->
+          <div class="flex items-start gap-4">
+            <div class="text-slate-900 shrink-0 mt-0.5">
+              <i data-lucide="folder-archive" class="w-5 h-5"></i>
+            </div>
+            <div class="flex flex-col gap-2">
+              <div>
+                <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">Safe Batch ZIP Downloads</h3>
+                <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                  <span>Selective or Bulk Downloads</span>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Convert dozens of images at once and download everything neatly packaged in a high-speed compressed ZIP
+                archive with duplicate-name safeguards (up to 800 MB safe limit).
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 6: 100% Free & Unlimited -->
+          <div class="flex items-start gap-4">
+            <div class="text-slate-900 shrink-0 mt-0.5">
+              <i data-lucide="zap" class="w-5 h-5"></i>
+            </div>
+            <div class="flex flex-col gap-2">
+              <div>
+                <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">100% Free &amp; Unlimited</h3>
+                <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                  <span>No Watermarks / No Sign-up</span>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                No daily conversion quotas, no forced sign-ups or subscriptions, and absolutely zero watermarks stamped
+                onto your images. Free and open-source forever.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical Architecture & Feature Comparison Section (High-Intent SEO Ranking Asset) -->
+      <section class="w-full flex flex-col gap-6 pb-10" id="architecture-comparison-section"
+        aria-label="Technical Architecture &amp; Feature Comparison">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
+              <span>Technical Architecture &amp; Feature Comparison</span>
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">
+              A side-by-side benchmark comparing modern in-browser client-side execution with legacy cloud-hosted
+              services.
             </p>
           </div>
+          <span
+            class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 px-2.5 py-1 self-start sm:self-auto shrink-0">
+            <span>Verified Benchmark</span>
+          </span>
         </div>
 
-        <!-- Item 3: Next-Gen Formats & Vector -->
-        <div class="flex items-start gap-4">
-          <div class="text-slate-900 shrink-0 mt-0.5">
-            <i data-lucide="layers" class="w-5 h-5"></i>
-          </div>
-          <div class="flex flex-col gap-2">
-            <div>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">Apple HEIC, AVIF &amp; Vector SVG
-              </h3>
-              <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
-                <span>Comprehensive Multi-Format</span>
-              </div>
-            </div>
-            <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-              Seamlessly convert iPhone HEIC camera photos, export next-gen WebP/AVIF web assets, generate standard ICO
-              favicons, and trace raster images to clean SVG vector curves.
-            </p>
-          </div>
+        <div class="overflow-x-auto border border-slate-200 rounded-md">
+          <table class="w-full text-left text-xs sm:text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-slate-200 bg-slate-50 text-slate-800 font-bold">
+                <th class="py-3 px-4 w-[34%]">Capability &amp; Benchmark</th>
+                <th
+                  class="py-3 px-4 w-[33%] text-indigo-700 bg-indigo-50/40 border-x border-indigo-100/60 font-extrabold">
+                  <div class="flex items-center gap-2">
+                    <span>Online Image Converter</span>
+                    <span
+                      class="bg-indigo-600 text-white text-[10px] font-bold px-1.5 py-0.2 rounded uppercase tracking-wider">Client-Side</span>
+                  </div>
+                </th>
+                <th class="py-3 px-4 w-[33%] text-slate-600 font-semibold">
+                  <div class="flex items-center gap-2">
+                    <span>Legacy Cloud Services</span>
+                    <span
+                      class="bg-slate-200 text-slate-700 text-[10px] font-semibold px-1.5 py-0.2 rounded uppercase tracking-wider">Server-Based</span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700">
+              <!-- Row 1: Privacy & Data Pipeline -->
+              <tr class="hover:bg-slate-50/50 transition-colors">
+                <td class="py-3.5 px-4 align-top">
+                  <div class="font-bold text-slate-900">Data Privacy &amp; Security</div>
+                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Where raw image bytes and pixels are
+                    processed</div>
+                </td>
+                <td
+                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                  <div class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <div>
+                      <span class="font-bold text-emerald-800">100% In-Browser Memory</span>
+                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Zero remote uploads. Sensitive photos
+                        remain strictly inside your local device sandbox.</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-3.5 px-4 align-top text-slate-600">
+                  <div class="flex items-start gap-2">
+                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                    <div>
+                      <span class="font-medium text-slate-800">Uploaded to Cloud Servers</span>
+                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Requires uploading images to
+                        third-party
+                        remote servers with potential data retention risks.</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row 2: Processing Architecture -->
+              <tr class="hover:bg-slate-50/50 transition-colors">
+                <td class="py-3.5 px-4 align-top">
+                  <div class="font-bold text-slate-900">Processing Architecture &amp; Speed</div>
+                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Hardware acceleration and conversion
+                    latency</div>
+                </td>
+                <td
+                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                  <div class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <div>
+                      <span class="font-bold text-slate-900">GPU &amp; Multi-Core WebAssembly</span>
+                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Direct GPU/Canvas hardware execution
+                        with zero internet upload or download latency.</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-3.5 px-4 align-top text-slate-600">
+                  <div class="flex items-start gap-2">
+                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                    <div>
+                      <span class="font-medium text-slate-800">Network &amp; Server Bottlenecks</span>
+                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Slow round-trip network transfers and
+                        shared queuing on remote cloud servers.</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row 3: Conversion Limits -->
+              <tr class="hover:bg-slate-50/50 transition-colors">
+                <td class="py-3.5 px-4 align-top">
+                  <div class="font-bold text-slate-900">Volume &amp; File Limits</div>
+                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Daily conversion allowances and batch
+                    limits</div>
+                </td>
+                <td
+                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                  <div class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <div>
+                      <span class="font-bold text-slate-900">Unlimited Batch Processing</span>
+                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">No daily quotas or artificial file
+                        restrictions. Supports up to 800 MB safe batch archives.</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-3.5 px-4 align-top text-slate-600">
+                  <div class="flex items-start gap-2">
+                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                    <div>
+                      <span class="font-medium text-slate-800">Restricted Free Tiers</span>
+                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Enforces daily limits (e.g. 5–10
+                        files)
+                        and file size caps to compel paid upgrades.</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row 4: Quality & Watermarks -->
+              <tr class="hover:bg-slate-50/50 transition-colors">
+                <td class="py-3.5 px-4 align-top">
+                  <div class="font-bold text-slate-900">Output Quality &amp; Watermarking</div>
+                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Visual integrity and branding
+                    restrictions
+                  </div>
+                </td>
+                <td
+                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                  <div class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <div>
+                      <span class="font-bold text-slate-900">100% Original Quality &amp; No Watermarks</span>
+                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Pristine pixel fidelity with zero
+                        stamped branding or downscaling on exported files.</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-3.5 px-4 align-top text-slate-600">
+                  <div class="flex items-start gap-2">
+                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                    <div>
+                      <span class="font-medium text-slate-800">Downscaling or Watermarks</span>
+                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Free tiers often stamp promotional
+                        watermarks or aggressively compress image output.</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row 5: Modern & Vector Support -->
+              <tr class="hover:bg-slate-50/50 transition-colors">
+                <td class="py-3.5 px-4 align-top">
+                  <div class="font-bold text-slate-900">Vector &amp; Modern Formats</div>
+                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Apple HEIC decoding and SVG vector
+                    tracing
+                  </div>
+                </td>
+                <td
+                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                  <div class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <div>
+                      <span class="font-bold text-slate-900">Native HEIC &amp; SVG Tracing</span>
+                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Built-in Apple iPhone HEIC decoding,
+                        AVIF/WebP, and raster-to-vector SVG tracing.</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-3.5 px-4 align-top text-slate-600">
+                  <div class="flex items-start gap-2">
+                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                    <div>
+                      <span class="font-medium text-slate-800">Paid Add-On Features</span>
+                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">HEIC decoding and vector conversion
+                        are
+                        commonly gated behind premium subscriptions.</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row 6: Custom Controls -->
+              <tr class="hover:bg-slate-50/50 transition-colors">
+                <td class="py-3.5 px-4 align-top">
+                  <div class="font-bold text-slate-900">Granular Conversion Controls</div>
+                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Resolution resizing, fit mathematics, and
+                    EXIF</div>
+                </td>
+                <td
+                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                  <div class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <div>
+                      <span class="font-bold text-slate-900">Full Parameter Control</span>
+                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Custom width/height, 4 aspect-ratio
+                        fit
+                        modes, quality sliders (1-100), and EXIF stripping.</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-3.5 px-4 align-top text-slate-600">
+                  <div class="flex items-start gap-2">
+                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                    <div>
+                      <span class="font-medium text-slate-800">Rigid Preset Options</span>
+                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Minimal parameter customizability
+                        without complex server-side configuration.</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row 7: Account & Friction -->
+              <tr class="hover:bg-slate-50/50 transition-colors">
+                <td class="py-3.5 px-4 align-top">
+                  <div class="font-bold text-slate-900">Account &amp; Billing Model</div>
+                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">User friction and payment requirements
+                  </div>
+                </td>
+                <td
+                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                  <div class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <div>
+                      <span class="font-bold text-slate-900">100% Free &amp; Zero Registration</span>
+                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">No email collection, no mandatory
+                        accounts, and no recurring credit card billing.</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-3.5 px-4 align-top text-slate-600">
+                  <div class="flex items-start gap-2">
+                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                    <div>
+                      <span class="font-medium text-slate-800">Freemium &amp; Account Walls</span>
+                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Persistent prompts to create accounts,
+                        provide emails, and purchase credits.</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-
-        <!-- Item 4: Precision Controls -->
-        <div class="flex items-start gap-4">
-          <div class="text-slate-900 shrink-0 mt-0.5">
-            <i data-lucide="sliders-horizontal" class="w-5 h-5"></i>
-          </div>
-          <div class="flex flex-col gap-2">
-            <div>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">Custom Dimensions &amp; Fit Modes
-              </h3>
-              <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
-                <span>EXIF Metadata Stripping</span>
-              </div>
-            </div>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Configure target pixel width and height, choose smart aspect-ratio fitting (<code
-                class="text-indigo-700 font-bold">max</code>, <code class="text-indigo-700 font-bold">crop</code>, <code
-                class="text-indigo-700 font-bold">scale</code>, <code class="text-indigo-700 font-bold">contain</code>),
-              and adjust lossy quality from 1 to 100%.
-            </p>
-          </div>
-        </div>
-
-        <!-- Item 5: Safe Batch ZIP -->
-        <div class="flex items-start gap-4">
-          <div class="text-slate-900 shrink-0 mt-0.5">
-            <i data-lucide="folder-archive" class="w-5 h-5"></i>
-          </div>
-          <div class="flex flex-col gap-2">
-            <div>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">Safe Batch ZIP Downloads</h3>
-              <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
-                <span>Selective or Bulk Downloads</span>
-              </div>
-            </div>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Convert dozens of images at once and download everything neatly packaged in a high-speed compressed ZIP
-              archive with duplicate-name safeguards (up to 800 MB safe limit).
-            </p>
-          </div>
-        </div>
-
-        <!-- Item 6: 100% Free & Unlimited -->
-        <div class="flex items-start gap-4">
-          <div class="text-slate-900 shrink-0 mt-0.5">
-            <i data-lucide="zap" class="w-5 h-5"></i>
-          </div>
-          <div class="flex flex-col gap-2">
-            <div>
-              <h3 class="font-bold text-sm sm:text-base text-slate-900 leading-snug">100% Free &amp; Unlimited</h3>
-              <div class="mt-1 flex items-center gap-1.5 text-xs font-semibold text-slate-500">
-                <span>No Watermarks / No Sign-up</span>
-              </div>
-            </div>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              No daily conversion quotas, no forced sign-ups or subscriptions, and absolutely zero watermarks stamped
-              onto your images. Free and open-source forever.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Technical Architecture & Feature Comparison Section (High-Intent SEO Ranking Asset) -->
-    <section class="w-full mt-2 flex flex-col gap-6" id="architecture-comparison-section"
-      aria-label="Technical Architecture &amp; Feature Comparison">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
-            <span>Technical Architecture &amp; Feature Comparison</span>
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1">
-            A side-by-side benchmark comparing modern in-browser client-side execution with legacy cloud-hosted
-            services.
-          </p>
-        </div>
-        <span
-          class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 px-2.5 py-1 self-start sm:self-auto shrink-0">
-          <span>Verified Benchmark</span>
-        </span>
-      </div>
-
-      <div class="overflow-x-auto border border-slate-200 rounded-md">
-        <table class="w-full text-left text-xs sm:text-sm border-collapse">
-          <thead>
-            <tr class="border-b border-slate-200 bg-slate-50 text-slate-800 font-bold">
-              <th class="py-3 px-4 w-[34%]">Capability &amp; Benchmark</th>
-              <th
-                class="py-3 px-4 w-[33%] text-indigo-700 bg-indigo-50/40 border-x border-indigo-100/60 font-extrabold">
-                <div class="flex items-center gap-2">
-                  <span>Online Image Converter</span>
-                  <span
-                    class="bg-indigo-600 text-white text-[10px] font-bold px-1.5 py-0.2 rounded uppercase tracking-wider">Client-Side</span>
-                </div>
-              </th>
-              <th class="py-3 px-4 w-[33%] text-slate-600 font-semibold">
-                <div class="flex items-center gap-2">
-                  <span>Legacy Cloud Services</span>
-                  <span
-                    class="bg-slate-200 text-slate-700 text-[10px] font-semibold px-1.5 py-0.2 rounded uppercase tracking-wider">Server-Based</span>
-                </div>
-              </th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-100 text-slate-700">
-            <!-- Row 1: Privacy & Data Pipeline -->
-            <tr class="hover:bg-slate-50/50 transition-colors">
-              <td class="py-3.5 px-4 align-top">
-                <div class="font-bold text-slate-900">Data Privacy &amp; Security</div>
-                <div class="text-[11px] text-slate-500 font-medium mt-0.5">Where raw image bytes and pixels are
-                  processed</div>
-              </td>
-              <td
-                class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                <div class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <div>
-                    <span class="font-bold text-emerald-800">100% In-Browser Memory</span>
-                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Zero remote uploads. Sensitive photos
-                      remain strictly inside your local device sandbox.</p>
-                  </div>
-                </div>
-              </td>
-              <td class="py-3.5 px-4 align-top text-slate-600">
-                <div class="flex items-start gap-2">
-                  <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                  <div>
-                    <span class="font-medium text-slate-800">Uploaded to Cloud Servers</span>
-                    <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Requires uploading images to
-                      third-party
-                      remote servers with potential data retention risks.</p>
-                  </div>
-                </div>
-              </td>
-            </tr>
-
-            <!-- Row 2: Processing Architecture -->
-            <tr class="hover:bg-slate-50/50 transition-colors">
-              <td class="py-3.5 px-4 align-top">
-                <div class="font-bold text-slate-900">Processing Architecture &amp; Speed</div>
-                <div class="text-[11px] text-slate-500 font-medium mt-0.5">Hardware acceleration and conversion
-                  latency</div>
-              </td>
-              <td
-                class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                <div class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <div>
-                    <span class="font-bold text-slate-900">GPU &amp; Multi-Core WebAssembly</span>
-                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Direct GPU/Canvas hardware execution
-                      with zero internet upload or download latency.</p>
-                  </div>
-                </div>
-              </td>
-              <td class="py-3.5 px-4 align-top text-slate-600">
-                <div class="flex items-start gap-2">
-                  <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                  <div>
-                    <span class="font-medium text-slate-800">Network &amp; Server Bottlenecks</span>
-                    <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Slow round-trip network transfers and
-                      shared queuing on remote cloud servers.</p>
-                  </div>
-                </div>
-              </td>
-            </tr>
-
-            <!-- Row 3: Conversion Limits -->
-            <tr class="hover:bg-slate-50/50 transition-colors">
-              <td class="py-3.5 px-4 align-top">
-                <div class="font-bold text-slate-900">Volume &amp; File Limits</div>
-                <div class="text-[11px] text-slate-500 font-medium mt-0.5">Daily conversion allowances and batch
-                  limits</div>
-              </td>
-              <td
-                class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                <div class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <div>
-                    <span class="font-bold text-slate-900">Unlimited Batch Processing</span>
-                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">No daily quotas or artificial file
-                      restrictions. Supports up to 800 MB safe batch archives.</p>
-                  </div>
-                </div>
-              </td>
-              <td class="py-3.5 px-4 align-top text-slate-600">
-                <div class="flex items-start gap-2">
-                  <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                  <div>
-                    <span class="font-medium text-slate-800">Restricted Free Tiers</span>
-                    <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Enforces daily limits (e.g. 5–10
-                      files)
-                      and file size caps to compel paid upgrades.</p>
-                  </div>
-                </div>
-              </td>
-            </tr>
-
-            <!-- Row 4: Quality & Watermarks -->
-            <tr class="hover:bg-slate-50/50 transition-colors">
-              <td class="py-3.5 px-4 align-top">
-                <div class="font-bold text-slate-900">Output Quality &amp; Watermarking</div>
-                <div class="text-[11px] text-slate-500 font-medium mt-0.5">Visual integrity and branding
-                  restrictions
-                </div>
-              </td>
-              <td
-                class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                <div class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <div>
-                    <span class="font-bold text-slate-900">100% Original Quality &amp; No Watermarks</span>
-                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Pristine pixel fidelity with zero
-                      stamped branding or downscaling on exported files.</p>
-                  </div>
-                </div>
-              </td>
-              <td class="py-3.5 px-4 align-top text-slate-600">
-                <div class="flex items-start gap-2">
-                  <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                  <div>
-                    <span class="font-medium text-slate-800">Downscaling or Watermarks</span>
-                    <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Free tiers often stamp promotional
-                      watermarks or aggressively compress image output.</p>
-                  </div>
-                </div>
-              </td>
-            </tr>
-
-            <!-- Row 5: Modern & Vector Support -->
-            <tr class="hover:bg-slate-50/50 transition-colors">
-              <td class="py-3.5 px-4 align-top">
-                <div class="font-bold text-slate-900">Vector &amp; Modern Formats</div>
-                <div class="text-[11px] text-slate-500 font-medium mt-0.5">Apple HEIC decoding and SVG vector
-                  tracing
-                </div>
-              </td>
-              <td
-                class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                <div class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <div>
-                    <span class="font-bold text-slate-900">Native HEIC &amp; SVG Tracing</span>
-                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Built-in Apple iPhone HEIC decoding,
-                      AVIF/WebP, and raster-to-vector SVG tracing.</p>
-                  </div>
-                </div>
-              </td>
-              <td class="py-3.5 px-4 align-top text-slate-600">
-                <div class="flex items-start gap-2">
-                  <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                  <div>
-                    <span class="font-medium text-slate-800">Paid Add-On Features</span>
-                    <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">HEIC decoding and vector conversion
-                      are
-                      commonly gated behind premium subscriptions.</p>
-                  </div>
-                </div>
-              </td>
-            </tr>
-
-            <!-- Row 6: Custom Controls -->
-            <tr class="hover:bg-slate-50/50 transition-colors">
-              <td class="py-3.5 px-4 align-top">
-                <div class="font-bold text-slate-900">Granular Conversion Controls</div>
-                <div class="text-[11px] text-slate-500 font-medium mt-0.5">Resolution resizing, fit mathematics, and
-                  EXIF</div>
-              </td>
-              <td
-                class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                <div class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <div>
-                    <span class="font-bold text-slate-900">Full Parameter Control</span>
-                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Custom width/height, 4 aspect-ratio
-                      fit
-                      modes, quality sliders (1-100), and EXIF stripping.</p>
-                  </div>
-                </div>
-              </td>
-              <td class="py-3.5 px-4 align-top text-slate-600">
-                <div class="flex items-start gap-2">
-                  <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                  <div>
-                    <span class="font-medium text-slate-800">Rigid Preset Options</span>
-                    <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Minimal parameter customizability
-                      without complex server-side configuration.</p>
-                  </div>
-                </div>
-              </td>
-            </tr>
-
-            <!-- Row 7: Account & Friction -->
-            <tr class="hover:bg-slate-50/50 transition-colors">
-              <td class="py-3.5 px-4 align-top">
-                <div class="font-bold text-slate-900">Account &amp; Billing Model</div>
-                <div class="text-[11px] text-slate-500 font-medium mt-0.5">User friction and payment requirements
-                </div>
-              </td>
-              <td
-                class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                <div class="flex items-start gap-2">
-                  <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                  <div>
-                    <span class="font-bold text-slate-900">100% Free &amp; Zero Registration</span>
-                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">No email collection, no mandatory
-                      accounts, and no recurring credit card billing.</p>
-                  </div>
-                </div>
-              </td>
-              <td class="py-3.5 px-4 align-top text-slate-600">
-                <div class="flex items-start gap-2">
-                  <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                  <div>
-                    <span class="font-medium text-slate-800">Freemium &amp; Account Walls</span>
-                    <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Persistent prompts to create accounts,
-                      provide emails, and purchase credits.</p>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- Frequently Asked Questions (FAQ) Section - High-Value AEO & SEO -->
-    <section class="w-full mt-2 flex flex-col gap-6" id="faq-section" aria-label="Frequently Asked Questions">
+    <section class="w-full flex flex-col gap-6" id="faq-section" aria-label="Frequently Asked Questions">
       <!-- Section Header -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
         <div>
@@ -2264,7 +2307,7 @@
   </div>
 
   <!-- Footer -->
-  <footer class="mt-auto border-t border-slate-200/80 bg-white/40 py-8 px-4 text-center">
+  <footer class="mt-auto border-t border-slate-200/80 bg-white/40 py-8 px-4 text-center relative z-10">
     <div class="max-w-4xl mx-auto flex flex-col items-center justify-center gap-2">
       <div class="text-xs sm:text-sm font-bold text-slate-800">
         Designed &amp; Developed by Ishara M.
@@ -2274,7 +2317,7 @@
         <span class="text-slate-300 select-none">·</span>
         <a href="./terms.html" class="hover:text-indigo-600 transition-colors">Terms of Service</a>
         <span class="text-slate-300 select-none">·</span>
-        <a href="https://github.com/ishara-madu/online-image-convertor" target="_blank" rel="noopener noreferrer"
+        <a href="https://github.com/ishara-madu/online-image-converter" target="_blank" rel="noopener noreferrer"
           class="inline-flex items-center gap-1 hover:text-indigo-600 transition-colors">
           <svg class="w-3.5 h-3.5 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
             stroke-linecap="round" stroke-linejoin="round">

@@ -121,7 +121,7 @@ const FORMAT_LIST = [
 
 // Fetch GitHub Stars count
 async function fetchGitHubStars() {
-  const primaryRepo = 'ishara-madu/online-image-convertor';
+  const primaryRepo = 'ishara-madu/online-image-converter';
   const fallbackRepo = 'ishara-madu/pic-convert-vanilla';
   const cacheKey = `gh_stars_${primaryRepo}`;
   const cacheTimeKey = `gh_stars_time_${primaryRepo}`;
