@@ -275,11 +275,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Navbar & Modals
   const mobileMenuToggle = document.getElementById('mobileMenuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
-  const openDonateModal = document.getElementById('openDonateModal');
-  const openDonateModalMobile = document.getElementById('openDonateModalMobile');
-  const closeDonateModal = document.getElementById('closeDonateModal');
-  const donationModal = document.getElementById('donationModal');
-
   // Options Modal Elements
   const optionsModal = document.getElementById('optionsModal');
   const closeOptionsModal = document.getElementById('closeOptionsModal');
@@ -487,32 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Donation Modal Handlers
-  const showDonationModal = () => {
-    if (donationModal) {
-      donationModal.classList.remove('hidden');
-      donationModal.classList.add('flex');
-    }
-  };
 
-  const hideDonationModal = () => {
-    if (donationModal) {
-      donationModal.classList.add('hidden');
-      donationModal.classList.remove('flex');
-    }
-  };
-
-  if (openDonateModal) openDonateModal.addEventListener('click', showDonationModal);
-  if (openDonateModalMobile) openDonateModalMobile.addEventListener('click', showDonationModal);
-  const footerSupportBtn = document.getElementById('footerSupportBtn');
-  if (footerSupportBtn) footerSupportBtn.addEventListener('click', showDonationModal);
-  if (closeDonateModal) closeDonateModal.addEventListener('click', hideDonationModal);
-
-  if (donationModal) {
-    donationModal.addEventListener('click', (e) => {
-      if (e.target === donationModal) hideDonationModal();
-    });
-  }
 
   // ==========================================================================
   // CUSTOM GLOBAL FORMAT DROPDOWN LOGIC
