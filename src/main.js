@@ -319,14 +319,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const btnFormat = btn.getAttribute('data-format');
       const isActive = btnFormat === normalizedKey;
       btn.classList.toggle('active', isActive);
-      btn.classList.toggle('bg-white', isActive);
-      btn.classList.toggle('text-indigo-700', isActive);
-      btn.classList.toggle('border-slate-300', isActive);
-      btn.classList.toggle('ring-2', isActive);
-      btn.classList.toggle('ring-indigo-500/20', isActive);
-      btn.classList.toggle('bg-slate-100', !isActive);
+
+      // Active styling (Clean solid dark tab with crisp contrast)
+      btn.classList.toggle('bg-slate-900', isActive);
+      btn.classList.toggle('text-white', isActive);
+      btn.classList.toggle('border-slate-900', isActive);
+      btn.classList.toggle('font-bold', isActive);
+      btn.classList.toggle('shadow-xs', isActive);
+
+      // Inactive styling (Clean white card button with subtle border)
+      btn.classList.toggle('bg-white', !isActive);
       btn.classList.toggle('text-slate-700', !isActive);
       btn.classList.toggle('border-slate-200', !isActive);
+      btn.classList.toggle('font-semibold', !isActive);
+      btn.classList.toggle('hover:bg-slate-100', !isActive);
+
+      // Remove legacy awkward rings
+      btn.classList.remove('ring-2', 'ring-indigo-500/20', 'text-indigo-700', 'border-slate-300', 'bg-slate-100');
+
       btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
     });
 
@@ -342,12 +352,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (activeFocusBadgeText) {
       activeFocusBadgeText.textContent = contextLabel ? `${contextLabel}: ${fmtDisplay}` : `Focus: ${fmtDisplay}`;
     }
-
-    // Subtle highlight ring on target panel
-    targetPanel.classList.add('ring-2', 'ring-indigo-500/30');
-    setTimeout(() => {
-      targetPanel.classList.remove('ring-2', 'ring-indigo-500/30');
-    }, 1200);
   };
 
   // Bind Tab Click Handlers
@@ -767,7 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (showZip) {
         if (downloadSelectedZipText) {
-          downloadSelectedZipText.textContent = `Download Selected (${convertedSelected.length}) .zip`;
+          downloadSelectedZipText.textContent = 'Download';
         }
       }
     }
@@ -780,7 +784,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnConvertSelected.disabled = isConverting;
         btnConvertSelected.innerHTML = `
           <i data-lucide="arrow-right-left" class="w-4 h-4"></i>
-          <span>Convert ${pendingSelected.length} Selected</span>
+          <span>Convert</span>
         `;
       } else if (convertedSelected.length > 0 && pendingSelected.length === 0) {
         btnConvertSelected.classList.add('hidden');
@@ -791,7 +795,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnConvertSelected.disabled = true;
         btnConvertSelected.innerHTML = `
           <i data-lucide="arrow-right-left" class="w-4 h-4"></i>
-          <span>Convert Selected</span>
+          <span>Convert</span>
         `;
       }
     }
@@ -851,9 +855,9 @@ document.addEventListener('DOMContentLoaded', () => {
     row.innerHTML = `
       <!-- Left: Thumbnail (acts as clickable select / mark trigger) & File Meta -->
       <div class="flex items-center gap-3 min-w-0 flex-1">
-        <div class="file-item-thumb-wrapper relative w-11 h-11 rounded-lg cursor-pointer shrink-0 select-none border bg-white transition-colors group ${item.selected ? 'border-indigo-600 ring-2 ring-indigo-500/20' : 'border-slate-200'}" data-id="${item.id}" title="${item.selected ? 'Click to unmark' : 'Click to mark'}">
+        <div class="file-item-thumb-wrapper relative w-11 h-11 rounded-lg cursor-pointer shrink-0 select-none border border-slate-200 bg-white transition-colors group" data-id="${item.id}" title="${item.selected ? 'Click to unmark' : 'Click to mark'}">
           <img class="w-full h-full rounded-md object-cover block" src="${item.thumbUrl}" alt="Thumbnail" />
-          <div class="thumb-check-overlay absolute -top-1 -right-1 w-4.5 h-4.5 rounded text-white border-2 border-white flex items-center justify-center shadow-xs transition-opacity ${item.selected ? 'bg-indigo-600 opacity-100' : 'bg-slate-400 opacity-0 group-hover:opacity-75'}">
+          <div class="thumb-check-overlay absolute -top-1 -right-1 w-4.5 h-4.5 rounded-full text-white border-2 border-white flex items-center justify-center shadow-xs transition-opacity ${item.selected ? 'bg-indigo-600 opacity-100' : 'bg-slate-400 opacity-0 group-hover:opacity-75'}">
             <i data-lucide="check" class="w-3 h-3 stroke-[3.5]"></i>
           </div>
         </div>
@@ -1247,7 +1251,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.25" fill="none"/>
           <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor"/>
         </svg>
-        <span>Converting (${totalCount})...</span>
+        <span>Converting...</span>
       `;
 
       // Show Progress Bar
@@ -1321,7 +1325,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-opacity="0.25" fill="none"/>
           <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor"/>
         </svg>
-        <span>Packaging ZIP (${formatBytes(totalConvertedBytes)})...</span>
+        <span>Download</span>
       `;
 
       try {
