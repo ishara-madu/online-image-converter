@@ -7,7 +7,8 @@
   <title>Online Image Converter - Free, Fast & 100% Private In-Browser Tool</title>
   <meta name="description"
     content="Free Online Image Converter. Convert JPG, PNG, WebP, AVIF, HEIC, SVG, ICO and GIF directly in your browser with zero quality loss and zero server uploads." />
-  <link rel="icon" type="image/webp" href="/logo.webp" />
+  <link rel="icon" type="image/webp" href="./logo.webp" />
+  <link rel="canonical" href="https://ishara-madu.github.io/online-image-convertor/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -20,7 +21,7 @@
       {
         "@type": "WebApplication",
         "name": "Online Image Converter",
-        "url": "https://picconvert.app",
+        "url": "https://ishara-madu.github.io/online-image-convertor/",
         "description": "Free, private, in-browser universal online image converter supporting WebP, JPG, PNG, AVIF, HEIC, SVG, ICO, and GIF.",
         "applicationCategory": "MultimediaApplication",
         "operatingSystem": "All modern browsers",
@@ -247,22 +248,19 @@
     id="topNavbar">
     <div class="w-full px-4 sm:px-8 lg:px-12 h-16 flex items-center justify-between">
       <!-- Brand Logo -->
-      <a href="#"
+      <a href="./"
         class="flex items-center gap-3 text-slate-900 font-bold text-lg tracking-tight hover:opacity-90 transition-opacity group">
-        <img src="/logo.webp" alt="Online Image Converter Logo" class="w-10 h-10 object-contain" />
+        <img src="./logo.webp" alt="Online Image Converter Logo" class="w-10 h-10 object-contain" />
         <div class="flex items-center gap-1.5">
           <span class="font-extrabold text-slate-900 tracking-tight">Online <span class="text-indigo-600">Image
               Converter</span></span>
-          <span class="text-[11px] font-bold px-2 py-0.5  text-indigo-700 uppercase tracking-wider">Free</span>
+          <span class="text-[11px] font-bold px-2 py-0.5 text-indigo-700 uppercase tracking-wider">Free</span>
         </div>
       </a>
 
       <!-- Desktop Nav Links -->
       <nav>
         <ul class="hidden md:flex items-center gap-1 list-none">
-          <li><a href="#converter-section"
-              class="text-indigo-700 font-bold bg-indigo-50/90 text-sm px-3.5 py-1.5 rounded-lg transition-colors">Convert</a>
-          </li>
           <li><a href="#formats-section"
               class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-lg transition-colors">Formats</a>
           </li>
@@ -270,15 +268,39 @@
               class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-lg transition-colors">How
               It Works</a>
           </li>
-          <li><a href="#why-choose-us-section"
-              class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-lg transition-colors">Why
-              Choose Us</a>
-          </li>
           <li><a href="#faq-section"
               class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-lg transition-colors">FAQ</a>
           </li>
-          <li><a href="#privacy-section"
-              class="text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-lg transition-colors">Privacy</a>
+
+          <!-- Other Tools Dropdown -->
+          <li class="relative" id="navToolsDropdown">
+            <button type="button" id="navToolsBtn"
+              class="flex items-center gap-1.5 text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 text-sm font-medium px-3.5 py-1.5 rounded-lg transition-colors cursor-pointer"
+              aria-haspopup="true" aria-expanded="false">
+              <span>Tools</span>
+              <i data-lucide="chevron-down" id="navToolsChevron"
+                class="w-3.5 h-3.5 text-slate-400 transition-transform"></i>
+            </button>
+            <div id="navToolsMenu"
+              class="hidden absolute top-full left-0 mt-2 z-50 bg-white border border-slate-200 rounded-xl shadow-xl p-2 min-w-[280px] flex-col gap-1">
+              <div class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">Our Web Tools</div>
+              <a href="https://ishara-madu.github.io/gemini-watermark-remover/" target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-start gap-2.5 p-2 rounded-lg hover:bg-indigo-50/70 transition-colors group">
+                <div
+                  class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 border border-indigo-100 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                  <i data-lucide="sparkles" class="w-4 h-4"></i>
+                </div>
+                <div class="flex flex-col">
+                  <div class="flex items-center gap-1.5 font-bold text-xs text-slate-900 group-hover:text-indigo-600">
+                    <span>Gemini Watermark Remover</span>
+                    <i data-lucide="external-link" class="w-3 h-3 text-slate-400 group-hover:text-indigo-600"></i>
+                  </div>
+                  <span class="text-[11px] text-slate-500 leading-tight mt-0.5">Clean AI watermarks from images &amp;
+                    videos</span>
+                </div>
+              </a>
+            </div>
           </li>
         </ul>
       </nav>
@@ -286,7 +308,7 @@
       <!-- Right Actions: GitHub Star Count & Donation Buttons -->
       <div class="flex items-center gap-2.5 sm:gap-3">
         <!-- GitHub Repo Link with Star Count -->
-        <a href="https://github.com/ishara-madu/pic-convert-vanilla" target="_blank" rel="noopener noreferrer"
+        <a href="https://github.com/ishara-madu/online-image-convertor" target="_blank" rel="noopener noreferrer"
           class="inline-flex items-center gap-2 bg-[#0F172A] text-white text-xs sm:text-sm font-semibold pl-3 pr-2.5 py-1.5 rounded-lg shadow-sm hover:bg-slate-800 transition-colors"
           title="Star on GitHub">
           <svg class="lucide lucide-github w-4 h-4 text-white" width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -323,27 +345,43 @@
     <div class="hidden flex-col gap-2 p-4 bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-lg md:hidden"
       id="mobileMenu">
       <a href="#converter-section"
-        class="text-sm font-semibold text-slate-800 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50">🔄
-        Convert Image</a>
+        class="text-sm font-semibold text-slate-800 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50 flex items-center gap-2.5">
+        <i data-lucide="refresh-cw" class="w-4 h-4 text-indigo-600"></i>
+        <span>Convert Image</span>
+      </a>
       <a href="#formats-section"
-        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50">📁
-        Supported Formats</a>
+        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50 flex items-center gap-2.5">
+        <i data-lucide="layers" class="w-4 h-4 text-slate-500"></i>
+        <span>Supported Formats</span>
+      </a>
       <a href="#how-to-section"
-        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50">📝
-        How It Works</a>
-      <a href="#why-choose-us-section"
-        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50">✨
-        Why Choose Us</a>
+        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50 flex items-center gap-2.5">
+        <i data-lucide="book-open" class="w-4 h-4 text-slate-500"></i>
+        <span>How It Works</span>
+      </a>
       <a href="#faq-section"
-        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50">❓
-        Frequently Asked Questions</a>
-      <a href="#privacy-section"
-        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50">🛡️
-        Privacy & Security</a>
+        class="text-sm font-medium text-slate-600 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50 flex items-center gap-2.5">
+        <i data-lucide="help-circle" class="w-4 h-4 text-slate-500"></i>
+        <span>Frequently Asked Questions</span>
+      </a>
+
+      <!-- Other Tools Section in Mobile Menu -->
+      <div class="pt-2 border-t border-slate-100 flex flex-col gap-1">
+        <div class="px-2 text-[10px] font-bold uppercase tracking-wider text-slate-400">Our Web Tools</div>
+        <a href="https://ishara-madu.github.io/gemini-watermark-remover/" target="_blank" rel="noopener noreferrer"
+          class="flex items-center justify-between text-sm font-medium text-slate-700 hover:text-indigo-600 py-1.5 px-2 rounded-lg hover:bg-indigo-50/50">
+          <div class="flex items-center gap-2.5">
+            <i data-lucide="sparkles" class="w-4 h-4 text-indigo-600"></i>
+            <span>Gemini Watermark Remover</span>
+          </div>
+          <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-400"></i>
+        </a>
+      </div>
+
       <div class="flex gap-2 pt-2 border-t border-slate-200 mt-1">
-        <a href="https://github.com/ishara-madu/pic-convert-vanilla" target="_blank" rel="noopener noreferrer"
+        <a href="https://github.com/ishara-madu/online-image-convertor" target="_blank" rel="noopener noreferrer"
           class="flex-1 justify-center inline-flex items-center gap-2 bg-[#0F172A] text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-xs hover:bg-slate-800 transition-colors">
-          <svg class="lucide lucide-github w-4 h-4" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          <svg class="lucide lucide-github w-4 h-4 text-white" width="16" height="16" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path
               d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
@@ -2236,11 +2274,11 @@
         Designed &amp; Developed by Ishara M.
       </div>
       <div class="flex items-center justify-center flex-wrap gap-x-3 gap-y-1 text-xs text-slate-600 font-medium">
-        <a href="/privacy.html" class="hover:text-indigo-600 transition-colors">Privacy Policy</a>
+        <a href="./privacy.html" class="hover:text-indigo-600 transition-colors">Privacy Policy</a>
         <span class="text-slate-300 select-none">·</span>
-        <a href="/terms.html" class="hover:text-indigo-600 transition-colors">Terms of Service</a>
+        <a href="./terms.html" class="hover:text-indigo-600 transition-colors">Terms of Service</a>
         <span class="text-slate-300 select-none">·</span>
-        <a href="https://github.com/ishara-madu" target="_blank" rel="noopener noreferrer"
+        <a href="https://github.com/ishara-madu/online-image-convertor" target="_blank" rel="noopener noreferrer"
           class="inline-flex items-center gap-1 hover:text-indigo-600 transition-colors">
           <svg class="w-3.5 h-3.5 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
             stroke-linecap="round" stroke-linejoin="round">
