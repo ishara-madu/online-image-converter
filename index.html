@@ -238,6 +238,32 @@
             }
           }
         ]
+      },
+      {
+        "@type": "TechArticle",
+        "@id": "https://ishara-madu.github.io/online-image-converter/#architecture-comparison-section",
+        "headline": "Technical Architecture & Feature Comparison: In-Browser Client-Side vs Cloud-Hosted Image Converters",
+        "name": "Client-Side vs Server-Side Image Conversion Architecture & Benchmark",
+        "description": "In-depth engineering comparison and performance benchmark detailing how client-side WebAssembly, HTML5 Canvas 2D, and multi-core Web Workers process images locally with zero network egress, sub-100ms latency, and 100% privacy compared to cloud converters.",
+        "inLanguage": "en",
+        "about": [
+          "Client-Side Image Processing Architecture",
+          "In-Browser vs Cloud Image Converter Benchmark",
+          "WebAssembly Image Decoding Performance",
+          "Zero Server Upload Privacy Pipeline",
+          "OffscreenCanvas GPU Hardware Acceleration"
+        ],
+        "author": {
+          "@type": "Organization",
+          "name": "Online Image Converter",
+          "url": "https://ishara-madu.github.io/online-image-converter/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Online Image Converter",
+          "url": "https://ishara-madu.github.io/online-image-converter/"
+        },
+        "mainEntityOfPage": "https://ishara-madu.github.io/online-image-converter/#architecture-comparison-section"
       }
     ]
   }
@@ -1534,271 +1560,611 @@
         </div>
       </section>
 
-      <!-- Technical Architecture & Feature Comparison Section (High-Intent SEO Ranking Asset) -->
-      <section class="w-full flex flex-col gap-6 pb-10" id="architecture-comparison-section"
-        aria-label="Technical Architecture &amp; Feature Comparison">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
-          <div>
-            <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
-              <span>Technical Architecture &amp; Feature Comparison</span>
+      <!-- Technical Architecture & Feature Comparison Section (High-Intent AEO & SEO Ranking Asset) -->
+      <section class="w-full flex flex-col gap-10 pb-12" id="architecture-comparison-section"
+        aria-labelledby="architecture-comparison-title" itemscope itemtype="https://schema.org/TechArticle">
+
+        <!-- 1. Section Header & Friendly Benefit Rail -->
+        <div class="flex flex-col gap-4 border-b border-slate-200/80 pb-6">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="flex flex-wrap items-center gap-2">
+              <span
+                class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-md">
+                <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
+                <span>100% Private (Never Uploaded)</span>
+              </span>
+              <span
+                class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-800 bg-indigo-50 border border-indigo-200/80 px-2.5 py-1 rounded-md">
+                <i data-lucide="zap" class="w-4 h-4 text-indigo-600"></i>
+                <span>Instant In-Device Speed</span>
+              </span>
+              <span
+                class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-800 bg-blue-50 border border-blue-200/80 px-2.5 py-1 rounded-md">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
+                <span>Free &amp; Unlimited Forever</span>
+              </span>
+            </div>
+
+            <div class="flex items-center gap-2 text-xs font-semibold text-slate-500">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-100/90 border border-slate-200 rounded-md">
+                <i data-lucide="gauge" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <span>0 Wait Time</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <h2 id="architecture-comparison-title"
+              class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-slate-900" itemprop="headline">
+              How It Works &amp; Why It's Faster &amp; Safer
             </h2>
-            <p class="text-xs sm:text-sm text-slate-500 mt-1">
-              A side-by-side benchmark comparing modern in-browser client-side execution with legacy cloud-hosted
-              services.
+            <p class="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed" itemprop="description">
+              Discover how our modern in-browser technology converts your photos directly on your phone or computer — giving you total privacy, instant conversions, and zero file limits compared to old cloud converters.
             </p>
           </div>
-          <span
-            class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 px-2.5 py-1 self-start sm:self-auto shrink-0">
-            <span>Verified Benchmark</span>
-          </span>
         </div>
 
-        <div class="overflow-x-auto border border-slate-200 rounded-md">
-          <table class="w-full text-left text-xs sm:text-sm border-collapse">
-            <thead>
-              <tr class="border-b border-slate-200 bg-slate-50 text-slate-800 font-bold">
-                <th class="py-3 px-4 w-[34%]">Capability &amp; Benchmark</th>
-                <th
-                  class="py-3 px-4 w-[33%] text-indigo-700 bg-indigo-50/40 border-x border-indigo-100/60 font-extrabold">
-                  <div class="flex items-center gap-2">
-                    <span>Online Image Converter</span>
-                    <span
-                      class="bg-indigo-600 text-white text-[10px] font-bold px-1.5 py-0.2 rounded uppercase tracking-wider">Client-Side</span>
-                  </div>
-                </th>
-                <th class="py-3 px-4 w-[33%] text-slate-600 font-semibold">
-                  <div class="flex items-center gap-2">
-                    <span>Legacy Cloud Services</span>
-                    <span
-                      class="bg-slate-200 text-slate-700 text-[10px] font-semibold px-1.5 py-0.2 rounded uppercase tracking-wider">Server-Based</span>
-                  </div>
-                </th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-100 text-slate-700">
-              <!-- Row 1: Privacy & Data Pipeline -->
-              <tr class="hover:bg-slate-50/50 transition-colors">
-                <td class="py-3.5 px-4 align-top">
-                  <div class="font-bold text-slate-900">Data Privacy &amp; Security</div>
-                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Where raw image bytes and pixels are
-                    processed</div>
-                </td>
-                <td
-                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-bold text-emerald-800">100% In-Browser Memory</span>
-                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Zero remote uploads. Sensitive photos
-                        remain strictly inside your local device sandbox.</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="py-3.5 px-4 align-top text-slate-600">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-medium text-slate-800">Uploaded to Cloud Servers</span>
-                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Requires uploading images to
-                        third-party
-                        remote servers with potential data retention risks.</p>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+        <!-- 2. The Core Difference & Visual Benefit Meter -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Left: Friendly Value Explanation -->
+          <div class="lg:col-span-7 flex flex-col gap-4">
+            <div class="flex items-center gap-2 text-indigo-700 font-bold text-xs uppercase tracking-wider">
+              <i data-lucide="zap" class="w-4 h-4"></i>
+              <span>The Next-Generation Advantage</span>
+            </div>
+            <h3 class="text-base sm:text-lg lg:text-xl font-bold text-slate-900 leading-snug">
+              Your Photos Never Leave Your Phone, Tablet, or Computer
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Unlike traditional converter websites that force you to upload your personal photos to remote cloud servers, Online Image Converter works 100% inside your web browser. Your images are converted directly using your device's own hardware, meaning no one else ever sees your photos, and conversions happen in the blink of an eye with zero waiting in line.
+            </p>
 
-              <!-- Row 2: Processing Architecture -->
-              <tr class="hover:bg-slate-50/50 transition-colors">
-                <td class="py-3.5 px-4 align-top">
-                  <div class="font-bold text-slate-900">Processing Architecture &amp; Speed</div>
-                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Hardware acceleration and conversion
-                    latency</div>
-                </td>
-                <td
-                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-bold text-slate-900">GPU &amp; Multi-Core WebAssembly</span>
-                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Direct GPU/Canvas hardware execution
-                        with zero internet upload or download latency.</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="py-3.5 px-4 align-top text-slate-600">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-medium text-slate-800">Network &amp; Server Bottlenecks</span>
-                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Slow round-trip network transfers and
-                        shared queuing on remote cloud servers.</p>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+            <!-- 4 Quick Visual Perks -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div class="flex items-start gap-2.5">
+                <div class="w-5 h-5 rounded-md bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-xs font-bold text-slate-900">Total Privacy Guarantee</span>
+                  <span class="text-[11px] text-slate-500">0 bytes uploaded. Safe for sensitive personal photos &amp; IDs.</span>
+                </div>
+              </div>
 
-              <!-- Row 3: Conversion Limits -->
-              <tr class="hover:bg-slate-50/50 transition-colors">
-                <td class="py-3.5 px-4 align-top">
-                  <div class="font-bold text-slate-900">Volume &amp; File Limits</div>
-                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Daily conversion allowances and batch
-                    limits</div>
-                </td>
-                <td
-                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-bold text-slate-900">Unlimited Batch Processing</span>
-                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">No daily quotas or artificial file
-                        restrictions. Supports up to 800 MB safe batch archives.</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="py-3.5 px-4 align-top text-slate-600">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-medium text-slate-800">Restricted Free Tiers</span>
-                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Enforces daily limits (e.g. 5–10
-                        files)
-                        and file size caps to compel paid upgrades.</p>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+              <div class="flex items-start gap-2.5">
+                <div class="w-5 h-5 rounded-md bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-xs font-bold text-slate-900">Lightning-Fast Speed</span>
+                  <span class="text-[11px] text-slate-500">No waiting for slow file uploads or cloud queues.</span>
+                </div>
+              </div>
 
-              <!-- Row 4: Quality & Watermarks -->
-              <tr class="hover:bg-slate-50/50 transition-colors">
-                <td class="py-3.5 px-4 align-top">
-                  <div class="font-bold text-slate-900">Output Quality &amp; Watermarking</div>
-                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Visual integrity and branding
-                    restrictions
-                  </div>
-                </td>
-                <td
-                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-bold text-slate-900">100% Original Quality &amp; No Watermarks</span>
-                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Pristine pixel fidelity with zero
-                        stamped branding or downscaling on exported files.</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="py-3.5 px-4 align-top text-slate-600">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-medium text-slate-800">Downscaling or Watermarks</span>
-                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Free tiers often stamp promotional
-                        watermarks or aggressively compress image output.</p>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+              <div class="flex items-start gap-2.5">
+                <div class="w-5 h-5 rounded-md bg-blue-100 text-blue-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-xs font-bold text-slate-900">Works Completely Offline</span>
+                  <span class="text-[11px] text-slate-500">Convert images anywhere — even on an airplane without WiFi.</span>
+                </div>
+              </div>
 
-              <!-- Row 5: Modern & Vector Support -->
-              <tr class="hover:bg-slate-50/50 transition-colors">
-                <td class="py-3.5 px-4 align-top">
-                  <div class="font-bold text-slate-900">Vector &amp; Modern Formats</div>
-                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Apple HEIC decoding and SVG vector
-                    tracing
-                  </div>
-                </td>
-                <td
-                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-bold text-slate-900">Native HEIC &amp; SVG Tracing</span>
-                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Built-in Apple iPhone HEIC decoding,
-                        AVIF/WebP, and raster-to-vector SVG tracing.</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="py-3.5 px-4 align-top text-slate-600">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-medium text-slate-800">Paid Add-On Features</span>
-                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">HEIC decoding and vector conversion
-                        are
-                        commonly gated behind premium subscriptions.</p>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+              <div class="flex items-start gap-2.5">
+                <div class="w-5 h-5 rounded-md bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-xs font-bold text-slate-900">Zero Daily Limits</span>
+                  <span class="text-[11px] text-slate-500">Convert as many photos as you need without paying a cent.</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-              <!-- Row 6: Custom Controls -->
-              <tr class="hover:bg-slate-50/50 transition-colors">
-                <td class="py-3.5 px-4 align-top">
-                  <div class="font-bold text-slate-900">Granular Conversion Controls</div>
-                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">Resolution resizing, fit mathematics, and
-                    EXIF</div>
-                </td>
-                <td
-                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-bold text-slate-900">Full Parameter Control</span>
-                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">Custom width/height, 4 aspect-ratio
-                        fit
-                        modes, quality sliders (1-100), and EXIF stripping.</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="py-3.5 px-4 align-top text-slate-600">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-medium text-slate-800">Rigid Preset Options</span>
-                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Minimal parameter customizability
-                        without complex server-side configuration.</p>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+          <!-- Right: Visual Benefit Counters (Clean Modern Flat) -->
+          <div class="lg:col-span-5 grid grid-cols-2 gap-3">
+            <div class="p-4 border border-slate-200 bg-slate-50/60 rounded-lg flex flex-col gap-1">
+              <div class="flex items-center gap-1.5 text-emerald-700 font-bold text-xs">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+                <span>Data Privacy</span>
+              </div>
+              <span class="text-lg sm:text-xl font-bold text-slate-900 mt-1">0 KB Uploaded</span>
+              <p class="text-[11px] text-slate-500 leading-tight">Files stay strictly in your device memory.</p>
+            </div>
 
-              <!-- Row 7: Account & Friction -->
-              <tr class="hover:bg-slate-50/50 transition-colors">
-                <td class="py-3.5 px-4 align-top">
-                  <div class="font-bold text-slate-900">Account &amp; Billing Model</div>
-                  <div class="text-[11px] text-slate-500 font-medium mt-0.5">User friction and payment requirements
-                  </div>
-                </td>
-                <td
-                  class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-bold text-slate-900">100% Free &amp; Zero Registration</span>
-                      <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">No email collection, no mandatory
-                        accounts, and no recurring credit card billing.</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="py-3.5 px-4 align-top text-slate-600">
-                  <div class="flex items-start gap-2">
-                    <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
-                    <div>
-                      <span class="font-medium text-slate-800">Freemium &amp; Account Walls</span>
-                      <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">Persistent prompts to create accounts,
-                        provide emails, and purchase credits.</p>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            <div class="p-4 border border-slate-200 bg-slate-50/60 rounded-lg flex flex-col gap-1">
+              <div class="flex items-center gap-1.5 text-indigo-700 font-bold text-xs">
+                <i data-lucide="zap" class="w-4 h-4"></i>
+                <span>Speed</span>
+              </div>
+              <span class="text-lg sm:text-xl font-bold text-slate-900 mt-1">&lt; 0.1s Instant</span>
+              <p class="text-[11px] text-slate-500 leading-tight">No server queues or download delays.</p>
+            </div>
+
+            <div class="p-4 border border-slate-200 bg-slate-50/60 rounded-lg flex flex-col gap-1">
+              <div class="flex items-center gap-1.5 text-blue-700 font-bold text-xs">
+                <i data-lucide="folder-archive" class="w-4 h-4"></i>
+                <span>Batch Limits</span>
+              </div>
+              <span class="text-lg sm:text-xl font-bold text-slate-900 mt-1">Unlimited</span>
+              <p class="text-[11px] text-slate-500 leading-tight">Free batch conversion &amp; ZIP download.</p>
+            </div>
+
+            <div class="p-4 border border-slate-200 bg-slate-50/60 rounded-lg flex flex-col gap-1">
+              <div class="flex items-center gap-1.5 text-amber-700 font-bold text-xs">
+                <i data-lucide="star" class="w-4 h-4"></i>
+                <span>Quality</span>
+              </div>
+              <span class="text-lg sm:text-xl font-bold text-slate-900 mt-1">100% Original</span>
+              <p class="text-[11px] text-slate-500 leading-tight">Zero watermarks &amp; full clarity.</p>
+            </div>
+          </div>
         </div>
+
+        <!-- 3. Step-by-Step Visual Comparison: How Your Photos Are Handled -->
+        <div class="flex flex-col gap-6 pt-2">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200/60 pb-3">
+            <div>
+              <h3 class="text-base sm:text-lg font-bold text-slate-900">
+                Visual Comparison: How Your Photos Are Processed
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+                See the exact difference between our safe in-browser tool and old server-upload websites.
+              </p>
+            </div>
+            <div class="flex items-center gap-3 text-xs font-semibold text-slate-500">
+              <span class="flex items-center gap-1.5 text-indigo-700">
+                <span class="w-2 h-2 rounded-full bg-indigo-600"></span> Modern In-Device
+              </span>
+              <span class="flex items-center gap-1.5 text-slate-500">
+                <span class="w-2 h-2 rounded-full bg-slate-400"></span> Old Cloud Upload
+              </span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            <!-- Modern In-Device Flow -->
+            <div class="flex flex-col gap-5">
+              <div class="flex items-center justify-between border-b border-indigo-200 pb-2.5">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+                  <h4 class="font-bold text-xs sm:text-sm text-indigo-950">The Modern In-Device Way (Our Tool)</h4>
+                </div>
+                <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">100% Safe &amp; Fast</span>
+              </div>
+
+              <!-- Connected Flow Steps -->
+              <div class="relative pl-6 border-l-2 border-indigo-200 space-y-6 ml-3">
+                <!-- Step 1 -->
+                <div class="relative">
+                  <span class="absolute -left-[31px] top-0.5 w-4 h-4 rounded-md bg-indigo-600 text-white text-[10px] font-bold flex items-center justify-center ring-4 ring-[#F5F5F7]">1</span>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-xs sm:text-sm text-slate-900">Select Your Images</span>
+                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                      Your photos are loaded directly from your phone or computer. Nothing is ever uploaded over the internet.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative">
+                  <span class="absolute -left-[31px] top-0.5 w-4 h-4 rounded-md bg-indigo-600 text-white text-[10px] font-bold flex items-center justify-center ring-4 ring-[#F5F5F7]">2</span>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-xs sm:text-sm text-slate-900">Instant Local Processing</span>
+                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                      Your browser decodes, resizes, and converts images in milliseconds using your device's built-in power.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative">
+                  <span class="absolute -left-[31px] top-0.5 w-4 h-4 rounded-md bg-indigo-600 text-white text-[10px] font-bold flex items-center justify-center ring-4 ring-[#F5F5F7]">3</span>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-xs sm:text-sm text-slate-900">Adjust Size &amp; Quality</span>
+                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                      Fine-tune dimensions, compress file sizes, or remove hidden camera metadata with real-time controls.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative">
+                  <span class="absolute -left-[31px] top-0.5 w-4 h-4 rounded-md bg-emerald-600 text-white text-[10px] font-bold flex items-center justify-center ring-4 ring-[#F5F5F7]">4</span>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-xs sm:text-sm text-emerald-900">One-Click Save or Batch ZIP</span>
+                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                      Save single files instantly or package dozens of converted photos into a ZIP archive with 0 second wait time.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Legacy Cloud Flow -->
+            <div class="flex flex-col gap-5">
+              <div class="flex items-center justify-between border-b border-slate-200 pb-2.5">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-500"></i>
+                  <h4 class="font-bold text-xs sm:text-sm text-slate-800">The Old Cloud Converter Way (Other Sites)</h4>
+                </div>
+                <span class="bg-slate-200 text-slate-700 text-[10px] font-semibold px-2 py-0.5 rounded-md uppercase">Slow &amp; Limited</span>
+              </div>
+
+              <!-- Connected Flow Steps -->
+              <div class="relative pl-6 border-l-2 border-slate-300 space-y-6 ml-3">
+                <!-- Step 1 -->
+                <div class="relative">
+                  <span class="absolute -left-[31px] top-0.5 w-4 h-4 rounded-md bg-slate-400 text-white text-[10px] font-bold flex items-center justify-center ring-4 ring-[#F5F5F7]">1</span>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-xs sm:text-sm text-slate-900">Upload Photos to Unknown Server</span>
+                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                      Full image files must be sent over the public internet, consuming mobile data and risking privacy leaks.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative">
+                  <span class="absolute -left-[31px] top-0.5 w-4 h-4 rounded-md bg-slate-400 text-white text-[10px] font-bold flex items-center justify-center ring-4 ring-[#F5F5F7]">2</span>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-xs sm:text-sm text-slate-900">Wait in Cloud Server Queues</span>
+                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                      Your files wait on remote company hard drives until their busy servers are ready to process them.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative">
+                  <span class="absolute -left-[31px] top-0.5 w-4 h-4 rounded-md bg-slate-400 text-white text-[10px] font-bold flex items-center justify-center ring-4 ring-[#F5F5F7]">3</span>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-xs sm:text-sm text-slate-900">Slow Remote Conversion</span>
+                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                      Servers throttle conversion speeds unless you pay for a monthly subscription upgrade.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative">
+                  <span class="absolute -left-[31px] top-0.5 w-4 h-4 rounded-md bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center ring-4 ring-[#F5F5F7]">4</span>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-xs sm:text-sm text-rose-900">Download Back with Daily Limits</span>
+                    <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                      You must re-download the file back from the cloud, often hitting strict limits (5–10 files per day) or paywalls.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Friendly Side-by-Side Comparison Table -->
+        <div class="flex flex-col gap-3 pt-2">
+          <div class="border-b border-slate-200/60 pb-3">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900">
+              Side-by-Side Comparison: Why Online Image Converter is Better
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+              Clear breakdown of privacy, speed, limits, and ease of use.
+            </p>
+          </div>
+
+          <div class="overflow-x-auto border border-slate-200 rounded-md">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse" aria-label="Feature Comparison Table">
+              <caption class="sr-only">
+                Comparison of features between Online Image Converter in-browser tool and traditional cloud converter sites.
+              </caption>
+              <thead>
+                <tr class="border-b border-slate-200 bg-slate-50/90 text-slate-800 font-bold">
+                  <th scope="col" class="py-3 px-4 w-[34%]">Feature / Benefit</th>
+                  <th scope="col"
+                    class="py-3 px-4 w-[33%] text-indigo-700 bg-indigo-50/40 border-x border-indigo-100/60 font-extrabold">
+                    <div class="flex items-center gap-2">
+                      <span>Online Image Converter</span>
+                      <span
+                        class="bg-indigo-600 text-white text-[10px] font-bold px-1.5 py-0.2 rounded uppercase tracking-wider">In-Device</span>
+                    </div>
+                  </th>
+                  <th scope="col" class="py-3 px-4 w-[33%] text-slate-600 font-semibold">
+                    <div class="flex items-center gap-2">
+                      <span>Other Converter Sites</span>
+                      <span
+                        class="bg-slate-200 text-slate-700 text-[10px] font-semibold px-1.5 py-0.2 rounded uppercase tracking-wider">Cloud Upload</span>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                <!-- Row 1: Privacy -->
+                <tr class="hover:bg-slate-50/60 transition-colors">
+                  <th scope="row" class="py-3.5 px-4 align-top font-normal text-left">
+                    <div class="font-bold text-slate-900">Your Photo Privacy</div>
+                    <div class="text-[11px] text-slate-500 mt-0.5">Where your personal images are stored and processed</div>
+                  </th>
+                  <td
+                    class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-bold text-emerald-800">100% Private (Never Uploaded)</span>
+                        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                          Your photos stay inside your device. No one else ever sees or stores your files.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 align-top text-slate-600">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-medium text-slate-800">Uploaded to Remote Servers</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">
+                          Your images are sent across the web and saved on company servers.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 2: Speed -->
+                <tr class="hover:bg-slate-50/60 transition-colors">
+                  <th scope="row" class="py-3.5 px-4 align-top font-normal text-left">
+                    <div class="font-bold text-slate-900">Conversion Speed</div>
+                    <div class="text-[11px] text-slate-500 mt-0.5">How fast your images are ready to save</div>
+                  </th>
+                  <td
+                    class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-bold text-slate-900">Instant (Under 0.1 Seconds)</span>
+                        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                          Processes instantly using your phone or laptop's built-in speed.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 align-top text-slate-600">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-medium text-slate-800">Slow (5 to 20+ Seconds)</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">
+                          Must upload huge files over the internet, wait in line, then download back.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 3: Daily Limits -->
+                <tr class="hover:bg-slate-50/60 transition-colors">
+                  <th scope="row" class="py-3.5 px-4 align-top font-normal text-left">
+                    <div class="font-bold text-slate-900">Daily Limits &amp; Batch Sizes</div>
+                    <div class="text-[11px] text-slate-500 mt-0.5">How many images you can convert per day</div>
+                  </th>
+                  <td
+                    class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-bold text-slate-900">100% Unlimited &amp; Free</span>
+                        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                          Convert hundreds of photos at once with easy ZIP download.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 align-top text-slate-600">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-medium text-slate-800">Strict Daily Caps (5–10 Files)</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">
+                          Blocks you after a few files and demands monthly paid subscriptions.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 4: Quality & Watermarks -->
+                <tr class="hover:bg-slate-50/60 transition-colors">
+                  <th scope="row" class="py-3.5 px-4 align-top font-normal text-left">
+                    <div class="font-bold text-slate-900">Image Quality &amp; Watermarks</div>
+                    <div class="text-[11px] text-slate-500 mt-0.5">Clarity and branding on your downloaded files</div>
+                  </th>
+                  <td
+                    class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-bold text-slate-900">Original Clarity &amp; Zero Watermarks</span>
+                        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                          Your photos stay crisp and clean with no stamped logos or forced quality drops.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 align-top text-slate-600">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-medium text-slate-800">Watermarks or Blurry Downscaling</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">
+                          Free tiers often reduce photo resolution or stamp promotional logos.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 5: Apple iPhone HEIC -->
+                <tr class="hover:bg-slate-50/60 transition-colors">
+                  <th scope="row" class="py-3.5 px-4 align-top font-normal text-left">
+                    <div class="font-bold text-slate-900">iPhone (HEIC) Photos</div>
+                    <div class="text-[11px] text-slate-500 mt-0.5">Converting Apple iPhone photos to JPG/PNG/WebP</div>
+                  </th>
+                  <td
+                    class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-bold text-slate-900">Included Free &amp; Instant</span>
+                        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                          Drop any Apple iPhone photo and convert it directly on any device.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 align-top text-slate-600">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-medium text-slate-800">Locked Behind Paid Plans</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">
+                          Many sites treat HEIC conversion as a premium feature requiring payment.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 6: Sign-Up & Friction -->
+                <tr class="hover:bg-slate-50/60 transition-colors">
+                  <th scope="row" class="py-3.5 px-4 align-top font-normal text-left">
+                    <div class="font-bold text-slate-900">Sign-Up &amp; Accounts</div>
+                    <div class="text-[11px] text-slate-500 mt-0.5">Ease of use and email requirements</div>
+                  </th>
+                  <td
+                    class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-bold text-slate-900">Zero Sign-Up &amp; No Emails</span>
+                        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                          Open the site and start converting immediately. No accounts needed.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 align-top text-slate-600">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-medium text-slate-800">Forced Email Collection</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">
+                          Constant popups asking you to sign up, provide credit cards, or submit emails.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Row 7: Offline Support -->
+                <tr class="hover:bg-slate-50/60 transition-colors">
+                  <th scope="row" class="py-3.5 px-4 align-top font-normal text-left">
+                    <div class="font-bold text-slate-900">Offline Conversion Support</div>
+                    <div class="text-[11px] text-slate-500 mt-0.5">Converting photos without an active internet connection</div>
+                  </th>
+                  <td
+                    class="py-3.5 px-4 align-top bg-indigo-50/20 border-x border-indigo-100/50 font-medium text-slate-900">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-bold text-slate-900">Works 100% Offline</span>
+                        <p class="text-[11px] text-slate-600 mt-0.5 leading-snug">
+                          Once loaded, you can convert photos on planes, trains, or anywhere offline.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 align-top text-slate-600">
+                    <div class="flex items-start gap-2">
+                      <i data-lucide="x" class="w-4 h-4 text-rose-500 shrink-0 mt-0.5"></i>
+                      <div>
+                        <span class="font-medium text-slate-800">Completely Broken Offline</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5 leading-snug">
+                          Requires active internet to upload your files to their servers.
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 5. Everyday Questions & Answers (Engaging Human-Friendly Q&A) -->
+        <div class="flex flex-col gap-6 pt-2">
+          <div class="border-b border-slate-200/60 pb-3">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900">
+              Frequently Wondered Questions About Our Converter
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+              Everything you need to know in plain, simple language.
+            </p>
+          </div>
+
+          <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-7">
+            <!-- Q1 -->
+            <div class="flex flex-col gap-1.5">
+              <dt class="font-bold text-xs sm:text-sm text-slate-900 flex items-start gap-2">
+                <i data-lucide="zap" class="w-4 h-4 text-amber-500 shrink-0 mt-0.5"></i>
+                <span>Why is this converter so much faster than other websites?</span>
+              </dt>
+              <dd class="text-xs text-slate-600 leading-relaxed pl-6">
+                Because your phone or computer does all the work directly inside your browser! You don't have to wait for large image files to upload across the internet to a server and download back again. This saves massive amounts of time and mobile data.
+              </dd>
+            </div>
+
+            <!-- Q2 -->
+            <div class="flex flex-col gap-1.5">
+              <dt class="font-bold text-xs sm:text-sm text-slate-900 flex items-start gap-2">
+                <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                <span>Are my photos really 100% safe and private?</span>
+              </dt>
+              <dd class="text-xs text-slate-600 leading-relaxed pl-6">
+                Yes! Your images are processed strictly inside your web browser's temporary memory and are never uploaded to any remote server or cloud database. No one else ever sees or stores your photos.
+              </dd>
+            </div>
+
+            <!-- Q3 -->
+            <div class="flex flex-col gap-1.5">
+              <dt class="font-bold text-xs sm:text-sm text-slate-900 flex items-start gap-2">
+                <i data-lucide="folder-archive" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>
+                <span>Can I convert multiple photos at the same time for free?</span>
+              </dt>
+              <dd class="text-xs text-slate-600 leading-relaxed pl-6">
+                Yes! You can select dozens of images at once. After converting, click the <strong>Download ZIP</strong> button to get all your converted pictures neatly organized in a single compressed file.
+              </dd>
+            </div>
+
+            <!-- Q4 -->
+            <div class="flex flex-col gap-1.5">
+              <dt class="font-bold text-xs sm:text-sm text-slate-900 flex items-start gap-2">
+                <i data-lucide="wifi-off" class="w-4 h-4 text-indigo-600 shrink-0 mt-0.5"></i>
+                <span>Can I use this tool when I don't have an internet connection?</span>
+              </dt>
+              <dd class="text-xs text-slate-600 leading-relaxed pl-6">
+                Yes! Once the webpage loads the first time, all the converter tools are stored in your browser. You can convert photos anytime — on an airplane, in remote areas, or when your internet is down.
+              </dd>
+            </div>
+          </dl>
+        </div>
+
       </section>
     </div>
 
     <!-- Frequently Asked Questions (FAQ) Section - High-Value AEO & SEO -->
-    <section class="w-full flex flex-col gap-6" id="faq-section" aria-label="Frequently Asked Questions">
+    <section class="w-full flex flex-col gap-6" id="faq-section" aria-label="Frequently Asked Questions"
+      itemscope itemtype="https://schema.org/FAQPage">
       <!-- Section Header -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200/80 pb-4">
         <div>
@@ -1806,266 +2172,267 @@
             <span>Frequently Asked Questions</span>
           </h2>
           <p class="text-xs sm:text-sm text-slate-500 mt-1">
-            Authoritative answers on browser-native image conversion, privacy standards, file compression, and
-            technical
-            capabilities.
+            Authoritative answers on browser-native image conversion, privacy standards, file compression, and technical capabilities.
           </p>
         </div>
-
       </div>
 
       <!-- FAQ Accordion Grid / List -->
       <div class="flex flex-col gap-3">
         <!-- Q1 -->
         <details
-          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
+          class="group border border-slate-200 rounded-lg p-4 sm:p-5 transition-colors open:border-indigo-200 bg-slate-50/40 hover:border-slate-300"
+          itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
-              <span
-                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q1</span>
-              <span>Is this Online Image Converter safe and private for converting confidential or personal
-                photos?</span>
+              <span class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q1</span>
+              <span itemprop="name">Is this Online Image Converter safe and private for converting confidential or personal photos?</span>
             </span>
             <i data-lucide="chevron-down"
               class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
           </summary>
-          <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
-            <p><strong>Yes, 100% private and safe.</strong> Unlike traditional online file converters that upload your
-              confidential files to remote cloud servers, Online Image Converter executes all decoding, processing,
-              and
-              encoding exclusively inside your local browser memory using HTML5 Canvas and WebAssembly. Your images
-              never leave your device, never touch any remote database, and leave zero digital footprint on the
-              internet.</p>
+          <div class="mt-3.5 pt-3 border-t border-slate-200/60 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8"
+            itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p><strong>Yes, 100% private and safe.</strong> Unlike traditional online file converters that upload your confidential files to remote cloud servers, Online Image Converter executes all decoding, processing, and encoding exclusively inside your local browser memory using HTML5 Canvas and WebAssembly. Your images never leave your device, never touch any remote database, and leave zero digital footprint on the internet.</p>
+            </div>
           </div>
         </details>
 
         <!-- Q2 -->
         <details
-          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
+          class="group border border-slate-200 rounded-lg p-4 sm:p-5 transition-colors open:border-indigo-200 bg-slate-50/40 hover:border-slate-300"
+          itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
-              <span
-                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q2</span>
-              <span>How do I convert Apple iPhone HEIC/HEIF photos to JPG or PNG on Windows and Mac?</span>
+              <span class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q2</span>
+              <span itemprop="name">How do I convert Apple iPhone HEIC/HEIF photos to JPG or PNG on Windows and Mac?</span>
             </span>
             <i data-lucide="chevron-down"
               class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
           </summary>
-          <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
-            <p>Simply drag and drop your Apple <code
-                class="text-indigo-700 font-semibold bg-indigo-50 px-1 py-0.5 rounded">.heic</code> or <code
-                class="text-indigo-700 font-semibold bg-indigo-50 px-1 py-0.5 rounded">.heif</code> camera files into
-              the drop zone. Online Image Converter's integrated WebAssembly decoder automatically parses the
-              high-efficiency image container in local memory and enables one-click conversion to standard JPG, PNG,
-              WebP, or AVIF formats for seamless viewing on Windows, Android, and web platforms.</p>
+          <div class="mt-3.5 pt-3 border-t border-slate-200/60 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8"
+            itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p><strong>Simply drag and drop your Apple .heic or .heif camera files into the drop zone.</strong> Online Image Converter's integrated WebAssembly decoder automatically parses the high-efficiency image container in local memory and enables one-click conversion to standard JPG, PNG, WebP, or AVIF formats for seamless viewing on Windows, Android, and web platforms.</p>
+            </div>
           </div>
         </details>
 
         <!-- Q3 -->
         <details
-          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
+          class="group border border-slate-200 rounded-lg p-4 sm:p-5 transition-colors open:border-indigo-200 bg-slate-50/40 hover:border-slate-300"
+          itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
-              <span
-                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q3</span>
-              <span>How does client-side in-browser image conversion work without server uploads?</span>
+              <span class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q3</span>
+              <span itemprop="name">How does client-side in-browser image conversion work without server uploads?</span>
             </span>
             <i data-lucide="chevron-down"
               class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
           </summary>
-          <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
-            <p>Online Image Converter leverages modern web standards including <strong>HTML5 Canvas API</strong>,
-              <strong>WebAssembly (Wasm)</strong>, and <strong>Web Workers</strong>. When a file is selected, the
-              browser reads raw binary data into RAM, manipulates pixels directly on your GPU/CPU hardware, and
-              outputs
-              a native Blob URL for instant download. Because zero bytes are transmitted over the internet,
-              conversions
-              happen at near-instant speeds with zero bandwidth lag.
-            </p>
+          <div class="mt-3.5 pt-3 border-t border-slate-200/60 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8"
+            itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p><strong>By leveraging modern browser standards including HTML5 Canvas API, WebAssembly (Wasm), and Web Workers.</strong> When a file is selected, the browser reads raw binary data into RAM, manipulates pixels directly on your GPU/CPU hardware, and outputs a native Blob URL for instant download. Because zero bytes are transmitted over the internet, conversions happen at near-instant speeds with zero bandwidth lag.</p>
+            </div>
           </div>
         </details>
 
         <!-- Q4 -->
         <details
-          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
+          class="group border border-slate-200 rounded-lg p-4 sm:p-5 transition-colors open:border-indigo-200 bg-slate-50/40 hover:border-slate-300"
+          itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
-              <span
-                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q4</span>
-              <span>Why should I convert images to WebP or AVIF format for web performance and SEO?</span>
+              <span class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q4</span>
+              <span itemprop="name">Why should I convert images to WebP or AVIF format for web performance and SEO?</span>
             </span>
             <i data-lucide="chevron-down"
               class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
           </summary>
-          <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
-            <p><strong>WebP and AVIF</strong> are next-generation modern image formats designed specifically for the
-              web. WebP delivers <strong>26% to 34% smaller file sizes</strong> compared to PNG/JPEG, while AVIF
-              achieves up to <strong>50% smaller sizes</strong> at identical visual quality. Adopting WebP and AVIF
-              drastically reduces page weight, accelerates load times, and boosts Google <strong>Core Web
-                Vitals</strong> (Largest Contentful Paint - LCP) scores for higher search rankings.</p>
+          <div class="mt-3.5 pt-3 border-t border-slate-200/60 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8"
+            itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p><strong>WebP and AVIF deliver 25% to 50% smaller file sizes than JPEG/PNG without visual quality loss.</strong> WebP achieves 26% to 34% smaller footprints, while next-gen AVIF can compress up to 50% smaller. Using WebP and AVIF dramatically accelerates website page load speeds and significantly improves Google Core Web Vitals (Largest Contentful Paint - LCP) scores for higher search engine rankings.</p>
+            </div>
           </div>
         </details>
 
         <!-- Q5 -->
         <details
-          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
+          class="group border border-slate-200 rounded-lg p-4 sm:p-5 transition-colors open:border-indigo-200 bg-slate-50/40 hover:border-slate-300"
+          itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
-              <span
-                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q5</span>
-              <span>How does the raster-to-SVG vector tracing feature work?</span>
+              <span class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q5</span>
+              <span itemprop="name">What is the difference between WebP and PNG for transparent graphics?</span>
             </span>
             <i data-lucide="chevron-down"
               class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
           </summary>
-          <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
-            <p>Online Image Converter features an embedded client-side vectorization engine that analyzes raster pixel
-              clusters from PNG, JPG, or BMP images. It algorithmically detects color boundaries and transforms bitmap
-              pixels into clean, mathematical <strong>SVG vector paths</strong> and polygon curves. This allows logos,
-              illustrations, and icons to scale infinitely to 4K or 8K resolutions without blurriness.</p>
+          <div class="mt-3.5 pt-3 border-t border-slate-200/60 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8"
+            itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p><strong>Both formats support full alpha transparency, but WebP is approximately 26% smaller than PNG.</strong> WebP uses advanced predictive encoding for transparent graphics, allowing websites and web apps to load crisp transparent logos, icons, and overlays with drastically reduced bandwidth consumption and faster page rendering.</p>
+            </div>
           </div>
         </details>
 
         <!-- Q6 -->
         <details
-          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
+          class="group border border-slate-200 rounded-lg p-4 sm:p-5 transition-colors open:border-indigo-200 bg-slate-50/40 hover:border-slate-300"
+          itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
-              <span
-                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q6</span>
-              <span>Can I batch convert multiple pictures simultaneously and download them in a single ZIP?</span>
+              <span class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q6</span>
+              <span itemprop="name">How does the raster-to-SVG vector tracing feature work?</span>
             </span>
             <i data-lucide="chevron-down"
               class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
           </summary>
-          <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
-            <p><strong>Yes.</strong> You can drag and drop dozens of photos at once. Online Image Converter employs a
-              multi-threaded parallel worker concurrency pool (2 to 4 workers tailored to your CPU cores) to process
-              files simultaneously. Once conversion is complete, click <strong class="text-indigo-700">"Download
-                Selected (.zip)"</strong> to package all files into an organized ZIP archive with automated
-              duplicate-name protection (supporting up to 800 MB safe limit).</p>
+          <div class="mt-3.5 pt-3 border-t border-slate-200/60 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8"
+            itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p><strong>Online Image Converter features an embedded client-side vectorization engine</strong> that analyzes raster pixel clusters from PNG, JPG, or BMP images. It algorithmically detects color boundaries and transforms bitmap pixels into clean, mathematical SVG vector paths and polygon curves. This allows logos, illustrations, and icons to scale infinitely to 4K or 8K resolutions without blurriness.</p>
+            </div>
           </div>
         </details>
 
         <!-- Q7 -->
         <details
-          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
+          class="group border border-slate-200 rounded-lg p-4 sm:p-5 transition-colors open:border-indigo-200 bg-slate-50/40 hover:border-slate-300"
+          itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
-              <span
-                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q7</span>
-              <span>What is the difference between Max, Crop, Scale, and Contain fit modes?</span>
+              <span class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q7</span>
+              <span itemprop="name">Can I batch convert multiple pictures simultaneously and download them in a single ZIP?</span>
             </span>
             <i data-lucide="chevron-down"
               class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
           </summary>
-          <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
-            <ul class="list-disc pl-4 space-y-1.5">
-              <li><strong>Max (Fit within bounds):</strong> Resizes the image so it fits within specified width and
-                height without enlarging images smaller than the target bounds.</li>
-              <li><strong>Crop (Fill & Crop excess):</strong> Scales the image to completely fill the target
-                dimensions
-                and crops any overlapping excess image data.</li>
-              <li><strong>Scale (Exact dimension stretch):</strong> Enforces exact pixel width and height by scaling
-                directly, ignoring original aspect ratio.</li>
-              <li><strong>Contain (Preserve aspect ratio):</strong> Centers the image inside the bounding box and
-                preserves complete original aspect ratio.</li>
-            </ul>
+          <div class="mt-3.5 pt-3 border-t border-slate-200/60 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8"
+            itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p><strong>Yes, absolutely.</strong> You can drag and drop dozens of photos at once. Online Image Converter employs a multi-threaded parallel worker pool tailored to your CPU cores to process files simultaneously. Once conversion is complete, click <strong class="text-indigo-700">"Download Selected (.zip)"</strong> to package all files into an organized ZIP archive with automated duplicate-name protection (supporting up to 800 MB safe limit).</p>
+            </div>
           </div>
         </details>
 
         <!-- Q8 -->
         <details
-          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
+          class="group border border-slate-200 rounded-lg p-4 sm:p-5 transition-colors open:border-indigo-200 bg-slate-50/40 hover:border-slate-300"
+          itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
-              <span
-                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q8</span>
-              <span>How do I generate a 32x32 website favicon (ICO file) using Online Image Converter?</span>
+              <span class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q8</span>
+              <span itemprop="name">What is the difference between Max, Crop, Scale, and Contain fit modes?</span>
             </span>
             <i data-lucide="chevron-down"
               class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
           </summary>
-          <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
-            <p>Upload any square image (ideally a transparent PNG or SVG logo), choose <strong
-                class="text-indigo-700">ICO</strong> from the format dropdown, and click convert. Online Image
-              Converter
-              compiles a standardized 32x32 binary PNG-in-ICO favicon fully compatible with web browsers, bookmark
-              bars,
-              and server root standards (<code
-                class="text-slate-800 font-semibold bg-slate-100 px-1 py-0.5 rounded">favicon.ico</code>).</p>
+          <div class="mt-3.5 pt-3 border-t border-slate-200/60 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8"
+            itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <ul class="list-disc pl-4 space-y-1.5">
+                <li><strong>Max (Fit within bounds):</strong> Resizes the image so it fits within specified width and height without enlarging images smaller than the target bounds.</li>
+                <li><strong>Crop (Fill &amp; Crop excess):</strong> Scales the image to completely fill the target dimensions and crops any overlapping excess image data.</li>
+                <li><strong>Scale (Exact dimension stretch):</strong> Enforces exact pixel width and height by scaling directly, ignoring original aspect ratio.</li>
+                <li><strong>Contain (Preserve aspect ratio):</strong> Centers the image inside the bounding box and preserves complete original aspect ratio.</li>
+              </ul>
+            </div>
           </div>
         </details>
 
         <!-- Q9 -->
         <details
-          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
+          class="group border border-slate-200 rounded-lg p-4 sm:p-5 transition-colors open:border-indigo-200 bg-slate-50/40 hover:border-slate-300"
+          itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
-              <span
-                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q9</span>
-              <span>Does Online Image Converter remove EXIF metadata (GPS coordinates, camera model) from
-                images?</span>
+              <span class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q9</span>
+              <span itemprop="name">How do I generate a 32x32 website favicon (ICO file) using Online Image Converter?</span>
             </span>
             <i data-lucide="chevron-down"
               class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
           </summary>
-          <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
-            <p><strong>Yes.</strong> By default, Online Image Converter is configured to strip EXIF metadata (Strip:
-              Yes). During the canvas pixel re-rendering process, sensitive personal telemetry including GPS location
-              tags, camera device serials, and exposure timestamps are permanently discarded, protecting your privacy
-              when sharing photos online.</p>
+          <div class="mt-3.5 pt-3 border-t border-slate-200/60 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8"
+            itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p><strong>Upload any square image (ideally a transparent PNG or SVG logo), choose ICO from the format dropdown, and click convert.</strong> Online Image Converter compiles a standardized 32x32 binary PNG-in-ICO favicon fully compatible with web browsers, bookmark bars, and server root standards (<code class="text-slate-800 font-semibold bg-slate-200/60 px-1 py-0.5 rounded text-[11px]">favicon.ico</code>).</p>
+            </div>
           </div>
         </details>
 
         <!-- Q10 -->
         <details
-          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
+          class="group border border-slate-200 rounded-lg p-4 sm:p-5 transition-colors open:border-indigo-200 bg-slate-50/40 hover:border-slate-300"
+          itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
-              <span
-                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q10</span>
-              <span>Are there any hidden costs, subscriptions, file limits, or watermarks?</span>
+              <span class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q10</span>
+              <span itemprop="name">Does Online Image Converter remove EXIF metadata (GPS coordinates, camera model) from images?</span>
             </span>
             <i data-lucide="chevron-down"
               class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
           </summary>
-          <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
-            <p><strong>Zero hidden costs, zero watermarks, and zero limits.</strong> Online Image Converter is 100%
-              free
-              and open-source software. You will never encounter daily file conversion quotas, mandatory email
-              registrations, or paid subscription pop-ups. Your exported pictures are delivered in 100% original
-              pristine quality without any watermarked branding.</p>
+          <div class="mt-3.5 pt-3 border-t border-slate-200/60 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8"
+            itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p><strong>Yes, EXIF stripping is enabled by default.</strong> During the canvas pixel re-rendering process, sensitive personal telemetry including GPS location tags, camera device serials, and exposure timestamps are permanently discarded in memory, protecting your privacy when sharing photos online.</p>
+            </div>
           </div>
         </details>
 
         <!-- Q11 -->
         <details
-          class="group border border-slate-200 rounded-xl p-4 sm:p-5 shadow-2xs transition-colors open:border-indigo-200">
+          class="group border border-slate-200 rounded-lg p-4 sm:p-5 transition-colors open:border-indigo-200 bg-slate-50/40 hover:border-slate-300"
+          itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
           <summary
             class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
             <span class="flex items-center gap-2.5">
-              <span
-                class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q11</span>
-              <span>Which operating systems and web browsers are compatible with Online Image Converter?</span>
+              <span class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q11</span>
+              <span itemprop="name">Are there any hidden costs, subscriptions, file limits, or watermarks?</span>
             </span>
             <i data-lucide="chevron-down"
               class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
           </summary>
-          <div class="mt-3.5 pt-3 border-t border-slate-100 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
-            <p>Online Image Converter is fully cross-platform and requires zero software or plugin installations. It
-              operates natively on <strong>Google Chrome, Apple Safari (iOS & macOS), Mozilla Firefox, Microsoft Edge,
-                Brave, and Opera</strong> across Windows, macOS, Linux, Android, iPadOS, and iOS devices.</p>
+          <div class="mt-3.5 pt-3 border-t border-slate-200/60 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8"
+            itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p><strong>Zero hidden costs, zero watermarks, and zero file limits.</strong> Online Image Converter is 100% free and open-source software. You will never encounter daily file conversion quotas, mandatory email registrations, or paid subscription pop-ups. Your exported pictures are delivered in 100% original pristine quality without any watermarked branding.</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Q12 -->
+        <details
+          class="group border border-slate-200 rounded-lg p-4 sm:p-5 transition-colors open:border-indigo-200 bg-slate-50/40 hover:border-slate-300"
+          itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <summary
+            class="flex items-center justify-between cursor-pointer list-none font-bold text-sm sm:text-base text-slate-900 select-none">
+            <span class="flex items-center gap-2.5">
+              <span class="w-6 h-6 text-indigo-700 text-xs font-black flex items-center justify-center shrink-0">Q12</span>
+              <span itemprop="name">Which operating systems and web browsers are compatible with Online Image Converter?</span>
+            </span>
+            <i data-lucide="chevron-down"
+              class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0 ml-2"></i>
+          </summary>
+          <div class="mt-3.5 pt-3 border-t border-slate-200/60 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8"
+            itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p><strong>Online Image Converter is fully cross-platform and requires zero software installations.</strong> It operates natively on Google Chrome, Apple Safari (iOS &amp; macOS), Mozilla Firefox, Microsoft Edge, Brave, and Opera across Windows, macOS, Linux, Android, iPadOS, and iOS devices.</p>
+            </div>
           </div>
         </details>
       </div>

@@ -3,7 +3,6 @@ import { convertImage } from './converter.js';
 import JSZip from 'jszip';
 import {
   createIcons,
-  Sparkles,
   ShieldCheck,
   Heart,
   Star,
@@ -40,11 +39,17 @@ import {
   HelpCircle,
   Lock,
   Scale,
-  FileText
+  FileText,
+  Cpu,
+  ServerOff,
+  Gauge,
+  Workflow,
+  Server,
+  HardDrive,
+  WifiOff
 } from 'lucide';
 
 const appIcons = {
-  Sparkles,
   ShieldCheck,
   Heart,
   Star,
@@ -81,7 +86,14 @@ const appIcons = {
   HelpCircle,
   Lock,
   Scale,
-  FileText
+  FileText,
+  Cpu,
+  ServerOff,
+  Gauge,
+  Workflow,
+  Server,
+  HardDrive,
+  WifiOff
 };
 
 console.log('Online Image Converter initialized with Smart Interactive Focus & SEO Knowledge Engine');
