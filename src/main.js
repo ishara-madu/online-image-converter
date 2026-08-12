@@ -639,11 +639,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const item = fileQueue.find(i => i.id === targetId);
       if (item) {
         targetOptions = item.options || { ...globalOptions };
-        if (optionsModalTitle) optionsModalTitle.textContent = `Options: ${item.name}`;
+        if (optionsModalTitle) {
+          optionsModalTitle.textContent = `Options: ${item.name}`;
+          optionsModalTitle.title = `Options: ${item.name}`;
+        }
         if (optionsModalSubtitle) optionsModalSubtitle.textContent = 'Custom dimensions, fit mode, and quality for this image';
       }
     } else {
-      if (optionsModalTitle) optionsModalTitle.textContent = 'Options (All Images)';
+      if (optionsModalTitle) {
+        optionsModalTitle.textContent = 'Options (All Images)';
+        optionsModalTitle.title = 'Options (All Images)';
+      }
       if (optionsModalSubtitle) optionsModalSubtitle.textContent = 'Configure default conversion options for all images in queue';
     }
 
@@ -1325,6 +1331,73 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================================
+  // POST-CONVERSION PROMOTIONAL SUGGESTION
+  // ==========================================================================
+  const renderPostConversionPromo = (shouldFocus = false) => {
+    if (!resultArea) return;
+
+    let promoEl = document.getElementById('postConversionPromo');
+    if (!promoEl) {
+      resultArea.innerHTML = `
+        <div id="postConversionPromo" class="w-full mt-2 p-3.5 sm:p-4 bg-gradient-to-r from-slate-50/90 via-indigo-50/30 to-white border border-slate-200/90 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 shadow-2xs transition-all duration-500 animate-fadeIn">
+          <div class="flex items-start sm:items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center shrink-0 p-1 shadow-2xs overflow-hidden">
+              <img src="https://www.google.com/s2/favicons?domain=https://ishara-madu.github.io/gemini-watermark-remover/&sz=64" alt="Gemini Watermark Remover" class="w-full h-full object-contain rounded" loading="lazy" />
+            </div>
+            <div class="flex flex-col text-left">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="font-bold text-xs sm:text-sm text-slate-900">Gemini Watermark Remover</span>
+                <span class="text-[10px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-200/80 px-2 py-0.5 rounded-md uppercase tracking-wider">Free Web Tool</span>
+              </div>
+              <p class="text-xs text-slate-500 mt-0.5 leading-snug">Need to clean AI images? Remove Gemini watermarks directly in your browser with 100% privacy.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 self-stretch sm:self-auto shrink-0">
+            <a href="https://ishara-madu.github.io/gemini-watermark-remover/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-3.5 py-2 rounded-lg shadow-xs transition-colors whitespace-nowrap flex-1 sm:flex-none">
+              <span>Try Free</span>
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            </a>
+            <button type="button" id="btnDismissPromo" class="text-slate-400 hover:text-slate-600 hover:bg-slate-100 p-1.5 rounded-lg transition-colors cursor-pointer" title="Dismiss">
+              <i data-lucide="x" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+      `;
+
+      const btnDismissPromo = document.getElementById('btnDismissPromo');
+      if (btnDismissPromo) {
+        btnDismissPromo.addEventListener('click', () => {
+          resultArea.innerHTML = '';
+        });
+      }
+
+      createIcons({ icons: appIcons });
+      promoEl = document.getElementById('postConversionPromo');
+    }
+
+    if (shouldFocus && promoEl) {
+      promoEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      promoEl.classList.remove('ring-2', 'ring-indigo-500/80', 'border-indigo-400', 'shadow-md');
+      void promoEl.offsetWidth; // Trigger reflow for re-animation
+      promoEl.classList.add('ring-2', 'ring-indigo-500/80', 'border-indigo-400', 'shadow-md');
+
+      setTimeout(() => {
+        promoEl?.classList.remove('ring-2', 'ring-indigo-500/80', 'border-indigo-400', 'shadow-md');
+      }, 2200);
+    }
+  };
+
+  // Listen to single item downloads (render suggestion without scrolling)
+  if (fileItemsList) {
+    fileItemsList.addEventListener('click', (e) => {
+      const downloadBtn = e.target.closest('a[download]');
+      if (downloadBtn) {
+        renderPostConversionPromo(false);
+      }
+    });
+  }
+
+  // ==========================================================================
   // CONVERT SELECTED ACTION
   // ==========================================================================
   if (btnConvertSelected) {
@@ -1384,6 +1457,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         statusDiv.style.color = '#15803D';
         statusDiv.textContent = `Finished ${successful.length} of ${totalCount} image(s) in ${totalDuration}s! Click download button to save.`;
+
+        if (successful.length > 0) {
+          renderPostConversionPromo();
+        }
       } catch (error) {
         console.error('Batch Conversion Error:', error);
         statusDiv.style.color = '#E11D48';
@@ -1456,6 +1533,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         statusDiv.style.color = '#15803D';
         statusDiv.textContent = `Successfully downloaded ZIP package (${formatBytes(zipBlob.size)})!`;
+        renderPostConversionPromo(true);
       } catch (err) {
         console.error('ZIP generation failed:', err);
         statusDiv.style.color = '#E11D48';

@@ -2072,14 +2072,13 @@
     <div
       class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-xl w-full p-6 sm:p-7 relative flex flex-col gap-5">
       <!-- Modal Header -->
-      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <div>
-          <h2 class="text-xl font-bold text-slate-900" id="optionsModalTitle">Options</h2>
-          <p class="text-xs text-slate-500 mt-0.5" id="optionsModalSubtitle">Configure dimensions, fit mode, and image
-            quality</p>
+      <div class="flex items-center justify-between gap-3 sm:gap-4 border-b border-slate-100 pb-3 min-w-0">
+        <div class="min-w-0 flex-1">
+          <h2 class="text-lg sm:text-xl font-bold text-slate-900 truncate" id="optionsModalTitle" title="Options">Options</h2>
+          <p class="text-xs text-slate-500 mt-0.5 truncate" id="optionsModalSubtitle">Configure dimensions, fit mode, and image quality</p>
         </div>
         <button type="button"
-          class="bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 w-8 h-8 rounded-lg flex items-center justify-center transition-colors cursor-pointer"
+          class="bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 w-8 h-8 rounded-lg flex items-center justify-center transition-colors cursor-pointer shrink-0"
           id="closeOptionsModal" aria-label="Close options modal">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
