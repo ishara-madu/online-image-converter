@@ -7,6 +7,39 @@
   <title>Online Image Converter - Free, Fast & 100% Private In-Browser Tool</title>
   <meta name="description"
     content="Free Online Image Converter. Convert JPG, PNG, WebP, AVIF, HEIC, SVG, ICO and GIF directly in your browser with zero quality loss and zero server uploads." />
+  <meta name="keywords"
+    content="image converter, online image converter, convert webp to jpg, convert heic to jpg, convert png to webp, batch image converter, client-side image converter, free image converter, vector tracer, svg converter, ico converter, avif converter, privacy image converter" />
+  <meta name="author" content="Ishara M." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+  <!-- ASO & PWA Meta Tags -->
+  <meta name="theme-color" content="#F5F5F7" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Image Converter" />
+
+  <!-- OpenGraph / Social SEO Meta Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ishara-madu.github.io/online-image-converter/" />
+  <meta property="og:title" content="Online Image Converter - Free, Fast & 100% Private In-Browser Tool" />
+  <meta property="og:description"
+    content="Free Online Image Converter. Convert JPG, PNG, WebP, AVIF, HEIC, SVG, ICO and GIF directly in your browser with zero quality loss and zero server uploads." />
+  <meta property="og:image" content="https://ishara-madu.github.io/online-image-converter/web-app-manifest-512x512.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:image:alt" content="Online Image Converter - Free, Fast & 100% Private In-Browser Tool" />
+  <meta property="og:site_name" content="Online Image Converter" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Online Image Converter - Free, Fast & 100% Private In-Browser Tool" />
+  <meta name="twitter:description"
+    content="Free Online Image Converter. Convert JPG, PNG, WebP, AVIF, HEIC, SVG, ICO and GIF directly in your browser with zero quality loss and zero server uploads." />
+  <meta name="twitter:image" content="https://ishara-madu.github.io/online-image-converter/web-app-manifest-512x512.png" />
+  <meta name="twitter:image:alt" content="Online Image Converter - Free, Fast & 100% Private In-Browser Tool" />
+
   <link rel="icon" type="image/png" href="./favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
   <link rel="shortcut icon" href="./favicon.ico" />
@@ -23,12 +56,61 @@
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "WebApplication",
+        "@type": "WebSite",
+        "@id": "https://ishara-madu.github.io/online-image-converter/#website",
+        "url": "https://ishara-madu.github.io/online-image-converter/",
         "name": "Online Image Converter",
+        "alternateName": ["Free Online Image Converter", "In-Browser Image Converter", "Private Image Converter"],
+        "description": "Free, private, in-browser universal online image converter supporting WebP, JPG, PNG, AVIF, HEIC, SVG, ICO, and GIF with zero server uploads.",
+        "inLanguage": "en",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Online Image Converter",
+          "url": "https://ishara-madu.github.io/online-image-converter/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://ishara-madu.github.io/online-image-converter/logo.webp"
+          }
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://ishara-madu.github.io/online-image-converter/#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://ishara-madu.github.io/online-image-converter/"
+          }
+        ]
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://ishara-madu.github.io/online-image-converter/#webapp",
+        "name": "Online Image Converter",
+        "alternateName": "Free Private In-Browser Image Converter",
         "url": "https://ishara-madu.github.io/online-image-converter/",
         "description": "Free, private, in-browser universal online image converter supporting WebP, JPG, PNG, AVIF, HEIC, SVG, ICO, and GIF.",
         "applicationCategory": "MultimediaApplication",
-        "operatingSystem": "All modern browsers",
+        "operatingSystem": "All modern web browsers (Chrome, Safari, Firefox, Edge, Brave, Opera on Windows, macOS, Linux, Android, iOS)",
+        "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas, Web Workers, and WebAssembly support.",
+        "softwareVersion": "1.0.0",
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "image": "https://ishara-madu.github.io/online-image-converter/web-app-manifest-512x512.png",
+        "screenshot": "https://ishara-madu.github.io/online-image-converter/web-app-manifest-512x512.png",
+        "author": {
+          "@type": "Person",
+          "name": "Ishara M.",
+          "url": "https://github.com/ishara-madu"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Online Image Converter",
+          "url": "https://ishara-madu.github.io/online-image-converter/",
+          "logo": "https://ishara-madu.github.io/online-image-converter/logo.webp"
+        },
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -140,37 +222,41 @@
       },
       {
         "@type": "FAQPage",
+        "@id": "https://ishara-madu.github.io/online-image-converter/#faq-section",
+        "name": "Frequently Asked Questions - Online Image Converter",
+        "description": "Authoritative answers on browser-native image conversion, privacy standards, file compression, and technical capabilities.",
+        "inLanguage": "en",
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Is this Online Image Converter safe and private for converting confidential photos?",
+            "name": "Is this Online Image Converter safe and private for converting confidential or personal photos?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, 100%. Unlike cloud converters, Online Image Converter processes all image files directly inside your browser's local sandbox memory using HTML5 Canvas and WebAssembly. Your photos, personal data, and documents are never transmitted over the internet or saved to any remote server."
+              "text": "Yes, 100% private and safe. Unlike traditional online file converters that upload your confidential files to remote cloud servers, Online Image Converter executes all decoding, processing, and encoding exclusively inside your local browser memory using HTML5 Canvas and WebAssembly. Your images never leave your device, never touch any remote database, and leave zero digital footprint on the internet."
             }
           },
           {
             "@type": "Question",
-            "name": "How do I convert Apple iPhone HEIC photos to JPG or PNG on Windows and Mac?",
+            "name": "How do I convert Apple iPhone HEIC/HEIF photos to JPG or PNG on Windows and Mac?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Simply drag and drop your .heic or .heif camera photos into Online Image Converter. The built-in WebAssembly decoder instantly reads the raw Apple image container in browser memory and allows you to export standard, universally compatible JPG, PNG, or WebP files with zero quality loss."
+              "text": "Simply drag and drop your Apple .heic or .heif camera files into the drop zone. Online Image Converter's integrated WebAssembly decoder automatically parses the high-efficiency image container in local memory and enables one-click conversion to standard JPG, PNG, WebP, or AVIF formats for seamless viewing on Windows, Android, and web platforms."
             }
           },
           {
             "@type": "Question",
-            "name": "How does in-browser client-side image conversion work without uploading files?",
+            "name": "How does client-side in-browser image conversion work without server uploads?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Online Image Converter leverages cutting-edge web standards including HTML5 Canvas, WebAssembly (Wasm), and browser-native GPU/CPU pipelines. Image decoding, pixel manipulation, and encoding are performed locally using your computer's or smartphone's processor, eliminating network upload lag and privacy concerns."
+              "text": "By leveraging modern browser standards including HTML5 Canvas API, WebAssembly (Wasm), and Web Workers. When a file is selected, the browser reads raw binary data into RAM, manipulates pixels directly on your GPU/CPU hardware, and outputs a native Blob URL for instant download. Because zero bytes are transmitted over the internet, conversions happen at near-instant speeds with zero bandwidth lag."
             }
           },
           {
             "@type": "Question",
-            "name": "Why should I convert my images to WebP or AVIF format for web development and SEO?",
+            "name": "Why should I convert images to WebP or AVIF format for web performance and SEO?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "WebP and AVIF are next-generation image formats that provide 25% to 50% superior compression compared to traditional JPEGs and PNGs while retaining visual clarity. Switching to WebP or AVIF drastically decreases website page weight, accelerates load times, and improves Google Core Web Vitals (LCP scores)."
+              "text": "WebP and AVIF deliver 25% to 50% smaller file sizes than JPEG/PNG without visual quality loss. WebP achieves 26% to 34% smaller footprints, while next-gen AVIF can compress up to 50% smaller. Using WebP and AVIF dramatically accelerates website page load speeds and significantly improves Google Core Web Vitals (Largest Contentful Paint - LCP) scores for higher search engine rankings."
             }
           },
           {
@@ -178,7 +264,7 @@
             "name": "What is the difference between WebP and PNG for transparent graphics?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Both WebP and PNG support 8-bit alpha channel transparency. However, WebP lossless compression is on average 26% smaller than standard PNG, allowing websites to load transparent logos and icons much faster without any degradation in edge crispness."
+              "text": "Both formats support full alpha transparency, but WebP is approximately 26% smaller than PNG. WebP uses advanced predictive encoding for transparent graphics, allowing websites and web apps to load crisp transparent logos, icons, and overlays with drastically reduced bandwidth consumption and faster page rendering."
             }
           },
           {
@@ -186,23 +272,23 @@
             "name": "How does the raster-to-SVG vector tracing feature work?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Online Image Converter features an integrated vectorization engine that analyzes raster pixel clusters (from PNG, JPG, or BMP files) and algorithmically converts color boundaries into crisp, mathematical SVG vector paths. This allows icons and logos to scale infinitely to any display resolution without pixelation."
+              "text": "Online Image Converter features an embedded client-side vectorization engine that analyzes raster pixel clusters from PNG, JPG, or BMP images. It algorithmically detects color boundaries and transforms bitmap pixels into clean, mathematical SVG vector paths and polygon curves. This allows logos, illustrations, and icons to scale infinitely to 4K or 8K resolutions without blurriness."
             }
           },
           {
             "@type": "Question",
-            "name": "Can I batch convert multiple pictures simultaneously and download them in a single ZIP file?",
+            "name": "Can I batch convert multiple pictures simultaneously and download them in a single ZIP?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. You can drag and drop dozens of images at once. Online Image Converter distributes the conversion workload across a parallel multi-worker pool (utilizing your CPU cores) and provides a one-click 'Download Selected (.zip)' feature supporting up to 800 MB safe batch archives."
+              "text": "Yes, absolutely. You can drag and drop dozens of photos at once. Online Image Converter employs a multi-threaded parallel worker pool tailored to your CPU cores to process files simultaneously. Once conversion is complete, click \"Download Selected (.zip)\" to package all files into an organized ZIP archive with automated duplicate-name protection (supporting up to 800 MB safe limit)."
             }
           },
           {
             "@type": "Question",
-            "name": "What is the difference between Max, Crop, Scale, and Contain fit modes during resizing?",
+            "name": "What is the difference between Max, Crop, Scale, and Contain fit modes?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Max resizes the image to fit within target width/height boundaries without enlarging smaller images. Crop scales the image to fill the target dimensions completely and trims excess edges. Scale forces exact pixel dimensions by direct stretching. Contain preserves the original aspect ratio inside the bounding box."
+              "text": "Max resizes the image so it fits within specified width and height without enlarging images smaller than the target bounds. Crop scales the image to completely fill the target dimensions and crops any overlapping excess image data. Scale enforces exact pixel width and height by scaling directly, ignoring original aspect ratio. Contain preserves the original aspect ratio inside the bounding box."
             }
           },
           {
@@ -210,15 +296,15 @@
             "name": "How do I generate a 32x32 website favicon (ICO file) using Online Image Converter?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Upload a square logo (preferably a transparent PNG or SVG), select ICO as your target format, and click convert. Online Image Converter compiles a standardized 32x32 binary PNG-in-ICO file fully compliant with modern web servers, Chrome, Safari, and Firefox."
+              "text": "Upload any square image (ideally a transparent PNG or SVG logo), choose ICO from the format dropdown, and click convert. Online Image Converter compiles a standardized 32x32 binary PNG-in-ICO favicon fully compatible with web browsers, bookmark bars, and server root standards (favicon.ico)."
             }
           },
           {
             "@type": "Question",
-            "name": "Does Online Image Converter remove EXIF metadata (GPS location, camera details) for privacy?",
+            "name": "Does Online Image Converter remove EXIF metadata (GPS coordinates, camera model) from images?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. By default, the EXIF metadata stripping option is set to 'Yes'. During canvas pixel re-encoding, sensitive metadata such as geolocation coordinates, device serial numbers, and camera timestamps are cleanly removed."
+              "text": "Yes, EXIF stripping is enabled by default. During the canvas pixel re-rendering process, sensitive personal telemetry including GPS location tags, camera device serials, and exposure timestamps are permanently discarded in memory, protecting your privacy when sharing photos online."
             }
           },
           {
@@ -226,15 +312,15 @@
             "name": "Are there any hidden costs, subscriptions, file limits, or watermarks?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "None. Online Image Converter is 100% free and open-source. There are no daily conversion quotas, no forced sign-ups, no email requirements, and zero watermark stamps placed on your output files."
+              "text": "Zero hidden costs, zero watermarks, and zero file limits. Online Image Converter is 100% free and open-source software. You will never encounter daily file conversion quotas, mandatory email registrations, or paid subscription pop-ups. Your exported pictures are delivered in 100% original pristine quality without any watermarked branding."
             }
           },
           {
             "@type": "Question",
-            "name": "Which browsers and operating systems are supported?",
+            "name": "Which operating systems and web browsers are compatible with Online Image Converter?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Online Image Converter is fully cross-platform and operates seamlessly on Google Chrome, Apple Safari (iOS & macOS), Mozilla Firefox, Microsoft Edge, Brave, Opera, Windows, macOS, Linux, Android, and iOS devices."
+              "text": "Online Image Converter is fully cross-platform and requires zero software installations. It operates natively on Google Chrome, Apple Safari (iOS & macOS), Mozilla Firefox, Microsoft Edge, Brave, and Opera across Windows, macOS, Linux, Android, iPadOS, and iOS devices."
             }
           }
         ]
@@ -254,14 +340,18 @@
           "OffscreenCanvas GPU Hardware Acceleration"
         ],
         "author": {
-          "@type": "Organization",
-          "name": "Online Image Converter",
-          "url": "https://ishara-madu.github.io/online-image-converter/"
+          "@type": "Person",
+          "name": "Ishara M.",
+          "url": "https://github.com/ishara-madu"
         },
         "publisher": {
           "@type": "Organization",
           "name": "Online Image Converter",
-          "url": "https://ishara-madu.github.io/online-image-converter/"
+          "url": "https://ishara-madu.github.io/online-image-converter/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://ishara-madu.github.io/online-image-converter/logo.webp"
+          }
         },
         "mainEntityOfPage": "https://ishara-madu.github.io/online-image-converter/#architecture-comparison-section"
       }
@@ -692,7 +782,7 @@
           <div class="w-20 h-20 flex items-center  text-blue-700 justify-center mb-2">
             <i data-lucide="upload" class="w-10 h-10"></i>
           </div>
-          <h2 class="text-2xl font-extrabold text-blue-700 mb-1">Drop images anywhere</h2>
+          <p role="status" class="text-2xl font-extrabold text-blue-700 mb-1">Drop images anywhere</p>
           <p class="text-sm text-blue-700">Release to add files directly to the conversion queue</p>
         </div>
       </div>
@@ -1410,6 +1500,41 @@
         </li>
       </ol>
 
+    </section>
+
+    <!-- Popular Conversions (SEO & AEO Keyword Density Optimizer) -->
+    <section class="w-full flex flex-col gap-4 sm:gap-5 pt-4 pb-8" aria-label="Popular Image Conversions">
+      <div class="flex items-center gap-2">
+        <i data-lucide="zap" class="w-4 h-4 text-slate-400"></i>
+        <h2 class="text-xs sm:text-sm font-bold text-slate-500 uppercase tracking-wider">Popular Conversions</h2>
+      </div>
+      <div class="flex flex-wrap gap-2.5 sm:gap-3">
+        <!-- High-Intent Keyword Blocks (Flat, Minimal, No Bulky Cards) -->
+        <span class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/40 hover:bg-white border border-slate-200/80 rounded-lg text-xs sm:text-sm font-bold text-slate-700 transition-colors cursor-default" title="Convert HEIC to JPG">
+          HEIC to JPG
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/40 hover:bg-white border border-slate-200/80 rounded-lg text-xs sm:text-sm font-bold text-slate-700 transition-colors cursor-default" title="Convert JPG to PNG">
+          JPG to PNG
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/40 hover:bg-white border border-slate-200/80 rounded-lg text-xs sm:text-sm font-bold text-slate-700 transition-colors cursor-default" title="Convert PNG to WebP">
+          PNG to WebP
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/40 hover:bg-white border border-slate-200/80 rounded-lg text-xs sm:text-sm font-bold text-slate-700 transition-colors cursor-default" title="Convert WebP to JPG">
+          WebP to JPG
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/40 hover:bg-white border border-slate-200/80 rounded-lg text-xs sm:text-sm font-bold text-slate-700 transition-colors cursor-default" title="Convert AVIF to JPG">
+          AVIF to JPG
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/40 hover:bg-white border border-slate-200/80 rounded-lg text-xs sm:text-sm font-bold text-slate-700 transition-colors cursor-default" title="Convert PNG to SVG">
+          PNG to SVG
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/40 hover:bg-white border border-slate-200/80 rounded-lg text-xs sm:text-sm font-bold text-slate-700 transition-colors cursor-default" title="Convert PNG to ICO">
+          PNG to ICO
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/40 hover:bg-white border border-slate-200/80 rounded-lg text-xs sm:text-sm font-bold text-slate-700 transition-colors cursor-default" title="Convert WebP to PNG">
+          WebP to PNG
+        </span>
+      </div>
     </section>
 
     <!-- Value Proposition Suite (Why Choose Us + Technical Architecture Comparison) -->
