@@ -912,7 +912,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (item.status === 'success') statusBgBorder = 'bg-emerald-50/40 border-emerald-200';
     else if (item.status === 'error') statusBgBorder = 'bg-rose-50/40 border-rose-200';
 
-    row.className = `file-item-row relative flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 border rounded-xl p-3 px-4 shadow-2xs transition-all ${statusBgBorder}`;
+    row.className = `file-item-row relative flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-4 border rounded-xl p-3 sm:px-4 shadow-2xs transition-all ${statusBgBorder}`;
 
     let statusContent = '';
     if (item.status === 'pending') {
@@ -952,46 +952,56 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentFmtObj = FORMAT_LIST.find(f => f.id === item.outputFormatId) || { name: item.outputFormatId.toUpperCase() };
 
     row.innerHTML = `
-      <!-- Left: Thumbnail (acts as clickable select / mark trigger) & File Meta -->
-      <div class="flex items-center gap-3 min-w-0 flex-1">
-        <div class="file-item-thumb-wrapper relative w-11 h-11 rounded-lg cursor-pointer shrink-0 select-none border border-slate-200 bg-white transition-colors group" data-id="${item.id}" title="${item.selected ? 'Click to unmark' : 'Click to mark'}">
-          <img class="w-full h-full rounded-md object-cover block" src="${item.thumbUrl}" alt="Thumbnail" />
-          <div class="thumb-check-overlay absolute -top-1 -right-1 w-4.5 h-4.5 rounded-full text-white border-2 border-white flex items-center justify-center shadow-xs transition-opacity ${item.selected ? 'bg-indigo-600 opacity-100' : 'bg-slate-400 opacity-0 group-hover:opacity-75'}">
-            <i data-lucide="check" class="w-3 h-3 stroke-[3.5]"></i>
+      <!-- Tier 1 on mobile / Left on desktop: Thumbnail + Name & Size + (Mobile Delete Button) -->
+      <div class="flex items-center justify-between gap-2.5 min-w-0 flex-1">
+        <div class="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
+          <div class="file-item-thumb-wrapper relative w-11 h-11 rounded-lg cursor-pointer shrink-0 select-none border border-slate-200 bg-white transition-colors group" data-id="${item.id}" title="${item.selected ? 'Click to unmark' : 'Click to mark'}">
+            <img class="w-full h-full rounded-md object-cover block" src="${item.thumbUrl}" alt="Thumbnail" />
+            <div class="thumb-check-overlay absolute -top-1 -right-1 w-4.5 h-4.5 rounded-full text-white border-2 border-white flex items-center justify-center shadow-xs transition-opacity ${item.selected ? 'bg-indigo-600 opacity-100' : 'bg-slate-400 opacity-0 group-hover:opacity-75'}">
+              <i data-lucide="check" class="w-3 h-3 stroke-[3.5]"></i>
+            </div>
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="text-xs sm:text-sm font-bold text-slate-900 truncate" title="${item.name}">${item.name}</div>
+            <div class="text-[11px] text-slate-500 mt-0.5 font-medium whitespace-nowrap">${formatBytes(item.size)}</div>
           </div>
         </div>
-        <div class="min-w-0 flex-1">
-          <div class="text-xs sm:text-sm font-bold text-slate-900 truncate max-w-[180px] sm:max-w-[280px]" title="${item.name}">${item.name}</div>
-          <div class="text-[11px] text-slate-500 mt-0.5 font-medium whitespace-nowrap">${formatBytes(item.size)}</div>
-        </div>
+
+        <!-- Mobile-only quick remove button -->
+        <button type="button" class="btn-item-remove sm:hidden inline-flex items-center justify-center bg-slate-100 hover:bg-rose-50 text-slate-400 hover:text-rose-600 w-8 h-8 rounded-lg transition-colors cursor-pointer shrink-0" data-id="${item.id}" title="Remove file">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
       </div>
 
-      <!-- Center: Input Format -> Arrow -> Custom Output Format Dropdown -->
-      <div class="flex items-center justify-center gap-2 bg-white px-2.5 py-1.5 rounded-lg border border-slate-200 shrink-0 whitespace-nowrap">
-        <span class="inline-flex items-center bg-slate-100 text-slate-700 text-xs font-bold px-2 py-0.5 rounded-md border border-slate-200 uppercase whitespace-nowrap">${item.inputExt}</span>
-        <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-indigo-500 shrink-0"></i>
-        <div class="relative item-format-dropdown">
-          <button type="button" class="btn-item-format-trigger inline-flex items-center justify-between gap-2 bg-slate-50 hover:bg-slate-100/90 border border-slate-300 rounded-md py-1 pr-2 pl-2.5 text-xs font-bold text-slate-800 transition-colors cursor-pointer min-w-[100px] whitespace-nowrap text-left" data-id="${item.id}" ${item.status === 'converting' ? 'disabled' : ''}>
-            <span class="item-format-label whitespace-nowrap font-bold text-slate-900">${currentFmtObj.name}</span>
-            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400 shrink-0 transition-transform"></i>
+      <!-- Tier 2 on mobile / Right on desktop: Format Selector & Status & Desktop Delete -->
+      <div class="flex items-center justify-between sm:justify-end gap-2 shrink-0 pt-2 sm:pt-0 border-t border-slate-200/60 sm:border-t-0 whitespace-nowrap">
+        <!-- Format Selector Pill -->
+        <div class="flex items-center gap-1.5 bg-white px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-lg border border-slate-200 shrink-0">
+          <span class="inline-flex items-center bg-slate-100 text-slate-700 text-[10px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded border border-slate-200 uppercase whitespace-nowrap">${item.inputExt}</span>
+          <i data-lucide="arrow-right" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-indigo-500 shrink-0"></i>
+          <div class="relative item-format-dropdown">
+            <button type="button" class="btn-item-format-trigger inline-flex items-center justify-between gap-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-300 rounded py-0.5 sm:py-1 pr-1.5 sm:pr-2 pl-2 text-[11px] sm:text-xs font-bold text-slate-800 transition-colors cursor-pointer min-w-[85px] sm:min-w-[100px] whitespace-nowrap text-left" data-id="${item.id}" ${item.status === 'converting' ? 'disabled' : ''}>
+              <span class="item-format-label whitespace-nowrap font-bold text-slate-900">${currentFmtObj.name}</span>
+              <i data-lucide="chevron-down" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-slate-400 shrink-0 transition-transform"></i>
+            </button>
+            
+            <!-- Dropdown Popover Menu with high z-index & auto-flip -->
+            <div class="item-format-menu hidden absolute top-full left-0 mt-1 z-50 bg-white border border-slate-200 rounded-xl shadow-2xl py-1 flex-col divide-y divide-slate-100/80 min-w-[135px] max-h-52 overflow-y-auto whitespace-nowrap">
+              ${getFormatMenuItemsHtml(item.id, item.outputFormatId)}
+            </div>
+          </div>
+        </div>
+
+        <!-- Status & Options & Desktop Remove Button -->
+        <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          ${statusContent}
+          <button type="button" class="btn-item-options inline-flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-600 w-8 h-8 sm:w-7 sm:h-7 rounded-lg sm:rounded-md transition-colors cursor-pointer shrink-0" data-id="${item.id}" title="Conversion options for this image">
+            <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
           </button>
-          
-          <!-- Dropdown Popover Menu with high z-index & auto-flip -->
-          <div class="item-format-menu hidden absolute top-full left-0 mt-1 z-50 bg-white border border-slate-200 rounded-xl shadow-2xl py-1 flex-col divide-y divide-slate-100/80 min-w-[135px] whitespace-nowrap">
-            ${getFormatMenuItemsHtml(item.id, item.outputFormatId)}
-          </div>
+          <button type="button" class="btn-item-remove hidden sm:inline-flex items-center justify-center bg-slate-100 hover:bg-rose-50 text-slate-400 hover:text-rose-600 w-7 h-7 rounded-md transition-colors cursor-pointer shrink-0" data-id="${item.id}" title="Remove file">
+            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+          </button>
         </div>
-      </div>
-
-      <!-- Right: Status / Direct Download & Options & Remove Button -->
-      <div class="flex items-center justify-between sm:justify-end gap-2 shrink-0 whitespace-nowrap">
-        ${statusContent}
-        <button type="button" class="btn-item-options inline-flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-600 w-7 h-7 rounded-md transition-colors cursor-pointer border border-transparent" data-id="${item.id}" title="Conversion options for this image">
-          <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
-        </button>
-        <button type="button" class="btn-item-remove inline-flex items-center justify-center bg-slate-100 hover:bg-rose-50 text-slate-400 hover:text-rose-600 w-7 h-7 rounded-md transition-colors cursor-pointer border border-transparent " data-id="${item.id}" title="Remove file">
-          <i data-lucide="x" class="w-3.5 h-3.5"></i>
-        </button>
       </div>
     `;
 
@@ -1061,13 +1071,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Bind remove button
-    const removeBtn = row.querySelector('.btn-item-remove');
-    if (removeBtn) {
+    // Bind all remove buttons (both mobile and desktop triggers)
+    row.querySelectorAll('.btn-item-remove').forEach(removeBtn => {
       removeBtn.addEventListener('click', () => {
         removeFileFromQueue(item.id);
       });
-    }
+    });
 
     return row;
   };
