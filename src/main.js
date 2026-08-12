@@ -380,21 +380,62 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Navbar Tools Dropdown
+  // Navbar Tools Dropdown (Hover & Click support)
+  const navToolsDropdown = document.getElementById('navToolsDropdown');
   const navToolsBtn = document.getElementById('navToolsBtn');
   const navToolsMenu = document.getElementById('navToolsMenu');
   const navToolsChevron = document.getElementById('navToolsChevron');
 
-  if (navToolsBtn && navToolsMenu) {
+  let navToolsHoverTimeout = null;
+
+  const openNavTools = () => {
+    if (navToolsHoverTimeout) {
+      clearTimeout(navToolsHoverTimeout);
+      navToolsHoverTimeout = null;
+    }
+    if (navToolsMenu) {
+      navToolsMenu.classList.remove('hidden');
+      navToolsMenu.classList.add('flex');
+    }
+    if (navToolsChevron) navToolsChevron.classList.add('rotate-180');
+    navToolsBtn?.setAttribute('aria-expanded', 'true');
+  };
+
+  const closeNavTools = () => {
+    if (navToolsHoverTimeout) {
+      clearTimeout(navToolsHoverTimeout);
+      navToolsHoverTimeout = null;
+    }
+    if (navToolsMenu) {
+      navToolsMenu.classList.add('hidden');
+      navToolsMenu.classList.remove('flex');
+    }
+    if (navToolsChevron) navToolsChevron.classList.remove('rotate-180');
+    navToolsBtn?.setAttribute('aria-expanded', 'false');
+  };
+
+  if (navToolsDropdown && navToolsBtn && navToolsMenu) {
+    // Hover: open on mouse enter
+    navToolsDropdown.addEventListener('mouseenter', () => {
+      openNavTools();
+    });
+
+    // Hover: close smoothly with small grace period on mouse leave
+    navToolsDropdown.addEventListener('mouseleave', () => {
+      navToolsHoverTimeout = setTimeout(() => {
+        closeNavTools();
+      }, 180);
+    });
+
+    // Click: toggle dropdown (especially useful for touch devices)
     navToolsBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       const isHidden = navToolsMenu.classList.contains('hidden');
-      closeAllDropdowns();
       if (isHidden) {
-        navToolsMenu.classList.remove('hidden');
-        navToolsMenu.classList.add('flex');
-        if (navToolsChevron) navToolsChevron.classList.add('rotate-180');
-        navToolsBtn.setAttribute('aria-expanded', 'true');
+        closeAllDropdowns();
+        openNavTools();
+      } else {
+        closeNavTools();
       }
     });
   }
@@ -722,6 +763,10 @@ document.addEventListener('DOMContentLoaded', () => {
       setModalFitChevron(false);
     }
     // Navbar tools menu
+    if (navToolsHoverTimeout) {
+      clearTimeout(navToolsHoverTimeout);
+      navToolsHoverTimeout = null;
+    }
     if (navToolsMenu) {
       navToolsMenu.classList.add('hidden');
       navToolsMenu.classList.remove('flex');
@@ -817,9 +862,10 @@ document.addEventListener('DOMContentLoaded', () => {
       btnDownloadSelectedZip.classList.toggle('inline-flex', showZip);
 
       if (showZip) {
-        if (downloadSelectedZipText) {
-          downloadSelectedZipText.textContent = 'Download';
-        }
+        btnDownloadSelectedZip.innerHTML = `
+          <i data-lucide="folder-archive" class="w-4 h-4"></i>
+          <span>Download</span>
+        `;
       }
     }
 
@@ -1416,6 +1462,10 @@ document.addEventListener('DOMContentLoaded', () => {
         statusDiv.textContent = `ZIP generation failed: ${err.message || err}`;
       } finally {
         btnDownloadSelectedZip.disabled = false;
+        btnDownloadSelectedZip.innerHTML = `
+          <i data-lucide="folder-archive" class="w-4 h-4"></i>
+          <span>Download</span>
+        `;
         updateStickyActionBar();
         createIcons({ icons: appIcons });
       }
