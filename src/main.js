@@ -12,6 +12,7 @@ import {
   UploadCloud,
   X,
   ArrowRight,
+  ArrowLeft,
   ChevronDown,
   ChevronUp,
   ArrowRightLeft,
@@ -33,7 +34,13 @@ import {
   SlidersHorizontal,
   File,
   FileImage,
-  Image
+  Image,
+  BrainCog,
+  BookOpen,
+  HelpCircle,
+  Lock,
+  Scale,
+  FileText
 } from 'lucide';
 
 const appIcons = {
@@ -46,6 +53,7 @@ const appIcons = {
   UploadCloud,
   X,
   ArrowRight,
+  ArrowLeft,
   ChevronDown,
   ChevronUp,
   ArrowRightLeft,
@@ -67,7 +75,13 @@ const appIcons = {
   SlidersHorizontal,
   File,
   FileImage,
-  Image
+  Image,
+  BrainCog,
+  BookOpen,
+  HelpCircle,
+  Lock,
+  Scale,
+  FileText
 };
 
 console.log('Online Image Converter initialized with Smart Interactive Focus & SEO Knowledge Engine');
@@ -107,9 +121,10 @@ const FORMAT_LIST = [
 
 // Fetch GitHub Stars count
 async function fetchGitHubStars() {
-  const repoName = 'ishara-madu/pic-convert-vanilla';
-  const cacheKey = `gh_stars_${repoName}`;
-  const cacheTimeKey = `gh_stars_time_${repoName}`;
+  const primaryRepo = 'ishara-madu/online-image-convertor';
+  const fallbackRepo = 'ishara-madu/pic-convert-vanilla';
+  const cacheKey = `gh_stars_${primaryRepo}`;
+  const cacheTimeKey = `gh_stars_time_${primaryRepo}`;
   const starElements = document.querySelectorAll('.github-star-count');
 
   if (!starElements || starElements.length === 0) return;
@@ -122,7 +137,10 @@ async function fetchGitHubStars() {
   }
 
   try {
-    const res = await fetch(`https://api.github.com/repos/${repoName}`);
+    let res = await fetch(`https://api.github.com/repos/${primaryRepo}`);
+    if (!res.ok) {
+      res = await fetch(`https://api.github.com/repos/${fallbackRepo}`);
+    }
     if (res.ok) {
       const data = await res.json();
       const count = typeof data.stargazers_count === 'number' ? data.stargazers_count : 0;
@@ -131,10 +149,10 @@ async function fetchGitHubStars() {
       localStorage.setItem(cacheTimeKey, Date.now().toString());
       starElements.forEach(el => el.textContent = formatted);
     } else {
-      starElements.forEach(el => el.textContent = 'Star');
+      starElements.forEach(el => el.textContent = '0');
     }
   } catch (e) {
-    starElements.forEach(el => el.textContent = 'Star');
+    starElements.forEach(el => el.textContent = '0');
   }
 }
 
