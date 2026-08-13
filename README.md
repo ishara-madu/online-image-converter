@@ -1,7 +1,13 @@
 # 🖼️ Online Image Converter
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Website-2563eb?style=for-the-badge&logo=googlechrome&logoColor=white)](https://ishara-madu.github.io/online-image-converter/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![100% Client Side](https://img.shields.io/badge/Privacy-100%25_Client--Side-blueviolet?style=for-the-badge&logo=shield)](https://ishara-madu.github.io/online-image-converter/)
+
 > **Free, Fast & 100% Private In-Browser Universal Image Converter & Vector Tracer.**  
 > Convert JPG, PNG, WebP, AVIF, HEIC, SVG, ICO, and GIF directly inside your browser with zero server uploads and zero quality compromise.
+
+🌐 **Live Website**: [**https://ishara-madu.github.io/online-image-converter/**](https://ishara-madu.github.io/online-image-converter/)
 
 ---
 
